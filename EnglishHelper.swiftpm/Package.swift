@@ -34,9 +34,19 @@ let package = Package(
             ]
         )
     ],
+    dependencies: [
+        .package(url: "https://github.com/JohnSundell/Ink", "0.5.1"..<"1.0.0"),
+        .package(url: "https://github.com/RainbowTalaxy/RoomTime", "0.1.0"..<"1.0.0"),
+        .package(url: "https://github.com/RainbowTalaxy/RoomTime", .branch("main"))
+    ],
     targets: [
         .executableTarget(
             name: "AppModule",
+            dependencies: [
+                .product(name: "Ink", package: "ink"),
+                .product(name: "Markdown", package: "roomtime"),
+                .product(name: "RoomTime", package: "roomtime")
+            ],
             path: ".",
             resources: [
                 .process("Resources")
