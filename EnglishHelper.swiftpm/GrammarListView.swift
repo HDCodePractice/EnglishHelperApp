@@ -13,7 +13,8 @@ struct GrammarListView: View {
         NavigationView{
             List(grammars, id: \.name){ grammar in
                 NavigationLink(grammar.name){
-                    WebView(url: grammar.url)
+//                    WebView(url: grammar.url)
+                    InkMarkdownView(grammar: grammar)
                 }
             }
             .navigationTitle("Grammar Book")

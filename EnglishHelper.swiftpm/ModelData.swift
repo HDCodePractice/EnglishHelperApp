@@ -12,7 +12,7 @@ import Foundation
 //    public init(){}
 //}
 
-public var grammars: [Grammar] = load("grammar.json")
+var grammars: [Grammar] = load("grammar.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
