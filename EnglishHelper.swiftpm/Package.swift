@@ -34,15 +34,9 @@ let package = Package(
             ]
         )
     ],
-    dependencies: [
-        .package(url: "https://github.com/JohnSundell/Ink", "0.5.1"..<"1.0.0")
-    ],
     targets: [
         .executableTarget(
             name: "AppModule",
-            dependencies: [
-                .product(name: "Ink", package: "ink")
-            ],
             path: ".",
             resources: [
                 .process("Resources")
