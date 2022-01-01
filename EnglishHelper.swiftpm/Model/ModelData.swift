@@ -6,6 +6,7 @@
 //
 import Combine
 import Foundation
+import SwiftUI
 
 //public final class ModelData:ObservableObject{
 //    @Published var grammars: [Grammar] = load("grammar.json")
@@ -33,5 +34,80 @@ func load<T: Decodable>(_ filename: String) -> T {
         return try decoder.decode(T.self, from: data)
     } catch {
         fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
+    }
+}
+
+
+class ImageExamManager: ObservableObject{
+    private var imageExam : [ImageExam.Result] = []
+    @Published private(set) var length = 0
+    @Published private(set) var index = 0
+    @Published private(set) var reachedEnd = false
+    @Published private(set) var answerSelected = false
+    @Published private(set) var question = ""
+    @Published private(set) var answerChoices: [Answer] = []
+    @Published private(set) var progress: CGFloat = 0.00
+    @Published private(set) var score = 0
+
+    init(){
+        fetchImageExam()
+    }
+
+    func fetchImageExam(){
+        var words = [
+            "sun.max","sunrise","sunset","moon","cloud","sun.dust","moon.stars",
+            "cloud.drizzle","cloud.rain","cloud.heavyrain","cloud.fog",
+            "cloud.hail","cloud.snow","cloud.sun","wind","snowflake",
+            "tornado","thermometer","thermometer.snowflake","humidity"
+        ]
+        var correctAnswer = Int.random(in: 0...2)
+        var rs : [ImageExam.Result] = []
+        
+        for _ in 0...9 {
+            words = words.shuffled()
+            correctAnswer = Int.random(in: 0...2)
+            let r = ImageExam.Result(
+                question: words[correctAnswer],
+                correctAnswer: correctAnswer,
+                answers: [words[0],words[1],words[2]])
+            rs.append(r)
+        }
+        self.imageExam = rs
+        self.length = rs.count
+        
+        self.index = 0
+        self.score = 0
+        self.progress = 0.00
+        self.reachedEnd = false
+        
+        setQuestion()
+    }
+    
+    func goToNextQuestion(){
+        if index + 1 < length{
+            index += 1
+            setQuestion()
+        }else{
+            reachedEnd = true
+        }
+    }
+    
+    func setQuestion(){
+        answerSelected = false
+        progress = CGFloat(Double(index+1)/Double(length)*350)
+        
+        if index < length{
+            let currentQuestion = imageExam[index]
+            question = currentQuestion.formattedQuestion
+            answerSelected = false
+            answerChoices = currentQuestion.questAnswers
+        }
+    }
+    
+    func selectAnswer(answer: Answer){
+        answerSelected = true
+        if answer.isCorrect {
+            score += 1
+        }
     }
 }
