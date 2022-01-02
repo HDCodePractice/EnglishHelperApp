@@ -20,7 +20,7 @@ struct ImageExam{
         var formattedQuestion: String{
 //            let nameArrar = question.components(separatedBy: ".")
 //            return nameArrar[0]
-            return question
+            return question.replacingOccurrences(of: ".", with: "\n")
         }
         
         var questAnswers: [Answer]{

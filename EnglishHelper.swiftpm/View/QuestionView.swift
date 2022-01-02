@@ -28,6 +28,7 @@ struct QuestionView: View {
                 Text(imageExamManager.question)
                     .font(.largeTitle.weight(.heavy))
                     .foregroundColor(Color("primary"))
+                    .multilineTextAlignment(.center)
                 VStack(spacing: 20){
                     ForEach(imageExamManager.answerChoices){ answer in
                         AnswerRow(answer: answer)

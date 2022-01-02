@@ -11,10 +11,5 @@ import SwiftUI
 struct Answer: Identifiable{
     var id = UUID()
     var name : String
-    var answer : String{
-//        let nameArrar = name.components(separatedBy: ".")
-//        return nameArrar[0]
-        return name
-    }
     var isCorrect : Bool
 }
