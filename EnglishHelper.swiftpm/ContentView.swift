@@ -7,7 +7,7 @@ struct ContentView: View {
             VStack {
                 WordsGameView()
             }
-            .tabItem({ TabLabel(imageName: "house.fill", label: "Home") })
+            .tabItem({ TabLabel(imageName: "memories", label: "Memories") })
 
             VStack {
                 GrammarListView()

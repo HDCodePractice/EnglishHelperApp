@@ -18,5 +18,13 @@ struct GrammarListView: View {
             }
             .navigationTitle("Grammar Book")
         }
+        .navigationViewStyle(.stack)
+    }
+}
+
+
+struct GrammarListView_Previews: PreviewProvider {
+    static var previews: some View {
+        GrammarListView()
     }
 }

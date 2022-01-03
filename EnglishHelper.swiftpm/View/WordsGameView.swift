@@ -31,7 +31,7 @@ struct WordsGameView: View {
             .frame(maxWidth:.infinity,maxHeight: .infinity)
             .edgesIgnoringSafeArea(.all)
             .background(Color("background"))
-        }
+        }.navigationViewStyle(.stack)
     }
 }
 
@@ -39,5 +39,6 @@ struct WordsGameView_Previews: PreviewProvider {
     static var previews: some View {
         WordsGameView()
             .environmentObject(ImageExamManager())
+.previewInterfaceOrientation(.landscapeRight)
     }
 }
