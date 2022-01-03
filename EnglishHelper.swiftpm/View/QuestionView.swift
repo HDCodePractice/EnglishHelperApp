@@ -9,9 +9,12 @@ import SwiftUI
 
 struct QuestionView: View {
     @EnvironmentObject var imageExamManager : ImageExamManager
+    @State var text = ""
+    @State var translate = false
     
     var body: some View {
-        VStack(spacing: 40){
+        let translateTextView = TranslateTextView(text: $text, showing: $translate)
+        return VStack(spacing: 40){
             HStack{
                 Text("Words Game")
                     .liacTitle()
@@ -25,10 +28,21 @@ struct QuestionView: View {
                 Text("Tap the answer of")
                     .font(.subheadline.weight(.heavy))
                     .foregroundColor(.gray)
-                Text(imageExamManager.question)
-                    .font(.largeTitle.weight(.heavy))
-                    .foregroundColor(Color("primary"))
-                    .multilineTextAlignment(.center)
+                HStack{
+                    Spacer()
+                    Text(imageExamManager.question)
+                        .font(.largeTitle.weight(.heavy))
+                        .foregroundColor(Color("primary"))
+                        .multilineTextAlignment(.center)
+                    Spacer()
+                    translateTextView.frame(width: 0, height: 0)
+                    Button(){
+                        text = imageExamManager.question
+                        translate = true
+                    }label: {
+                        Image(systemName: "figure.wave.circle")
+                    }
+                }
                 VStack(spacing: 20){
                     ForEach(imageExamManager.answerChoices){ answer in
                         AnswerRow(answer: answer)
