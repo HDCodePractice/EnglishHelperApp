@@ -6,15 +6,15 @@
 //
 
 import SwiftUI
+import TranslateController
 
 struct QuestionView: View {
     @EnvironmentObject var imageExamManager : ImageExamManager
     @State var text = ""
-    @State var translate = false
+    @State var show_translate = false
     
     var body: some View {
-        let translateTextView = TranslateTextView(text: $text, showing: $translate)
-        return VStack(spacing: 40){
+        VStack(spacing: 40){
             HStack{
                 Text("Words Game")
                     .liacTitle()
@@ -35,10 +35,11 @@ struct QuestionView: View {
                         .foregroundColor(Color("primary"))
                         .multilineTextAlignment(.center)
                     Spacer()
-                    translateTextView.frame(width: 0, height: 0)
+                    TranslateController(text: $text, showing: $show_translate)
+                        .frame(width: 0, height: 0)
                     Button(){
                         text = imageExamManager.question
-                        translate = true
+                        show_translate = true
                     }label: {
                         Image(systemName: "figure.wave.circle")
                     }

@@ -34,9 +34,15 @@ let package = Package(
             ]
         )
     ],
+    dependencies: [
+        .package(url: "https://github.com/HDCodePractice/TranslateController", .branch("main"))
+    ],
     targets: [
         .executableTarget(
             name: "AppModule",
+            dependencies: [
+                .product(name: "TranslateController", package: "translatecontroller")
+            ],
             path: ".",
             resources: [
                 .process("Resources")
