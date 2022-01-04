@@ -30,7 +30,7 @@ struct WordsGameProgressView: View {
             .frame(maxWidth:.infinity,maxHeight: .infinity)
             .background(Color("background"))
         }else{
-            QuestionView()
+            WordsGameQuestionView()
                 .environmentObject(imageExamManager)
         }
     }

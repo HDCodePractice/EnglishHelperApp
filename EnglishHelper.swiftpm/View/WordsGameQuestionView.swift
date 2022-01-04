@@ -8,7 +8,7 @@
 import SwiftUI
 import TranslateController
 
-struct QuestionView: View {
+struct WordsGameQuestionView: View {
     @EnvironmentObject var imageExamManager : ImageExamManager
     @State var text = ""
     @State var show_translate = false
@@ -72,9 +72,9 @@ struct QuestionView: View {
     }
 }
 
-struct QuestionView_Previews: PreviewProvider {
+struct WordsGameQuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionView()
+        WordsGameQuestionView()
             .environmentObject(ImageExamManager())
     }
 }
