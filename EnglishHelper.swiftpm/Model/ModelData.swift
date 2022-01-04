@@ -57,7 +57,15 @@ class ImageExamManager: ObservableObject{
             "sun.max","sunrise","sunset","moon","cloud","sun.dust","moon.stars",
             "cloud.drizzle","cloud.rain","cloud.heavyrain","cloud.fog",
             "cloud.hail","cloud.snow","cloud.sun","wind","snowflake",
-            "tornado","thermometer","thermometer.snowflake","humidity"
+            "tornado","thermometer","hurricane","humidity","paperclip",
+            "flame","hare","ladybug","leaf","paperplane","graduationcap",
+            "umbrella","megaphone","bell","eyeglasses","facemask","camera",
+            "gear","scissors","speedometer","amplifier","dice","pianokeys",
+            "tuningfork","paintbrush","bandage","wrench","hammer","screwdriver",
+            "eyedropper","stethoscope","briefcase","theatermasks","puzzlepiece",
+            "powerplug","guitars","fuelpump","fanblades","crown","comb",
+            "hourglass","binoculars","lightbulb","heart","lungs","tram",
+            "cablecar","ferry","bicycle"
         ]
         var correctAnswer = Int.random(in: 0...2)
         var rs : [ImageExam.Result] = []
