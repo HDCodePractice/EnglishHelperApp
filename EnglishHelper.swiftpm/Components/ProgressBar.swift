@@ -8,24 +8,21 @@
 import SwiftUI
 
 struct ProgressBar: View {
-    var progress: CGFloat
+    var length : Int
+    var index : Int
+    private var progress: Double{
+        return Double(index+1)/Double(length)
+    }
     
     var body: some View {
         ZStack(alignment: .leading){
-            Rectangle()
-                .frame(maxWidth:350,maxHeight: 4)
-                .foregroundColor(.gray)
-                .cornerRadius(10)
-            Rectangle()
-                .frame(width: progress,height: 4)
-                .foregroundColor(Color("primary"))
-                .cornerRadius(10)
+            ProgressView("",value: progress)
         }
     }
 }
 
 struct ProgressBar_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressBar(progress: 50)
+        ProgressBar(length: 10,index: 5)
     }
 }

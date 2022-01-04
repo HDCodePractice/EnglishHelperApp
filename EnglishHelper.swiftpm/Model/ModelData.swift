@@ -46,7 +46,6 @@ class ImageExamManager: ObservableObject{
     @Published private(set) var answerSelected = false
     @Published private(set) var question = ""
     @Published private(set) var answerChoices: [Answer] = []
-    @Published private(set) var progress: CGFloat = 0.00
     @Published private(set) var score = 0
 
     init(){
@@ -77,7 +76,6 @@ class ImageExamManager: ObservableObject{
         
         self.index = 0
         self.score = 0
-        self.progress = 0.00
         self.reachedEnd = false
         
         setQuestion()
@@ -94,7 +92,6 @@ class ImageExamManager: ObservableObject{
     
     func setQuestion(){
         answerSelected = false
-        progress = CGFloat(Double(index+1)/Double(length)*350)
         
         if index < length{
             let currentQuestion = imageExam[index]

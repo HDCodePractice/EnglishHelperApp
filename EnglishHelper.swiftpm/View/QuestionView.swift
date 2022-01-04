@@ -23,7 +23,10 @@ struct QuestionView: View {
                     .foregroundColor(Color("AccentColor"))
                     .fontWeight(.heavy)
             }
-            ProgressBar(progress: imageExamManager.progress)
+            ProgressBar(
+                length: imageExamManager.length,
+                index: imageExamManager.index
+            )
             VStack(){
                 Text("Tap the answer of")
                     .font(.subheadline.weight(.heavy))
