@@ -8,3 +8,5 @@ EnglishHelper for iOS App
 
 * 查询已经总结的英语语法
 * 寻找图片中的英语单词
+
+显示可看 [Telegram 频道中的演示](https://t.me/englisherupdate/11)
