@@ -6,8 +6,17 @@
         "repositoryURL": "https://github.com/HDCodePractice/TranslateController",
         "state": {
           "branch": "main",
-          "revision": "281878fc41b3a9f537359f41449c31776b8de246",
+          "revision": "0a4084385010a5de299b0057afc1f9b1c6104ff4",
           "version": null
+        }
+      },
+      {
+        "package": "ZoomableImageView",
+        "repositoryURL": "https://github.com/rushairer/ZoomableImageView",
+        "state": {
+          "branch": null,
+          "revision": "4544906abfa6891b9a536ed467947f7d926e4da3",
+          "version": "1.0.2"
         }
       }
     ]

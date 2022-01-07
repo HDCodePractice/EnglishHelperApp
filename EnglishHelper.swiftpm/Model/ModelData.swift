@@ -13,6 +13,7 @@ import SwiftUI
 //    public init(){}
 //}
 
+
 var grammars: [Grammar] = load("grammar.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
@@ -37,6 +38,77 @@ func load<T: Decodable>(_ filename: String) -> T {
     }
 }
 
+class PictureManager: ObservableObject{
+    private var pictures :[Picture] = []
+    private var pictureExam : [PictureExam.Result] = []
+    
+    @Published private(set) var question : String = ""
+    @Published private(set) var pictureFilename : String = ""
+    @Published private(set) var answerChoices: [Answer] = []
+    
+    @Published private(set) var reachedEnd = false
+    @Published private(set) var answerSelected = false
+    @Published private(set) var index = 0
+    @Published private(set) var score = 0
+
+    @Published var length = 5
+    
+    init(){
+        pictures = load("picwords.json")
+        generatePictures()
+    }
+    
+    func generatePictures(){
+        var rs : [PictureExam.Result] = []
+        
+        for _ in 0..<length{
+            if let p = pictures.randomElement() {
+                let ws = Array(p.words.shuffled().prefix(length)).sorted(by: {$0.index < $1.index})
+                let ca = Int.random(in: 0..<ws.count)
+                let w = ws[ca]
+                let r = PictureExam.Result(
+                    questionPicture: p.name,
+                    questionWord: w.name,
+                    correctAnswer: ca,
+                    answers: ws)
+                rs.append(r)
+            }
+        }
+        
+        pictureExam = rs
+        reachedEnd = false
+        index = 0
+        score = 0
+        
+        setQuestion()
+    }
+    
+    func goToNextQuestion(){
+        if index + 1 < length{
+            index += 1
+            setQuestion()
+        }else{
+            reachedEnd = true
+        }
+    }
+    
+    func setQuestion(){
+        if index < length{
+            let currentQuestion = pictureExam[index]
+            question = currentQuestion.questionWord
+            pictureFilename = currentQuestion.questionPicture
+            answerChoices = currentQuestion.questAnswers
+        }
+        answerSelected = false
+    }
+    
+    func selectAnswer(answer: Answer){
+        answerSelected = true
+        if answer.isCorrect {
+            score += 1
+        }
+    }
+}
 
 class ImageExamManager: ObservableObject{
     private var imageExam : [ImageExam.Result] = []
@@ -104,7 +176,6 @@ class ImageExamManager: ObservableObject{
         if index < length{
             let currentQuestion = imageExam[index]
             question = currentQuestion.formattedQuestion
-            answerSelected = false
             answerChoices = currentQuestion.questAnswers
         }
     }

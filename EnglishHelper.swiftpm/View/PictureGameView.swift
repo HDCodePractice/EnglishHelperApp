@@ -2,26 +2,26 @@
 //  SwiftUIView.swift
 //  
 //
-//  Created by 老房东 on 2021-12-31.
+//  Created by 老房东 on 2022-01-05.
 //
 
 import SwiftUI
 
-struct WordsGameView: View {
-    @StateObject var imageExamManager = ImageExamManager()
+struct PictureGameView: View {
+    @StateObject var pictureManager = PictureManager()
     
     var body: some View {
         NavigationView{
             VStack(spacing:40){
                 VStack(spacing:20){
-                    Text("Words Game")
+                    Text("Picture Game")
                         .liacTitle()
                     Text("Are you ready to test out English words?")
                         .foregroundColor(Color("AccentColor"))
                 }
                 NavigationLink{
-                    WordsGameProgressView()
-                        .environmentObject(imageExamManager)
+                    PictureProgressView()
+                        .environmentObject(pictureManager)
                 }label: {
                     PrimaryButton(text: "Let't go!")
                 }
@@ -35,9 +35,8 @@ struct WordsGameView: View {
     }
 }
 
-struct WordsGameView_Previews: PreviewProvider {
+struct PictureGameView_Previews: PreviewProvider {
     static var previews: some View {
-        WordsGameView()
-            .environmentObject(ImageExamManager())
+        PictureGameView()
     }
 }
