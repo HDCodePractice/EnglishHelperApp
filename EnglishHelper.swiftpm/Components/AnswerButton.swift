@@ -13,15 +13,20 @@ struct AnswerButton: View {
     let answer : Answer
     @State private var isSelected = false
     var background: Color = Color("background")
+    var isShowSelect : Bool{
+        if isSelected { return true }
+        if pictureManager.answerSelected && answer.isCorrect { return true }
+        return false
+    }
     
     var body: some View {
         Text(answer.name)
-            .foregroundColor(isSelected ? (answer.isCorrect ? .black : .red) : .white)
+            .foregroundColor(isShowSelect ? (answer.isCorrect ? .black : .red) : .white)
             .padding()
             .background(background)
             .cornerRadius(5)
             .shadow(
-                color: isSelected ? (answer.isCorrect ? .green : .red) : .gray, radius: 5, x: 0.5, y: 0.5)
+                color: isShowSelect ? (answer.isCorrect ? .green : .red) : .gray, radius: 5, x: 0.5, y: 0.5)
             .onTapGesture {
                 if !pictureManager.answerSelected{
                     isSelected = true

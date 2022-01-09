@@ -12,6 +12,11 @@ struct AnswerRow: View {
     
     let answer : Answer
     @State private var isSelected = false
+    var isShowSelect : Bool{
+        if isSelected { return true }
+        if imageExamManager.answerSelected && answer.isCorrect { return true }
+        return false
+    }
     
     var body: some View {
         ZStack{
@@ -24,7 +29,7 @@ struct AnswerRow: View {
                     .scaledToFit()
                     .padding()
                 Spacer()
-                if isSelected{
+                if isShowSelect{
                     Image(systemName: answer.isCorrect ? "checkmark.circle.fill" : "x.circle.fill")
                         .foregroundColor(answer.isCorrect ? .green : .red)
                 }
@@ -34,7 +39,7 @@ struct AnswerRow: View {
         .foregroundColor(Color("AccentColor"))
         .background()
         .cornerRadius(10)
-        .shadow(color: isSelected ? (answer.isCorrect ? .green : .red) : .gray, radius: 5, x: 0.5, y: 0.5)
+        .shadow(color: isShowSelect ? (answer.isCorrect ? .green : .red) : .gray, radius: 5, x: 0.5, y: 0.5)
         .onTapGesture {
             if !imageExamManager.answerSelected{
                 isSelected = true
