@@ -63,7 +63,7 @@ class PictureManager: ObservableObject{
         
         for _ in 0..<length{
             if let p = pictures.randomElement() {
-                let ws = Array(p.words.shuffled().prefix(length)).sorted(by: {$0.index < $1.index})
+                let ws = Array(p.words.shuffled().prefix(length)).sorted(by: {$0.indexHex < $1.indexHex})
                 let ca = Int.random(in: 0..<ws.count)
                 let w = ws[ca]
                 let r = PictureExam.Result(

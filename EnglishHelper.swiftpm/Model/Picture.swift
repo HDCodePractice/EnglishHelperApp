@@ -28,6 +28,9 @@ struct PictureWord: Identifiable,Codable {
     var id = UUID()
     var index: String
     var name: String
+    var indexHex : Int {
+        return Int(UInt(index, radix: 16) ?? 0)
+    }
     
     enum CodingKeys: String, CodingKey{
         case index
