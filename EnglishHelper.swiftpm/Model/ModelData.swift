@@ -51,7 +51,8 @@ class PictureManager: ObservableObject{
     @Published private(set) var index = 0
     @Published private(set) var score = 0
 
-    @Published var length = 5
+    @Published var length = 10
+    @Published var answersLength = 5
     
     init(){
         pictures = load("picwords.json")
@@ -63,7 +64,16 @@ class PictureManager: ObservableObject{
         
         for _ in 0..<length{
             if let p = pictures.randomElement() {
-                let ws = Array(p.words.shuffled().prefix(length)).sorted(by: {$0.indexHex < $1.indexHex})
+                let sfWords = p.words.shuffled()
+                var words = [sfWords[0]]
+                var indexs = [sfWords[0].index]
+                for i in 1..<sfWords.count{
+                    if !indexs.contains(sfWords[i].index){
+                        words.append(sfWords[i])
+                        indexs.append(sfWords[i].index)
+                    }
+                }
+                let ws = Array(words.prefix(answersLength)).sorted(by: {$0.indexHex < $1.indexHex})
                 let ca = Int.random(in: 0..<ws.count)
                 let w = ws[ca]
                 let r = PictureExam.Result(
