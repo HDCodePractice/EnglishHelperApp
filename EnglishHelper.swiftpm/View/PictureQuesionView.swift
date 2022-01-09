@@ -41,7 +41,7 @@ struct PictureQuesionView: View {
                     TranslateController(text: $text, showing: $show_translate)
                         .frame(width: 0, height: 0)
                     Button(){
-                        text = pictureManager.question
+                        text = "Which is \(pictureManager.question)?"
                         show_translate = true
                     }label: {
                         Image(systemName: "figure.wave.circle")
