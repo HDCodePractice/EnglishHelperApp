@@ -44,7 +44,7 @@ struct PictureQuesionView: View {
                         text = "Which is \(pictureManager.question)?"
                         show_translate = true
                     }label: {
-                        Image(systemName: "figure.wave.circle")
+                        Image(systemName: "questionmark.circle")
                             .font(.title2)
                     }
                 }

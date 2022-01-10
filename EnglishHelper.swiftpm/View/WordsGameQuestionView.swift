@@ -44,7 +44,7 @@ struct WordsGameQuestionView: View {
                         text = imageExamManager.question
                         show_translate = true
                     }label: {
-                        Image(systemName: "figure.wave.circle")
+                        Image(systemName: "questionmark.circle")
                             .font(.title2)
                     }
                 }
