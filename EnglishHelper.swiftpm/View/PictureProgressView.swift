@@ -17,7 +17,7 @@ struct PictureProgressView: View {
                     .liacTitle()
                 Text("Congratulations, you completed the game!")
                 
-                Text("You scored \(1) out of \(10)")
+                Text("You scored \(pictureManager.score) out of \(pictureManager.length)")
                 
                 Button{
                     pictureManager.generatePictures()
