@@ -45,6 +45,7 @@ struct WordsGameQuestionView: View {
                         show_translate = true
                     }label: {
                         Image(systemName: "figure.wave.circle")
+                            .font(.title2)
                     }
                 }
                 VStack(spacing: 20){

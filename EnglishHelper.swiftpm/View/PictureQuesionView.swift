@@ -45,6 +45,7 @@ struct PictureQuesionView: View {
                         show_translate = true
                     }label: {
                         Image(systemName: "figure.wave.circle")
+                            .font(.title2)
                     }
                 }
                 PictureView(imageName: "\(pictureManager.pictureFilename)")
