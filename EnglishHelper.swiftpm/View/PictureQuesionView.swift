@@ -19,13 +19,13 @@ struct PictureQuesionView: View {
                 Text("Picture Game")
                     .liacTitle()
                 Spacer()
-                Text("\(1) out of \(10)")
+                Text("\(pictureManager.index) out of \(pictureManager.length)")
                     .foregroundColor(Color("AccentColor"))
                     .fontWeight(.heavy)
             }
             ProgressBar(
-                length: 10,
-                index: 1
+                length: pictureManager.length,
+                index: pictureManager.index
             )
             VStack(){
                 Text("Tap the answer of")
