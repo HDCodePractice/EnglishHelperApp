@@ -9,17 +9,17 @@ import SwiftUI
 import ZoomableImageView
 
 struct PictureView: View {
-    var imageName : String
+    var image : UIImage
     
     var body: some View {
         ZStack{
-            ZoomableImageView(image: UIImage(named: imageName)!)
+            ZoomableImageView(image: image)
         }
     }
 }
 
 struct PictureView_Previews: PreviewProvider {
     static var previews: some View {
-        PictureView(imageName: "punctuation1")
+        PictureView(image: UIImage(named: "punctuation1")!)
     }
 }

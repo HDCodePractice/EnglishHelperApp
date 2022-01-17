@@ -48,7 +48,7 @@ struct PictureQuesionView: View {
                             .font(.title2)
                     }
                 }
-                PictureView(imageName: "\(pictureManager.pictureFilename)")
+                PictureView(image: pictureManager.picture!)
                     .border(.secondary)
             }
             VStack{

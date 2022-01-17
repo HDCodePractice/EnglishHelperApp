@@ -36,14 +36,16 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/HDCodePractice/TranslateController", .branch("main")),
-        .package(url: "https://github.com/rushairer/ZoomableImageView", "1.0.0"..<"2.0.0")
+        .package(url: "https://github.com/rushairer/ZoomableImageView", "1.0.0"..<"2.0.0"),
+        .package(url: "https://github.com/marmelroy/Zip", "2.0.0"..<"3.0.0")
     ],
     targets: [
         .executableTarget(
             name: "AppModule",
             dependencies: [
                 .product(name: "TranslateController", package: "translatecontroller"),
-                .product(name: "ZoomableImageView", package: "zoomableimageview")
+                .product(name: "ZoomableImageView", package: "zoomableimageview"),
+                .product(name: "Zip", package: "zip")
             ],
             path: ".",
             resources: [

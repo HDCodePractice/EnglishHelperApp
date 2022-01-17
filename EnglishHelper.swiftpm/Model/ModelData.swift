@@ -8,13 +8,24 @@ import Combine
 import Foundation
 import SwiftUI
 
-//public final class ModelData:ObservableObject{
-//    @Published var grammars: [Grammar] = load("grammar.json")
-//    public init(){}
-//}
-
-
 var grammars: [Grammar] = load("grammar.json")
+
+func loadByURL<T: Decodable>(_ file: URL) -> T? {
+    let data: Data
+    
+    do {
+        data = try Data(contentsOf: file)
+    } catch {
+        return nil
+    }
+    
+    do {
+        let decoder = JSONDecoder()
+        return try decoder.decode(T.self, from: data)
+    } catch {
+        return nil
+    }
+}
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
@@ -38,87 +49,7 @@ func load<T: Decodable>(_ filename: String) -> T {
     }
 }
 
-class PictureManager: ObservableObject{
-    private var pictures :[Picture] = []
-    private var pictureExam : [PictureExam.Result] = []
-    
-    @Published private(set) var question : String = ""
-    @Published private(set) var pictureFilename : String = ""
-    @Published private(set) var answerChoices: [Answer] = []
-    
-    @Published private(set) var reachedEnd = false
-    @Published private(set) var answerSelected = false
-    @Published private(set) var index = 0
-    @Published private(set) var score = 0
 
-    @Published var length = 10
-    @Published var answersLength = 5
-    
-    init(){
-        pictures = load("picwords.json")
-        generatePictures()
-    }
-    
-    func generatePictures(){
-        var rs : [PictureExam.Result] = []
-        
-        for _ in 0..<length{
-            if let p = pictures.randomElement() {
-                let sfWords = p.words.shuffled()
-                var words = [sfWords[0]]
-                var indexs = [sfWords[0].index]
-                for i in 1..<sfWords.count{
-                    if !indexs.contains(sfWords[i].index){
-                        words.append(sfWords[i])
-                        indexs.append(sfWords[i].index)
-                    }
-                }
-                let ws = Array(words.prefix(answersLength)).sorted(by: {$0.indexHex < $1.indexHex})
-                let ca = Int.random(in: 0..<ws.count)
-                let w = ws[ca]
-                let r = PictureExam.Result(
-                    questionPicture: p.name,
-                    questionWord: w.name,
-                    correctAnswer: ca,
-                    answers: ws)
-                rs.append(r)
-            }
-        }
-        
-        pictureExam = rs
-        reachedEnd = false
-        index = 0
-        score = 0
-        
-        setQuestion()
-    }
-    
-    func goToNextQuestion(){
-        if index + 1 < length{
-            index += 1
-            setQuestion()
-        }else{
-            reachedEnd = true
-        }
-    }
-    
-    func setQuestion(){
-        if index < length{
-            let currentQuestion = pictureExam[index]
-            question = currentQuestion.questionWord
-            pictureFilename = currentQuestion.questionPicture
-            answerChoices = currentQuestion.questAnswers
-        }
-        answerSelected = false
-    }
-    
-    func selectAnswer(answer: Answer){
-        answerSelected = true
-        if answer.isCorrect {
-            score += 1
-        }
-    }
-}
 
 class ImageExamManager: ObservableObject{
     private var imageExam : [ImageExam.Result] = []

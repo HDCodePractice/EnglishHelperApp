@@ -6,8 +6,17 @@
         "repositoryURL": "https://github.com/HDCodePractice/TranslateController",
         "state": {
           "branch": "main",
-          "revision": "0a4084385010a5de299b0057afc1f9b1c6104ff4",
+          "revision": "a2dd578c37a08f81e3eaab4d0064a5ff0c880c40",
           "version": null
+        }
+      },
+      {
+        "package": "Zip",
+        "repositoryURL": "https://github.com/marmelroy/Zip",
+        "state": {
+          "branch": null,
+          "revision": "bd19d974e8a38cc8d3a88c90c8a107386c3b8ccf",
+          "version": "2.1.1"
         }
       },
       {
