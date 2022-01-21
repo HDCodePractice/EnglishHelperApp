@@ -18,7 +18,7 @@ struct ContentView: View {
                 }
                 
                 NavigationLink{
-                    PrimaryButton(text: "Grammar Book")
+                    GrammarListView()
                 } label: {
                     PrimaryButton(text: "Grammar Book")
                 }
