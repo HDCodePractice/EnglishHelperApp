@@ -28,6 +28,8 @@ struct GrammarListView: View {
 
 struct GrammarListView_Previews: PreviewProvider {
     static var previews: some View {
-        GrammarListView()
+        NavigationView{
+            GrammarListView()
+        }
     }
 }

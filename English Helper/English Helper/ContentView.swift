@@ -12,7 +12,7 @@ struct ContentView: View {
         NavigationView{
             VStack(spacing:50){
                 NavigationLink{
-                    PrimaryButton(text: "Picture Game")
+                    PictureGame()
                 } label: {
                     PrimaryButton(text: "Picture Game")
                 }
