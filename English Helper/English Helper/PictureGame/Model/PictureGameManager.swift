@@ -24,8 +24,8 @@ class PictureGameManager{
         return []
     }
     
-    static func genPictureURL(chapter:Chapter,topic:Topic,pic:PictureFile) -> URL?{
-        let imgURL = URL(string: "\(pictureBaseURL)/\(chapter.name)/\(topic.name)/\(pic.name)")
+    static func genPictureURL(chapter:String,topic:String,filename:String) -> URL?{
+        let imgURL = URL(string: "\(pictureBaseURL)/\(chapter)/\(topic)/\(filename)".urlEncoded())
         return imgURL
     }
 }
