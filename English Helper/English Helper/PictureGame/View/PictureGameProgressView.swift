@@ -20,7 +20,7 @@ struct PictureGameProgressView: View {
                 Text("You scored \(vm.score) out of \(vm.length)")
                 
                 Button{
-                    vm.goToNextQuestion()
+                    vm.generatePictureExam()
                 }label: {
                     PrimaryButton(text: "Play again")
                 }
