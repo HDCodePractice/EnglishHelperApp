@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "TranslateController",
+        "repositoryURL": "https://github.com/HDCodePractice/TranslateController",
+        "state": {
+          "branch": "main",
+          "revision": "a2dd578c37a08f81e3eaab4d0064a5ff0c880c40",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

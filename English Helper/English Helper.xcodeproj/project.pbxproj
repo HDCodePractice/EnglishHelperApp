@@ -13,7 +13,6 @@
 		6703FFED279A4C6400C4FADB /* PictureGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6703FFEC279A4C6400C4FADB /* PictureGame.swift */; };
 		6703FFEF279A4E3800C4FADB /* PictureGameProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6703FFEE279A4E3800C4FADB /* PictureGameProgressView.swift */; };
 		6703FFF1279A4EFB00C4FADB /* PictureGameQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6703FFF0279A4EFB00C4FADB /* PictureGameQuestionView.swift */; };
-		6703FFF4279A510C00C4FADB /* TranslateController in Frameworks */ = {isa = PBXBuildFile; productRef = 6703FFF3279A510C00C4FADB /* TranslateController */; };
 		6705889F2798C67B006F8C0E /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6705889E2798C67B006F8C0E /* WebView.swift */; };
 		670588A12798C717006F8C0E /* GrammarListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670588A02798C717006F8C0E /* GrammarListView.swift */; };
 		670588A52798C7D6006F8C0E /* LoadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670588A42798C7D6006F8C0E /* LoadData.swift */; };
@@ -25,6 +24,7 @@
 		679E23A7279BB41500CB8A76 /* PictureGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23A6279BB41500CB8A76 /* PictureGameModel.swift */; };
 		679E23A9279BB94100CB8A76 /* PictureGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23A8279BB94100CB8A76 /* PictureGameViewModel.swift */; };
 		679E23AB279C4BAA00CB8A76 /* PictureExam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23AA279C4BAA00CB8A76 /* PictureExam.swift */; };
+		67FBD021279CCC8200E1B297 /* TranslateController in Frameworks */ = {isa = PBXBuildFile; productRef = 67FBD020279CCC8200E1B297 /* TranslateController */; };
 		67FD9D412796666E00EF434F /* English_HelperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D402796666E00EF434F /* English_HelperApp.swift */; };
 		67FD9D432796666E00EF434F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D422796666E00EF434F /* ContentView.swift */; };
 		67FD9D452796666F00EF434F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67FD9D442796666F00EF434F /* Assets.xcassets */; };
@@ -64,7 +64,6 @@
 		6703FFEC279A4C6400C4FADB /* PictureGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGame.swift; sourceTree = "<group>"; };
 		6703FFEE279A4E3800C4FADB /* PictureGameProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameProgressView.swift; sourceTree = "<group>"; };
 		6703FFF0279A4EFB00C4FADB /* PictureGameQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameQuestionView.swift; sourceTree = "<group>"; };
-		6705889D2798C602006F8C0E /* TranslateController */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = TranslateController; path = ../../TranslateController; sourceTree = "<group>"; };
 		6705889E2798C67B006F8C0E /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebView.swift; path = "English Helper/WebView.swift"; sourceTree = SOURCE_ROOT; };
 		670588A02798C717006F8C0E /* GrammarListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrammarListView.swift; sourceTree = "<group>"; };
 		670588A42798C7D6006F8C0E /* LoadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadData.swift; sourceTree = "<group>"; };
@@ -96,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6703FFF4279A510C00C4FADB /* TranslateController in Frameworks */,
+				67FBD021279CCC8200E1B297 /* TranslateController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,7 +168,6 @@
 		6705889C2798C601006F8C0E /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				6705889D2798C602006F8C0E /* TranslateController */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -283,7 +281,7 @@
 			);
 			name = "English Helper";
 			packageProductDependencies = (
-				6703FFF3279A510C00C4FADB /* TranslateController */,
+				67FBD020279CCC8200E1B297 /* TranslateController */,
 			);
 			productName = "English Helper";
 			productReference = 67FD9D3D2796666E00EF434F /* English Helper.app */;
@@ -357,6 +355,9 @@
 				Base,
 			);
 			mainGroup = 67FD9D342796666E00EF434F;
+			packageReferences = (
+				67FBD01F279CCC8200E1B297 /* XCRemoteSwiftPackageReference "TranslateController" */,
+			);
 			productRefGroup = 67FD9D3E2796666E00EF434F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -584,7 +585,7 @@
 				CODE_SIGN_ENTITLEMENTS = "English Helper/English Helper.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"English Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4W3MN6QHA;
 				ENABLE_PREVIEWS = YES;
@@ -618,7 +619,7 @@
 				CODE_SIGN_ENTITLEMENTS = "English Helper/English Helper.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"English Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4W3MN6QHA;
 				ENABLE_PREVIEWS = YES;
@@ -761,9 +762,21 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		67FBD01F279CCC8200E1B297 /* XCRemoteSwiftPackageReference "TranslateController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/HDCodePractice/TranslateController";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		6703FFF3279A510C00C4FADB /* TranslateController */ = {
+		67FBD020279CCC8200E1B297 /* TranslateController */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 67FBD01F279CCC8200E1B297 /* XCRemoteSwiftPackageReference "TranslateController" */;
 			productName = TranslateController;
 		};
 /* End XCSwiftPackageProductDependency section */
