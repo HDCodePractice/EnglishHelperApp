@@ -22,10 +22,8 @@ extension UINavigationController: UIGestureRecognizerDelegate {
 
 extension Text{
     func liacTitle() -> some View{
-        self.lineLimit(1)
-            .font(.title)
-//            .fontWeight(.heavy)
-            .minimumScaleFactor(0.01)
+        self.font(.title)
+            .fontWeight(.heavy)
             .foregroundColor(Color("AccentColor"))
     }
 }
