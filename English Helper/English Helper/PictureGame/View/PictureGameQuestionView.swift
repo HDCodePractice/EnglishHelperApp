@@ -34,8 +34,9 @@ struct PictureGameQuestionView: View {
                 HStack{
                     Spacer()
                     Text(vm.question)
+                        .lineLimit(1)
                         .font(.largeTitle.weight(.heavy))
-                        .multilineTextAlignment(.center)
+                        .minimumScaleFactor(0.01)
                     Spacer()
                     TranslateController(text: $text, showing: $show_translate)
                         .frame(width: 0, height: 0)
@@ -67,7 +68,7 @@ struct PictureGameQuestionView: View {
         }
         .padding()
         .frame(maxWidth:.infinity,maxHeight: .infinity)
-//        .navigationBarHidden(true)
+        .navigationBarHidden(true)
     }
 }
 
