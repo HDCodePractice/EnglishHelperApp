@@ -27,7 +27,8 @@ struct PictureExam{
                     Answer(
                         name: answers[i].name,
                         isCorrect: i==correctAnswer ? true : false,
-                        url: PictureGameManager.genPictureURL(chapter: chapter, topic: topic, pic: answers[i])
+                        chapter: chapter.name,
+                        topic: topic.name
                     )
                 )
             }

@@ -60,7 +60,7 @@ struct AnswerRow: View {
 
 struct AnswerRow_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerRow(answer: Answer(name: "sun",isCorrect: false,url: URL(string: "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/Computer/Program/period.png")))
+        AnswerRow(answer: Answer(name: "period.png", isCorrect: false, chapter: "Computer", topic: "Program"))
             .environmentObject(PictureGameViewModel())
     }
 }
