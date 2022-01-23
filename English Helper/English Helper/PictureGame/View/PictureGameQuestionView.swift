@@ -40,7 +40,7 @@ struct PictureGameQuestionView: View {
                     TranslateController(text: $text, showing: $show_translate)
                         .frame(width: 0, height: 0)
                     Button(){
-                        text = vm.question
+                        text = "Which is \(vm.question)?"
                         show_translate = true
                     }label: {
                         Image(systemName: "questionmark.circle")
