@@ -19,9 +19,7 @@ struct AnswerRow: View {
     
     var body: some View {
         ZStack{
-            HStack( spacing: 20){
-                Image(systemName: "circle.fill")
-                    .font(.caption)
+            VStack( spacing: 5){
                 AsyncImage(url: answer.url){ phase in
                     switch phase{
                     case .empty:
@@ -29,22 +27,23 @@ struct AnswerRow: View {
                     case .success(let image):
                         image.resizable()
                             .scaledToFit()
-                            .padding()
                     case .failure(_):
                         Image(systemName: "photo")
                     @unknown default:
                         EmptyView()
                     }
                 }
-                Spacer()
-                if isShowSelect{
-                    Image(systemName: answer.isCorrect ? "checkmark.circle.fill" : "x.circle.fill")
-                        .foregroundColor(answer.isCorrect ? .green : .red)
-                }
+                Image(systemName: "circle.fill")
+                    .font(.caption)
+            }
+            if isShowSelect{
+                Image(systemName: answer.isCorrect ? "checkmark.circle.fill" : "x.circle.fill")
+                    .font(.largeTitle )
+                    .foregroundColor(answer.isCorrect ? .green : .red)
+                    .opacity(0.8)
             }
         }
-        .frame(minWidth: 80, maxWidth: .infinity, minHeight: 80, maxHeight: 200)
-//        .frame(maxWidth:.infinity,maxHeight: 200)
+        .frame(minWidth: 80, maxWidth: .infinity, minHeight: 80, maxHeight: .infinity)
         .foregroundColor(Color("AccentColor"))
         .background()
         .cornerRadius(10)
@@ -60,7 +59,7 @@ struct AnswerRow: View {
 
 struct AnswerRow_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerRow(answer: Answer(name: "period.png", isCorrect: false, chapter: "Computer", topic: "Program"))
+        AnswerRow(answer: Answer(name: "hair.jpg", isCorrect: false, chapter: "Health", topic: "The Body"))
             .environmentObject(PictureGameViewModel())
     }
 }

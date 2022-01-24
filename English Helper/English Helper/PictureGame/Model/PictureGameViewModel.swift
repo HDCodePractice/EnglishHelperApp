@@ -11,16 +11,16 @@ import Foundation
 class PictureGameViewModel: ObservableObject{
     private var manager = PictureGameManager.instance
     private var pictureExam : [PictureExam.Result] = []
-    private let answerLength = 4
+    private let answerLength = 6
     
-    @Published var loadFinished : Bool = false
-    @Published var question : String = ""
-    @Published var answerChoices: [Answer] = []
+    @Published private(set) var loadFinished : Bool = false
+    @Published private(set) var question : String = ""
+    @Published private(set) var answerChoices: [Answer] = []
+    @Published private(set) var reachedEnd = false
     
-    @Published var reachedEnd = false
     @Published var answerSelected = false
-    @Published var index = 0
-    @Published var score = 0
+    @Published private(set) var index = 0
+    @Published private(set) var score = 0
     
     @Published var length = 10
     
@@ -73,6 +73,7 @@ class PictureGameViewModel: ObservableObject{
     
     func setQuestion(){
         if index < length{
+            if pictureExam.count == 0 { return }
             let currentQuestion = pictureExam[index]
             question = currentQuestion.questionWord
             answerChoices = currentQuestion.questAnswers
@@ -85,5 +86,19 @@ class PictureGameViewModel: ObservableObject{
         if answer.isCorrect {
             score += 1
         }
+    }
+    
+    func mokeData(){
+        question = "Hello World"
+        answerChoices = [
+            Answer(name: "brackets.jpg", isCorrect: true, chapter: "Computer", topic: "Program"),
+            Answer(name: "stomachache.png", isCorrect: false, chapter: "Health", topic: "Symptoms and Injuries"),
+            Answer(name: "earache.jpg", isCorrect: false, chapter: "Health", topic: "Symptoms and Injuries"),
+            Answer(name: "earache.jpg", isCorrect: false, chapter: "Health", topic: "Symptoms and Injuries"),
+            Answer(name: "earache.jpg", isCorrect: false, chapter: "Health", topic: "Symptoms and Injuries"),
+            Answer(name: "toothache.jpg", isCorrect: false, chapter: "Health", topic: "Symptoms and Injuries")
+        ]
+        index = 2
+        score = 3
     }
 }

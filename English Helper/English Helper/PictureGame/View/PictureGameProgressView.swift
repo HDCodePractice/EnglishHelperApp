@@ -36,10 +36,13 @@ struct PictureGameProgressView: View {
 }
 
 struct PictureGameProgressView_Previews: PreviewProvider {
-    @StateObject static var vm = PictureGameViewModel()
-    
     static var previews: some View {
-        NavigationView{
+        let vm = PictureGameViewModel()
+        vm.mokeData()
+        Task{
+            await vm.loadData()
+        }
+        return NavigationView{
             PictureGameProgressView()
                 .environmentObject(vm)
         }
