@@ -7,11 +7,13 @@
 
 import SwiftUI
 import TranslateController
+import ActivityView
 
 struct PictureGameQuestionView: View {
     @EnvironmentObject var vm : PictureGameViewModel
     @State var text = ""
     @State var show_translate = false
+    @State private var item : ActivityItem?
     
     var body: some View {
         VStack(spacing: 20){
@@ -22,6 +24,21 @@ struct PictureGameQuestionView: View {
                 Text("\(vm.index) out of \(vm.length)")
                     .foregroundColor(Color("AccentColor"))
                     .fontWeight(.heavy)
+                Button{
+                    let scenes = UIApplication.shared.connectedScenes
+                    if let windowScenes = scenes.first as? UIWindowScene,let window = windowScenes.windows.first{
+                        var answers = ""
+                        var answerCount = 1
+                        for a in vm.answerChoices{
+                            answers += "\(answerCount).\(a.topic) \(a.chapter) \(a.name)\n"
+                            answerCount += 1
+                        }
+                        item =  ActivityItem(items: window.asImage(),answers)
+                    }
+                }label: {
+                    Image(systemName: "square.and.arrow.up")
+                }
+                .activitySheet($item)
             }
             ProgressBar(
                 length: vm.length,
@@ -48,12 +65,6 @@ struct PictureGameQuestionView: View {
                             .font(.title2)
                     }
                 }
-//                VStack(spacing: 20){
-//                    ForEach(vm.answerChoices){ answer in
-//                        AnswerRow(answer: answer)
-//                            .environmentObject(vm)
-//                    }
-//                }
                 AnswerGrid()
                     .environmentObject(vm)
             }
