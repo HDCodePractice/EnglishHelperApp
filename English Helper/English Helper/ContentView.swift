@@ -24,7 +24,7 @@ struct ContentView: View {
                 }
                 
                 NavigationLink{
-                    PrimaryButton(text: "Dictionaries Setting")
+                    TestView()
                 } label: {
                     PrimaryButton(text: "Dictionaries Setting")
                 }
