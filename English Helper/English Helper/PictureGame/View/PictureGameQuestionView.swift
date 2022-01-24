@@ -48,12 +48,14 @@ struct PictureGameQuestionView: View {
                             .font(.title2)
                     }
                 }
-                VStack(spacing: 20){
-                    ForEach(vm.answerChoices){ answer in
-                        AnswerRow(answer: answer)
-                            .environmentObject(vm)
-                    }
-                }
+//                VStack(spacing: 20){
+//                    ForEach(vm.answerChoices){ answer in
+//                        AnswerRow(answer: answer)
+//                            .environmentObject(vm)
+//                    }
+//                }
+                AnswerGrid()
+                    .environmentObject(vm)
             }
             Button{
                 vm.goToNextQuestion()
@@ -73,16 +75,14 @@ struct PictureGameQuestionView: View {
 }
 
 struct PictureGameQuestionView_Previews: PreviewProvider {
-    @StateObject static var vm = PictureGameViewModel()
-    
     static var previews: some View {
-        PictureGameQuestionView()
+        let vm = PictureGameViewModel()
+        vm.mokeData()
+        Task{
+            await vm.loadData()
+        }
+        return PictureGameQuestionView()
             .environmentObject(vm)
-            .onAppear(){
-                Task{
-                    await vm.loadData()
-                }
-            }
     }
 }
 
