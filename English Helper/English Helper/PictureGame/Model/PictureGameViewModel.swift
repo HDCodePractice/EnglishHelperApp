@@ -45,7 +45,7 @@ class PictureGameViewModel: ObservableObject{
                     let pics = Array(topic.pictureFiles.shuffled().prefix(answerLength))
                     let answer = Int.random(in: 0..<answerLength)
                     rs.append(PictureExam.Result(
-                        questionWord: pics[answer].words.shuffled()[0],
+                        questionWord: pics[answer].words.shuffled().first ?? "\(pics.description)/\(answer)",
                         correctAnswer: answer,
                         answers: pics,
                         topic: topic,
