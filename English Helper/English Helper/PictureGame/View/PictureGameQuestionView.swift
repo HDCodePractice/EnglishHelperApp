@@ -20,6 +20,8 @@ struct PictureGameQuestionView: View {
             HStack{
                 Text("Picture Game")
                     .liacTitle()
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.01)
                 Spacer()
                 Text("\(vm.index) out of \(vm.length)")
                     .foregroundColor(Color("AccentColor"))

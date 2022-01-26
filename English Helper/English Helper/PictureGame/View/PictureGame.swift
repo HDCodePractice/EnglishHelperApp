@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PictureGame: View {
     @StateObject var vm = PictureGameViewModel()
+    @State private var action: Int? = 0
     
     var body: some View {
         VStack(spacing:40){
@@ -18,23 +19,43 @@ struct PictureGame: View {
                 Text("Are you ready to test out English words?")
                     .foregroundColor(Color("AccentColor"))
             }
-            VStack(spacing:0){
-                NavigationLink {
-                    PictureGameProgressView()
-                        .environmentObject(vm)
-                }label: {
-                    PrimaryButton(
-                        text: vm.loadFinished ? "Let't go!" : "Load Data...",
-                        background: vm.loadFinished ? Color("AccentColor") : .secondary
-                    )
+            VStack{
+                HStack{
+                    Text("Number of games:\(vm.length)")
+                        .foregroundColor(Color("AccentColor"))
+                    Spacer()
                 }
-                .disabled(vm.loadFinished ? false : true)
+                Slider(value: .init(get: {Double(vm.length)}, set: {vm.length = Int($0)}),
+                    in: 10...100,
+                    step: 10,
+                    minimumValueLabel: Text("10"),
+                    maximumValueLabel: Text("100"),
+                    label: {
+                        Text("Rating")
+                    }
+                )
+                Text("")
+                HStack{
+                    Text("Loading progress \(Int(vm.loadDataProgress*100))%")
+                        .foregroundColor(Color("AccentColor"))
+                    Spacer()
+                }
                 ProgressBar(length: Int(vm.loadDataProgress*100), index: 100)
-                    .padding(.horizontal)
-                Text("\(Int(vm.loadDataProgress*100))%")
-                    .foregroundColor(.secondary)
-    
+            }.padding(.horizontal)
+            
+            NavigationLink(tag: 1, selection: $action) {
+                PictureGameProgressView()
+                    .environmentObject(vm)
+            }label: {
+                PrimaryButton(
+                    text: vm.loadFinished ? "Let't go!" : "Load Data...",
+                    background: vm.loadFinished ? Color("AccentColor") : .secondary
+                ).onTapGesture(){
+                    vm.generatePictureExam()
+                    action = 1
+                }
             }
+            .disabled(vm.loadFinished ? false : true)
         }
         .padding()
         .frame(maxWidth:.infinity,maxHeight: .infinity)
