@@ -38,7 +38,6 @@ class PictureGameViewModel: ObservableObject{
         }else{
             loadFinished = true
         }
-        generatePictureExam()
     }
     
     private func loadDataByServer<T: Decodable>(url: String) async -> T?{
