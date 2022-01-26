@@ -11,12 +11,12 @@
         }
       },
       {
-        "package": "TranslateController",
-        "repositoryURL": "https://github.com/HDCodePractice/TranslateController",
+        "package": "TranslateView",
+        "repositoryURL": "https://github.com/HDCodePractice/TranslateView",
         "state": {
-          "branch": "main",
-          "revision": "a2dd578c37a08f81e3eaab4d0064a5ff0c880c40",
-          "version": null
+          "branch": null,
+          "revision": "16b1f857081c0b0920338bb0cdf044060ee7b708",
+          "version": "1.0.0"
         }
       }
     ]
