@@ -23,11 +23,11 @@ struct ContentView: View {
                     PrimaryButton(text: "Grammar Book")
                 }
                 
-                NavigationLink{
-                    TestView()
-                } label: {
-                    PrimaryButton(text: "Dictionaries Setting")
-                }
+//                NavigationLink{
+//                    SettingView()
+//                } label: {
+//                    PrimaryButton(text: "Dictionaries Setting")
+//                }
             }
             .padding()
         }
