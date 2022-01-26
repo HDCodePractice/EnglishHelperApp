@@ -6,14 +6,13 @@
 //
 
 import SwiftUI
-import TranslateController
+import TranslateView
 import ActivityView
 
 struct PictureGameQuestionView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var vm : PictureGameViewModel
-    @State var text = ""
-    @State var show_translate = false
+    @State var text : String?
     @State private var item : ActivityItem?
     
     var body: some View {
@@ -64,15 +63,12 @@ struct PictureGameQuestionView: View {
                         .font(.largeTitle.weight(.heavy))
                         .minimumScaleFactor(0.01)
                     Spacer()
-                    TranslateController(text: $text, showing: $show_translate)
-                        .frame(width: 0, height: 0)
                     Button(){
                         text = "Which is \(vm.question)?"
-                        show_translate = true
                     }label: {
                         Image(systemName: "questionmark.circle")
                             .font(.title2)
-                    }
+                    }.translateSheet($text)
                 }
                 AnswerGrid()
                     .environmentObject(vm)

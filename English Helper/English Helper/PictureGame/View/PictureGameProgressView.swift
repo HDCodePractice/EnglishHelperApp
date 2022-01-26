@@ -24,6 +24,24 @@ struct PictureGameProgressView: View {
                 }label: {
                     PrimaryButton(text: "Play again")
                 }
+                
+                VStack{
+                    Text("")
+                    HStack{
+                        Text("Number of games:\(vm.length)")
+                            .foregroundColor(Color("AccentColor"))
+                        Spacer()
+                    }
+                    Slider(value: .init(get: {Double(vm.length)}, set: {vm.length = Int($0)}),
+                        in: 10...100,
+                        step: 10,
+                        minimumValueLabel: Text("10"),
+                        maximumValueLabel: Text("100"),
+                        label: {
+                            Text("Rating")
+                        }
+                    )
+                }.padding(.horizontal)
             }
             .foregroundColor(Color("AccentColor"))
             .padding()
