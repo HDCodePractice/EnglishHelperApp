@@ -23,11 +23,16 @@ class PictureGameViewModel: ObservableObject{
     @Published private(set) var score = 0
     
     @Published var length = 10
+    @Published private(set) var loadDataProgress = 0.0
     
     init(){}
     
     func loadData() async{
-        manager.chapters = await manager.loadData()
+        if let d: [Chapter] = await loadDataByServer(url: manager.jsonURL) {
+            manager.chapters = d
+        }else{
+            manager.chapters = []
+        }
         if manager.chapters.count == 0{
             loadFinished = false
         }else{
@@ -35,6 +40,27 @@ class PictureGameViewModel: ObservableObject{
         }
         generatePictureExam()
     }
+    
+    private func loadDataByServer<T: Decodable>(url: String) async -> T?{
+        guard let url = URL(string: url) else { return nil}
+        
+        do{
+            let (asyncBytes,response) = try await URLSession.shared.bytes(from: url)
+            let dataLenght = response.expectedContentLength
+            var data = Data()
+            data.reserveCapacity(Int(dataLenght))
+            for try await byte in asyncBytes {
+                data.append(byte)
+                loadDataProgress = Double(data.count) / Double(dataLenght)
+            }
+            let decoder = JSONDecoder()
+            return try decoder.decode(T.self, from: data)
+        }catch let error{
+            print("load Data error:\n\(error)")
+            return nil
+        }
+    }
+    
     
     func generatePictureExam(){
         var rs : [PictureExam.Result] = []

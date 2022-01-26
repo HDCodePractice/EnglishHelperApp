@@ -18,16 +18,23 @@ struct PictureGame: View {
                 Text("Are you ready to test out English words?")
                     .foregroundColor(Color("AccentColor"))
             }
-            NavigationLink {
-                PictureGameProgressView()
-                    .environmentObject(vm)
-            }label: {
-                PrimaryButton(
-                    text: vm.loadFinished ? "Let't go!" : "Load Data...",
-                    background: vm.loadFinished ? Color("AccentColor") : .secondary
-                )
+            VStack(spacing:0){
+                NavigationLink {
+                    PictureGameProgressView()
+                        .environmentObject(vm)
+                }label: {
+                    PrimaryButton(
+                        text: vm.loadFinished ? "Let't go!" : "Load Data...",
+                        background: vm.loadFinished ? Color("AccentColor") : .secondary
+                    )
+                }
+                .disabled(vm.loadFinished ? false : true)
+                ProgressBar(length: Int(vm.loadDataProgress*100), index: 100)
+                    .padding(.horizontal)
+                Text("\(Int(vm.loadDataProgress*100))%")
+                    .foregroundColor(.secondary)
+    
             }
-            .disabled(vm.loadFinished ? false : true)
         }
         .padding()
         .frame(maxWidth:.infinity,maxHeight: .infinity)
