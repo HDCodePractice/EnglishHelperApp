@@ -10,6 +10,7 @@ import TranslateController
 import ActivityView
 
 struct PictureGameQuestionView: View {
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var vm : PictureGameViewModel
     @State var text = ""
     @State var show_translate = false
@@ -18,10 +19,16 @@ struct PictureGameQuestionView: View {
     var body: some View {
         VStack(spacing: 20){
             HStack{
-                Text("Picture Game")
-                    .liacTitle()
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.01)
+                Button(){
+                    mode.wrappedValue.dismiss()
+                }label: {
+                    Image(systemName: "chevron.backward")
+                        .foregroundColor(Color("AccentColor"))
+                    Text("Picture Game")
+                        .foregroundColor(Color("AccentColor"))
+                        .fontWeight(.heavy)
+                }
+
                 Spacer()
                 Text("\(vm.index) out of \(vm.length)")
                     .foregroundColor(Color("AccentColor"))
