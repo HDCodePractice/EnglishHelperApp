@@ -57,9 +57,6 @@ struct PictureGameProgressView_Previews: PreviewProvider {
     static var previews: some View {
         let vm = PictureGameViewModel()
         vm.mokeData()
-        Task{
-            await vm.loadData()
-        }
         return NavigationView{
             PictureGameProgressView()
                 .environmentObject(vm)

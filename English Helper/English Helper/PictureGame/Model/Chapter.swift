@@ -11,4 +11,8 @@ struct Chapter: Codable,Identifiable {
     var id = UUID()
     var name: String
     var topics = [Topic]()
+    enum CodingKeys: String, CodingKey {
+        case topics
+        case name
+    }
 }

@@ -74,8 +74,10 @@ struct PictureGame: View {
 
 struct PictureGame_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView{
-            PictureGame()
+        let vm = PictureGameViewModel()
+        vm.mokeData()
+        return NavigationView{
+            PictureGame(vm: vm)
                 .navigationViewStyle(.stack)
         }
     }

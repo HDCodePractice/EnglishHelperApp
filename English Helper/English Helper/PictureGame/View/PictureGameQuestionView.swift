@@ -93,9 +93,6 @@ struct PictureGameQuestionView_Previews: PreviewProvider {
     static var previews: some View {
         let vm = PictureGameViewModel()
         vm.mokeData()
-        Task{
-            await vm.loadData()
-        }
         return PictureGameQuestionView()
             .environmentObject(vm)
     }

@@ -115,16 +115,12 @@ class PictureGameViewModel: ObservableObject{
     }
     
     func mokeData(){
-        question = "Hello World"
-        answerChoices = [
-            Answer(name: "brackets.jpg", isCorrect: true, chapter: "Computer", topic: "Program"),
-            Answer(name: "stomachache.png", isCorrect: false, chapter: "Health", topic: "Symptoms and Injuries"),
-            Answer(name: "earache.jpg", isCorrect: false, chapter: "Health", topic: "Symptoms and Injuries"),
-            Answer(name: "earache.jpg", isCorrect: false, chapter: "Health", topic: "Symptoms and Injuries"),
-            Answer(name: "earache.jpg", isCorrect: false, chapter: "Health", topic: "Symptoms and Injuries"),
-            Answer(name: "toothache.jpg", isCorrect: false, chapter: "Health", topic: "Symptoms and Injuries")
-        ]
-        index = 2
-        score = 3
+        if let d: [Chapter] = load("example_picture.json"){
+            manager.chapters = d
+        }else{
+            manager.chapters = []
+        }
+        loadFinished = true
+        generatePictureExam()
     }
 }
