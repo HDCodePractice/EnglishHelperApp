@@ -11,7 +11,8 @@ struct ProgressBar: View {
     var length : Int
     var index : Int
     private var progress: Double{
-        return Double(index+1)/Double(length)
+        let progressValue = Double(index+1)/Double(length)
+        return progressValue > 1.0 ? 1.0 : progressValue
     }
     
     var body: some View {

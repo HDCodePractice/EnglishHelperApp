@@ -10,7 +10,7 @@ import TranslateView
 import ActivityView
 
 struct PictureGameQuestionView: View {
-    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var vm : PictureGameViewModel
     @State var text : String?
     @State private var item : ActivityItem?
@@ -19,7 +19,7 @@ struct PictureGameQuestionView: View {
         VStack(spacing: 20){
             HStack{
                 Button(){
-                    mode.wrappedValue.dismiss()
+                    dismiss()
                 }label: {
                     Image(systemName: "chevron.backward")
                         .foregroundColor(Color("AccentColor"))
