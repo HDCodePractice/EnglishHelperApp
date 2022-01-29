@@ -12,6 +12,15 @@ struct PictureGame: View {
     @State private var action: Int? = 0
     
     var body: some View {
+        if vm.startExam{
+            PictureGameProgressView()
+                .environmentObject(vm)
+        }else{
+            startBody
+        }
+    }
+    
+    var startBody: some View{
         VStack(spacing:40){
             VStack(spacing:20){
                 Text("Picture Game")
@@ -43,17 +52,12 @@ struct PictureGame: View {
                 ProgressBar(length: Int(vm.loadDataProgress*100), index: 100)
             }.padding(.horizontal)
             
-            NavigationLink(tag: 1, selection: $action) {
-                PictureGameProgressView()
-                    .environmentObject(vm)
-            }label: {
-                PrimaryButton(
-                    text: vm.loadFinished ? "Let't go!" : "Load Data...",
-                    background: vm.loadFinished ? Color("AccentColor") : .secondary
-                ).onTapGesture(){
-                    vm.generatePictureExam()
-                    action = 1
-                }
+            PrimaryButton(
+                text: vm.loadFinished ? "Let't go!" : "Load Data...",
+                background: vm.loadFinished ? Color("AccentColor") : .secondary
+            ).onTapGesture(){
+                vm.generatePictureExam()
+                vm.startExam = true
             }
             .disabled(vm.loadFinished ? false : true)
         }
@@ -63,7 +67,9 @@ struct PictureGame: View {
         .task {
             await vm.loadData()
         }
+
     }
+    
 }
 
 struct PictureGame_Previews: PreviewProvider {
