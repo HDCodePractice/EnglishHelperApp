@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Topic: Codable {
+struct Topic: Codable, Identifiable {
+    var id = UUID()
     var pictureFiles = [PictureFile]()
     var name: String
 }
