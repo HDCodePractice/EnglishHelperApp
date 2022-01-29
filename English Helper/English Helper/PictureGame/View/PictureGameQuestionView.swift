@@ -10,7 +10,6 @@ import TranslateView
 import ActivityView
 
 struct PictureGameQuestionView: View {
-    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var vm : PictureGameViewModel
     @State var text : String?
     @State private var item : ActivityItem?
@@ -19,7 +18,7 @@ struct PictureGameQuestionView: View {
         VStack(spacing: 20){
             HStack{
                 Button(){
-                    dismiss()
+                    vm.startExam = false
                 }label: {
                     Image(systemName: "chevron.backward")
                         .foregroundColor(Color("AccentColor"))

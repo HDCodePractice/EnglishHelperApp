@@ -24,6 +24,7 @@ class PictureGameViewModel: ObservableObject{
     
     @Published var length = 10
     @Published private(set) var loadDataProgress = 0.0
+    @Published var startExam = false
     
     init(){}
     
