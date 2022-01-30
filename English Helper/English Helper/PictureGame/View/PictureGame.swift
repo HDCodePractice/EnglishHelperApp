@@ -10,6 +10,7 @@ import SwiftUI
 struct PictureGame: View {
     @StateObject var vm = PictureGameViewModel()
     @State private var action: Int? = 0
+    @State private var showingSheet : Bool = false
     
     var body: some View {
         if vm.startExam{
@@ -57,9 +58,16 @@ struct PictureGame: View {
                 background: vm.loadFinished ? Color("AccentColor") : .secondary
             ).onTapGesture(){
                 vm.generatePictureExam()
-                vm.startExam = true
             }
             .disabled(vm.loadFinished ? false : true)
+            Text("Select Topics")
+                .onTapGesture {
+                    showingSheet = true
+                }
+                .sheet(isPresented: $showingSheet){
+                    SelectTopicsView()
+                        .environmentObject(vm)
+                }
         }
         .padding()
         .frame(maxWidth:.infinity,maxHeight: .infinity)
@@ -67,15 +75,16 @@ struct PictureGame: View {
         .task {
             await vm.loadData()
         }
-
     }
-    
 }
 
 struct PictureGame_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView{
-            PictureGame()
+        let vm = PictureGameViewModel()
+        vm.mokeData()
+        vm.startExam = false
+        return NavigationView{
+            PictureGame(vm: vm)
                 .navigationViewStyle(.stack)
         }
     }

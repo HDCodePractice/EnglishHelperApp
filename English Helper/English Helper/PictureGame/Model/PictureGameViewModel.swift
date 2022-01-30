@@ -10,6 +10,7 @@ import Foundation
 @MainActor
 class PictureGameViewModel: ObservableObject{
     private var manager = PictureGameManager.instance
+    @Published var chapters = [Chapter]()
     private var pictureExam : [PictureExam.Result] = []
     private let answerLength = 6
     
@@ -34,6 +35,7 @@ class PictureGameViewModel: ObservableObject{
         }else{
             manager.chapters = []
         }
+        chapters = manager.chapters
         if manager.chapters.count == 0{
             loadFinished = false
         }else{
@@ -66,8 +68,10 @@ class PictureGameViewModel: ObservableObject{
         var rs : [PictureExam.Result] = []
         
         for _ in 0..<length{
-            if let chapter = manager.chapters.randomElement() {
-                if let topic = chapter.topics.randomElement() {
+            let cs = chapters.filter{return $0.isSelect}
+            if let chapter = cs.randomElement() {
+                let topics = chapter.topics.filter{return $0.isSelect}
+                if let topic = topics.randomElement() {
                     let pics = Array(topic.pictureFiles.shuffled().prefix(answerLength))
                     let answer = Int.random(in: 0..<answerLength)
                     rs.append(PictureExam.Result(
@@ -80,12 +84,17 @@ class PictureGameViewModel: ObservableObject{
                 }
             }
         }
-        pictureExam = rs
-        reachedEnd = false
-        index = 0
-        score = 0
-        
-        setQuestion()
+        if rs.count == length{
+            pictureExam = rs
+            reachedEnd = false
+            index = 0
+            score = 0
+            
+            setQuestion()
+            startExam = true
+        }else{
+            startExam = false
+        }
     }
     
     func goToNextQuestion(){
@@ -115,16 +124,54 @@ class PictureGameViewModel: ObservableObject{
     }
     
     func mokeData(){
-        question = "Hello World"
-        answerChoices = [
-            Answer(name: "brackets.jpg", isCorrect: true, chapter: "Computer", topic: "Program"),
-            Answer(name: "stomachache.png", isCorrect: false, chapter: "Health", topic: "Symptoms and Injuries"),
-            Answer(name: "earache.jpg", isCorrect: false, chapter: "Health", topic: "Symptoms and Injuries"),
-            Answer(name: "earache.jpg", isCorrect: false, chapter: "Health", topic: "Symptoms and Injuries"),
-            Answer(name: "earache.jpg", isCorrect: false, chapter: "Health", topic: "Symptoms and Injuries"),
-            Answer(name: "toothache.jpg", isCorrect: false, chapter: "Health", topic: "Symptoms and Injuries")
-        ]
-        index = 2
-        score = 3
+        if let d: [Chapter] = load("example_picture.json"){
+            manager.chapters = d
+        }else{
+            manager.chapters = []
+        }
+        chapters = manager.chapters
+        loadFinished = true
+        generatePictureExam()
+        reachedEnd = true
+    }
+    
+    func toggleChapter(name: String){
+        if let cindex = chapters.firstIndex(where: {$0.name == name}){
+            chapters[cindex].isSelect.toggle()
+            
+            if chapters[cindex].isSelect {
+                for tindex in 0..<chapters[cindex].topics.count {
+                    chapters[cindex].topics[tindex].isSelect = true
+                }
+            }else{
+                for tindex in 0..<chapters[cindex].topics.count {
+                    chapters[cindex].topics[tindex].isSelect = false
+                }
+            }
+        }
+    }
+    
+    func toggleTopic(name: String,chaptername: String){
+        if let cindex = chapters.firstIndex(where: {$0.name == chaptername}){
+            if let tindex = chapters[cindex].topics.firstIndex(where: {$0.name == name}){
+                chapters[cindex].topics[tindex].isSelect.toggle()
+                // 如果chapter没选，顺便选上
+                if chapters[cindex].topics[tindex].isSelect && !chapters[cindex].isSelect{
+                    chapters[cindex].isSelect = true
+                    return
+                }
+                
+                // 如果chapter选上了，查看是不是所有的都是没选中的，如果都没选，chapter也取消选择
+                if chapters[cindex].isSelect{
+                    for t in chapters[cindex].topics{
+                        if t.isSelect{
+                            return
+                        }
+                    }
+                    // 所有子项都没选择，把chapter也取消选择
+                    chapters[cindex].isSelect = false
+                }
+            }
+        }
     }
 }

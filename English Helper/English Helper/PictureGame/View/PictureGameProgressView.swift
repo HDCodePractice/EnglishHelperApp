@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PictureGameProgressView: View {
     @EnvironmentObject var vm : PictureGameViewModel
+    @State private var showingSheet : Bool = false
     
     var body: some View {
         if vm.reachedEnd {
@@ -41,6 +42,14 @@ struct PictureGameProgressView: View {
                             Text("Rating")
                         }
                     )
+                    Text("Select Topics")
+                        .onTapGesture {
+                            showingSheet = true
+                        }
+                        .sheet(isPresented: $showingSheet){
+                            SelectTopicsView()
+                                .environmentObject(vm)
+                        }
                 }.padding(.horizontal)
             }
             .foregroundColor(Color("AccentColor"))
@@ -57,9 +66,6 @@ struct PictureGameProgressView_Previews: PreviewProvider {
     static var previews: some View {
         let vm = PictureGameViewModel()
         vm.mokeData()
-        Task{
-            await vm.loadData()
-        }
         return NavigationView{
             PictureGameProgressView()
                 .environmentObject(vm)

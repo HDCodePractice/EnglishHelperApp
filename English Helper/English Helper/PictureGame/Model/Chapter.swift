@@ -7,7 +7,13 @@
 
 import Foundation
 
-struct Chapter: Codable {
+struct Chapter: Codable,Identifiable {
+    var id = UUID()
     var name: String
     var topics = [Topic]()
+    var isSelect = true
+    enum CodingKeys: String, CodingKey {
+        case topics
+        case name
+    }
 }
