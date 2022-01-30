@@ -19,6 +19,7 @@
 		670588A72798C938006F8C0E /* Grammar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670588A62798C938006F8C0E /* Grammar.swift */; };
 		670588A92798C995006F8C0E /* GrammarListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670588A82798C995006F8C0E /* GrammarListViewModel.swift */; };
 		6763B56E27A4EF30000E98EC /* example_picture.json in Resources */ = {isa = PBXBuildFile; fileRef = 6763B56D27A4EF30000E98EC /* example_picture.json */; };
+		6763B57027A4F3AD000E98EC /* SelectTopicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6763B56F27A4F3AD000E98EC /* SelectTopicsView.swift */; };
 		67830ACC279FA8300036BA2D /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67830ACB279FA8300036BA2D /* SettingView.swift */; };
 		679E23A1279BA49200CB8A76 /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23A0279BA49200CB8A76 /* Chapter.swift */; };
 		679E23A3279BAFDA00CB8A76 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23A2279BAFDA00CB8A76 /* Topic.swift */; };
@@ -75,6 +76,7 @@
 		670588A82798C995006F8C0E /* GrammarListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrammarListViewModel.swift; sourceTree = "<group>"; };
 		6711A2C92797981B0094B532 /* English Helper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "English Helper.entitlements"; sourceTree = "<group>"; };
 		6763B56D27A4EF30000E98EC /* example_picture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = example_picture.json; sourceTree = "<group>"; };
+		6763B56F27A4F3AD000E98EC /* SelectTopicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTopicsView.swift; sourceTree = "<group>"; };
 		67830ACB279FA8300036BA2D /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		679E23A0279BA49200CB8A76 /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		679E23A2279BAFDA00CB8A76 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				6703FFEC279A4C6400C4FADB /* PictureGame.swift */,
+				6763B56F27A4F3AD000E98EC /* SelectTopicsView.swift */,
 				6703FFEE279A4E3800C4FADB /* PictureGameProgressView.swift */,
 				6703FFF0279A4EFB00C4FADB /* PictureGameQuestionView.swift */,
 			);
@@ -420,6 +423,7 @@
 				670588A52798C7D6006F8C0E /* LoadData.swift in Sources */,
 				67830ACC279FA8300036BA2D /* SettingView.swift in Sources */,
 				67FD9D432796666E00EF434F /* ContentView.swift in Sources */,
+				6763B57027A4F3AD000E98EC /* SelectTopicsView.swift in Sources */,
 				6703FFEA279A4ADA00C4FADB /* Answer.swift in Sources */,
 				6705889F2798C67B006F8C0E /* WebView.swift in Sources */,
 				670588A92798C995006F8C0E /* GrammarListViewModel.swift in Sources */,
