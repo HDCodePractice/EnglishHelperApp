@@ -9,7 +9,7 @@ import Foundation
 
 @MainActor
 class PictureGameViewModel: ObservableObject{
-    private var manager = PictureGameManager.instance
+    private var manager = PictureDictionaryManager.instance
     @Published var chapters = [Chapter]()
     private var pictureExam : [PictureExam.Result] = []
     private let answerLength = 6

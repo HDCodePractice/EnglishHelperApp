@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 struct Chapter: Codable,Identifiable {
     var id = UUID()
@@ -16,4 +17,11 @@ struct Chapter: Codable,Identifiable {
         case topics
         case name
     }
+}
+
+class LocalChapter: Object, ObjectKeyIdentifiable {
+    @Persisted(primaryKey: true) var id: ObjectId
+    @Persisted var name: String
+    @Persisted var isSelect = true
+    @Persisted var topics = RealmSwift.List<LocalTopic>()
 }
