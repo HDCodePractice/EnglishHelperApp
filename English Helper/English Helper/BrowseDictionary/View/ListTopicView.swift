@@ -12,6 +12,7 @@ struct ListTopicView: View {
     @StateObject var vm = BrowseDictionaryViewModel()
     @ObservedResults(LocalChapter.self) var chapters
     @State private var topExpanded: Bool = true
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         List{
@@ -48,13 +49,7 @@ struct ListTopicView: View {
             }
 
             Section{
-                Text("Syncing from server")
-                    .onTapGesture {
-                        Task{
-                            await vm.fromServerJsonToRealm()
-                        }
-                    }
-                Text("Clean All Data")
+                Text("Resync Data From Server")
                     .onTapGesture {
                         Task{
                             vm.cleanRealm()
@@ -62,6 +57,19 @@ struct ListTopicView: View {
                         }
                     }
             }
+        }
+        .navigationBarTitle("Browse Dictionary")
+        .toolbar{
+            ToolbarItem(placement: .primaryAction){
+                Button(){
+                    dismiss()
+                }label: {
+                    Text("Done").fontWeight(.semibold)
+                }
+            }
+        }
+        .task {
+            await vm.fromServerJsonToRealm()
         }
     }
 }

@@ -44,13 +44,6 @@ struct PictureGame: View {
                         Text("Rating")
                     }
                 )
-                Text("")
-                HStack{
-                    Text("Loading progress \(Int(vm.loadDataProgress*100))%")
-                        .foregroundColor(Color("AccentColor"))
-                    Spacer()
-                }
-                ProgressBar(length: Int(vm.loadDataProgress*100), index: 100)
             }.padding(.horizontal)
             
             PrimaryButton(
@@ -65,8 +58,9 @@ struct PictureGame: View {
                     showingSheet = true
                 }
                 .sheet(isPresented: $showingSheet){
-                    SelectTopicsView()
-                        .environmentObject(vm)
+                    NavigationView{
+                        ListTopicView()
+                    }
                 }
         }
         .padding()

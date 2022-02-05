@@ -47,8 +47,9 @@ struct PictureGameProgressView: View {
                             showingSheet = true
                         }
                         .sheet(isPresented: $showingSheet){
-                            SelectTopicsView()
-                                .environmentObject(vm)
+                            NavigationView{
+                                ListTopicView()
+                            }
                         }
                 }.padding(.horizontal)
             }
