@@ -26,6 +26,19 @@ class RealmManager{
         }
     }
     
+    func cleanRealm(){
+        if let localRealm = localRealm {
+            do{
+                try localRealm.write{
+                    localRealm.deleteAll()
+                }
+            } catch {
+                print("clean realm Error: \(error)")
+            }
+            
+        }
+    }
+    
     private func getLocalPictureFile ( pictureFile:PictureFile ) -> LocalPictureFile{
         let newPictureFile = LocalPictureFile(value: [
             "name" : pictureFile.name,
@@ -44,7 +57,7 @@ class RealmManager{
         }
         return newTopic
     }
-
+    
     private func findChapterInChapters(name:String , chapters:[Chapter]) -> Chapter?{
         for chapter in chapters{
             if chapter.name == name{
@@ -244,7 +257,7 @@ class RealmManager{
             }
         }
     }
-
+    
     func mokeData() -> LocalChapter?{
         if let localRealm = localRealm{
             let allChapter = localRealm.objects(LocalChapter.self)
@@ -252,72 +265,72 @@ class RealmManager{
         }
         return nil
     }
-//    func addTopic(topicName: String){
-//        if let localRealm = localRealm {
-//            do{
-//                try localRealm.write{
-//                    let newTopic = LocalTopic(value: [
-//                        "name": topicName
-//                    ])
-//                    localRealm.add(newTopic)
-//                    getTopics()
-//                    print("Added new topic to Realm: \(newTopic)")
-//                }
-//            } catch {
-//                print("Error adding topic to Realm:\(error)")
-//            }
-//        }
-//    }
-//
-//    func getTopics(){
-//        if let localRealm = localRealm {
-//            let allTopics = localRealm.objects(LocalTopic.self).sorted(byKeyPath: "name")
-//            topics = []
-//            allTopics.forEach{ topic in
-//                topics.append(topic)
-//            }
-//        }
-//    }
-//
-//    func updateTopic(id: ObjectId, name: String? , isSelect: Bool?){
-//        if let localRealm = localRealm {
-//            do{
-//                let topicToUpdate = localRealm.objects(LocalTopic.self).filter(NSPredicate(format: "id == @%", id))
-//                guard !topicToUpdate.isEmpty else { return }
-//                try localRealm.write{
-//                    var updatemsg = ""
-//                    if let name = name {
-//                        topicToUpdate[0].name = name
-//                        updatemsg += "name: \(name) "
-//                    }
-//                    if let isSelect = isSelect {
-//                        topicToUpdate[0].isSelect = isSelect
-//                        updatemsg += "isSelect: \(isSelect) "
-//                    }
-//                    getTopics()
-//                    print("Updated topic with id \(id)! \(updatemsg)")
-//                }
-//            } catch{
-//                print("Error updating topic \(id) to Realm: \(error)")
-//            }
-//        }
-//    }
+    //    func addTopic(topicName: String){
+    //        if let localRealm = localRealm {
+    //            do{
+    //                try localRealm.write{
+    //                    let newTopic = LocalTopic(value: [
+    //                        "name": topicName
+    //                    ])
+    //                    localRealm.add(newTopic)
+    //                    getTopics()
+    //                    print("Added new topic to Realm: \(newTopic)")
+    //                }
+    //            } catch {
+    //                print("Error adding topic to Realm:\(error)")
+    //            }
+    //        }
+    //    }
+    //
+    //    func getTopics(){
+    //        if let localRealm = localRealm {
+    //            let allTopics = localRealm.objects(LocalTopic.self).sorted(byKeyPath: "name")
+    //            topics = []
+    //            allTopics.forEach{ topic in
+    //                topics.append(topic)
+    //            }
+    //        }
+    //    }
+    //
+    //    func updateTopic(id: ObjectId, name: String? , isSelect: Bool?){
+    //        if let localRealm = localRealm {
+    //            do{
+    //                let topicToUpdate = localRealm.objects(LocalTopic.self).filter(NSPredicate(format: "id == @%", id))
+    //                guard !topicToUpdate.isEmpty else { return }
+    //                try localRealm.write{
+    //                    var updatemsg = ""
+    //                    if let name = name {
+    //                        topicToUpdate[0].name = name
+    //                        updatemsg += "name: \(name) "
+    //                    }
+    //                    if let isSelect = isSelect {
+    //                        topicToUpdate[0].isSelect = isSelect
+    //                        updatemsg += "isSelect: \(isSelect) "
+    //                    }
+    //                    getTopics()
+    //                    print("Updated topic with id \(id)! \(updatemsg)")
+    //                }
+    //            } catch{
+    //                print("Error updating topic \(id) to Realm: \(error)")
+    //            }
+    //        }
+    //    }
     
-//    func deleteTopic(id: ObjectId) {
-//        if let localRealm = localRealm {
-//            do{
-//                let topicToDelete = localRealm.objects(LocalTopic.self).filter(NSPredicate(format: "id == @%", id))
-//                guard !topicToDelete.isEmpty else { return }
-//
-//                try localRealm.write{
-//                    localRealm.delete(topicToDelete)
-//                    getTopics()
-//                    print("Deleted topic with id \(id)")
-//                }
-//
-//            } catch {
-//                print("Error deleting topic \(id) from Realm: \(error)")
-//            }
-//        }
-//    }
+    //    func deleteTopic(id: ObjectId) {
+    //        if let localRealm = localRealm {
+    //            do{
+    //                let topicToDelete = localRealm.objects(LocalTopic.self).filter(NSPredicate(format: "id == @%", id))
+    //                guard !topicToDelete.isEmpty else { return }
+    //
+    //                try localRealm.write{
+    //                    localRealm.delete(topicToDelete)
+    //                    getTopics()
+    //                    print("Deleted topic with id \(id)")
+    //                }
+    //
+    //            } catch {
+    //                print("Error deleting topic \(id) from Realm: \(error)")
+    //            }
+    //        }
+    //    }
 }

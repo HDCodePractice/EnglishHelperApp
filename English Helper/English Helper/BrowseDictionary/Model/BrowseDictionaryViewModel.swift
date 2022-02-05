@@ -14,6 +14,9 @@ class BrowseDictionaryViewModel: ObservableObject{
     init(){
     }
     
+    func cleanRealm(){
+        realManager.cleanRealm()
+    }
     
     @MainActor
     func fromServerJsonToRealm() async{

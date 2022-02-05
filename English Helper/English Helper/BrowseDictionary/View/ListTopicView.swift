@@ -54,6 +54,13 @@ struct ListTopicView: View {
                             await vm.fromServerJsonToRealm()
                         }
                     }
+                Text("Clean All Data")
+                    .onTapGesture {
+                        Task{
+                            vm.cleanRealm()
+                            await vm.fromServerJsonToRealm()
+                        }
+                    }
             }
         }
     }
