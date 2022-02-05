@@ -265,6 +265,19 @@ class RealmManager{
         }
         return nil
     }
+    
+    func getAllChapters() -> [LocalChapter]{
+        if let localRealm = localRealm {
+            let allChapters = localRealm.objects(LocalChapter.self)
+            var chapters : [LocalChapter] = []
+            allChapters.forEach{ chapter in
+                chapters.append(chapter)
+            }
+            return chapters
+        }
+        return []
+    }
+    
     //    func addTopic(topicName: String){
     //        if let localRealm = localRealm {
     //            do{
@@ -282,15 +295,6 @@ class RealmManager{
     //        }
     //    }
     //
-    //    func getTopics(){
-    //        if let localRealm = localRealm {
-    //            let allTopics = localRealm.objects(LocalTopic.self).sorted(byKeyPath: "name")
-    //            topics = []
-    //            allTopics.forEach{ topic in
-    //                topics.append(topic)
-    //            }
-    //        }
-    //    }
     //
     //    func updateTopic(id: ObjectId, name: String? , isSelect: Bool?){
     //        if let localRealm = localRealm {
