@@ -18,9 +18,13 @@
 		670588A52798C7D6006F8C0E /* LoadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670588A42798C7D6006F8C0E /* LoadData.swift */; };
 		670588A72798C938006F8C0E /* Grammar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670588A62798C938006F8C0E /* Grammar.swift */; };
 		670588A92798C995006F8C0E /* GrammarListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670588A82798C995006F8C0E /* GrammarListViewModel.swift */; };
+		6710C44627AE34F500C5CB99 /* ListPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6710C44527AE34F500C5CB99 /* ListPictureView.swift */; };
+		674D427327A8061500061C70 /* ListTopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674D427227A8061500061C70 /* ListTopicView.swift */; };
+		674D427527A8065400061C70 /* BrowseDictionaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674D427427A8065400061C70 /* BrowseDictionaryViewModel.swift */; };
 		6763B56E27A4EF30000E98EC /* example_picture.json in Resources */ = {isa = PBXBuildFile; fileRef = 6763B56D27A4EF30000E98EC /* example_picture.json */; };
-		6763B57027A4F3AD000E98EC /* SelectTopicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6763B56F27A4F3AD000E98EC /* SelectTopicsView.swift */; };
-		67830ACC279FA8300036BA2D /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67830ACB279FA8300036BA2D /* SettingView.swift */; };
+		6781236827AA9E2700E4F66F /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 6781236727AA9E2700E4F66F /* Realm */; };
+		6781236A27AA9E2700E4F66F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6781236927AA9E2700E4F66F /* RealmSwift */; };
+		6781236C27AAA17200E4F66F /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6781236B27AAA17200E4F66F /* RealmManager.swift */; };
 		679E23A1279BA49200CB8A76 /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23A0279BA49200CB8A76 /* Chapter.swift */; };
 		679E23A3279BAFDA00CB8A76 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23A2279BAFDA00CB8A76 /* Topic.swift */; };
 		679E23A5279BAFEF00CB8A76 /* PictureFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23A4279BAFEF00CB8A76 /* PictureFile.swift */; };
@@ -30,6 +34,7 @@
 		67BA8A16279F68EB00F4B743 /* ActivityView in Frameworks */ = {isa = PBXBuildFile; productRef = 67BA8A15279F68EB00F4B743 /* ActivityView */; };
 		67C29B4227A2115900877C58 /* TranslateView in Frameworks */ = {isa = PBXBuildFile; productRef = 67C29B4127A2115900877C58 /* TranslateView */; };
 		67D3D6D4279D91590075BBF8 /* AnswerGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D3D6D3279D91590075BBF8 /* AnswerGrid.swift */; };
+		67D7C86527AA2CF60081B444 /* TopicRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D7C86427AA2CF60081B444 /* TopicRow.swift */; };
 		67FD9D412796666E00EF434F /* English_HelperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D402796666E00EF434F /* English_HelperApp.swift */; };
 		67FD9D432796666E00EF434F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D422796666E00EF434F /* ContentView.swift */; };
 		67FD9D452796666F00EF434F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67FD9D442796666F00EF434F /* Assets.xcassets */; };
@@ -74,10 +79,12 @@
 		670588A42798C7D6006F8C0E /* LoadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadData.swift; sourceTree = "<group>"; };
 		670588A62798C938006F8C0E /* Grammar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grammar.swift; sourceTree = "<group>"; };
 		670588A82798C995006F8C0E /* GrammarListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrammarListViewModel.swift; sourceTree = "<group>"; };
+		6710C44527AE34F500C5CB99 /* ListPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPictureView.swift; sourceTree = "<group>"; };
 		6711A2C92797981B0094B532 /* English Helper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "English Helper.entitlements"; sourceTree = "<group>"; };
+		674D427227A8061500061C70 /* ListTopicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTopicView.swift; sourceTree = "<group>"; };
+		674D427427A8065400061C70 /* BrowseDictionaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseDictionaryViewModel.swift; sourceTree = "<group>"; };
 		6763B56D27A4EF30000E98EC /* example_picture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = example_picture.json; sourceTree = "<group>"; };
-		6763B56F27A4F3AD000E98EC /* SelectTopicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTopicsView.swift; sourceTree = "<group>"; };
-		67830ACB279FA8300036BA2D /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		6781236B27AAA17200E4F66F /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		679E23A0279BA49200CB8A76 /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		679E23A2279BAFDA00CB8A76 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		679E23A4279BAFEF00CB8A76 /* PictureFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureFile.swift; sourceTree = "<group>"; };
@@ -85,6 +92,7 @@
 		679E23A8279BB94100CB8A76 /* PictureGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameViewModel.swift; sourceTree = "<group>"; };
 		679E23AA279C4BAA00CB8A76 /* PictureExam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureExam.swift; sourceTree = "<group>"; };
 		67D3D6D3279D91590075BBF8 /* AnswerGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerGrid.swift; sourceTree = "<group>"; };
+		67D7C86427AA2CF60081B444 /* TopicRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicRow.swift; sourceTree = "<group>"; };
 		67FD9D3D2796666E00EF434F /* English Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "English Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67FD9D402796666E00EF434F /* English_HelperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = English_HelperApp.swift; sourceTree = "<group>"; };
 		67FD9D422796666E00EF434F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,6 +112,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6781236A27AA9E2700E4F66F /* RealmSwift in Frameworks */,
+				6781236827AA9E2700E4F66F /* Realm in Frameworks */,
 				67C29B4227A2115900877C58 /* TranslateView in Frameworks */,
 				67BA8A16279F68EB00F4B743 /* ActivityView in Frameworks */,
 			);
@@ -150,10 +160,6 @@
 			children = (
 				6703FFE9279A4ADA00C4FADB /* Answer.swift */,
 				679E23AA279C4BAA00CB8A76 /* PictureExam.swift */,
-				679E23A0279BA49200CB8A76 /* Chapter.swift */,
-				679E23A4279BAFEF00CB8A76 /* PictureFile.swift */,
-				679E23A2279BAFDA00CB8A76 /* Topic.swift */,
-				679E23A6279BB41500CB8A76 /* PictureGameManager.swift */,
 				679E23A8279BB94100CB8A76 /* PictureGameViewModel.swift */,
 			);
 			path = Model;
@@ -163,7 +169,6 @@
 			isa = PBXGroup;
 			children = (
 				6703FFEC279A4C6400C4FADB /* PictureGame.swift */,
-				6763B56F27A4F3AD000E98EC /* SelectTopicsView.swift */,
 				6703FFEE279A4E3800C4FADB /* PictureGameProgressView.swift */,
 				6703FFF0279A4EFB00C4FADB /* PictureGameQuestionView.swift */,
 			);
@@ -199,8 +204,48 @@
 				670588A42798C7D6006F8C0E /* LoadData.swift */,
 				6703FFE2279A32EC00C4FADB /* Extension.swift */,
 				670588A62798C938006F8C0E /* Grammar.swift */,
+				679E23A2279BAFDA00CB8A76 /* Topic.swift */,
+				679E23A0279BA49200CB8A76 /* Chapter.swift */,
+				679E23A4279BAFEF00CB8A76 /* PictureFile.swift */,
+				6781236B27AAA17200E4F66F /* RealmManager.swift */,
+				679E23A6279BB41500CB8A76 /* PictureGameManager.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		674D426E27A8049E00061C70 /* BrowseDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				674D427127A804C700061C70 /* Components */,
+				674D427027A804B800061C70 /* Model */,
+				674D426F27A804B000061C70 /* View */,
+			);
+			path = BrowseDictionary;
+			sourceTree = "<group>";
+		};
+		674D426F27A804B000061C70 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				674D427227A8061500061C70 /* ListTopicView.swift */,
+				6710C44527AE34F500C5CB99 /* ListPictureView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		674D427027A804B800061C70 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				674D427427A8065400061C70 /* BrowseDictionaryViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		674D427127A804C700061C70 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				67D7C86427AA2CF60081B444 /* TopicRow.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		67FD9D342796666E00EF434F = {
@@ -228,12 +273,12 @@
 		67FD9D3F2796666E00EF434F /* English Helper */ = {
 			isa = PBXGroup;
 			children = (
+				674D426E27A8049E00061C70 /* BrowseDictionary */,
 				6711A2C92797981B0094B532 /* English Helper.entitlements */,
 				67FD9D402796666E00EF434F /* English_HelperApp.swift */,
 				670588A32798C7B0006F8C0E /* Model */,
 				670588A22798C750006F8C0E /* GrammarBook */,
 				67FD9D422796666E00EF434F /* ContentView.swift */,
-				67830ACB279FA8300036BA2D /* SettingView.swift */,
 				67FD9D742796691400EF434F /* Components */,
 				67FD9D442796666F00EF434F /* Assets.xcassets */,
 				67FD9D462796666F00EF434F /* Preview Content */,
@@ -297,6 +342,8 @@
 			packageProductDependencies = (
 				67BA8A15279F68EB00F4B743 /* ActivityView */,
 				67C29B4127A2115900877C58 /* TranslateView */,
+				6781236727AA9E2700E4F66F /* Realm */,
+				6781236927AA9E2700E4F66F /* RealmSwift */,
 			);
 			productName = "English Helper";
 			productReference = 67FD9D3D2796666E00EF434F /* English Helper.app */;
@@ -373,6 +420,7 @@
 			packageReferences = (
 				67BA8A14279F68EB00F4B743 /* XCRemoteSwiftPackageReference "ActivityView" */,
 				67C29B4027A2115900877C58 /* XCRemoteSwiftPackageReference "TranslateView" */,
+				6781236627AA9E2700E4F66F /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 67FD9D3E2796666E00EF434F /* Products */;
 			projectDirPath = "";
@@ -418,21 +466,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				6703FFF1279A4EFB00C4FADB /* PictureGameQuestionView.swift in Sources */,
+				67D7C86527AA2CF60081B444 /* TopicRow.swift in Sources */,
 				6703FFEF279A4E3800C4FADB /* PictureGameProgressView.swift in Sources */,
 				670588A12798C717006F8C0E /* GrammarListView.swift in Sources */,
 				670588A52798C7D6006F8C0E /* LoadData.swift in Sources */,
-				67830ACC279FA8300036BA2D /* SettingView.swift in Sources */,
+				674D427327A8061500061C70 /* ListTopicView.swift in Sources */,
 				67FD9D432796666E00EF434F /* ContentView.swift in Sources */,
-				6763B57027A4F3AD000E98EC /* SelectTopicsView.swift in Sources */,
+				674D427527A8065400061C70 /* BrowseDictionaryViewModel.swift in Sources */,
 				6703FFEA279A4ADA00C4FADB /* Answer.swift in Sources */,
 				6705889F2798C67B006F8C0E /* WebView.swift in Sources */,
 				670588A92798C995006F8C0E /* GrammarListViewModel.swift in Sources */,
 				679E23A5279BAFEF00CB8A76 /* PictureFile.swift in Sources */,
 				679E23AB279C4BAA00CB8A76 /* PictureExam.swift in Sources */,
+				6781236C27AAA17200E4F66F /* RealmManager.swift in Sources */,
 				6703FFE5279A49F000C4FADB /* AnswerRow.swift in Sources */,
 				67D3D6D4279D91590075BBF8 /* AnswerGrid.swift in Sources */,
 				6703FFE3279A32EC00C4FADB /* Extension.swift in Sources */,
 				67FD9D71279668EC00EF434F /* ProgressBar.swift in Sources */,
+				6710C44627AE34F500C5CB99 /* ListPictureView.swift in Sources */,
 				67FD9D762796695A00EF434F /* PrimaryButton.swift in Sources */,
 				679E23A7279BB41500CB8A76 /* PictureGameManager.swift in Sources */,
 				67FD9D412796666E00EF434F /* English_HelperApp.swift in Sources */,
@@ -603,9 +654,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "English Helper/English Helper.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"English Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4W3MN6QHA;
 				ENABLE_PREVIEWS = YES;
@@ -617,15 +668,16 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "one.hdcola.English-Helper";
+				PRODUCT_BUNDLE_IDENTIFIER = one.hdcola.ehelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -638,9 +690,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "English Helper/English Helper.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"English Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4W3MN6QHA;
 				ENABLE_PREVIEWS = YES;
@@ -652,15 +704,16 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "one.hdcola.English-Helper";
+				PRODUCT_BUNDLE_IDENTIFIER = one.hdcola.ehelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -785,6 +838,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6781236627AA9E2700E4F66F /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.10.0;
+			};
+		};
 		67BA8A14279F68EB00F4B743 /* XCRemoteSwiftPackageReference "ActivityView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftUI-Plus/ActivityView.git";
@@ -804,6 +865,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6781236727AA9E2700E4F66F /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6781236627AA9E2700E4F66F /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		6781236927AA9E2700E4F66F /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6781236627AA9E2700E4F66F /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		67BA8A15279F68EB00F4B743 /* ActivityView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 67BA8A14279F68EB00F4B743 /* XCRemoteSwiftPackageReference "ActivityView" */;

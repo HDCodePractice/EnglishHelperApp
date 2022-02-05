@@ -14,7 +14,7 @@ struct Answer: Identifiable{
     var chapter : String
     var topic : String
     var url : URL?{
-        let url = PictureGameManager.genPictureURL(chapter: chapter, topic: topic, filename: name)
+        let url = PictureDictionaryManager.genPictureURL(chapter: chapter, topic: topic, filename: name)
         return url
     }
 }
