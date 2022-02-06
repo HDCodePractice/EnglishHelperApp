@@ -67,7 +67,7 @@
             ]
           },
           {
-            "name": "period.png",
+            "name": "period.jpg",
             "words": [
               "period"
             ]
@@ -87,8 +87,13 @@
           {
             "name": "single-quote.png",
             "words": [
-              "apostrophe",
               "single quotation mark"
+            ]
+          },
+          {
+            "name": "apostrophe.png",
+            "words": [
+              "apostrophe"
             ]
           },
           {
@@ -120,6 +125,86 @@
             "name": "essay.jpg",
             "words": [
               "essay"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Clothing",
+    "topics": [
+      {
+        "name": "Everyday Clothes",
+        "pictureFiles": [
+          {
+            "name": "toque.jpg",
+            "words": [
+              "toque",
+              "ski hat"
+            ]
+          },
+          {
+            "name": "shirt.jpg",
+            "words": [
+              "shirt"
+            ]
+          },
+          {
+            "name": "sneakers.jpg",
+            "words": [
+              "athletic shoes",
+              "sneakers"
+            ]
+          },
+          {
+            "name": "blouse.jpg",
+            "words": [
+              "blouse"
+            ]
+          },
+          {
+            "name": "skirt.jpg",
+            "words": [
+              "skirt"
+            ]
+          },
+          {
+            "name": "suit.jpg",
+            "words": [
+              "suit"
+            ]
+          },
+          {
+            "name": "pants.jpg",
+            "words": [
+              "slacks",
+              "pants"
+            ]
+          },
+          {
+            "name": "jeans.jpg",
+            "words": [
+              "jeans"
+            ]
+          },
+          {
+            "name": "dress.jpg",
+            "words": [
+              "dress"
+            ]
+          },
+          {
+            "name": "cap.jpg",
+            "words": [
+              "baseball cap",
+              "cap"
+            ]
+          },
+          {
+            "name": "sweater.jpg",
+            "words": [
+              "sweater"
             ]
           }
         ]
@@ -327,7 +412,8 @@
           {
             "name": "vacation.jpg",
             "words": [
-              "vacation"
+              "vacation",
+              "leisure"
             ]
           }
         ]
@@ -403,7 +489,8 @@
           {
             "name": "icy.jpg",
             "words": [
-              "icy"
+              "icy",
+              "slippery"
             ]
           },
           {
@@ -432,7 +519,7 @@
             ]
           },
           {
-            "name": "heat wave.jpg",
+            "name": "heat wave.png",
             "words": [
               "heat wave"
             ]
@@ -504,7 +591,8 @@
           {
             "name": "foot.jpg",
             "words": [
-              "foot"
+              "foot",
+              "feet"
             ]
           },
           {
@@ -702,7 +790,7 @@
             ]
           },
           {
-            "name": "stomach.png",
+            "name": "stomach.jpg",
             "words": [
               "stomach"
             ]
@@ -846,6 +934,96 @@
             "words": [
               "callous"
             ]
+          },
+          {
+            "name": "medicines.jpg",
+            "words": [
+              "medicines"
+            ]
+          },
+          {
+            "name": "treat sick people.jpg",
+            "words": [
+              "treat sick people"
+            ]
+          },
+          {
+            "name": "pharmacy.jpg",
+            "words": [
+              "pharmacy"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "A Pharmacy",
+        "pictureFiles": [
+          {
+            "name": "patient.jpg",
+            "words": [
+              "patient"
+            ]
+          },
+          {
+            "name": "pharmacist.jpg",
+            "words": [
+              "pharmacist"
+            ]
+          },
+          {
+            "name": "prescription.jpg",
+            "words": [
+              "prescription"
+            ]
+          },
+          {
+            "name": "prescription medicine.jpg",
+            "words": [
+              "prescription medicine",
+              "prescription drug"
+            ]
+          },
+          {
+            "name": "wheelchair.jpg",
+            "words": [
+              "wheelchair"
+            ]
+          },
+          {
+            "name": "pill.jpg",
+            "words": [
+              "pill"
+            ]
+          },
+          {
+            "name": "tablet.jpg",
+            "words": [
+              "tablet"
+            ]
+          },
+          {
+            "name": "capsule.jpg",
+            "words": [
+              "capsule"
+            ]
+          },
+          {
+            "name": "ointment.jpg",
+            "words": [
+              "ointment"
+            ]
+          },
+          {
+            "name": "cream.jpg",
+            "words": [
+              "cream"
+            ]
+          },
+          {
+            "name": "prescribe.jpg",
+            "words": [
+              "prescribe"
+            ]
           }
         ]
       }
@@ -888,7 +1066,7 @@
             ]
           },
           {
-            "name": "bison.jpg",
+            "name": "buffalo.jpg",
             "words": [
               "buffalo",
               "bison"
@@ -951,6 +1129,18 @@
             "name": "nest.jpg",
             "words": [
               "nest"
+            ]
+          },
+          {
+            "name": "grasshopper.jpg",
+            "words": [
+              "grasshopper"
+            ]
+          },
+          {
+            "name": "an ear of corn.jpg",
+            "words": [
+              "an ear of corn"
             ]
           }
         ]
@@ -1192,9 +1382,9 @@
             ]
           },
           {
-            "name": "butterflies.jpg",
+            "name": "butterfly.jpg",
             "words": [
-              "butterflies"
+              "butterfly"
             ]
           },
           {
@@ -1570,85 +1760,382 @@
             "words": [
               "floss"
             ]
+          },
+          {
+            "name": "timid.jpg",
+            "words": [
+              "timid"
+            ]
+          },
+          {
+            "name": "hop.jpg",
+            "words": [
+              "hop"
+            ]
+          },
+          {
+            "name": "bathtub.jpg",
+            "words": [
+              "bathtub"
+            ]
+          },
+          {
+            "name": "splash.jpg",
+            "words": [
+              "splash"
+            ]
+          },
+          {
+            "name": "tire blow.jpg",
+            "words": [
+              "tire blow"
+            ]
+          },
+          {
+            "name": "grill.jpg",
+            "words": [
+              "grill"
+            ]
+          },
+          {
+            "name": "chore.jpg",
+            "words": [
+              "chore"
+            ]
+          },
+          {
+            "name": "fed.jpg",
+            "words": [
+              "fed",
+              "feed"
+            ]
+          },
+          {
+            "name": "treasure.jpg",
+            "words": [
+              "treasure",
+              "reserve",
+              "fortune"
+            ]
+          },
+          {
+            "name": "swing.jpg",
+            "words": [
+              "swing"
+            ]
+          },
+          {
+            "name": "sneak.jpg",
+            "words": [
+              "sneak"
+            ]
+          },
+          {
+            "name": "seesaw.jpg",
+            "words": [
+              "seesaw"
+            ]
+          },
+          {
+            "name": "crawl.jpg",
+            "words": [
+              "crawl"
+            ]
+          },
+          {
+            "name": "pirate.jpg",
+            "words": [
+              "pirate"
+            ]
+          },
+          {
+            "name": "shout.jpg",
+            "words": [
+              "shout"
+            ]
+          },
+          {
+            "name": "atlas.jpg",
+            "words": [
+              "atlas"
+            ]
           }
         ]
-      }
-    ]
-  },
-  {
-    "name": "Clothing",
-    "topics": [
+      },
       {
-        "name": "Everyday Clothes",
+        "name": "New this week",
         "pictureFiles": [
           {
-            "name": "toque.jpg",
+            "name": "elementary education.jpg",
             "words": [
-              "toque",
-              "ski hat"
+              "elementary education"
             ]
           },
           {
-            "name": "shirt.jpg",
+            "name": "calf.jpg",
             "words": [
-              "shirt"
+              "calf"
             ]
           },
           {
-            "name": "sneakers.jpg",
+            "name": "striped.jpg",
             "words": [
-              "athletic shoes",
-              "sneakers"
+              "striped"
             ]
           },
           {
-            "name": "blouse.jpg",
+            "name": "checked.jpg",
             "words": [
-              "blouse"
+              "checked"
             ]
           },
           {
-            "name": "skirt.jpg",
+            "name": "plaid.jpg",
             "words": [
-              "skirt"
+              "plaid"
             ]
           },
           {
-            "name": "suit.jpg",
+            "name": "crumple.jpg",
             "words": [
-              "suit"
+              "crumple"
             ]
           },
           {
-            "name": "pants.jpg",
+            "name": "rip.jpg",
             "words": [
-              "slacks",
-              "pants"
+              "rip"
             ]
           },
           {
-            "name": "jeans.jpg",
+            "name": "tear down.jpg",
             "words": [
-              "jeans"
+              "tear down"
             ]
           },
           {
-            "name": "dress.jpg",
+            "name": "tear.png",
             "words": [
-              "dress"
+              "tear"
             ]
           },
           {
-            "name": "cap.jpg",
+            "name": "camouflage.jpg",
             "words": [
-              "baseball cap",
-              "cap"
+              "camouflage"
             ]
           },
           {
-            "name": "sweater.jpg",
+            "name": "puffy cloud.jpg",
             "words": [
-              "sweater"
+              "puffy cloud"
+            ]
+          },
+          {
+            "name": "beat making.jpg",
+            "words": [
+              "beat making"
+            ]
+          },
+          {
+            "name": "chemical.jpg",
+            "words": [
+              "chemical"
+            ]
+          },
+          {
+            "name": "groundhog.jpg",
+            "words": [
+              "groundhog"
+            ]
+          },
+          {
+            "name": "prediction.jpg",
+            "words": [
+              "prediction",
+              "prognostication",
+              "superstitious"
+            ]
+          },
+          {
+            "name": "held high.jpg",
+            "words": [
+              "held high"
+            ]
+          },
+          {
+            "name": "stump.jpg",
+            "words": [
+              "stump"
+            ]
+          },
+          {
+            "name": "shadow.jpg",
+            "words": [
+              "shadow"
+            ]
+          },
+          {
+            "name": "hibernate.jpg",
+            "words": [
+              "hibernate"
+            ]
+          },
+          {
+            "name": "fed up with.jpg",
+            "words": [
+              "fed up with",
+              "to be frustrated with",
+              "no more patience"
+            ]
+          },
+          {
+            "name": "rodent.jpg",
+            "words": [
+              "rodent"
+            ]
+          },
+          {
+            "name": "the blues.jpg",
+            "words": [
+              "the blues",
+              "feeling of sadness or depression"
+            ]
+          },
+          {
+            "name": "peek.jpg",
+            "words": [
+              "peek",
+              "to become visible",
+              "emerge"
+            ]
+          },
+          {
+            "name": "burrow.jpg",
+            "words": [
+              "burrow"
+            ]
+          },
+          {
+            "name": "fingers crossed.jpg",
+            "words": [
+              "crossed fingers",
+              "wish for luck"
+            ]
+          },
+          {
+            "name": "signature.jpg",
+            "words": [
+              "signature"
+            ]
+          },
+          {
+            "name": "deposited.jpg",
+            "words": [
+              "deposited"
+            ]
+          },
+          {
+            "name": "withdraw.jpg",
+            "words": [
+              "withdraw"
+            ]
+          },
+          {
+            "name": "teller.png",
+            "words": [
+              "teller"
+            ]
+          },
+          {
+            "name": "bills.jpg",
+            "words": [
+              "bills"
+            ]
+          },
+          {
+            "name": "coins.jpg",
+            "words": [
+              "coins"
+            ]
+          },
+          {
+            "name": "cheque.jpg",
+            "words": [
+              "cheque",
+              "check"
+            ]
+          },
+          {
+            "name": "currency.png",
+            "words": [
+              "currency"
+            ]
+          },
+          {
+            "name": "silent.jpg",
+            "words": [
+              "silent",
+              "quiet"
+            ]
+          },
+          {
+            "name": "sentences.jpg",
+            "words": [
+              "sentences"
+            ]
+          },
+          {
+            "name": "jewelry.jpg",
+            "words": [
+              "jewelry"
+            ]
+          },
+          {
+            "name": "safety deposit box.jpg",
+            "words": [
+              "safety deposit box"
+            ]
+          },
+          {
+            "name": "security guard.jpg",
+            "words": [
+              "security guard"
+            ]
+          },
+          {
+            "name": "robber.jpg",
+            "words": [
+              "robber",
+              "thief",
+              "steal",
+              "thieves"
+            ]
+          },
+          {
+            "name": "acronym.jpg",
+            "words": [
+              "acronym"
+            ]
+          },
+          {
+            "name": "advantage.png",
+            "words": [
+              "advantage",
+              "like"
+            ]
+          },
+          {
+            "name": "disadvantage.png",
+            "words": [
+              "disadvantage",
+              "dislike"
+            ]
+          },
+          {
+            "name": "fill.jpg",
+            "words": [
+              "fill"
             ]
           }
         ]

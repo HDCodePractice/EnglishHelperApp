@@ -19,23 +19,8 @@ struct ListPictureView: View {
         ScrollView(.vertical) {
             LazyVGrid(columns: Array(repeating: .init(.flexible(), spacing: gridSpacing), count: columnCount), spacing: gridSpacing) {
                 ForEach (topic.pictureFiles) { pf in
-                    VStack{
-                        AsyncImage(url: vm.getURL(pictureFile: pf)){ phase in
-                            switch phase{
-                            case .empty:
-                                ProgressView()
-                            case .success(let image):
-                                image.resizable()
-                                    .scaledToFit()
-                            case .failure(_):
-                                Image(systemName: "photo")
-                            @unknown default:
-                                EmptyView()
-                            }
-                        }
-                        Text(pf.words.joined(separator: " / "))
-                    }
-                    .shadow(radius: 10)
+                    GridePictureItem(pictureFile: pf)
+                        .environmentObject(vm)
                 }
             }
         }

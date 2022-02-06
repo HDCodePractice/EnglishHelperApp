@@ -34,7 +34,8 @@
 		67BA8A16279F68EB00F4B743 /* ActivityView in Frameworks */ = {isa = PBXBuildFile; productRef = 67BA8A15279F68EB00F4B743 /* ActivityView */; };
 		67C29B4227A2115900877C58 /* TranslateView in Frameworks */ = {isa = PBXBuildFile; productRef = 67C29B4127A2115900877C58 /* TranslateView */; };
 		67D3D6D4279D91590075BBF8 /* AnswerGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D3D6D3279D91590075BBF8 /* AnswerGrid.swift */; };
-		67D7C86527AA2CF60081B444 /* TopicRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D7C86427AA2CF60081B444 /* TopicRow.swift */; };
+		67D892BD27AF75A1006CD0CB /* GridePictureItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D892BC27AF75A1006CD0CB /* GridePictureItem.swift */; };
+		67D892C027AFF4AE006CD0CB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 67D892BF27AFF4AE006CD0CB /* Kingfisher */; };
 		67FD9D412796666E00EF434F /* English_HelperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D402796666E00EF434F /* English_HelperApp.swift */; };
 		67FD9D432796666E00EF434F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D422796666E00EF434F /* ContentView.swift */; };
 		67FD9D452796666F00EF434F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67FD9D442796666F00EF434F /* Assets.xcassets */; };
@@ -92,8 +93,8 @@
 		679E23A8279BB94100CB8A76 /* PictureGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameViewModel.swift; sourceTree = "<group>"; };
 		679E23AA279C4BAA00CB8A76 /* PictureExam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureExam.swift; sourceTree = "<group>"; };
 		67D3D6D3279D91590075BBF8 /* AnswerGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerGrid.swift; sourceTree = "<group>"; };
-		67D7C86427AA2CF60081B444 /* TopicRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicRow.swift; sourceTree = "<group>"; };
-		67FD9D3D2796666E00EF434F /* English Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "English Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		67D892BC27AF75A1006CD0CB /* GridePictureItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridePictureItem.swift; sourceTree = "<group>"; };
+		67FD9D3D2796666E00EF434F /* Learn English Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Learn English Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67FD9D402796666E00EF434F /* English_HelperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = English_HelperApp.swift; sourceTree = "<group>"; };
 		67FD9D422796666E00EF434F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		67FD9D442796666F00EF434F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -116,6 +117,7 @@
 				6781236827AA9E2700E4F66F /* Realm in Frameworks */,
 				67C29B4227A2115900877C58 /* TranslateView in Frameworks */,
 				67BA8A16279F68EB00F4B743 /* ActivityView in Frameworks */,
+				67D892C027AFF4AE006CD0CB /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,7 +245,7 @@
 		674D427127A804C700061C70 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				67D7C86427AA2CF60081B444 /* TopicRow.swift */,
+				67D892BC27AF75A1006CD0CB /* GridePictureItem.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -263,7 +265,7 @@
 		67FD9D3E2796666E00EF434F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				67FD9D3D2796666E00EF434F /* English Helper.app */,
+				67FD9D3D2796666E00EF434F /* Learn English Helper.app */,
 				67FD9D4D2796666F00EF434F /* English HelperTests.xctest */,
 				67FD9D572796666F00EF434F /* English HelperUITests.xctest */,
 			);
@@ -344,9 +346,10 @@
 				67C29B4127A2115900877C58 /* TranslateView */,
 				6781236727AA9E2700E4F66F /* Realm */,
 				6781236927AA9E2700E4F66F /* RealmSwift */,
+				67D892BF27AFF4AE006CD0CB /* Kingfisher */,
 			);
 			productName = "English Helper";
-			productReference = 67FD9D3D2796666E00EF434F /* English Helper.app */;
+			productReference = 67FD9D3D2796666E00EF434F /* Learn English Helper.app */;
 			productType = "com.apple.product-type.application";
 		};
 		67FD9D4C2796666F00EF434F /* English HelperTests */ = {
@@ -421,6 +424,7 @@
 				67BA8A14279F68EB00F4B743 /* XCRemoteSwiftPackageReference "ActivityView" */,
 				67C29B4027A2115900877C58 /* XCRemoteSwiftPackageReference "TranslateView" */,
 				6781236627AA9E2700E4F66F /* XCRemoteSwiftPackageReference "realm-swift" */,
+				67D892BE27AFF4AE006CD0CB /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 67FD9D3E2796666E00EF434F /* Products */;
 			projectDirPath = "";
@@ -466,7 +470,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6703FFF1279A4EFB00C4FADB /* PictureGameQuestionView.swift in Sources */,
-				67D7C86527AA2CF60081B444 /* TopicRow.swift in Sources */,
 				6703FFEF279A4E3800C4FADB /* PictureGameProgressView.swift in Sources */,
 				670588A12798C717006F8C0E /* GrammarListView.swift in Sources */,
 				670588A52798C7D6006F8C0E /* LoadData.swift in Sources */,
@@ -476,6 +479,7 @@
 				6703FFEA279A4ADA00C4FADB /* Answer.swift in Sources */,
 				6705889F2798C67B006F8C0E /* WebView.swift in Sources */,
 				670588A92798C995006F8C0E /* GrammarListViewModel.swift in Sources */,
+				67D892BD27AF75A1006CD0CB /* GridePictureItem.swift in Sources */,
 				679E23A5279BAFEF00CB8A76 /* PictureFile.swift in Sources */,
 				679E23AB279C4BAA00CB8A76 /* PictureExam.swift in Sources */,
 				6781236C27AAA17200E4F66F /* RealmManager.swift in Sources */,
@@ -583,7 +587,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -638,7 +642,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -656,7 +660,7 @@
 				CODE_SIGN_ENTITLEMENTS = "English Helper/English Helper.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"English Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4W3MN6QHA;
 				ENABLE_PREVIEWS = YES;
@@ -675,7 +679,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = one.hdcola.ehelper;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Learn English Helper";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -692,7 +696,7 @@
 				CODE_SIGN_ENTITLEMENTS = "English Helper/English Helper.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"English Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4W3MN6QHA;
 				ENABLE_PREVIEWS = YES;
@@ -711,7 +715,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = one.hdcola.ehelper;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Learn English Helper";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -862,6 +866,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		67D892BE27AFF4AE006CD0CB /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -884,6 +896,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 67C29B4027A2115900877C58 /* XCRemoteSwiftPackageReference "TranslateView" */;
 			productName = TranslateView;
+		};
+		67D892BF27AFF4AE006CD0CB /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 67D892BE27AFF4AE006CD0CB /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
