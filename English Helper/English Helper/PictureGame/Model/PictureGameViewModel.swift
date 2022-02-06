@@ -42,7 +42,7 @@ class PictureGameViewModel: ObservableObject{
     
     func generatePictureExam(){
         var rs : [PictureExam.Result] = []
-        
+        chapters = realmManager.getAllChapters()
         for _ in 0..<length{
             let cs = chapters.filter{return $0.isSelect}
             if let chapter = cs.randomElement() {
