@@ -17,8 +17,8 @@ struct PictureExam{
         var questionWord: String
         var correctAnswer: Int
         var answers : [LocalPictureFile]
-        var topic : LocalTopic
-        var chapter : LocalChapter
+        var topic : String
+        var chapter : String
         
         var questAnswers: [Answer]{
             var _answers : [Answer] = []
@@ -27,8 +27,8 @@ struct PictureExam{
                     Answer(
                         name: answers[i].name,
                         isCorrect: i==correctAnswer ? true : false,
-                        chapter: chapter.name,
-                        topic: topic.name
+                        chapter: chapter,
+                        topic: topic
                     )
                 )
             }
