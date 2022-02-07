@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 @MainActor
 class PictureGameViewModel: ObservableObject{
@@ -26,6 +27,7 @@ class PictureGameViewModel: ObservableObject{
     
     @Published var length = 10
     @Published var startExam = false
+    @Published var isUniqExam : Bool = true
     
     init(){}
     
@@ -42,35 +44,33 @@ class PictureGameViewModel: ObservableObject{
     
     func generatePictureExam(){
         var rs : [PictureExam.Result] = []
-        chapters = realmManager.getAllChapters()
-        for _ in 0..<length{
-            let cs = chapters.filter{return $0.isSelect}
-            if let chapter = cs.randomElement() {
-                let topics = chapter.topics.filter{return $0.isSelect}
-                if let topic = topics.randomElement() {
-                    let pics = Array(topic.pictureFiles.shuffled().prefix(answerLength))
-                    let answer = Int.random(in: 0..<answerLength)
-                    rs.append(PictureExam.Result(
-                        questionWord: pics[answer].words.shuffled().first ?? "\(pics.description)/\(answer)",
-                        correctAnswer: answer,
-                        answers: pics,
-                        topic: topic,
-                        chapter: chapter)
-                    )
+        realmManager.genExamRealm()
+        if isUniqExam {
+            for _ in 0..<length{
+                if let exam = realmManager.getUniqExam(answerLength: answerLength){
+                    rs.append(exam)
+                }else{
+                    break
+                }
+            }
+        }else{
+            for _ in 0..<length{
+                if let exam = realmManager.getRandomExam(answerLength: answerLength){
+                    rs.append(exam)
                 }
             }
         }
-        if rs.count == length{
-            pictureExam = rs
-            reachedEnd = false
-            index = 0
-            score = 0
-            
-            setQuestion()
-            startExam = true
-        }else{
-            startExam = false
+        length = rs.count
+        if length == 0 {
+            return
         }
+        pictureExam = rs
+        reachedEnd = false
+        index = 0
+        score = 0
+        
+        setQuestion()
+        startExam = true
     }
     
     func goToNextQuestion(){
