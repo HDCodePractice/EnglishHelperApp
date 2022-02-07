@@ -43,7 +43,9 @@ struct PictureGameProgressView: View {
                         }
                     )
                     HStack{
+                        Text("Unique Words")
                         Toggle("Unique Words", isOn: $vm.isUniqExam)
+                            .labelsHidden()
                     }
                     Text("Select Topics")
                         .onTapGesture {
