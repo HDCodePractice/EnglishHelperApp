@@ -53,8 +53,10 @@ struct PictureGame: View {
                 vm.generatePictureExam()
             }
             .disabled(vm.loadFinished ? false : true)
-            HStack{                
+            HStack{
+                Text("Unique Words")
                 Toggle("Unique Words", isOn: $vm.isUniqExam)
+                    .labelsHidden()
             }
             Text("Select Topics")
                 .onTapGesture {
