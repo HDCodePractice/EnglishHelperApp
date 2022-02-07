@@ -16,7 +16,7 @@ struct PictureExam{
         }
         var questionWord: String
         var correctAnswer: Int
-        var answers : [LocalPictureFile]
+        var answers : [PictureFile]
         var topic : String
         var chapter : String
         

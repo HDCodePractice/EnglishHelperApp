@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 @MainActor
 class PictureGameViewModel: ObservableObject{
@@ -26,6 +27,7 @@ class PictureGameViewModel: ObservableObject{
     
     @Published var length = 10
     @Published var startExam = false
+    @Published var isUniqExam : Bool = true
     
     init(){}
     
@@ -43,12 +45,25 @@ class PictureGameViewModel: ObservableObject{
     func generatePictureExam(){
         var rs : [PictureExam.Result] = []
         realmManager.genExamRealm()
-        for _ in 0..<length{
-            if let exam = realmManager.getRandomExam(answerLength: answerLength){
-                rs.append(exam)
+        if isUniqExam {
+            for _ in 0..<length{
+                if let exam = realmManager.getUniqExam(answerLength: answerLength){
+                    rs.append(exam)
+                }else{
+                    break
+                }
+            }
+        }else{
+            for _ in 0..<length{
+                if let exam = realmManager.getRandomExam(answerLength: answerLength){
+                    rs.append(exam)
+                }
             }
         }
         length = rs.count
+        if length == 0 {
+            return
+        }
         pictureExam = rs
         reachedEnd = false
         index = 0

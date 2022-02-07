@@ -42,6 +42,9 @@ struct PictureGameProgressView: View {
                             Text("Rating")
                         }
                     )
+                    HStack{
+                        Toggle("Unique Words", isOn: $vm.isUniqExam)
+                    }
                     Text("Select Topics")
                         .onTapGesture {
                             showingSheet = true

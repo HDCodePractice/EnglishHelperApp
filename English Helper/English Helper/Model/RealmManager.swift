@@ -67,9 +67,57 @@ class RealmManager{
                 return PictureExam.Result(
                     questionWord: questionWord,
                     correctAnswer: correctAnswer,
-                    answers: answers,
+                    answers: localPictureFilesToPictureFiles(lPictureFiles: answers),
                     topic: topic.name,
                     chapter: chapter.name)
+            }
+        }
+        return nil
+    }
+    
+    private func localPictureFilesToPictureFiles(lPictureFiles: [LocalPictureFile]) -> [PictureFile]{
+        var pictureFiles = [PictureFile]()
+        for lpf in lPictureFiles{
+            pictureFiles.append(lpf.toPictureFile())
+        }
+        return pictureFiles
+    }
+    
+    func getUniqExam(answerLength : Int) -> PictureExam.Result?{
+        if let localRealm = localRealm , let memoRealm = memoRealm {
+            if let pictureFile = memoRealm.objects(LocalPictureFile.self).randomElement(),
+               let topicName = pictureFile.assignee.first?.name {
+                if let topic = localRealm.objects(LocalTopic.self).where({$0.name == topicName}).first{
+                    var answers = Array(topic.pictureFiles.where({$0.name != pictureFile.name}).shuffled().prefix(answerLength-1))
+                    answers.append(pictureFile)
+                    answers.shuffle()
+                    
+                    if let questionWord = pictureFile.words.shuffled().first,
+                       let correctAnswer = answers.firstIndex(of: pictureFile),
+                       let topic = pictureFile.assignee.first,
+                       let chapter = topic.assignee.first{
+                        
+                        let exam = PictureExam.Result(
+                            questionWord: questionWord,
+                            correctAnswer: correctAnswer,
+                            answers: localPictureFilesToPictureFiles(lPictureFiles: answers),
+                            topic: topic.name,
+                            chapter: chapter.name)
+                        
+                        if pictureFile.words.count < 2 {
+                            try! memoRealm.write{
+                                memoRealm.delete(pictureFile)
+                            }
+                        }else{
+                            try! memoRealm.write{
+                                if let index = pictureFile.words.firstIndex(of: questionWord){
+                                    pictureFile.words.remove(at: index)
+                                }
+                            }
+                        }
+                        return exam
+                    }
+                }
             }
         }
         return nil

@@ -19,4 +19,12 @@ class LocalPictureFile: Object, ObjectKeyIdentifiable{
     @Persisted var name: String
     @Persisted var words = List<String>()
     @Persisted(originProperty: "pictureFiles") var assignee: LinkingObjects<LocalTopic>
+    
+    func toPictureFile() -> PictureFile{
+        var ws = [String]()
+        for word in words{
+            ws.append(word)
+        }
+        return PictureFile(name: name, words: ws)
+    }
 }
