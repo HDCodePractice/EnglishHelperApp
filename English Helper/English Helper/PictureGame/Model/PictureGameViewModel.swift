@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-@MainActor
 class PictureGameViewModel: ObservableObject{
     private var manager = PictureDictionaryManager.instance
     private var realmManager = RealmManager.instance
@@ -31,6 +30,7 @@ class PictureGameViewModel: ObservableObject{
     
     init(){}
     
+    @MainActor
     func loadData() async{
         await manager.fromServerJsonToRealm()
         chapters = realmManager.getAllChapters()
@@ -105,6 +105,7 @@ class PictureGameViewModel: ObservableObject{
         }else{
             manager.chapters = []
         }
+        realmManager.syncFromServer(chapters: manager.chapters)
         chapters = realmManager.getAllChapters()
         loadFinished = true
         generatePictureExam()

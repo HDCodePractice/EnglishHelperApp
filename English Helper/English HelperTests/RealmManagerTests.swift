@@ -11,35 +11,55 @@ import XCTest
 // Naming Structure: test_UnitOfWork_StateUnderTest_ExpectedBehavior
 // Testing Structure: Given, When, Then
 
-class RealmManager_Tests: XCTestCase {
+class RealmManagerTests: XCTestCase {
+    var realmManager : RealmManager?
+    var chapters : [Chapter]?
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        realmManager = RealmManager()
+        if let d: [Chapter] = load("example_picture.json"){
+            chapters = d
+        }else{
+            chapters = []
+        }
+        if let realmManager = realmManager, let chapters = chapters {
+            realmManager.syncFromServer(chapters: chapters)
+        }else{
+            XCTFail()
+        }
+        
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        guard let realmManager = realmManager else {
+            XCTFail("realmManager not ready")
+            return
+        }
+        realmManager.cleanRealm()
+        chapters = nil
     }
 
-    func test_UnitTestingRealmManager_syncFromServer_shouldBeOk() throws {
+    func test_UnitTestingRealmManager_SyncFromServer_shouldBeOk() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         // Any test you write for XCTest can be annotated as throws and async.
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
         //Given
-        var chapters : [Chapter]
-        if let d: [Chapter] = load("example_picture.json"){
-            chapters = d
-        }else{
-            chapters = []
+        guard let realmManager = realmManager else {
+            XCTFail("realmManager not ready")
+            return
         }
-        XCTAssert(chapters.count > 0)
+        
+        guard let chapters = chapters else {
+            XCTFail("chapters not ready")
+            return
+        }
         
         //When
-        let manager = RealmManager()
-        manager.syncFromServer(chapters: chapters)
-        let rchapters = manager.getAllChapters()
+        let rchapters = realmManager.getAllChapters()
         
         //Then
         XCTAssertEqual(chapters.count, rchapters.count)
@@ -47,20 +67,16 @@ class RealmManager_Tests: XCTestCase {
 
     func testPerformance_RealmManager_syncFromServer() throws {
         //Given
-        var chapters : [Chapter]
-        if let d: [Chapter] = load("example_picture.json"){
-            chapters = d
-        }else{
-            chapters = []
+        guard let realmManager = realmManager else {
+            XCTFail("realmManager not ready")
+            return
         }
-        let manager = RealmManager()
-        manager.syncFromServer(chapters: chapters)
         
         //When
         self.measure {
             // Put the code you want to measure the time of here.
             for _ in 0...99 {
-                let _ = manager.getUniqExam(answerLength: 6)
+                let _ = realmManager.getUniqExam(answerLength: 6)
             }
         }
         
