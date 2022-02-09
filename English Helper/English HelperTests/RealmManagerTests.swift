@@ -17,7 +17,7 @@ class RealmManagerTests: XCTestCase {
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        realmManager = RealmManager()
+        realmManager = RealmManager.instance
         if let d: [Chapter] = load("example_picture.json"){
             chapters = d
         }else{
@@ -71,15 +71,21 @@ class RealmManagerTests: XCTestCase {
             XCTFail("realmManager not ready")
             return
         }
-        
+        var count = 0
         //When
         self.measure {
             // Put the code you want to measure the time of here.
+            realmManager.genExamRealm()
             for _ in 0...99 {
-                let _ = realmManager.getUniqExam(answerLength: 6)
+                count += 1
+                let exam = realmManager.getUniqExam(answerLength: 6)
+                if exam == nil {
+                    print("not got exam")
+                }
             }
         }
         
+        print ("================== \(count) ==================")
     }
 
     func load<T: Decodable>(_ filename: String) -> T {

@@ -83,6 +83,10 @@ class RealmManager{
         return pictureFiles
     }
     
+    /*
+     * 生成独一无二的一道Exam，注意，在执行前务必调用
+     * genExamRealm 生成题目源
+     */
     func getUniqExam(answerLength : Int) -> PictureExam.Result?{
         if let localRealm = localRealm , let memoRealm = memoRealm {
             if let pictureFile = memoRealm.objects(LocalPictureFile.self).randomElement(),
