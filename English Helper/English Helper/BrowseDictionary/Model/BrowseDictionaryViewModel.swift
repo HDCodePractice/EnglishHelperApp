@@ -9,13 +9,13 @@ import Foundation
 
 class BrowseDictionaryViewModel: ObservableObject{
     private var manager = PictureDictionaryManager.instance
-    private var realManager = RealmManager.instance
+    private var realmManager = RealmManager.instance
     
     init(){
     }
     
     func cleanRealm(){
-        realManager.cleanRealm()
+        realmManager.cleanRealm()
     }
     
     @MainActor
@@ -24,11 +24,11 @@ class BrowseDictionaryViewModel: ObservableObject{
     }
     
     func toggleTopic(topic: LocalTopic){
-        realManager.toggleTopic(topic: topic)
+        realmManager.toggleTopic(topic: topic)
     }
     
     func toggleChapter(chapter: LocalChapter){
-        realManager.toggleChapter(chapter: chapter)
+        realmManager.toggleChapter(chapter: chapter)
     }
     
     func getURL(pictureFile: LocalPictureFile) -> URL?{
@@ -39,6 +39,6 @@ class BrowseDictionaryViewModel: ObservableObject{
     }
     
     func mokeData() -> LocalChapter?{
-        return realManager.mokeData()
+        return realmManager.mokeData()
     }
 }

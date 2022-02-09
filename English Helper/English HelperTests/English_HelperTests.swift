@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import English_Helper
+@testable import Learn_English_Helper
 
 class English_HelperTests: XCTestCase {
 

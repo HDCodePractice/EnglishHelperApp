@@ -19,6 +19,7 @@
 		670588A72798C938006F8C0E /* Grammar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670588A62798C938006F8C0E /* Grammar.swift */; };
 		670588A92798C995006F8C0E /* GrammarListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670588A82798C995006F8C0E /* GrammarListViewModel.swift */; };
 		6710C44627AE34F500C5CB99 /* ListPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6710C44527AE34F500C5CB99 /* ListPictureView.swift */; };
+		6718F32427B225E500BD857B /* RealmManager_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6718F32327B225E500BD857B /* RealmManager_Tests.swift */; };
 		674D427327A8061500061C70 /* ListTopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674D427227A8061500061C70 /* ListTopicView.swift */; };
 		674D427527A8065400061C70 /* BrowseDictionaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674D427427A8065400061C70 /* BrowseDictionaryViewModel.swift */; };
 		6763B56E27A4EF30000E98EC /* example_picture.json in Resources */ = {isa = PBXBuildFile; fileRef = 6763B56D27A4EF30000E98EC /* example_picture.json */; };
@@ -82,6 +83,7 @@
 		670588A82798C995006F8C0E /* GrammarListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrammarListViewModel.swift; sourceTree = "<group>"; };
 		6710C44527AE34F500C5CB99 /* ListPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPictureView.swift; sourceTree = "<group>"; };
 		6711A2C92797981B0094B532 /* English Helper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "English Helper.entitlements"; sourceTree = "<group>"; };
+		6718F32327B225E500BD857B /* RealmManager_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager_Tests.swift; sourceTree = "<group>"; };
 		674D427227A8061500061C70 /* ListTopicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTopicView.swift; sourceTree = "<group>"; };
 		674D427427A8065400061C70 /* BrowseDictionaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseDictionaryViewModel.swift; sourceTree = "<group>"; };
 		6763B56D27A4EF30000E98EC /* example_picture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = example_picture.json; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 		67FD9D502796666F00EF434F /* English HelperTests */ = {
 			isa = PBXGroup;
 			children = (
+				6718F32327B225E500BD857B /* RealmManager_Tests.swift */,
 				67FD9D512796666F00EF434F /* English_HelperTests.swift */,
 			);
 			path = "English HelperTests";
@@ -504,6 +507,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67FD9D772796695A00EF434F /* PrimaryButton.swift in Sources */,
+				6718F32427B225E500BD857B /* RealmManager_Tests.swift in Sources */,
 				67FD9D72279668EC00EF434F /* ProgressBar.swift in Sources */,
 				67FD9D522796666F00EF434F /* English_HelperTests.swift in Sources */,
 			);
@@ -740,7 +744,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/English Helper.app/English Helper";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Learn English Helper.app/Learn English Helper";
 			};
 			name = Debug;
 		};
@@ -760,7 +764,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/English Helper.app/English Helper";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Learn English Helper.app/Learn English Helper";
 			};
 			name = Release;
 		};
