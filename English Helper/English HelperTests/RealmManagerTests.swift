@@ -65,13 +65,38 @@ class RealmManagerTests: XCTestCase {
         XCTAssertEqual(chapters.count, rChapters.count)
     }
     
-    func test_UnitTestingGetUniqExam_Default_shouldNotBe100Answer() throws {
+    func test_unitTestingGenExamRealm_OneChapterSelect_shouldNotBe100Words() throws {
         //Given
         guard let realmManager = realmManager else {
             XCTFail("realmManager not ready")
             return
         }
         
+        // When
+        realmManager.genExamRealm()
+        
+        //Then
+        print("memoRealmWordCount: \(realmManager.memoRealmWordCount)")
+        XCTAssert(realmManager.memoRealmWordCount > 100)
+        
+        // When
+        let rChapters = realmManager.getAllChapters()
+        for i in 1..<rChapters.count{
+            realmManager.toggleChapter(chapter: rChapters[i])
+        }
+        realmManager.genExamRealm()
+        
+        //Then
+        print("memoRealmWordCount: \(realmManager.memoRealmWordCount)")
+        XCTAssert(realmManager.memoRealmWordCount < 100)
+    }
+    
+    func test_UnitTestingGetUniqExam_Default_shouldNotBe100Answer() throws {
+        //Given
+        guard let realmManager = realmManager else {
+            XCTFail("realmManager not ready")
+            return
+        }
         guard let chapters = chapters else {
             XCTFail("chapters not ready")
             return

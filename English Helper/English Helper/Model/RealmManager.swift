@@ -9,8 +9,9 @@ import Foundation
 import RealmSwift
 
 class RealmManager{
-    private(set) var localRealm : Realm?
-    private(set) var memoRealm : Realm?
+    private var localRealm : Realm?
+    private var memoRealm : Realm?
+    private(set) var memoRealmWordCount : Int = 0
     static let instance = RealmManager()
     let config = Realm.Configuration(schemaVersion: 2)
     let memoConfig = Realm.Configuration(inMemoryIdentifier: "memo")
@@ -30,6 +31,7 @@ class RealmManager{
     }
     
     func genExamRealm(){
+        memoRealmWordCount = 0
         if let localRealm = localRealm , let memoRealm = memoRealm {
             let chapters = localRealm.objects(LocalChapter.self).where{
                 $0.isSelect == true
@@ -48,6 +50,10 @@ class RealmManager{
                     $0.isSelect == false
                 }
                 memoRealm.delete(noSelectTopics)
+            }
+            let pfs = memoRealm.objects(LocalPictureFile.self)
+            for pf in pfs{
+                memoRealmWordCount += pf.words.count
             }
         }
     }
