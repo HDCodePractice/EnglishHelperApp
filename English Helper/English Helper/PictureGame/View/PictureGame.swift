@@ -31,7 +31,7 @@ struct PictureGame: View {
             }
             VStack{
                 HStack{
-                    Text("Number of games:\(vm.length)")
+                    Text("Max number of games:\(vm.length)")
                         .foregroundColor(Color("AccentColor"))
                     Spacer()
                 }

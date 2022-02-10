@@ -30,7 +30,7 @@ class PictureGameViewModelTests: XCTestCase {
         vm = nil
     }
 
-    func test_UnitForGeneratePictureExam_isUniqExamTrue_shouldOk() throws {
+    func test_UnitForGeneratePictureExam_isUniqExamTrue_should100Answer() throws {
         guard let vm = vm else {
             XCTFail()
             return
@@ -41,10 +41,22 @@ class PictureGameViewModelTests: XCTestCase {
         XCTAssertEqual(vm.length, 100)
         XCTAssertTrue(vm.startExam)
         XCTAssert(vm.question.count > 1)
-    }
 
+        
+        for _ in 0..<99{
+            vm.goToNextQuestion()
+            XCTAssert(vm.question.count > 1)
+            XCTAssertTrue(vm.startExam)
+            XCTAssertFalse(vm.reachedEnd)
+        }
+
+        vm.goToNextQuestion()
+        XCTAssert(vm.question.count > 1)
+        XCTAssertTrue(vm.startExam)
+        XCTAssertTrue(vm.reachedEnd)
+    }
+    
     func testPerformanceUnitForGeneratePictureExam_isUniqExamTrue() throws {
-        // This is an example of a performance test case.
         guard let vm = vm else {
             XCTFail()
             return
@@ -57,7 +69,6 @@ class PictureGameViewModelTests: XCTestCase {
     }
 
     func testPerformanceUnitForGeneratePictureExam_isUniqExamFalse() throws {
-        // This is an example of a performance test case.
         guard let vm = vm else {
             XCTFail()
             return

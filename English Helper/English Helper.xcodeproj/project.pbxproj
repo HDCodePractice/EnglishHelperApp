@@ -42,7 +42,6 @@
 		67FD9D432796666E00EF434F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D422796666E00EF434F /* ContentView.swift */; };
 		67FD9D452796666F00EF434F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67FD9D442796666F00EF434F /* Assets.xcassets */; };
 		67FD9D482796666F00EF434F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67FD9D472796666F00EF434F /* Preview Assets.xcassets */; };
-		67FD9D522796666F00EF434F /* English_HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D512796666F00EF434F /* English_HelperTests.swift */; };
 		67FD9D5C2796666F00EF434F /* English_HelperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D5B2796666F00EF434F /* English_HelperUITests.swift */; };
 		67FD9D5E2796666F00EF434F /* English_HelperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D5D2796666F00EF434F /* English_HelperUITestsLaunchTests.swift */; };
 		67FD9D71279668EC00EF434F /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D70279668EC00EF434F /* ProgressBar.swift */; };
@@ -104,7 +103,6 @@
 		67FD9D442796666F00EF434F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		67FD9D472796666F00EF434F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		67FD9D4D2796666F00EF434F /* English HelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "English HelperTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		67FD9D512796666F00EF434F /* English_HelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = English_HelperTests.swift; sourceTree = "<group>"; };
 		67FD9D572796666F00EF434F /* English HelperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "English HelperUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67FD9D5B2796666F00EF434F /* English_HelperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = English_HelperUITests.swift; sourceTree = "<group>"; };
 		67FD9D5D2796666F00EF434F /* English_HelperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = English_HelperUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -306,7 +304,6 @@
 			isa = PBXGroup;
 			children = (
 				6718F32327B225E500BD857B /* RealmManagerTests.swift */,
-				67FD9D512796666F00EF434F /* English_HelperTests.swift */,
 				67D4A71827B3E2B400642686 /* PictureGameViewModelTests.swift */,
 			);
 			path = "English HelperTests";
@@ -513,7 +510,6 @@
 				6718F32427B225E500BD857B /* RealmManagerTests.swift in Sources */,
 				67D4A71927B3E2B400642686 /* PictureGameViewModelTests.swift in Sources */,
 				67FD9D72279668EC00EF434F /* ProgressBar.swift in Sources */,
-				67FD9D522796666F00EF434F /* English_HelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,7 +16,6 @@ class RealmManagerTests: XCTestCase {
     var chapters : [Chapter]?
     
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
         realmManager = RealmManager.instance
         if let d: [Chapter] = load("example_picture.json"){
             chapters = d
@@ -32,7 +31,6 @@ class RealmManagerTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         guard let realmManager = realmManager else {
             XCTFail("realmManager not ready")
             return
@@ -41,12 +39,7 @@ class RealmManagerTests: XCTestCase {
         chapters = nil
     }
 
-    func test_UnitTestingRealmManager_SyncFromServer_shouldBeOk() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func test_UnitTestingGetUniqExam_Default_shouldBe100Answer() throws {
         //Given
         guard let realmManager = realmManager else {
             XCTFail("realmManager not ready")
@@ -59,33 +52,74 @@ class RealmManagerTests: XCTestCase {
         }
         
         //When
-        let rchapters = realmManager.getAllChapters()
+        let rChapters = realmManager.getAllChapters()
+        realmManager.genExamRealm()
+        for _ in 0...100{
+            let exam = realmManager.getUniqExam(answerLength: 6)
+            if exam == nil {
+                XCTFail()
+            }
+        }
         
         //Then
-        XCTAssertEqual(chapters.count, rchapters.count)
+        XCTAssertEqual(chapters.count, rChapters.count)
     }
-
-    func testPerformance_RealmManager_syncFromServer() throws {
+    
+    func test_UnitTestingGetUniqExam_Default_shouldNotBe100Answer() throws {
         //Given
         guard let realmManager = realmManager else {
             XCTFail("realmManager not ready")
             return
         }
+        
+        guard let chapters = chapters else {
+            XCTFail("chapters not ready")
+            return
+        }
+        
+        //When
+        let rChapters = realmManager.getAllChapters()
+        XCTAssertEqual(chapters.count, rChapters.count)
+        for i in 1..<rChapters.count{
+            realmManager.toggleChapter(chapter: rChapters[i])
+        }
+        realmManager.genExamRealm()
         var count = 0
+        var nilCount = 0
+        for _ in 0...100{
+            let exam = realmManager.getUniqExam(answerLength: 6)
+            if exam == nil {
+                nilCount += 1
+            }else{
+                count += 1
+            }
+        }
+        
+        //Then
+        print("count: \(count) nil: \(nilCount)")
+        XCTAssertTrue(count > 1)
+        XCTAssertTrue(nilCount > 1)
+        
+    }
+
+    func testPerformance_RealmManager_Default_shouldBe100Answer() throws {
+        //Given
+        guard let realmManager = realmManager else {
+            XCTFail("realmManager not ready")
+            return
+        }
         //When
         self.measure {
             // Put the code you want to measure the time of here.
             realmManager.genExamRealm()
             for _ in 0...99 {
-                count += 1
                 let exam = realmManager.getUniqExam(answerLength: 6)
                 if exam == nil {
-                    print("not got exam")
+                    XCTFail()
                 }
             }
         }
         
-        print ("================== \(count) ==================")
     }
 
     func load<T: Decodable>(_ filename: String) -> T {
