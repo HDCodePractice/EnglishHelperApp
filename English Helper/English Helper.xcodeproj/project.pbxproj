@@ -19,6 +19,8 @@
 		670588A72798C938006F8C0E /* Grammar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670588A62798C938006F8C0E /* Grammar.swift */; };
 		670588A92798C995006F8C0E /* GrammarListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670588A82798C995006F8C0E /* GrammarListViewModel.swift */; };
 		6710C44627AE34F500C5CB99 /* ListPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6710C44527AE34F500C5CB99 /* ListPictureView.swift */; };
+		6718F32427B225E500BD857B /* RealmManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6718F32327B225E500BD857B /* RealmManagerTests.swift */; };
+		673ABE0A27B605BB006DA515 /* EnumPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673ABE0927B605BB006DA515 /* EnumPicker.swift */; };
 		674D427327A8061500061C70 /* ListTopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674D427227A8061500061C70 /* ListTopicView.swift */; };
 		674D427527A8065400061C70 /* BrowseDictionaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674D427427A8065400061C70 /* BrowseDictionaryViewModel.swift */; };
 		6763B56E27A4EF30000E98EC /* example_picture.json in Resources */ = {isa = PBXBuildFile; fileRef = 6763B56D27A4EF30000E98EC /* example_picture.json */; };
@@ -34,13 +36,13 @@
 		67BA8A16279F68EB00F4B743 /* ActivityView in Frameworks */ = {isa = PBXBuildFile; productRef = 67BA8A15279F68EB00F4B743 /* ActivityView */; };
 		67C29B4227A2115900877C58 /* TranslateView in Frameworks */ = {isa = PBXBuildFile; productRef = 67C29B4127A2115900877C58 /* TranslateView */; };
 		67D3D6D4279D91590075BBF8 /* AnswerGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D3D6D3279D91590075BBF8 /* AnswerGrid.swift */; };
+		67D4A71927B3E2B400642686 /* PictureGameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D4A71827B3E2B400642686 /* PictureGameViewModelTests.swift */; };
 		67D892BD27AF75A1006CD0CB /* GridePictureItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D892BC27AF75A1006CD0CB /* GridePictureItem.swift */; };
 		67D892C027AFF4AE006CD0CB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 67D892BF27AFF4AE006CD0CB /* Kingfisher */; };
 		67FD9D412796666E00EF434F /* English_HelperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D402796666E00EF434F /* English_HelperApp.swift */; };
 		67FD9D432796666E00EF434F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D422796666E00EF434F /* ContentView.swift */; };
 		67FD9D452796666F00EF434F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67FD9D442796666F00EF434F /* Assets.xcassets */; };
 		67FD9D482796666F00EF434F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67FD9D472796666F00EF434F /* Preview Assets.xcassets */; };
-		67FD9D522796666F00EF434F /* English_HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D512796666F00EF434F /* English_HelperTests.swift */; };
 		67FD9D5C2796666F00EF434F /* English_HelperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D5B2796666F00EF434F /* English_HelperUITests.swift */; };
 		67FD9D5E2796666F00EF434F /* English_HelperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D5D2796666F00EF434F /* English_HelperUITestsLaunchTests.swift */; };
 		67FD9D71279668EC00EF434F /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D70279668EC00EF434F /* ProgressBar.swift */; };
@@ -82,6 +84,8 @@
 		670588A82798C995006F8C0E /* GrammarListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrammarListViewModel.swift; sourceTree = "<group>"; };
 		6710C44527AE34F500C5CB99 /* ListPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPictureView.swift; sourceTree = "<group>"; };
 		6711A2C92797981B0094B532 /* English Helper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "English Helper.entitlements"; sourceTree = "<group>"; };
+		6718F32327B225E500BD857B /* RealmManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManagerTests.swift; sourceTree = "<group>"; };
+		673ABE0927B605BB006DA515 /* EnumPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumPicker.swift; sourceTree = "<group>"; };
 		674D427227A8061500061C70 /* ListTopicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTopicView.swift; sourceTree = "<group>"; };
 		674D427427A8065400061C70 /* BrowseDictionaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseDictionaryViewModel.swift; sourceTree = "<group>"; };
 		6763B56D27A4EF30000E98EC /* example_picture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = example_picture.json; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 		679E23A8279BB94100CB8A76 /* PictureGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameViewModel.swift; sourceTree = "<group>"; };
 		679E23AA279C4BAA00CB8A76 /* PictureExam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureExam.swift; sourceTree = "<group>"; };
 		67D3D6D3279D91590075BBF8 /* AnswerGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerGrid.swift; sourceTree = "<group>"; };
+		67D4A71827B3E2B400642686 /* PictureGameViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameViewModelTests.swift; sourceTree = "<group>"; };
 		67D892BC27AF75A1006CD0CB /* GridePictureItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridePictureItem.swift; sourceTree = "<group>"; };
 		67FD9D3D2796666E00EF434F /* Learn English Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Learn English Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67FD9D402796666E00EF434F /* English_HelperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = English_HelperApp.swift; sourceTree = "<group>"; };
@@ -100,7 +105,6 @@
 		67FD9D442796666F00EF434F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		67FD9D472796666F00EF434F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		67FD9D4D2796666F00EF434F /* English HelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "English HelperTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		67FD9D512796666F00EF434F /* English_HelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = English_HelperTests.swift; sourceTree = "<group>"; };
 		67FD9D572796666F00EF434F /* English HelperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "English HelperUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67FD9D5B2796666F00EF434F /* English_HelperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = English_HelperUITests.swift; sourceTree = "<group>"; };
 		67FD9D5D2796666F00EF434F /* English_HelperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = English_HelperUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -301,7 +305,8 @@
 		67FD9D502796666F00EF434F /* English HelperTests */ = {
 			isa = PBXGroup;
 			children = (
-				67FD9D512796666F00EF434F /* English_HelperTests.swift */,
+				6718F32327B225E500BD857B /* RealmManagerTests.swift */,
+				67D4A71827B3E2B400642686 /* PictureGameViewModelTests.swift */,
 			);
 			path = "English HelperTests";
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 				6705889E2798C67B006F8C0E /* WebView.swift */,
 				67FD9D70279668EC00EF434F /* ProgressBar.swift */,
 				67FD9D752796695A00EF434F /* PrimaryButton.swift */,
+				673ABE0927B605BB006DA515 /* EnumPicker.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -491,6 +497,7 @@
 				67FD9D762796695A00EF434F /* PrimaryButton.swift in Sources */,
 				679E23A7279BB41500CB8A76 /* PictureGameManager.swift in Sources */,
 				67FD9D412796666E00EF434F /* English_HelperApp.swift in Sources */,
+				673ABE0A27B605BB006DA515 /* EnumPicker.swift in Sources */,
 				6703FFED279A4C6400C4FADB /* PictureGame.swift in Sources */,
 				670588A72798C938006F8C0E /* Grammar.swift in Sources */,
 				679E23A1279BA49200CB8A76 /* Chapter.swift in Sources */,
@@ -504,8 +511,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				67FD9D772796695A00EF434F /* PrimaryButton.swift in Sources */,
+				6718F32427B225E500BD857B /* RealmManagerTests.swift in Sources */,
+				67D4A71927B3E2B400642686 /* PictureGameViewModelTests.swift in Sources */,
 				67FD9D72279668EC00EF434F /* ProgressBar.swift in Sources */,
-				67FD9D522796666F00EF434F /* English_HelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,7 +668,7 @@
 				CODE_SIGN_ENTITLEMENTS = "English Helper/English Helper.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"English Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4W3MN6QHA;
 				ENABLE_PREVIEWS = YES;
@@ -696,7 +704,7 @@
 				CODE_SIGN_ENTITLEMENTS = "English Helper/English Helper.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"English Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4W3MN6QHA;
 				ENABLE_PREVIEWS = YES;
@@ -740,7 +748,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/English Helper.app/English Helper";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Learn English Helper.app/Learn English Helper";
 			};
 			name = Debug;
 		};
@@ -760,7 +768,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/English Helper.app/English Helper";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Learn English Helper.app/Learn English Helper";
 			};
 			name = Release;
 		};

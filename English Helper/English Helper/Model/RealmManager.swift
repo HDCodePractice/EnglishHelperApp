@@ -9,8 +9,9 @@ import Foundation
 import RealmSwift
 
 class RealmManager{
-    private(set) var localRealm : Realm?
-    private(set) var memoRealm : Realm?
+    private var localRealm : Realm?
+    private var memoRealm : Realm?
+    private(set) var memoRealmWordCount : Int = 0
     static let instance = RealmManager()
     let config = Realm.Configuration(schemaVersion: 2)
     let memoConfig = Realm.Configuration(inMemoryIdentifier: "memo")
@@ -30,6 +31,7 @@ class RealmManager{
     }
     
     func genExamRealm(){
+        memoRealmWordCount = 0
         if let localRealm = localRealm , let memoRealm = memoRealm {
             let chapters = localRealm.objects(LocalChapter.self).where{
                 $0.isSelect == true
@@ -49,28 +51,50 @@ class RealmManager{
                 }
                 memoRealm.delete(noSelectTopics)
             }
+            let pfs = memoRealm.objects(LocalPictureFile.self)
+            for pf in pfs{
+                memoRealmWordCount += pf.words.count
+            }
         }
     }
     
+    /*
+     * 使用一条LocalPicturefile从localRealm中生成一个PictureExam.Result
+     */
+    private func fromLocalPictureFileGenExam(pictureFile: LocalPictureFile ,answerLength : Int) -> PictureExam.Result?{
+        if let localRealm = localRealm {
+            if let topicName = pictureFile.assignee.first?.name {
+                if let topic = localRealm.objects(LocalTopic.self).where({$0.name == topicName}).first{
+                    var answers = Array(topic.pictureFiles.where({$0.name != pictureFile.name}).shuffled().prefix(answerLength-1))
+                    answers.append(pictureFile)
+                    answers.shuffle()
+                    
+                    if let questionWord = pictureFile.words.shuffled().first,
+                       let correctAnswer = answers.firstIndex(of: pictureFile),
+                       let topic = pictureFile.assignee.first,
+                       let chapter = topic.assignee.first{
+                        
+                        return PictureExam.Result(
+                            questionWord: questionWord,
+                            correctAnswer: correctAnswer,
+                            answers: localPictureFilesToPictureFiles(lPictureFiles: answers),
+                            topic: topic.name,
+                            chapter: chapter.name)
+                    }
+                }
+            }
+        }
+        return nil
+    }
+    
+    /*
+     * 以现有memoRealm中的数据为基础，生成一个随机的问题
+     */
     func getRandomExam(answerLength : Int) -> PictureExam.Result?{
         if let memoRealm = memoRealm,
            let pictureFile = memoRealm.objects(LocalPictureFile.self).randomElement(){
-            let assignee = pictureFile.assignee.first
-            var answers = Array(assignee!.pictureFiles.where({ $0.id != pictureFile.id }).shuffled().prefix(answerLength-1))
-            answers.append(pictureFile)
-            answers.shuffle()
-            
-            if let questionWord = pictureFile.words.shuffled().first,
-               let correctAnswer = answers.firstIndex(of: pictureFile),
-               let topic = pictureFile.assignee.first,
-               let chapter = topic.assignee.first{
-                return PictureExam.Result(
-                    questionWord: questionWord,
-                    correctAnswer: correctAnswer,
-                    answers: localPictureFilesToPictureFiles(lPictureFiles: answers),
-                    topic: topic.name,
-                    chapter: chapter.name)
-            }
+            let exam = fromLocalPictureFileGenExam(pictureFile: pictureFile, answerLength: answerLength)
+            return exam
         }
         return nil
     }
@@ -83,41 +107,26 @@ class RealmManager{
         return pictureFiles
     }
     
+    /*
+     * 生成独一无二的一道Exam，注意，在执行前务必调用
+     * genExamRealm 生成题目源
+     */
     func getUniqExam(answerLength : Int) -> PictureExam.Result?{
-        if let localRealm = localRealm , let memoRealm = memoRealm {
+        if let memoRealm = memoRealm {
             if let pictureFile = memoRealm.objects(LocalPictureFile.self).randomElement(),
-               let topicName = pictureFile.assignee.first?.name {
-                if let topic = localRealm.objects(LocalTopic.self).where({$0.name == topicName}).first{
-                    var answers = Array(topic.pictureFiles.where({$0.name != pictureFile.name}).shuffled().prefix(answerLength-1))
-                    answers.append(pictureFile)
-                    answers.shuffle()
-                    
-                    if let questionWord = pictureFile.words.shuffled().first,
-                       let correctAnswer = answers.firstIndex(of: pictureFile),
-                       let topic = pictureFile.assignee.first,
-                       let chapter = topic.assignee.first{
-                        
-                        let exam = PictureExam.Result(
-                            questionWord: questionWord,
-                            correctAnswer: correctAnswer,
-                            answers: localPictureFilesToPictureFiles(lPictureFiles: answers),
-                            topic: topic.name,
-                            chapter: chapter.name)
-                        
-                        if pictureFile.words.count < 2 {
-                            try! memoRealm.write{
-                                memoRealm.delete(pictureFile)
-                            }
-                        }else{
-                            try! memoRealm.write{
-                                if let index = pictureFile.words.firstIndex(of: questionWord){
-                                    pictureFile.words.remove(at: index)
-                                }
-                            }
+               let exam = fromLocalPictureFileGenExam(pictureFile: pictureFile, answerLength: answerLength){
+                if pictureFile.words.count < 2 {
+                    try! memoRealm.write{
+                        memoRealm.delete(pictureFile)
+                    }
+                }else{
+                    try! memoRealm.write{
+                        if let index = pictureFile.words.firstIndex(of: exam.questionWord){
+                            pictureFile.words.remove(at: index)
                         }
-                        return exam
                     }
                 }
+                return exam
             }
         }
         return nil
@@ -192,6 +201,40 @@ class RealmManager{
                 }
             } catch {
                 print("Error deleting topic \(topic) from Realm: \(error)")
+            }
+        }
+    }
+    
+    /*
+     * 将pictureFileName的words中的word清除，如果只有唯一的一个word了，将对应的pictureFile清除
+     * 用于答对题目时，将已经对的单词从要记忆的单词库中去除
+     */
+    func deleteMemoRealmWord(word: String,pictureFileName: String) {
+        if let memoRealm = memoRealm {
+            let pictureFiles = memoRealm.objects(LocalPictureFile.self).where{
+                $0.name == pictureFileName
+            }
+            if let pictureFile = pictureFiles.first{
+                if pictureFile.words.contains(word){
+                    do{
+                        try memoRealm.write{
+                            if pictureFile.words.count == 1{
+                                memoRealm.delete(pictureFile)
+                            }else{
+                                if let i = pictureFile.words.firstIndex(of: word){
+                                    pictureFile.words.remove(at: i)
+                                }
+                            }
+                        }
+                        let pfs = memoRealm.objects(LocalPictureFile.self)
+                        memoRealmWordCount = 0
+                        for pf in pfs{
+                            memoRealmWordCount += pf.words.count
+                        }
+                    } catch {
+                        print("Error deleting word \(word) from Realm: \(error)")
+                    }
+                }
             }
         }
     }

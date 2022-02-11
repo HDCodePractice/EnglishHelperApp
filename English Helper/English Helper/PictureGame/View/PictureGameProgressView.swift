@@ -42,10 +42,11 @@ struct PictureGameProgressView: View {
                             Text("Rating")
                         }
                     )
-                    HStack{
-                        Text("Unique Words")
-                        Toggle("Unique Words", isOn: $vm.isUniqExam)
-                            .labelsHidden()
+                    VStack{
+                        Text("Select Mode")
+                        EnumPicker(selected: $vm.gameMode, title: "Select Mode:")
+                            .pickerStyle(.segmented)
+
                     }
                     Text("Select Topics")
                         .onTapGesture {

@@ -31,7 +31,7 @@ struct PictureGame: View {
             }
             VStack{
                 HStack{
-                    Text("Number of games:\(vm.length)")
+                    Text("Max number of games:\(vm.length)")
                         .foregroundColor(Color("AccentColor"))
                     Spacer()
                 }
@@ -53,10 +53,11 @@ struct PictureGame: View {
                 vm.generatePictureExam()
             }
             .disabled(vm.loadFinished ? false : true)
-            HStack{
-                Text("Unique Words")
-                Toggle("Unique Words", isOn: $vm.isUniqExam)
-                    .labelsHidden()
+            VStack{
+                Text("Select Mode")
+                EnumPicker(selected: $vm.gameMode, title: "Select Mode:")
+                    .pickerStyle(.segmented)
+
             }
             Text("Select Topics")
                 .onTapGesture {
