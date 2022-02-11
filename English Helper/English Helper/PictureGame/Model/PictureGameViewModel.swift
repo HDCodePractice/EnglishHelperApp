@@ -26,7 +26,6 @@ class PictureGameViewModel: ObservableObject{
     
     @Published var length = 10
     @Published var startExam = false
-    @Published var isUniqExam : Bool = true
     @Published var gameMode = GameMode.finish
     
     init(){}
