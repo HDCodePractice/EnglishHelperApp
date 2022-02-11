@@ -61,9 +61,7 @@ class PictureGameViewModel: ObservableObject{
             // 不做任何事
             length = length
         case .finish:
-            if realmManager.memoRealmWordCount < length{
-                length = realmManager.memoRealmWordCount
-            }
+            length = realmManager.memoRealmWordCount
         }
         
         if length == 0 {

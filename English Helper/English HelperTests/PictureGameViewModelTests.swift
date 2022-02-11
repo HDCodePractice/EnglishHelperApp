@@ -66,7 +66,7 @@ class PictureGameViewModelTests: XCTestCase {
         vm.isUniqExam = true
         vm.gameMode = .finish
         vm.generatePictureExam()
-        XCTAssertEqual(vm.length, 100)
+        XCTAssert(vm.length>100)
         XCTAssertTrue(vm.startExam)
         XCTAssert(vm.question.count > 1)
     
