@@ -126,11 +126,14 @@ class PictureGameViewModel: ObservableObject{
         }
     }
     
-    func mokeData(){
+    func mokeData(resetData:Bool=false){
         if let d: [Chapter] = load("example_picture.json"){
             manager.chapters = d
         }else{
             manager.chapters = []
+        }
+        if resetData{
+            realmManager.cleanRealm()
         }
         realmManager.syncFromServer(chapters: manager.chapters)
         chapters = realmManager.getAllChapters()

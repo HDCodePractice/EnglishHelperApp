@@ -22,7 +22,7 @@ class PictureGameViewModelTests: XCTestCase {
             XCTFail()
             return
         }
-        vm.mokeData()
+        vm.mokeData(resetData: true)
     }
 
     override func tearDownWithError() throws {
@@ -66,7 +66,7 @@ class PictureGameViewModelTests: XCTestCase {
         vm.isUniqExam = true
         vm.gameMode = .finish
         vm.generatePictureExam()
-        XCTAssert(vm.length>100)
+        XCTAssertEqual(vm.length,232)
         XCTAssertTrue(vm.startExam)
         XCTAssert(vm.question.count > 1)
     
@@ -81,7 +81,9 @@ class PictureGameViewModelTests: XCTestCase {
             XCTAssertFalse(vm.reachedEnd)
             XCTAssertEqual(i, vm.index)
         }
-
+        
+        // 应该有6个选择项
+        XCTAssertEqual(vm.answerChoices.count, 6)
         for answer in vm.answerChoices {
             vm.selectAnswer(answer: answer)
         }
