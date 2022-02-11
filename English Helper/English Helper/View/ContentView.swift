@@ -28,6 +28,12 @@ struct ContentView: View {
                 } label: {
                     PrimaryButton(text: "Browse Dictionary")
                 }
+                Spacer()
+                NavigationLink{
+                    AboutView()
+                }label: {
+                    Text("About")
+                }
             }
             .padding()
         }
