@@ -206,6 +206,40 @@ class RealmManager{
         }
     }
     
+    /*
+     * 将pictureFileName的words中的word清除，如果只有唯一的一个word了，将对应的pictureFile清除
+     * 用于答对题目时，将已经对的单词从要记忆的单词库中去除
+     */
+    func deleteMemoRealmWord(word: String,pictureFileName: String) {
+        if let memoRealm = memoRealm {
+            let pictureFiles = memoRealm.objects(LocalPictureFile.self).where{
+                $0.name == pictureFileName
+            }
+            if let pictureFile = pictureFiles.first{
+                if pictureFile.words.contains(word){
+                    do{
+                        try memoRealm.write{
+                            if pictureFile.words.count == 1{
+                                memoRealm.delete(pictureFile)
+                            }else{
+                                if let i = pictureFile.words.firstIndex(of: word){
+                                    pictureFile.words.remove(at: i)
+                                }
+                            }
+                        }
+                        let pfs = memoRealm.objects(LocalPictureFile.self)
+                        memoRealmWordCount = 0
+                        for pf in pfs{
+                            memoRealmWordCount += pf.words.count
+                        }
+                    } catch {
+                        print("Error deleting word \(word) from Realm: \(error)")
+                    }
+                }
+            }
+        }
+    }
+    
     private func deleteChapter(chapter: LocalChapter) {
         if let localRealm = localRealm {
             do{

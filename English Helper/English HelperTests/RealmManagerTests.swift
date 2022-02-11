@@ -126,6 +126,34 @@ class RealmManagerTests: XCTestCase {
         XCTAssertTrue(nilCount > 1)
         
     }
+    
+    func test_UnitTestingDeleteMemoRealmWord_SetOneChapterIsSelect_shouldSameCount() throws{
+        // 测试能正常清除所有的选中chapter中的单词
+        //Given
+        guard let realmManager = realmManager else {
+            XCTFail("realmManager not ready")
+            return
+        }
+        
+        //When
+        // 清除到只有一个chapter保持在isSelect=ture的状态
+        let rChapters = realmManager.getAllChapters()
+        for i in 1..<rChapters.count{
+            realmManager.toggleChapter(chapter: rChapters[i])
+        }
+        // 生成测试题目的范围
+        realmManager.genExamRealm()
+        
+        //Then
+        let count = realmManager.memoRealmWordCount
+        for _ in 1...count{
+            // 从题库范围中生成一道题
+            if let exam = realmManager.getRandomExam(answerLength: 6) {
+                realmManager.deleteMemoRealmWord(word: exam.questionWord, pictureFileName: exam.answers[exam.correctAnswer].name)
+            }
+        }
+        XCTAssertEqual(realmManager.memoRealmWordCount, 0)
+    }
 
     func testPerformance_RealmManager_Default_shouldBe100Answer() throws {
         //Given
