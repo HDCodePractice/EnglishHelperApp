@@ -30,26 +30,61 @@ class PictureGameViewModelTests: XCTestCase {
         vm = nil
     }
 
-    func test_UnitForGeneratePictureExam_isUniqExamTrue_should100Answer() throws {
+    func test_UnitForGeneratePictureExam_GameModeIsUniq_should100Answer() throws {
         guard let vm = vm else {
             XCTFail()
             return
         }
         vm.length = 100
         vm.isUniqExam = true
+        vm.gameMode = .uniq
         vm.generatePictureExam()
         XCTAssertEqual(vm.length, 100)
         XCTAssertTrue(vm.startExam)
         XCTAssert(vm.question.count > 1)
-
-        
-        for _ in 0..<99{
+    
+        for i in 1..<vm.length{
             vm.goToNextQuestion()
             XCTAssert(vm.question.count > 1)
             XCTAssertTrue(vm.startExam)
             XCTAssertFalse(vm.reachedEnd)
+            XCTAssertEqual(i, vm.index)
+        }
+        
+        vm.goToNextQuestion()
+        XCTAssert(vm.question.count > 1)
+        XCTAssertTrue(vm.startExam)
+        XCTAssertTrue(vm.reachedEnd)
+    }
+    
+    func test_UnitForGeneratePictureExam_GameModeIsFinish_should100Answer() throws {
+        guard let vm = vm else {
+            XCTFail()
+            return
+        }
+        vm.length = 100
+        vm.isUniqExam = true
+        vm.gameMode = .finish
+        vm.generatePictureExam()
+        XCTAssertEqual(vm.length, 100)
+        XCTAssertTrue(vm.startExam)
+        XCTAssert(vm.question.count > 1)
+    
+        for i in 1..<vm.length{
+            // 把所有的answer都点一下，总会点到对的
+            for answer in vm.answerChoices {
+                vm.selectAnswer(answer: answer)
+            }
+            vm.goToNextQuestion()
+            XCTAssert(vm.question.count > 1)
+            XCTAssertTrue(vm.startExam)
+            XCTAssertFalse(vm.reachedEnd)
+            XCTAssertEqual(i, vm.index)
         }
 
+        for answer in vm.answerChoices {
+            vm.selectAnswer(answer: answer)
+        }
         vm.goToNextQuestion()
         XCTAssert(vm.question.count > 1)
         XCTAssertTrue(vm.startExam)

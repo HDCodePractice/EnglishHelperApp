@@ -27,8 +27,15 @@ class PictureGameViewModel: ObservableObject{
     @Published var length = 10
     @Published var startExam = false
     @Published var isUniqExam : Bool = true
+    @Published var gameMode = GameMode.finish
     
     init(){}
+    
+    enum GameMode: String, CaseIterable {
+        case uniq = "Uniq"
+        case random = "Random"
+        case finish = "Finish"
+    }
     
     @MainActor
     func loadData() async{
@@ -43,28 +50,25 @@ class PictureGameViewModel: ObservableObject{
     }
     
     func generatePictureExam(){
-        var rs : [PictureExam.Result] = []
         realmManager.genExamRealm()
-        if isUniqExam {
-            for _ in 0..<length{
-                if let exam = realmManager.getUniqExam(answerLength: answerLength){
-                    rs.append(exam)
-                }else{
-                    break
-                }
+        
+        switch gameMode {
+        case .uniq:
+            if realmManager.memoRealmWordCount < length{
+                length = realmManager.memoRealmWordCount
             }
-        }else{
-            for _ in 0..<length{
-                if let exam = realmManager.getRandomExam(answerLength: answerLength){
-                    rs.append(exam)
-                }
+        case .random:
+            // 不做任何事
+            length = length
+        case .finish:
+            if realmManager.memoRealmWordCount < length{
+                length = realmManager.memoRealmWordCount
             }
         }
-        length = rs.count
+        
         if length == 0 {
             return
         }
-        pictureExam = rs
         reachedEnd = false
         index = 0
         score = 0
@@ -74,20 +78,40 @@ class PictureGameViewModel: ObservableObject{
     }
     
     func goToNextQuestion(){
-        if index + 1 < length{
-            index += 1
-            setQuestion()
-        }else{
-            reachedEnd = true
+        switch gameMode {
+        case .uniq,.random:
+            if index+1 < length{
+                // 在random和uniq模式下，做完一题index就多一步
+                // finish模式的index增涨是必须答对
+                index += 1
+                setQuestion()
+            }else{
+                reachedEnd = true
+            }
+        case .finish:
+            if index < length{
+                setQuestion()
+            }else{
+                reachedEnd = true
+            }
         }
     }
     
     func setQuestion(){
         if index < length{
-            if pictureExam.count == 0 { return }
-            let currentQuestion = pictureExam[index]
-            question = currentQuestion.questionWord
-            answerChoices = currentQuestion.questAnswers
+            var currentQuestion : PictureExam.Result?
+            switch gameMode {
+            case .uniq:
+                currentQuestion = realmManager.getUniqExam(answerLength: answerLength)
+            case .random:
+                currentQuestion = realmManager.getRandomExam(answerLength: answerLength)
+            case .finish:
+                currentQuestion = realmManager.getRandomExam(answerLength: answerLength)
+            }
+            if let currentQuestion = currentQuestion {
+                question = currentQuestion.questionWord
+                answerChoices = currentQuestion.questAnswers
+            }
         }
         answerSelected = false
     }
@@ -96,6 +120,11 @@ class PictureGameViewModel: ObservableObject{
         answerSelected = true
         if answer.isCorrect {
             score += 1
+            if gameMode == .finish{
+                // 如果是finish模式，把答对的word从memoRealm中清除
+                realmManager.deleteMemoRealmWord(word: question, pictureFileName: answer.name)
+                index += 1
+            }
         }
     }
     
