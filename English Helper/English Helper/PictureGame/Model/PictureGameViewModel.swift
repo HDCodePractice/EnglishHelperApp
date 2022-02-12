@@ -34,6 +34,10 @@ class PictureGameViewModel: ObservableObject{
         case uniq = "Uniq"
         case random = "Random"
         case finish = "Finish"
+        
+        func localizedString() -> String {
+            return NSLocalizedString(self.rawValue, comment: "")
+        }
     }
     
     @MainActor

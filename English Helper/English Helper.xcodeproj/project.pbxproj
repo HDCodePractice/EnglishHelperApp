@@ -33,12 +33,16 @@
 		679E23A7279BB41500CB8A76 /* PictureGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23A6279BB41500CB8A76 /* PictureGameManager.swift */; };
 		679E23A9279BB94100CB8A76 /* PictureGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23A8279BB94100CB8A76 /* PictureGameViewModel.swift */; };
 		679E23AB279C4BAA00CB8A76 /* PictureExam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23AA279C4BAA00CB8A76 /* PictureExam.swift */; };
+		67ADE03C27B7402D00BEAC22 /* GameOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67ADE03B27B7402D00BEAC22 /* GameOptionsView.swift */; };
+		67ADE04927B76CCE00BEAC22 /* English Helper-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67ADE04727B76CCE00BEAC22 /* English Helper-InfoPlist.strings */; };
+		67ADE04C27B76CCE00BEAC22 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67ADE04A27B76CCE00BEAC22 /* Localizable.strings */; };
 		67BA8A16279F68EB00F4B743 /* ActivityView in Frameworks */ = {isa = PBXBuildFile; productRef = 67BA8A15279F68EB00F4B743 /* ActivityView */; };
 		67C29B4227A2115900877C58 /* TranslateView in Frameworks */ = {isa = PBXBuildFile; productRef = 67C29B4127A2115900877C58 /* TranslateView */; };
 		67D3D6D4279D91590075BBF8 /* AnswerGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D3D6D3279D91590075BBF8 /* AnswerGrid.swift */; };
 		67D4A71927B3E2B400642686 /* PictureGameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D4A71827B3E2B400642686 /* PictureGameViewModelTests.swift */; };
 		67D892BD27AF75A1006CD0CB /* GridePictureItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D892BC27AF75A1006CD0CB /* GridePictureItem.swift */; };
 		67D892C027AFF4AE006CD0CB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 67D892BF27AFF4AE006CD0CB /* Kingfisher */; };
+		67E7965927B71AA900B7E651 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E7965827B71AA900B7E651 /* AboutView.swift */; };
 		67FD9D412796666E00EF434F /* English_HelperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D402796666E00EF434F /* English_HelperApp.swift */; };
 		67FD9D432796666E00EF434F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D422796666E00EF434F /* ContentView.swift */; };
 		67FD9D452796666F00EF434F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67FD9D442796666F00EF434F /* Assets.xcassets */; };
@@ -96,9 +100,13 @@
 		679E23A6279BB41500CB8A76 /* PictureGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameManager.swift; sourceTree = "<group>"; };
 		679E23A8279BB94100CB8A76 /* PictureGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameViewModel.swift; sourceTree = "<group>"; };
 		679E23AA279C4BAA00CB8A76 /* PictureExam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureExam.swift; sourceTree = "<group>"; };
+		67ADE03B27B7402D00BEAC22 /* GameOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOptionsView.swift; sourceTree = "<group>"; };
+		67ADE04827B76CCE00BEAC22 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/English Helper-InfoPlist.strings"; sourceTree = "<group>"; };
+		67ADE04B27B76CCE00BEAC22 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		67D3D6D3279D91590075BBF8 /* AnswerGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerGrid.swift; sourceTree = "<group>"; };
 		67D4A71827B3E2B400642686 /* PictureGameViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameViewModelTests.swift; sourceTree = "<group>"; };
 		67D892BC27AF75A1006CD0CB /* GridePictureItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridePictureItem.swift; sourceTree = "<group>"; };
+		67E7965827B71AA900B7E651 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		67FD9D3D2796666E00EF434F /* Learn English Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Learn English Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67FD9D402796666E00EF434F /* English_HelperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = English_HelperApp.swift; sourceTree = "<group>"; };
 		67FD9D422796666E00EF434F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -176,6 +184,7 @@
 			children = (
 				6703FFEC279A4C6400C4FADB /* PictureGame.swift */,
 				6703FFEE279A4E3800C4FADB /* PictureGameProgressView.swift */,
+				67ADE03B27B7402D00BEAC22 /* GameOptionsView.swift */,
 				6703FFF0279A4EFB00C4FADB /* PictureGameQuestionView.swift */,
 			);
 			path = View;
@@ -254,6 +263,32 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		67ADE04327B7514100BEAC22 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				67ADE04D27B76D2100BEAC22 /* zh-cn */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		67ADE04D27B76D2100BEAC22 /* zh-cn */ = {
+			isa = PBXGroup;
+			children = (
+				67ADE04A27B76CCE00BEAC22 /* Localizable.strings */,
+				67ADE04727B76CCE00BEAC22 /* English Helper-InfoPlist.strings */,
+			);
+			path = "zh-cn";
+			sourceTree = "<group>";
+		};
+		67E7965727B71A7B00B7E651 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				67FD9D422796666E00EF434F /* ContentView.swift */,
+				67E7965827B71AA900B7E651 /* AboutView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		67FD9D342796666E00EF434F = {
 			isa = PBXGroup;
 			children = (
@@ -282,11 +317,12 @@
 				674D426E27A8049E00061C70 /* BrowseDictionary */,
 				6711A2C92797981B0094B532 /* English Helper.entitlements */,
 				67FD9D402796666E00EF434F /* English_HelperApp.swift */,
+				67FD9D442796666F00EF434F /* Assets.xcassets */,
 				670588A32798C7B0006F8C0E /* Model */,
 				670588A22798C750006F8C0E /* GrammarBook */,
-				67FD9D422796666E00EF434F /* ContentView.swift */,
+				67E7965727B71A7B00B7E651 /* View */,
 				67FD9D742796691400EF434F /* Components */,
-				67FD9D442796666F00EF434F /* Assets.xcassets */,
+				67ADE04327B7514100BEAC22 /* Resources */,
 				67FD9D462796666F00EF434F /* Preview Content */,
 				6703FFE6279A49FA00C4FADB /* PictureGame */,
 			);
@@ -424,6 +460,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 67FD9D342796666E00EF434F;
 			packageReferences = (
@@ -448,8 +485,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67ADE04C27B76CCE00BEAC22 /* Localizable.strings in Resources */,
 				67FD9D482796666F00EF434F /* Preview Assets.xcassets in Resources */,
 				67FD9D452796666F00EF434F /* Assets.xcassets in Resources */,
+				67ADE04927B76CCE00BEAC22 /* English Helper-InfoPlist.strings in Resources */,
 				6763B56E27A4EF30000E98EC /* example_picture.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,6 +523,7 @@
 				674D427527A8065400061C70 /* BrowseDictionaryViewModel.swift in Sources */,
 				6703FFEA279A4ADA00C4FADB /* Answer.swift in Sources */,
 				6705889F2798C67B006F8C0E /* WebView.swift in Sources */,
+				67ADE03C27B7402D00BEAC22 /* GameOptionsView.swift in Sources */,
 				670588A92798C995006F8C0E /* GrammarListViewModel.swift in Sources */,
 				67D892BD27AF75A1006CD0CB /* GridePictureItem.swift in Sources */,
 				679E23A5279BAFEF00CB8A76 /* PictureFile.swift in Sources */,
@@ -495,6 +535,7 @@
 				67FD9D71279668EC00EF434F /* ProgressBar.swift in Sources */,
 				6710C44627AE34F500C5CB99 /* ListPictureView.swift in Sources */,
 				67FD9D762796695A00EF434F /* PrimaryButton.swift in Sources */,
+				67E7965927B71AA900B7E651 /* AboutView.swift in Sources */,
 				679E23A7279BB41500CB8A76 /* PictureGameManager.swift in Sources */,
 				67FD9D412796666E00EF434F /* English_HelperApp.swift in Sources */,
 				673ABE0A27B605BB006DA515 /* EnumPicker.swift in Sources */,
@@ -542,6 +583,25 @@
 			targetProxy = 67FD9D582796666F00EF434F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		67ADE04727B76CCE00BEAC22 /* English Helper-InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				67ADE04827B76CCE00BEAC22 /* zh-Hans */,
+			);
+			name = "English Helper-InfoPlist.strings";
+			sourceTree = "<group>";
+		};
+		67ADE04A27B76CCE00BEAC22 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				67ADE04B27B76CCE00BEAC22 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		67FD9D5F2796666F00EF434F /* Debug */ = {
@@ -668,7 +728,7 @@
 				CODE_SIGN_ENTITLEMENTS = "English Helper/English Helper.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"English Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4W3MN6QHA;
 				ENABLE_PREVIEWS = YES;
@@ -689,7 +749,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = one.hdcola.ehelper;
 				PRODUCT_NAME = "Learn English Helper";
 				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -704,7 +764,7 @@
 				CODE_SIGN_ENTITLEMENTS = "English Helper/English Helper.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"English Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4W3MN6QHA;
 				ENABLE_PREVIEWS = YES;
@@ -725,7 +785,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = one.hdcola.ehelper;
 				PRODUCT_NAME = "Learn English Helper";
 				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

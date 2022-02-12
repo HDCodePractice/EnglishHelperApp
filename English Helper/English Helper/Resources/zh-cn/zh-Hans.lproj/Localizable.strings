@@ -1,0 +1,65 @@
+/* No comment provided by engineer. */
+"%lld out of %lld" = "第%lld个 共%lld个";
+
+/* No comment provided by engineer. */
+"About" = "关于";
+
+/* No comment provided by engineer. */
+"About Us" = "关于我们";
+
+/* No comment provided by engineer. */
+"Are you ready to test out English words?" = "准备好开始单词游戏了吗？";
+
+/* No comment provided by engineer. */
+"Browse Dictionary" = "浏览词典";
+
+/* No comment provided by engineer. */
+"Congratulations, you completed the game!" = "恭喜你，你完成了这个游戏！";
+
+/* No comment provided by engineer. */
+"Contact Us" = "联系我们";
+
+/* No comment provided by engineer. */
+"Contributors" = "贡献者";
+
+/* No comment provided by engineer. */
+"Done" = "完成";
+
+/* No comment provided by engineer. */
+"Grammar Book" = "语法手册";
+
+/* No comment provided by engineer. */
+"Let't go!" = "开始游戏";
+
+/* No comment provided by engineer. */
+"Load Data..." = "加载数据中...";
+
+/* No comment provided by engineer. */
+"Max number of games:%lld" = "最多单词数: %lld";
+
+/* No comment provided by engineer. */
+"Next" = "下一个";
+
+/* No comment provided by engineer. */
+"Picture Game" = "看词寻图";
+
+/* No comment provided by engineer. */
+"Play again" = "再玩一次";
+
+/* No comment provided by engineer. */
+"Resync Data From Server" = "重新与服务器同步数据";
+
+/* No comment provided by engineer. */
+"Select Mode" = "选择模式";
+
+/* No comment provided by engineer. */
+"Select Topics" = "选择主题";
+
+/* No comment provided by engineer. */
+"Tap the answer of" = "点击单词的答案";
+
+/* No comment provided by engineer. */
+"Thank" = "鸣谢";
+
+/* No comment provided by engineer. */
+"You scored %lld out of %lld" = "你的分数是 %lld 满分为 %lld";
