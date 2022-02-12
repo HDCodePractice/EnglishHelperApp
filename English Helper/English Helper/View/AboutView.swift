@@ -28,7 +28,9 @@ struct AboutView: View {
             Text("[Telegram channel](https://t.me/englisherupdate), [Telegram group](https://t.me/+JBMuFwlPYNgxMjU1)")
             Text("The images used are from [Unsplash](https://unsplash.com), [pixabay](https://pixabay.com/zh), [ICONS8](https://icons8.com).")
             Text("Version:\(appVersion).\(build)")
-        }.padding()
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .padding()
     }
 }
 

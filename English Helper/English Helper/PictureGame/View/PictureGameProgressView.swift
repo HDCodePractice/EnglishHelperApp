@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PictureGameProgressView: View {
     @EnvironmentObject var vm : PictureGameViewModel
-    @State private var showingSheet : Bool = false
     
     var body: some View {
         if vm.reachedEnd {
@@ -25,43 +24,14 @@ struct PictureGameProgressView: View {
                 }label: {
                     PrimaryButton(text: "Play again")
                 }
-                
-                VStack{
-                    Text("")
-                    HStack{
-                        Text("Number of games:\(vm.length)")
-                            .foregroundColor(Color("AccentColor"))
-                        Spacer()
-                    }
-                    Slider(value: .init(get: {Double(vm.length)}, set: {vm.length = Int($0)}),
-                        in: 10...100,
-                        step: 10,
-                        minimumValueLabel: Text("10"),
-                        maximumValueLabel: Text("100"),
-                        label: {
-                            Text("Rating")
-                        }
-                    )
-                    VStack{
-                        Text("Select Mode")
-                        EnumPicker(selected: $vm.gameMode, title: "Select Mode:")
-                            .pickerStyle(.segmented)
-
-                    }
-                    Text("Select Topics")
-                        .onTapGesture {
-                            showingSheet = true
-                        }
-                        .sheet(isPresented: $showingSheet){
-                            NavigationView{
-                                ListTopicView()
-                            }
-                        }
-                }.padding(.horizontal)
+                GameOptionsView()
+                    .environmentObject(vm)
             }
             .foregroundColor(Color("AccentColor"))
             .padding()
             .frame(maxWidth:.infinity,maxHeight: .infinity)
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
         }else{
             PictureGameQuestionView()
                 .environmentObject(vm)

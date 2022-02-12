@@ -23,29 +23,13 @@ struct PictureGame: View {
     
     var startBody: some View{
         VStack(spacing:40){
+            Spacer()
             VStack(spacing:20){
                 Text("Picture Game")
                     .liacTitle()
                 Text("Are you ready to test out English words?")
                     .foregroundColor(Color("AccentColor"))
             }
-            VStack{
-                HStack{
-                    Text("Max number of games:\(vm.length)")
-                        .foregroundColor(Color("AccentColor"))
-                    Spacer()
-                }
-                Slider(value: .init(get: {Double(vm.length)}, set: {vm.length = Int($0)}),
-                    in: 10...100,
-                    step: 10,
-                    minimumValueLabel: Text("10"),
-                    maximumValueLabel: Text("100"),
-                    label: {
-                        Text("Rating")
-                    }
-                )
-            }.padding(.horizontal)
-            
             PrimaryButton(
                 text: vm.loadFinished ? "Let't go!" : "Load Data...",
                 background: vm.loadFinished ? Color("AccentColor") : .secondary
@@ -53,21 +37,8 @@ struct PictureGame: View {
                 vm.generatePictureExam()
             }
             .disabled(vm.loadFinished ? false : true)
-            VStack{
-                Text("Select Mode")
-                EnumPicker(selected: $vm.gameMode, title: "Select Mode:")
-                    .pickerStyle(.segmented)
-
-            }
-            Text("Select Topics")
-                .onTapGesture {
-                    showingSheet = true
-                }
-                .sheet(isPresented: $showingSheet){
-                    NavigationView{
-                        ListTopicView()
-                    }
-                }
+            GameOptionsView()
+                .environmentObject(vm)
         }
         .padding()
         .frame(maxWidth:.infinity,maxHeight: .infinity)

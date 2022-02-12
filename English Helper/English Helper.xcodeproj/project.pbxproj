@@ -33,6 +33,7 @@
 		679E23A7279BB41500CB8A76 /* PictureGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23A6279BB41500CB8A76 /* PictureGameManager.swift */; };
 		679E23A9279BB94100CB8A76 /* PictureGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23A8279BB94100CB8A76 /* PictureGameViewModel.swift */; };
 		679E23AB279C4BAA00CB8A76 /* PictureExam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23AA279C4BAA00CB8A76 /* PictureExam.swift */; };
+		67ADE03C27B7402D00BEAC22 /* GameOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67ADE03B27B7402D00BEAC22 /* GameOptionsView.swift */; };
 		67BA8A16279F68EB00F4B743 /* ActivityView in Frameworks */ = {isa = PBXBuildFile; productRef = 67BA8A15279F68EB00F4B743 /* ActivityView */; };
 		67C29B4227A2115900877C58 /* TranslateView in Frameworks */ = {isa = PBXBuildFile; productRef = 67C29B4127A2115900877C58 /* TranslateView */; };
 		67D3D6D4279D91590075BBF8 /* AnswerGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D3D6D3279D91590075BBF8 /* AnswerGrid.swift */; };
@@ -97,6 +98,7 @@
 		679E23A6279BB41500CB8A76 /* PictureGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameManager.swift; sourceTree = "<group>"; };
 		679E23A8279BB94100CB8A76 /* PictureGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameViewModel.swift; sourceTree = "<group>"; };
 		679E23AA279C4BAA00CB8A76 /* PictureExam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureExam.swift; sourceTree = "<group>"; };
+		67ADE03B27B7402D00BEAC22 /* GameOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOptionsView.swift; sourceTree = "<group>"; };
 		67D3D6D3279D91590075BBF8 /* AnswerGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerGrid.swift; sourceTree = "<group>"; };
 		67D4A71827B3E2B400642686 /* PictureGameViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameViewModelTests.swift; sourceTree = "<group>"; };
 		67D892BC27AF75A1006CD0CB /* GridePictureItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridePictureItem.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			children = (
 				6703FFEC279A4C6400C4FADB /* PictureGame.swift */,
 				6703FFEE279A4E3800C4FADB /* PictureGameProgressView.swift */,
+				67ADE03B27B7402D00BEAC22 /* GameOptionsView.swift */,
 				6703FFF0279A4EFB00C4FADB /* PictureGameQuestionView.swift */,
 			);
 			path = View;
@@ -435,6 +438,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 67FD9D342796666E00EF434F;
 			packageReferences = (
@@ -495,6 +499,7 @@
 				674D427527A8065400061C70 /* BrowseDictionaryViewModel.swift in Sources */,
 				6703FFEA279A4ADA00C4FADB /* Answer.swift in Sources */,
 				6705889F2798C67B006F8C0E /* WebView.swift in Sources */,
+				67ADE03C27B7402D00BEAC22 /* GameOptionsView.swift in Sources */,
 				670588A92798C995006F8C0E /* GrammarListViewModel.swift in Sources */,
 				67D892BD27AF75A1006CD0CB /* GridePictureItem.swift in Sources */,
 				679E23A5279BAFEF00CB8A76 /* PictureFile.swift in Sources */,
@@ -701,7 +706,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = one.hdcola.ehelper;
 				PRODUCT_NAME = "Learn English Helper";
 				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -737,7 +742,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = one.hdcola.ehelper;
 				PRODUCT_NAME = "Learn English Helper";
 				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
