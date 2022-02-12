@@ -36,7 +36,6 @@ class PictureGameViewModelTests: XCTestCase {
             return
         }
         vm.length = 100
-        vm.isUniqExam = true
         vm.gameMode = .uniq
         vm.generatePictureExam()
         XCTAssertEqual(vm.length, 100)
@@ -63,7 +62,6 @@ class PictureGameViewModelTests: XCTestCase {
             return
         }
         vm.length = 100
-        vm.isUniqExam = true
         vm.gameMode = .finish
         vm.generatePictureExam()
         XCTAssertEqual(vm.length,232)
@@ -99,7 +97,7 @@ class PictureGameViewModelTests: XCTestCase {
             return
         }
         vm.length = 100
-        vm.isUniqExam = true
+        vm.gameMode = .uniq
         self.measure {
             vm.generatePictureExam()
         }
@@ -111,7 +109,7 @@ class PictureGameViewModelTests: XCTestCase {
             return
         }
         vm.length = 100
-        vm.isUniqExam = false
+        vm.gameMode = .random
         self.measure {
             vm.generatePictureExam()
         }
