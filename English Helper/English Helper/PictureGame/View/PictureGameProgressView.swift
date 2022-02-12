@@ -13,7 +13,7 @@ struct PictureGameProgressView: View {
     var body: some View {
         if vm.reachedEnd {
             VStack(spacing:20){
-                Text("Words Game")
+                Text("Picture Game")
                     .liacTitle()
                 Text("Congratulations, you completed the game!")
                 

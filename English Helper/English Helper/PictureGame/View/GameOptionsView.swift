@@ -21,9 +21,7 @@ struct GameOptionsView: View {
                 step: 10,
                 minimumValueLabel: Text("10"),
                 maximumValueLabel: Text("100"),
-                label: {
-                    Text("Rating")
-                }
+                label: {}
             )
             VStack{
                 Text("Select Mode")

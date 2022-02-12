@@ -34,6 +34,8 @@
 		679E23A9279BB94100CB8A76 /* PictureGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23A8279BB94100CB8A76 /* PictureGameViewModel.swift */; };
 		679E23AB279C4BAA00CB8A76 /* PictureExam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23AA279C4BAA00CB8A76 /* PictureExam.swift */; };
 		67ADE03C27B7402D00BEAC22 /* GameOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67ADE03B27B7402D00BEAC22 /* GameOptionsView.swift */; };
+		67ADE04927B76CCE00BEAC22 /* English Helper-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67ADE04727B76CCE00BEAC22 /* English Helper-InfoPlist.strings */; };
+		67ADE04C27B76CCE00BEAC22 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67ADE04A27B76CCE00BEAC22 /* Localizable.strings */; };
 		67BA8A16279F68EB00F4B743 /* ActivityView in Frameworks */ = {isa = PBXBuildFile; productRef = 67BA8A15279F68EB00F4B743 /* ActivityView */; };
 		67C29B4227A2115900877C58 /* TranslateView in Frameworks */ = {isa = PBXBuildFile; productRef = 67C29B4127A2115900877C58 /* TranslateView */; };
 		67D3D6D4279D91590075BBF8 /* AnswerGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D3D6D3279D91590075BBF8 /* AnswerGrid.swift */; };
@@ -99,6 +101,8 @@
 		679E23A8279BB94100CB8A76 /* PictureGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameViewModel.swift; sourceTree = "<group>"; };
 		679E23AA279C4BAA00CB8A76 /* PictureExam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureExam.swift; sourceTree = "<group>"; };
 		67ADE03B27B7402D00BEAC22 /* GameOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOptionsView.swift; sourceTree = "<group>"; };
+		67ADE04827B76CCE00BEAC22 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/English Helper-InfoPlist.strings"; sourceTree = "<group>"; };
+		67ADE04B27B76CCE00BEAC22 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		67D3D6D3279D91590075BBF8 /* AnswerGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerGrid.swift; sourceTree = "<group>"; };
 		67D4A71827B3E2B400642686 /* PictureGameViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameViewModelTests.swift; sourceTree = "<group>"; };
 		67D892BC27AF75A1006CD0CB /* GridePictureItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridePictureItem.swift; sourceTree = "<group>"; };
@@ -259,6 +263,23 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		67ADE04327B7514100BEAC22 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				67ADE04D27B76D2100BEAC22 /* zh-cn */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		67ADE04D27B76D2100BEAC22 /* zh-cn */ = {
+			isa = PBXGroup;
+			children = (
+				67ADE04A27B76CCE00BEAC22 /* Localizable.strings */,
+				67ADE04727B76CCE00BEAC22 /* English Helper-InfoPlist.strings */,
+			);
+			path = "zh-cn";
+			sourceTree = "<group>";
+		};
 		67E7965727B71A7B00B7E651 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,11 +317,12 @@
 				674D426E27A8049E00061C70 /* BrowseDictionary */,
 				6711A2C92797981B0094B532 /* English Helper.entitlements */,
 				67FD9D402796666E00EF434F /* English_HelperApp.swift */,
+				67FD9D442796666F00EF434F /* Assets.xcassets */,
 				670588A32798C7B0006F8C0E /* Model */,
 				670588A22798C750006F8C0E /* GrammarBook */,
 				67E7965727B71A7B00B7E651 /* View */,
 				67FD9D742796691400EF434F /* Components */,
-				67FD9D442796666F00EF434F /* Assets.xcassets */,
+				67ADE04327B7514100BEAC22 /* Resources */,
 				67FD9D462796666F00EF434F /* Preview Content */,
 				6703FFE6279A49FA00C4FADB /* PictureGame */,
 			);
@@ -463,8 +485,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67ADE04C27B76CCE00BEAC22 /* Localizable.strings in Resources */,
 				67FD9D482796666F00EF434F /* Preview Assets.xcassets in Resources */,
 				67FD9D452796666F00EF434F /* Assets.xcassets in Resources */,
+				67ADE04927B76CCE00BEAC22 /* English Helper-InfoPlist.strings in Resources */,
 				6763B56E27A4EF30000E98EC /* example_picture.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -559,6 +583,25 @@
 			targetProxy = 67FD9D582796666F00EF434F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		67ADE04727B76CCE00BEAC22 /* English Helper-InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				67ADE04827B76CCE00BEAC22 /* zh-Hans */,
+			);
+			name = "English Helper-InfoPlist.strings";
+			sourceTree = "<group>";
+		};
+		67ADE04A27B76CCE00BEAC22 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				67ADE04B27B76CCE00BEAC22 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		67FD9D5F2796666F00EF434F /* Debug */ = {
