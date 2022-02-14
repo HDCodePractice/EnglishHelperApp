@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PictureGame: View {
     @StateObject var vm = PictureGameViewModel()
-    @State private var action: Int? = 0
     @State private var showingSheet : Bool = false
     
     var body: some View {

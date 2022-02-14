@@ -16,13 +16,16 @@ struct ContentView: View {
                 } label: {
                     PrimaryButton(text: "Picture Game")
                 }
-                
+                NavigationLink{
+                    WordSearch()
+                } label: {
+                    PrimaryButton(text: "Word Search")
+                }
                 NavigationLink{
                     GrammarListView()
                 } label: {
                     PrimaryButton(text: "Grammar Book")
                 }
-                
                 NavigationLink{
                     ListTopicView()
                 } label: {
