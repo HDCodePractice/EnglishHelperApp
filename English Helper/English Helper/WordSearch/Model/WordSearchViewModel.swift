@@ -12,14 +12,15 @@ class WordSearchViewModel:ObservableObject{
     @Published var grid : WordGrid = []
     @Published var row : Int = 10
     @Published var column : Int = 10
-    @Published var words : [String] = ["hello","world"]
+    @Published var words : [WordCell] = []
     
     init(){
-        manager.words = words
+        manager.words = ["hello","world","search","words"]
         manager.row = row
         manager.column = column
         manager.generatorWordGrid()
         grid = manager.grid
+        words = manager.getWordsCells()
     }
     
     func toggleGridCell(cell: Cell){

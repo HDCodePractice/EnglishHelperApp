@@ -11,8 +11,16 @@ struct WordSearchGameView: View {
     @EnvironmentObject var vm : WordSearchViewModel
     
     var body: some View {
-        WordListGrid()
-            .environmentObject(vm)
+        VStack{
+            HStack{
+                ForEach (vm.words){ word in
+                    WordCellView(wordCell: word)
+
+                }
+            }
+            WordListGrid()
+                .environmentObject(vm)
+        }
     }
 }
 

@@ -16,6 +16,14 @@ class WordGridManager{
     
     init(){}
     
+    func getWordsCells() -> [WordCell]{
+        var wordCells:[WordCell] = []
+        for word in words{
+            wordCells.append(WordCell(word: word))
+        }
+        return wordCells
+    }
+    
     func generatorWordGrid(){
         let generator = WordGridGenerator(words: words, row: row, column: column)
         if let g = generator.generate(){
