@@ -10,21 +10,32 @@ import SwiftUI
 struct WordSearch: View {
     @StateObject var vm : WordSearchViewModel = WordSearchViewModel()
     @State var begin : Bool = false
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack{
+            HStack{
+                Label("Back",systemImage: "chevron.backward")
+                    .foregroundColor(.primary)
+                    .onTapGesture {
+                        dismiss()
+                    }
+                Spacer()
+            }
+            Spacer()
             if begin{
-                WordListGrid()
+                WordSearchGameView()
                     .environmentObject(vm)
             }else{
-                Button{
-                    begin.toggle()
-                }label: {
-                    Text("Start Game")
-                }
+                PrimaryButton(text: "Start Game")
+                    .padding()
+                    .onTapGesture {
+                        begin.toggle()
+                    }
             }
+            Spacer()
         }
-//        .navigationBarTitle("")
+        .navigationBarHidden(true)
     }
 }
 

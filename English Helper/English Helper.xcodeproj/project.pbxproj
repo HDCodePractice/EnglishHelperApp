@@ -41,6 +41,8 @@
 		679E23A9279BB94100CB8A76 /* PictureGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23A8279BB94100CB8A76 /* PictureGameViewModel.swift */; };
 		679E23AB279C4BAA00CB8A76 /* PictureExam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23AA279C4BAA00CB8A76 /* PictureExam.swift */; };
 		67A6E84427BB029F001013A7 /* WordGridManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A6E84327BB029F001013A7 /* WordGridManagerTests.swift */; };
+		67A933A227BB0FEC00BF0C79 /* WordSearchGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A933A127BB0FEC00BF0C79 /* WordSearchGameView.swift */; };
+		67A933A427BB10A600BF0C79 /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A933A327BB10A600BF0C79 /* WordCell.swift */; };
 		67ADE03C27B7402D00BEAC22 /* GameOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67ADE03B27B7402D00BEAC22 /* GameOptionsView.swift */; };
 		67ADE04927B76CCE00BEAC22 /* English Helper-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67ADE04727B76CCE00BEAC22 /* English Helper-InfoPlist.strings */; };
 		67ADE04C27B76CCE00BEAC22 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67ADE04A27B76CCE00BEAC22 /* Localizable.strings */; };
@@ -118,6 +120,8 @@
 		679E23A8279BB94100CB8A76 /* PictureGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameViewModel.swift; sourceTree = "<group>"; };
 		679E23AA279C4BAA00CB8A76 /* PictureExam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureExam.swift; sourceTree = "<group>"; };
 		67A6E84327BB029F001013A7 /* WordGridManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGridManagerTests.swift; sourceTree = "<group>"; };
+		67A933A127BB0FEC00BF0C79 /* WordSearchGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSearchGameView.swift; sourceTree = "<group>"; };
+		67A933A327BB10A600BF0C79 /* WordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
 		67ADE03B27B7402D00BEAC22 /* GameOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOptionsView.swift; sourceTree = "<group>"; };
 		67ADE04827B76CCE00BEAC22 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/English Helper-InfoPlist.strings"; sourceTree = "<group>"; };
 		67ADE04B27B76CCE00BEAC22 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -343,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				6799875827BA9754001C9B9E /* WordSearch.swift */,
+				67A933A127BB0FEC00BF0C79 /* WordSearchGameView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -351,6 +356,7 @@
 			isa = PBXGroup;
 			children = (
 				67ADE05627B7ED8D00BEAC22 /* Line.swift */,
+				67A933A327BB10A600BF0C79 /* WordCell.swift */,
 				6709506C27B85B8B005B056D /* WordListGrid.swift */,
 				6709507427B8AA28005B056D /* GridCell.swift */,
 			);
@@ -392,7 +398,6 @@
 			isa = PBXGroup;
 			children = (
 				67ADE05027B7E6FC00BEAC22 /* WordSearch */,
-				674D426E27A8049E00061C70 /* BrowseDictionary */,
 				6711A2C92797981B0094B532 /* English Helper.entitlements */,
 				67FD9D402796666E00EF434F /* English_HelperApp.swift */,
 				67FD9D442796666F00EF434F /* Assets.xcassets */,
@@ -402,6 +407,7 @@
 				67FD9D742796691400EF434F /* Components */,
 				67ADE04327B7514100BEAC22 /* Resources */,
 				67FD9D462796666F00EF434F /* Preview Content */,
+				674D426E27A8049E00061C70 /* BrowseDictionary */,
 				6703FFE6279A49FA00C4FADB /* PictureGame */,
 			);
 			path = "English Helper";
@@ -609,6 +615,7 @@
 				67D892BD27AF75A1006CD0CB /* GridePictureItem.swift in Sources */,
 				6799875927BA9754001C9B9E /* WordSearch.swift in Sources */,
 				679E23A5279BAFEF00CB8A76 /* PictureFile.swift in Sources */,
+				67A933A227BB0FEC00BF0C79 /* WordSearchGameView.swift in Sources */,
 				67ADE05727B7ED8D00BEAC22 /* Line.swift in Sources */,
 				679E23AB279C4BAA00CB8A76 /* PictureExam.swift in Sources */,
 				6781236C27AAA17200E4F66F /* RealmManager.swift in Sources */,
@@ -628,6 +635,7 @@
 				6709506D27B85B8B005B056D /* WordListGrid.swift in Sources */,
 				679E23A1279BA49200CB8A76 /* Chapter.swift in Sources */,
 				679E23A3279BAFDA00CB8A76 /* Topic.swift in Sources */,
+				67A933A427BB10A600BF0C79 /* WordCell.swift in Sources */,
 				679E23A9279BB94100CB8A76 /* PictureGameViewModel.swift in Sources */,
 				67ADE05527B7E83A00BEAC22 /* WordGridGenerator.swift in Sources */,
 			);

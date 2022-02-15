@@ -22,4 +22,7 @@ class WordSearchViewModel:ObservableObject{
         grid = manager.grid
     }
     
+    func toggleGridCell(cell: Cell){
+        grid[cell.row][cell.column].isSelected.toggle()
+    }
 }

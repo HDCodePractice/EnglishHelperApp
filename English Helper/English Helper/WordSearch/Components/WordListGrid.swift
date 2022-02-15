@@ -16,6 +16,9 @@ struct WordListGrid: View {
                 HStack{
                     ForEach (row){ c in
                         GridCell(cell: c)
+                            .onTapGesture {
+                                vm.toggleGridCell(cell: c)
+                            }
                     }
                 }
             }

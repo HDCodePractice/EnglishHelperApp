@@ -12,6 +12,8 @@ typealias WordGrid = [[Cell]]
 struct Cell: Hashable, Identifiable {
     var id : UUID = UUID()
     var character : Character = "#"
+    var row : Int
+    var column : Int
     var title : String {
         return String(character)
     }

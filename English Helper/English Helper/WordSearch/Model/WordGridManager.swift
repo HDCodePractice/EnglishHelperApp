@@ -20,10 +20,10 @@ class WordGridManager{
         let generator = WordGridGenerator(words: words, row: row, column: column)
         if let g = generator.generate(){
             grid = []
-            for row in g{
+            for r in 0..<g.count{
                 var wordGridRow = [Cell]()
-                for c in row{
-                    wordGridRow.append(Cell(character: c))
+                for c in 0..<g[r].count{
+                    wordGridRow.append(Cell(character: g[r][c],row: r,column: c))
                 }
                 grid.append(wordGridRow)
             }

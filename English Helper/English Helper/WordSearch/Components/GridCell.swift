@@ -21,6 +21,6 @@ struct GridCell: View {
 
 struct GridCell_Previews: PreviewProvider {
     static var previews: some View {
-        GridCell(cell: Cell(character: "H"))
+        GridCell(cell: Cell(character: "H",row: 0,column: 0))
     }
 }
