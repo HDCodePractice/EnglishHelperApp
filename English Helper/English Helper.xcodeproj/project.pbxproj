@@ -24,6 +24,8 @@
 		6709507527B8AA28005B056D /* GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709507427B8AA28005B056D /* GridCell.swift */; };
 		6710C44627AE34F500C5CB99 /* ListPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6710C44527AE34F500C5CB99 /* ListPictureView.swift */; };
 		6718F32427B225E500BD857B /* RealmManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6718F32327B225E500BD857B /* RealmManagerTests.swift */; };
+		672E6B7327BD250A00DC3742 /* English Helper-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 672E6B7127BD250A00DC3742 /* English Helper-InfoPlist.strings */; };
+		672E6B7627BD250A00DC3742 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 672E6B7427BD250A00DC3742 /* Localizable.strings */; };
 		673ABE0A27B605BB006DA515 /* EnumPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673ABE0927B605BB006DA515 /* EnumPicker.swift */; };
 		674D427327A8061500061C70 /* ListTopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674D427227A8061500061C70 /* ListTopicView.swift */; };
 		674D427527A8065400061C70 /* BrowseDictionaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674D427427A8065400061C70 /* BrowseDictionaryViewModel.swift */; };
@@ -106,6 +108,8 @@
 		6710C44527AE34F500C5CB99 /* ListPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPictureView.swift; sourceTree = "<group>"; };
 		6711A2C92797981B0094B532 /* English Helper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "English Helper.entitlements"; sourceTree = "<group>"; };
 		6718F32327B225E500BD857B /* RealmManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManagerTests.swift; sourceTree = "<group>"; };
+		672E6B7227BD250A00DC3742 /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-US"; path = "en-US.lproj/English Helper-InfoPlist.strings"; sourceTree = "<group>"; };
+		672E6B7527BD250A00DC3742 /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-US"; path = "en-US.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		673ABE0927B605BB006DA515 /* EnumPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumPicker.swift; sourceTree = "<group>"; };
 		674D427227A8061500061C70 /* ListTopicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTopicView.swift; sourceTree = "<group>"; };
 		674D427427A8065400061C70 /* BrowseDictionaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseDictionaryViewModel.swift; sourceTree = "<group>"; };
@@ -272,6 +276,15 @@
 			path = PictureGame;
 			sourceTree = "<group>";
 		};
+		672E6B7727BD251600DC3742 /* en-US */ = {
+			isa = PBXGroup;
+			children = (
+				672E6B7427BD250A00DC3742 /* Localizable.strings */,
+				672E6B7127BD250A00DC3742 /* English Helper-InfoPlist.strings */,
+			);
+			path = "en-US";
+			sourceTree = "<group>";
+		};
 		674D426E27A8049E00061C70 /* BrowseDictionary */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +323,7 @@
 		67ADE04327B7514100BEAC22 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				672E6B7727BD251600DC3742 /* en-US */,
 				67ADE04D27B76D2100BEAC22 /* zh-cn */,
 			);
 			path = Resources;
@@ -548,6 +562,7 @@
 				en,
 				Base,
 				"zh-Hans",
+				"en-US",
 			);
 			mainGroup = 67FD9D342796666E00EF434F;
 			packageReferences = (
@@ -575,7 +590,9 @@
 				67ADE04C27B76CCE00BEAC22 /* Localizable.strings in Resources */,
 				67FD9D482796666F00EF434F /* Preview Assets.xcassets in Resources */,
 				67FD9D452796666F00EF434F /* Assets.xcassets in Resources */,
+				672E6B7627BD250A00DC3742 /* Localizable.strings in Resources */,
 				67ADE04927B76CCE00BEAC22 /* English Helper-InfoPlist.strings in Resources */,
+				672E6B7327BD250A00DC3742 /* English Helper-InfoPlist.strings in Resources */,
 				6763B56E27A4EF30000E98EC /* example_picture.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -685,6 +702,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		672E6B7127BD250A00DC3742 /* English Helper-InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				672E6B7227BD250A00DC3742 /* en-US */,
+			);
+			name = "English Helper-InfoPlist.strings";
+			sourceTree = "<group>";
+		};
+		672E6B7427BD250A00DC3742 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				672E6B7527BD250A00DC3742 /* en-US */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		67ADE04727B76CCE00BEAC22 /* English Helper-InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
