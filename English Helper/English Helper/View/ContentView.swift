@@ -16,11 +16,11 @@ struct ContentView: View {
                 } label: {
                     PrimaryButton(text: "Picture Game")
                 }
-                NavigationLink{
-                    WordSearch()
-                } label: {
-                    PrimaryButton(text: "Word Search")
-                }
+//                NavigationLink{
+//                    WordSearch()
+//                } label: {
+//                    PrimaryButton(text: "Word Search")
+//                }
                 NavigationLink{
                     GrammarListView()
                 } label: {
