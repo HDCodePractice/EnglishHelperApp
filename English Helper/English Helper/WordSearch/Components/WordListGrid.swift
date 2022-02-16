@@ -8,22 +8,35 @@
 import SwiftUI
 
 struct WordListGrid: View {
-    @EnvironmentObject var vm : WordSearchViewModel 
+    @EnvironmentObject var vm : WordSearchViewModel
     
     var body: some View {
-        VStack{
-            ForEach (vm.grid,id:\.self){ row in
-                HStack{
-                    ForEach (row){ c in
-                        GridCell(cell: c)
-                            .onTapGesture {
-                                vm.toggleGridCell(cell: c)
+        GeometryReader{ proxy in
+            ZStack{
+                VStack{
+                    ForEach (vm.grid,id:\.self){ row in
+                        HStack{
+                            ForEach (row){ c in
+                                GridCell(cell: c)
+                                    .onTapGesture {
+                                        vm.toggleGridCell(cell: c)
+                                    }
                             }
+                        }
                     }
                 }
+                Line(
+                    cellSize: CGSize(width: proxy.size.width/10, height: proxy.size.height/10),
+                    startPos: Position(row: 0, col: 0),
+                    endPos: Position(row: 9, col: 9)
+                )
+                Line(
+                    cellSize: CGSize(width: proxy.size.width/10, height: proxy.size.height/10),
+                    startPos: Position(row: 0, col: 8),
+                    endPos: Position(row: 8, col: 0)
+                )
             }
         }
-        .padding()
     }
 }
 

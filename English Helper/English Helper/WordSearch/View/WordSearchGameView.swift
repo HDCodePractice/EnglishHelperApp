@@ -19,6 +19,7 @@ struct WordSearchGameView: View {
                 }
             }
             WordListGrid()
+                .padding()
                 .environmentObject(vm)
         }
     }
