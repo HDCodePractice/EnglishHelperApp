@@ -18,8 +18,14 @@
 		670588A52798C7D6006F8C0E /* LoadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670588A42798C7D6006F8C0E /* LoadData.swift */; };
 		670588A72798C938006F8C0E /* Grammar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670588A62798C938006F8C0E /* Grammar.swift */; };
 		670588A92798C995006F8C0E /* GrammarListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670588A82798C995006F8C0E /* GrammarListViewModel.swift */; };
+		6709506D27B85B8B005B056D /* WordListGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709506C27B85B8B005B056D /* WordListGrid.swift */; };
+		6709507127B86072005B056D /* WordGridGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709507027B86072005B056D /* WordGridGeneratorTests.swift */; };
+		6709507327B867B0005B056D /* WordSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709507227B867B0005B056D /* WordSearchViewModel.swift */; };
+		6709507527B8AA28005B056D /* GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709507427B8AA28005B056D /* GridCell.swift */; };
 		6710C44627AE34F500C5CB99 /* ListPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6710C44527AE34F500C5CB99 /* ListPictureView.swift */; };
 		6718F32427B225E500BD857B /* RealmManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6718F32327B225E500BD857B /* RealmManagerTests.swift */; };
+		672E6B7327BD250A00DC3742 /* English Helper-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 672E6B7127BD250A00DC3742 /* English Helper-InfoPlist.strings */; };
+		672E6B7627BD250A00DC3742 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 672E6B7427BD250A00DC3742 /* Localizable.strings */; };
 		673ABE0A27B605BB006DA515 /* EnumPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673ABE0927B605BB006DA515 /* EnumPicker.swift */; };
 		674D427327A8061500061C70 /* ListTopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674D427227A8061500061C70 /* ListTopicView.swift */; };
 		674D427527A8065400061C70 /* BrowseDictionaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674D427427A8065400061C70 /* BrowseDictionaryViewModel.swift */; };
@@ -27,17 +33,26 @@
 		6781236827AA9E2700E4F66F /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 6781236727AA9E2700E4F66F /* Realm */; };
 		6781236A27AA9E2700E4F66F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6781236927AA9E2700E4F66F /* RealmSwift */; };
 		6781236C27AAA17200E4F66F /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6781236B27AAA17200E4F66F /* RealmManager.swift */; };
+		6799875527BA85C1001C9B9E /* WordGridManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6799875427BA85C1001C9B9E /* WordGridManager.swift */; };
+		6799875727BA9199001C9B9E /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6799875627BA9199001C9B9E /* Cell.swift */; };
+		6799875927BA9754001C9B9E /* WordSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6799875827BA9754001C9B9E /* WordSearch.swift */; };
 		679E23A1279BA49200CB8A76 /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23A0279BA49200CB8A76 /* Chapter.swift */; };
 		679E23A3279BAFDA00CB8A76 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23A2279BAFDA00CB8A76 /* Topic.swift */; };
 		679E23A5279BAFEF00CB8A76 /* PictureFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23A4279BAFEF00CB8A76 /* PictureFile.swift */; };
 		679E23A7279BB41500CB8A76 /* PictureGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23A6279BB41500CB8A76 /* PictureGameManager.swift */; };
 		679E23A9279BB94100CB8A76 /* PictureGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23A8279BB94100CB8A76 /* PictureGameViewModel.swift */; };
 		679E23AB279C4BAA00CB8A76 /* PictureExam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E23AA279C4BAA00CB8A76 /* PictureExam.swift */; };
+		67A6E84427BB029F001013A7 /* WordGridManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A6E84327BB029F001013A7 /* WordGridManagerTests.swift */; };
+		67A933A227BB0FEC00BF0C79 /* WordSearchGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A933A127BB0FEC00BF0C79 /* WordSearchGameView.swift */; };
+		67A933A427BB10A600BF0C79 /* WordCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A933A327BB10A600BF0C79 /* WordCellView.swift */; };
 		67ADE03C27B7402D00BEAC22 /* GameOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67ADE03B27B7402D00BEAC22 /* GameOptionsView.swift */; };
 		67ADE04927B76CCE00BEAC22 /* English Helper-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67ADE04727B76CCE00BEAC22 /* English Helper-InfoPlist.strings */; };
 		67ADE04C27B76CCE00BEAC22 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67ADE04A27B76CCE00BEAC22 /* Localizable.strings */; };
+		67ADE05527B7E83A00BEAC22 /* WordGridGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67ADE05427B7E83A00BEAC22 /* WordGridGenerator.swift */; };
+		67ADE05727B7ED8D00BEAC22 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67ADE05627B7ED8D00BEAC22 /* Line.swift */; };
 		67BA8A16279F68EB00F4B743 /* ActivityView in Frameworks */ = {isa = PBXBuildFile; productRef = 67BA8A15279F68EB00F4B743 /* ActivityView */; };
 		67C29B4227A2115900877C58 /* TranslateView in Frameworks */ = {isa = PBXBuildFile; productRef = 67C29B4127A2115900877C58 /* TranslateView */; };
+		67C96EA227BB6DAA00A126C1 /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C96EA127BB6DAA00A126C1 /* WordCell.swift */; };
 		67D3D6D4279D91590075BBF8 /* AnswerGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D3D6D3279D91590075BBF8 /* AnswerGrid.swift */; };
 		67D4A71927B3E2B400642686 /* PictureGameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D4A71827B3E2B400642686 /* PictureGameViewModelTests.swift */; };
 		67D892BD27AF75A1006CD0CB /* GridePictureItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D892BC27AF75A1006CD0CB /* GridePictureItem.swift */; };
@@ -86,23 +101,38 @@
 		670588A42798C7D6006F8C0E /* LoadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadData.swift; sourceTree = "<group>"; };
 		670588A62798C938006F8C0E /* Grammar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grammar.swift; sourceTree = "<group>"; };
 		670588A82798C995006F8C0E /* GrammarListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrammarListViewModel.swift; sourceTree = "<group>"; };
+		6709506C27B85B8B005B056D /* WordListGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListGrid.swift; sourceTree = "<group>"; };
+		6709507027B86072005B056D /* WordGridGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGridGeneratorTests.swift; sourceTree = "<group>"; };
+		6709507227B867B0005B056D /* WordSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSearchViewModel.swift; sourceTree = "<group>"; };
+		6709507427B8AA28005B056D /* GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCell.swift; sourceTree = "<group>"; };
 		6710C44527AE34F500C5CB99 /* ListPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPictureView.swift; sourceTree = "<group>"; };
 		6711A2C92797981B0094B532 /* English Helper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "English Helper.entitlements"; sourceTree = "<group>"; };
 		6718F32327B225E500BD857B /* RealmManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManagerTests.swift; sourceTree = "<group>"; };
+		672E6B7227BD250A00DC3742 /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-US"; path = "en-US.lproj/English Helper-InfoPlist.strings"; sourceTree = "<group>"; };
+		672E6B7527BD250A00DC3742 /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-US"; path = "en-US.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		673ABE0927B605BB006DA515 /* EnumPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumPicker.swift; sourceTree = "<group>"; };
 		674D427227A8061500061C70 /* ListTopicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTopicView.swift; sourceTree = "<group>"; };
 		674D427427A8065400061C70 /* BrowseDictionaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseDictionaryViewModel.swift; sourceTree = "<group>"; };
 		6763B56D27A4EF30000E98EC /* example_picture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = example_picture.json; sourceTree = "<group>"; };
 		6781236B27AAA17200E4F66F /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		6799875427BA85C1001C9B9E /* WordGridManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGridManager.swift; sourceTree = "<group>"; };
+		6799875627BA9199001C9B9E /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		6799875827BA9754001C9B9E /* WordSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSearch.swift; sourceTree = "<group>"; };
 		679E23A0279BA49200CB8A76 /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		679E23A2279BAFDA00CB8A76 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		679E23A4279BAFEF00CB8A76 /* PictureFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureFile.swift; sourceTree = "<group>"; };
 		679E23A6279BB41500CB8A76 /* PictureGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameManager.swift; sourceTree = "<group>"; };
 		679E23A8279BB94100CB8A76 /* PictureGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameViewModel.swift; sourceTree = "<group>"; };
 		679E23AA279C4BAA00CB8A76 /* PictureExam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureExam.swift; sourceTree = "<group>"; };
+		67A6E84327BB029F001013A7 /* WordGridManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGridManagerTests.swift; sourceTree = "<group>"; };
+		67A933A127BB0FEC00BF0C79 /* WordSearchGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSearchGameView.swift; sourceTree = "<group>"; };
+		67A933A327BB10A600BF0C79 /* WordCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCellView.swift; sourceTree = "<group>"; };
 		67ADE03B27B7402D00BEAC22 /* GameOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOptionsView.swift; sourceTree = "<group>"; };
 		67ADE04827B76CCE00BEAC22 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/English Helper-InfoPlist.strings"; sourceTree = "<group>"; };
 		67ADE04B27B76CCE00BEAC22 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		67ADE05427B7E83A00BEAC22 /* WordGridGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGridGenerator.swift; sourceTree = "<group>"; };
+		67ADE05627B7ED8D00BEAC22 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		67C96EA127BB6DAA00A126C1 /* WordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
 		67D3D6D3279D91590075BBF8 /* AnswerGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerGrid.swift; sourceTree = "<group>"; };
 		67D4A71827B3E2B400642686 /* PictureGameViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameViewModelTests.swift; sourceTree = "<group>"; };
 		67D892BC27AF75A1006CD0CB /* GridePictureItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridePictureItem.swift; sourceTree = "<group>"; };
@@ -228,6 +258,33 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		6709506E27B85EDD005B056D /* WordSearch */ = {
+			isa = PBXGroup;
+			children = (
+				6709507027B86072005B056D /* WordGridGeneratorTests.swift */,
+				67A6E84327BB029F001013A7 /* WordGridManagerTests.swift */,
+			);
+			path = WordSearch;
+			sourceTree = "<group>";
+		};
+		6709506F27B85EEE005B056D /* PictureGame */ = {
+			isa = PBXGroup;
+			children = (
+				6718F32327B225E500BD857B /* RealmManagerTests.swift */,
+				67D4A71827B3E2B400642686 /* PictureGameViewModelTests.swift */,
+			);
+			path = PictureGame;
+			sourceTree = "<group>";
+		};
+		672E6B7727BD251600DC3742 /* en-US */ = {
+			isa = PBXGroup;
+			children = (
+				672E6B7427BD250A00DC3742 /* Localizable.strings */,
+				672E6B7127BD250A00DC3742 /* English Helper-InfoPlist.strings */,
+			);
+			path = "en-US";
+			sourceTree = "<group>";
+		};
 		674D426E27A8049E00061C70 /* BrowseDictionary */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +323,7 @@
 		67ADE04327B7514100BEAC22 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				672E6B7727BD251600DC3742 /* en-US */,
 				67ADE04D27B76D2100BEAC22 /* zh-cn */,
 			);
 			path = Resources;
@@ -280,6 +338,48 @@
 			path = "zh-cn";
 			sourceTree = "<group>";
 		};
+		67ADE05027B7E6FC00BEAC22 /* WordSearch */ = {
+			isa = PBXGroup;
+			children = (
+				67ADE05327B7E7B700BEAC22 /* Components */,
+				67ADE05227B7E7AD00BEAC22 /* View */,
+				67ADE05127B7E7A400BEAC22 /* Model */,
+			);
+			path = WordSearch;
+			sourceTree = "<group>";
+		};
+		67ADE05127B7E7A400BEAC22 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				67ADE05427B7E83A00BEAC22 /* WordGridGenerator.swift */,
+				6709507227B867B0005B056D /* WordSearchViewModel.swift */,
+				6799875427BA85C1001C9B9E /* WordGridManager.swift */,
+				6799875627BA9199001C9B9E /* Cell.swift */,
+				67C96EA127BB6DAA00A126C1 /* WordCell.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		67ADE05227B7E7AD00BEAC22 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6799875827BA9754001C9B9E /* WordSearch.swift */,
+				67A933A127BB0FEC00BF0C79 /* WordSearchGameView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		67ADE05327B7E7B700BEAC22 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				67ADE05627B7ED8D00BEAC22 /* Line.swift */,
+				67A933A327BB10A600BF0C79 /* WordCellView.swift */,
+				6709506C27B85B8B005B056D /* WordListGrid.swift */,
+				6709507427B8AA28005B056D /* GridCell.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		67E7965727B71A7B00B7E651 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,11 +392,11 @@
 		67FD9D342796666E00EF434F = {
 			isa = PBXGroup;
 			children = (
-				6705889C2798C601006F8C0E /* Packages */,
 				67FD9D3F2796666E00EF434F /* English Helper */,
 				67FD9D502796666F00EF434F /* English HelperTests */,
 				67FD9D5A2796666F00EF434F /* English HelperUITests */,
 				67FD9D3E2796666E00EF434F /* Products */,
+				6705889C2798C601006F8C0E /* Packages */,
 				6703FFF2279A510C00C4FADB /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -314,7 +414,7 @@
 		67FD9D3F2796666E00EF434F /* English Helper */ = {
 			isa = PBXGroup;
 			children = (
-				674D426E27A8049E00061C70 /* BrowseDictionary */,
+				67ADE05027B7E6FC00BEAC22 /* WordSearch */,
 				6711A2C92797981B0094B532 /* English Helper.entitlements */,
 				67FD9D402796666E00EF434F /* English_HelperApp.swift */,
 				67FD9D442796666F00EF434F /* Assets.xcassets */,
@@ -324,6 +424,7 @@
 				67FD9D742796691400EF434F /* Components */,
 				67ADE04327B7514100BEAC22 /* Resources */,
 				67FD9D462796666F00EF434F /* Preview Content */,
+				674D426E27A8049E00061C70 /* BrowseDictionary */,
 				6703FFE6279A49FA00C4FADB /* PictureGame */,
 			);
 			path = "English Helper";
@@ -341,8 +442,8 @@
 		67FD9D502796666F00EF434F /* English HelperTests */ = {
 			isa = PBXGroup;
 			children = (
-				6718F32327B225E500BD857B /* RealmManagerTests.swift */,
-				67D4A71827B3E2B400642686 /* PictureGameViewModelTests.swift */,
+				6709506F27B85EEE005B056D /* PictureGame */,
+				6709506E27B85EDD005B056D /* WordSearch */,
 			);
 			path = "English HelperTests";
 			sourceTree = "<group>";
@@ -461,6 +562,7 @@
 				en,
 				Base,
 				"zh-Hans",
+				"en-US",
 			);
 			mainGroup = 67FD9D342796666E00EF434F;
 			packageReferences = (
@@ -488,7 +590,9 @@
 				67ADE04C27B76CCE00BEAC22 /* Localizable.strings in Resources */,
 				67FD9D482796666F00EF434F /* Preview Assets.xcassets in Resources */,
 				67FD9D452796666F00EF434F /* Assets.xcassets in Resources */,
+				672E6B7627BD250A00DC3742 /* Localizable.strings in Resources */,
 				67ADE04927B76CCE00BEAC22 /* English Helper-InfoPlist.strings in Resources */,
+				672E6B7327BD250A00DC3742 /* English Helper-InfoPlist.strings in Resources */,
 				6763B56E27A4EF30000E98EC /* example_picture.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,15 +622,22 @@
 				6703FFEF279A4E3800C4FADB /* PictureGameProgressView.swift in Sources */,
 				670588A12798C717006F8C0E /* GrammarListView.swift in Sources */,
 				670588A52798C7D6006F8C0E /* LoadData.swift in Sources */,
+				6709507327B867B0005B056D /* WordSearchViewModel.swift in Sources */,
 				674D427327A8061500061C70 /* ListTopicView.swift in Sources */,
 				67FD9D432796666E00EF434F /* ContentView.swift in Sources */,
 				674D427527A8065400061C70 /* BrowseDictionaryViewModel.swift in Sources */,
 				6703FFEA279A4ADA00C4FADB /* Answer.swift in Sources */,
+				6799875527BA85C1001C9B9E /* WordGridManager.swift in Sources */,
+				6799875727BA9199001C9B9E /* Cell.swift in Sources */,
 				6705889F2798C67B006F8C0E /* WebView.swift in Sources */,
 				67ADE03C27B7402D00BEAC22 /* GameOptionsView.swift in Sources */,
 				670588A92798C995006F8C0E /* GrammarListViewModel.swift in Sources */,
+				67C96EA227BB6DAA00A126C1 /* WordCell.swift in Sources */,
 				67D892BD27AF75A1006CD0CB /* GridePictureItem.swift in Sources */,
+				6799875927BA9754001C9B9E /* WordSearch.swift in Sources */,
 				679E23A5279BAFEF00CB8A76 /* PictureFile.swift in Sources */,
+				67A933A227BB0FEC00BF0C79 /* WordSearchGameView.swift in Sources */,
+				67ADE05727B7ED8D00BEAC22 /* Line.swift in Sources */,
 				679E23AB279C4BAA00CB8A76 /* PictureExam.swift in Sources */,
 				6781236C27AAA17200E4F66F /* RealmManager.swift in Sources */,
 				6703FFE5279A49F000C4FADB /* AnswerRow.swift in Sources */,
@@ -536,14 +647,18 @@
 				6710C44627AE34F500C5CB99 /* ListPictureView.swift in Sources */,
 				67FD9D762796695A00EF434F /* PrimaryButton.swift in Sources */,
 				67E7965927B71AA900B7E651 /* AboutView.swift in Sources */,
+				6709507527B8AA28005B056D /* GridCell.swift in Sources */,
 				679E23A7279BB41500CB8A76 /* PictureGameManager.swift in Sources */,
 				67FD9D412796666E00EF434F /* English_HelperApp.swift in Sources */,
 				673ABE0A27B605BB006DA515 /* EnumPicker.swift in Sources */,
 				6703FFED279A4C6400C4FADB /* PictureGame.swift in Sources */,
 				670588A72798C938006F8C0E /* Grammar.swift in Sources */,
+				6709506D27B85B8B005B056D /* WordListGrid.swift in Sources */,
 				679E23A1279BA49200CB8A76 /* Chapter.swift in Sources */,
 				679E23A3279BAFDA00CB8A76 /* Topic.swift in Sources */,
+				67A933A427BB10A600BF0C79 /* WordCellView.swift in Sources */,
 				679E23A9279BB94100CB8A76 /* PictureGameViewModel.swift in Sources */,
+				67ADE05527B7E83A00BEAC22 /* WordGridGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,9 +667,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				67FD9D772796695A00EF434F /* PrimaryButton.swift in Sources */,
+				67A6E84427BB029F001013A7 /* WordGridManagerTests.swift in Sources */,
 				6718F32427B225E500BD857B /* RealmManagerTests.swift in Sources */,
 				67D4A71927B3E2B400642686 /* PictureGameViewModelTests.swift in Sources */,
 				67FD9D72279668EC00EF434F /* ProgressBar.swift in Sources */,
+				6709507127B86072005B056D /* WordGridGeneratorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +702,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		672E6B7127BD250A00DC3742 /* English Helper-InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				672E6B7227BD250A00DC3742 /* en-US */,
+			);
+			name = "English Helper-InfoPlist.strings";
+			sourceTree = "<group>";
+		};
+		672E6B7427BD250A00DC3742 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				672E6B7527BD250A00DC3742 /* en-US */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		67ADE04727B76CCE00BEAC22 /* English Helper-InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -728,7 +861,7 @@
 				CODE_SIGN_ENTITLEMENTS = "English Helper/English Helper.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"English Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4W3MN6QHA;
 				ENABLE_PREVIEWS = YES;
@@ -764,7 +897,7 @@
 				CODE_SIGN_ENTITLEMENTS = "English Helper/English Helper.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"English Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4W3MN6QHA;
 				ENABLE_PREVIEWS = YES;
