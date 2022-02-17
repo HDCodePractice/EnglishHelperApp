@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct DrawLine{
+struct DrawLine: Identifiable{
     var id = UUID()
     var startPosition : Position
     var endPosition : Position

@@ -24,6 +24,9 @@ class WordSearchViewModel:ObservableObject{
         manager.generatorWordGrid()
         grid = manager.grid
         words = manager.getWordsCells()
+        
+        lines.append(DrawLine(startPosition: Position(row: 0, col: 0), endPosition: Position(row: 9, col: 9), color: .red))
+        lines.append(DrawLine(startPosition: Position(row: 0, col: 9), endPosition: Position(row: 9, col: 0), color: .blue))
     }
     
     func toggleGridCell(cell: Cell){
@@ -43,6 +46,6 @@ class WordSearchViewModel:ObservableObject{
         tempLine = DrawLine(
                 startPosition: Position(row: startRow, col: startCol),
                 endPosition: Position(row: endRow, col: endCol),
-                color: .red)
+                color: .yellow)
     }
 }
