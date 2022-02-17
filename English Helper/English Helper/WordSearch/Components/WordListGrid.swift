@@ -51,6 +51,9 @@ struct WordListGrid: View {
             .onChanged{ value in
                 vm.drawLine(start: value.startLocation, location: value.location, size: size)
             }
+            .onEnded{_ in 
+                vm.tempLine = nil
+            }
     }
 }
 

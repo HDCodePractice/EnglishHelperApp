@@ -16,7 +16,7 @@ class WordSearchViewModel:ObservableObject{
     @Published var words : [WordCell] = []
     @Published var lines : [DrawLine] = []
     @Published var tempLine : DrawLine?
-        
+    
     init(){
         manager.words = ["hello","world","search","words"]
         manager.row = row
@@ -43,9 +43,18 @@ class WordSearchViewModel:ObservableObject{
         
         let endCol = Int(location.x/(size.width/CGFloat(row)))
         let endRow = Int(location.y/(size.height/CGFloat(column)))
-        tempLine = DrawLine(
-                startPosition: Position(row: startRow, col: startCol),
-                endPosition: Position(row: endRow, col: endCol),
+        
+        let startPos = Position(row: startRow, col: startCol)
+        let endPos = Position(row: endRow, col: endCol)
+        
+        
+        if tempLine == nil {
+            tempLine = DrawLine(
+                startPosition: startPos,
+                endPosition: endPos,
                 color: .yellow)
+        }else{
+            let _ = tempLine?.attempt(endPos: endPos)
+        }
     }
 }
