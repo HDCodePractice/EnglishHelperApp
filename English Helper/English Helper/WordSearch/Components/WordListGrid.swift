@@ -26,17 +26,41 @@ struct WordListGrid: View {
                     }
                 }
                 Line(
-                    cellSize: CGSize(width: proxy.size.width/10, height: proxy.size.height/10),
+                    cellSize: vm.getCellSize(size: proxy.size),
                     startPos: Position(row: 0, col: 0),
-                    endPos: Position(row: 9, col: 9)
+                    endPos: Position(row: 9, col: 9),
+                    lineStyle: LineStyle(opacity: 0.5, lineWidth: vm.getCellSize(size: proxy.size).width, strokeColor: .red)
                 )
                 Line(
-                    cellSize: CGSize(width: proxy.size.width/10, height: proxy.size.height/10),
+                    cellSize: vm.getCellSize(size: proxy.size),
                     startPos: Position(row: 0, col: 8),
-                    endPos: Position(row: 8, col: 0)
+                    endPos: Position(row: 8, col: 0),
+                    lineStyle: LineStyle(opacity: 0.5, lineWidth: vm.getCellSize(size: proxy.size).width, strokeColor: .blue)
                 )
+                Line(
+                    cellSize: vm.getCellSize(size: proxy.size),
+                    startPos: Position(row: 3, col: 0),
+                    endPos: Position(row: 4, col: 8),
+                    lineStyle: LineStyle(opacity: 0.5, lineWidth: vm.getCellSize(size: proxy.size).width, strokeColor: .green)
+                )
+                if let tempLine = vm.tempLine{
+                    Line(
+                        cellSize: vm.getCellSize(size: proxy.size),
+                        startPos: tempLine.startPosition,
+                        endPos: tempLine.endPosition,
+                        lineStyle: LineStyle(opacity: 0.5, lineWidth: vm.getCellSize(size: proxy.size).width, strokeColor: tempLine.color)
+                    )
+                }
             }
+            .gesture(getGesture(size: proxy.size))
         }
+    }
+    
+    func getGesture(size: CGSize) -> some Gesture {
+        return DragGesture()
+            .onChanged{ value in
+                vm.drawLine(start: value.startLocation, location: value.location, size: size)
+            }
     }
 }
 
