@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct WordCell: Hashable, Identifiable {
     var id : UUID = UUID()
     var word : String
     var isSelected : Bool = false
+    var color : Color = .clear
 }

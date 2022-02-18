@@ -16,6 +16,7 @@ class WordSearchViewModel:ObservableObject{
     @Published var words : [WordCell] = []
     @Published var lines : [DrawLine] = []
     @Published var tempLine : DrawLine?
+    let colors : [Color] = [.red,.blue,.green,.yellow,.pink]
     
     init(){
         manager.words = ["hello","world","search","words"]
@@ -24,9 +25,6 @@ class WordSearchViewModel:ObservableObject{
         manager.generatorWordGrid()
         grid = manager.grid
         words = manager.getWordsCells()
-        
-        lines.append(DrawLine(startPosition: Position(row: 0, col: 0), endPosition: Position(row: 9, col: 9), color: .red))
-        lines.append(DrawLine(startPosition: Position(row: 0, col: 9), endPosition: Position(row: 9, col: 0), color: .blue))
     }
     
     func toggleGridCell(cell: Cell){
@@ -47,7 +45,6 @@ class WordSearchViewModel:ObservableObject{
         let startPos = Position(row: startRow, col: startCol)
         let endPos = Position(row: endRow, col: endCol)
         
-        
         if tempLine == nil {
             tempLine = DrawLine(
                 startPosition: startPos,
@@ -56,5 +53,20 @@ class WordSearchViewModel:ObservableObject{
         }else{
             let _ = tempLine?.attempt(endPos: endPos)
         }
+        
+        if let word = manager.checkWordByPosition(start: startPos, end: endPos), let tempLine=tempLine{
+            if !lines.contains(where: { $0.id == tempLine.id }){
+                lines.append(tempLine)
+                lines[lines.count - 1].color = colors[lines.count - 1]
+            }
+            if let index = words.firstIndex(where: {$0.word == word}){
+                words[index].isSelected = true
+                words[index].color = colors[lines.count - 1]
+            }
+        }
+    }
+    
+    func finishLine(start: CGPoint, location: CGPoint, size: CGSize){
+        drawLine(start: start, location: location, size: size)
     }
 }

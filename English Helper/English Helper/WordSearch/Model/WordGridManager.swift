@@ -10,9 +10,11 @@ import Foundation
 class WordGridManager{
     static let instance = WordGridManager()
     var words : [String] = []
+    var wordsMap: [String: String] = [:]
     var row : Int = 0
     var column : Int = 0
     var grid : WordGrid = []
+    var g : Grid = []
     
     init(){}
     
@@ -24,9 +26,19 @@ class WordGridManager{
         return wordCells
     }
     
+    func checkWordByPosition(start: Position,end: Position) -> String?{
+        // "startRow:startCol:endRow:endCol"
+        let path = "\(start.row):\(start.col):\(end.row):\(end.col)"
+        if let word = wordsMap[path] {
+            return word
+        }
+        return nil
+    }
+    
     func generatorWordGrid(){
         let generator = WordGridGenerator(words: words, row: row, column: column)
         if let g = generator.generate(){
+            self.g = g
             grid = []
             for r in 0..<g.count{
                 var wordGridRow = [Cell]()
@@ -35,6 +47,7 @@ class WordGridManager{
                 }
                 grid.append(wordGridRow)
             }
+            wordsMap = generator.wordsMap
         }
     }
 }

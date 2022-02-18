@@ -17,9 +17,14 @@ struct WordCellView: View {
                 .strikethrough()
                 .italic()
                 .foregroundColor(.secondary)
+                .padding(10)
+                .background(wordCell.color)
+                .opacity(0.5)
+                .cornerRadius(20)
         }else{
             Text(wordCell.word)
                 .foregroundColor(.primary)
+                .padding(10)
         }
         
     }

@@ -31,6 +31,8 @@ class WordGridGeneratorTests: XCTestCase {
         // Then
         XCTAssertEqual(wordGrid!.count, row)
         XCTAssertEqual(wordGrid![0].count, column)
+        print(wordGridGenerator.wordsMap)
+        XCTAssertEqual(wordGridGenerator.wordsMap.count, words.count)
     }
 
     func test_UnitGenerate_NormalWords_shouldReturnNil() throws{
