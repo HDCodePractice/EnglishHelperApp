@@ -417,7 +417,6 @@
 		67FD9D3F2796666E00EF434F /* English Helper */ = {
 			isa = PBXGroup;
 			children = (
-				67ADE05027B7E6FC00BEAC22 /* WordSearch */,
 				6711A2C92797981B0094B532 /* English Helper.entitlements */,
 				67FD9D402796666E00EF434F /* English_HelperApp.swift */,
 				67FD9D442796666F00EF434F /* Assets.xcassets */,
@@ -428,6 +427,7 @@
 				67ADE04327B7514100BEAC22 /* Resources */,
 				67FD9D462796666F00EF434F /* Preview Content */,
 				674D426E27A8049E00061C70 /* BrowseDictionary */,
+				67ADE05027B7E6FC00BEAC22 /* WordSearch */,
 				6703FFE6279A49FA00C4FADB /* PictureGame */,
 			);
 			path = "English Helper";

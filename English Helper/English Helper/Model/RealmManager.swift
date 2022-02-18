@@ -30,6 +30,7 @@ class RealmManager{
         }
     }
     
+    // 以localRealm中的数据为基础，生成用户选择的临时内存数据库memoRealm
     func genExamRealm(){
         memoRealmWordCount = 0
         if let localRealm = localRealm , let memoRealm = memoRealm {
@@ -56,6 +57,21 @@ class RealmManager{
                 memoRealmWordCount += pf.words.count
             }
         }
+    }
+    
+    func genWords(lenght: Int)->[String]{
+        genExamRealm()
+        if let memoRealm = memoRealm{
+            let pictureFiles = memoRealm.objects(LocalPictureFile.self).shuffled().prefix(lenght)
+            var words = [String]()
+            for pf in pictureFiles{
+                if let word = pf.words.randomElement(){
+                    words.append(word)
+                }
+            }
+            return words
+        }
+        return []
     }
     
     /*

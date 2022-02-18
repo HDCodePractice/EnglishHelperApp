@@ -10,19 +10,24 @@ import SwiftUI
 
 class WordSearchViewModel:ObservableObject{
     private let manager = WordGridManager.instance
+    private var realmManager = RealmManager.instance
+    
     @Published var grid : WordGrid = []
     @Published var row : Int = 10
     @Published var column : Int = 10
     @Published var words : [WordCell] = []
     @Published var lines : [DrawLine] = []
     @Published var tempLine : DrawLine?
-    let colors : [Color] = [.red,.blue,.green,.yellow,.pink]
+    let colors : [Color] = [.red,.blue,.green,.yellow,.pink,.mint,.purple,.gray]
     
     init(){
-        manager.words = ["hello","world","search","words"]
+        manager.words = realmManager.genWords(lenght: 4)
         manager.row = row
         manager.column = column
-        manager.generatorWordGrid()
+        while !manager.generatorWordGrid(){
+            column += 1
+            manager.column = column
+        }
         grid = manager.grid
         words = manager.getWordsCells()
     }

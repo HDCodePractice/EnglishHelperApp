@@ -35,7 +35,7 @@ class WordGridManager{
         return nil
     }
     
-    func generatorWordGrid(){
+    func generatorWordGrid() -> Bool{
         let generator = WordGridGenerator(words: words, row: row, column: column)
         if let g = generator.generate(){
             self.g = g
@@ -48,6 +48,8 @@ class WordGridManager{
                 grid.append(wordGridRow)
             }
             wordsMap = generator.wordsMap
+            return true
         }
+        return false
     }
 }
