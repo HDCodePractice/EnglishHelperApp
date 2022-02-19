@@ -30,6 +30,7 @@ struct WordSearch: View {
                 PrimaryButton(text: "Start Game")
                     .padding()
                     .onTapGesture {
+                        vm.startGame()
                         begin.toggle()
                     }
             }

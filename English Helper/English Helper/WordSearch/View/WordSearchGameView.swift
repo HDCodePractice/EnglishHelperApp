@@ -15,18 +15,31 @@ struct WordSearchGameView: View {
             HStack{
                 ForEach (vm.words){ word in
                     WordCellView(wordCell: word)
-
                 }
             }
-            WordListGrid()
-                .environmentObject(vm)
+            ZStack(alignment: .top){
+                Text(vm.selectedWord)
+                    .background(vm.tempLine?.color)
+                WordListGrid()
+                    .padding()
+                    .environmentObject(vm)
+            }
+            
+            PrimaryButton(text: "restart")
+                .padding()
+                .onTapGesture {
+                    vm.startGame()
+                }
         }
     }
 }
 
 struct WordSearchGameView_Previews: PreviewProvider {
     static var previews: some View {
-        WordSearchGameView()
-            .environmentObject(WordSearchViewModel())
+        let vm = WordSearchViewModel()
+        vm.startGame()
+        vm.selectedWord = "TestSelect"
+        return WordSearchGameView()
+            .environmentObject(vm)
     }
 }

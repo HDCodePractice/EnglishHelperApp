@@ -6,9 +6,14 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct WordCell: Hashable, Identifiable {
     var id : UUID = UUID()
-    var word : String
+    var title : String
     var isSelected : Bool = false
+    var color : Color = .clear
+    var word : String {
+        return title.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "'", with: "")
+    }
 }

@@ -7,26 +7,30 @@
 
 import SwiftUI
 
-struct Position {
+struct Position: Equatable {
     var row: Int
     var col: Int
+    
+    static func == (lhs: Position, rhs: Position) -> Bool {
+        return lhs.row == rhs.row && lhs.col == rhs.col
+    }
 }
 
 struct LineStyle {
     var opacity: Double
     var lineWidth: CGFloat
-    var strokeColor: CGColor
+    var strokeColor: Color
 }
 
 struct Line: View {
     var cellSize: CGSize = .zero
-    var startPos: Position?
-    var endPos: Position?
+    var startPos: Position
+    var endPos: Position
     /// Line style
     var lineStyle: LineStyle = LineStyle(
         opacity: 0.5,
         lineWidth: 40,
-        strokeColor: UIColor.blue.cgColor
+        strokeColor: .green
     )
     
     /// Convert a letter at row, col to center point of the cell
@@ -41,16 +45,21 @@ struct Line: View {
     
     var body: some View {
         Path{path in
-            path.move(to: point(at: Position(row: 1, col: 1)))
-            path.addLine(to: point(at: Position(row: 6, col: 6)))
+            path.move(to: point(at: startPos))
+            path.addLine(to: point(at: endPos))
         }
         .stroke(style: StrokeStyle(lineWidth: lineStyle.lineWidth, lineCap: .round))
-        .foregroundColor(.green)
+        .foregroundColor(lineStyle.strokeColor)
+        .opacity(lineStyle.opacity)
     }
 }
 
 struct Line_Previews: PreviewProvider {
     static var previews: some View {
-        Line(cellSize: CGSize(width: 20, height: 20))
+        Line(
+            cellSize: CGSize(width: 20, height: 20),
+            startPos: Position(row: 0, col: 0),
+            endPos: Position(row: 10, col: 10)
+        )
     }
 }
