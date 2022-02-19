@@ -20,16 +20,17 @@ class WordSearchViewModel:ObservableObject{
     @Published var tempLine : DrawLine?
     let colors : [Color] = [.red,.blue,.green,.yellow,.pink,.mint,.purple,.gray]
     
-    init(){
-        manager.words = realmManager.genWords(lenght: 4)
+    init(){}
+    
+    func startGame(){
+        manager.titles = realmManager.genWords(lenght: 4)
+        print("titles: \(manager.titles)")
         manager.row = row
         manager.column = column
-        while !manager.generatorWordGrid(){
-            column += 1
-            manager.column = column
-        }
-        grid = manager.grid
         words = manager.getWordsCells()
+        
+        manager.generatorWordGrid()
+        grid = manager.grid
     }
     
     func toggleGridCell(cell: Cell){

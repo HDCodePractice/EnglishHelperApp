@@ -15,7 +15,6 @@ struct WordSearchGameView: View {
             HStack{
                 ForEach (vm.words){ word in
                     WordCellView(wordCell: word)
-
                 }
             }
             WordListGrid()

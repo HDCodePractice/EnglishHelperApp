@@ -13,16 +13,20 @@ struct WordCellView: View {
     
     var body: some View {
         if wordCell.isSelected{
-            Text(wordCell.word)
+            Text(wordCell.title)
                 .strikethrough()
                 .italic()
                 .foregroundColor(.secondary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.01)
                 .padding(10)
                 .background(wordCell.color)
                 .opacity(0.5)
                 .cornerRadius(20)
         }else{
             Text(wordCell.word)
+                .lineLimit(1)
+                .minimumScaleFactor(0.01)
                 .foregroundColor(.primary)
                 .padding(10)
         }
@@ -32,7 +36,7 @@ struct WordCellView: View {
 
 struct WordCellView_Previews: PreviewProvider {
     static var previews: some View {
-        WordCellView(wordCell: WordCell(word: "hello"))
-        WordCellView(wordCell: WordCell(word: "hello",isSelected: true))
+        WordCellView(wordCell: WordCell(title: "hello"))
+        WordCellView(wordCell: WordCell(title: "hello",isSelected: true))
     }
 }
