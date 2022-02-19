@@ -24,6 +24,12 @@ struct WordSearchGameView: View {
                     .padding()
                     .environmentObject(vm)
             }
+            
+            PrimaryButton(text: "restart")
+                .padding()
+                .onTapGesture {
+                    vm.startGame()
+                }
         }
     }
 }

@@ -16,7 +16,6 @@ struct WordCellView: View {
             Text(wordCell.title)
                 .strikethrough()
                 .italic()
-                .foregroundColor(.secondary)
                 .lineLimit(1)
                 .minimumScaleFactor(0.01)
                 .padding(5)
@@ -31,7 +30,6 @@ struct WordCellView: View {
             Text(wordCell.title)
                 .lineLimit(1)
                 .minimumScaleFactor(0.01)
-                .foregroundColor(.primary)
                 .padding(10)
                 .cornerRadius(5)
                 .overlay(
