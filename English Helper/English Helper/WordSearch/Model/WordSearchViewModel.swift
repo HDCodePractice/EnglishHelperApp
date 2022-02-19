@@ -24,13 +24,13 @@ class WordSearchViewModel:ObservableObject{
     
     func startGame(){
         manager.titles = realmManager.genWords(lenght: 4)
-        print("titles: \(manager.titles)")
         manager.row = row
         manager.column = column
-        words = manager.getWordsCells()
-        
         manager.generatorWordGrid()
         grid = manager.grid
+        words = manager.wordCells
+        print(manager.wordsMap)
+        lines = []
     }
     
     func toggleGridCell(cell: Cell){

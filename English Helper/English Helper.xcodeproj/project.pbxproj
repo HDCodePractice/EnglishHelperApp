@@ -19,7 +19,6 @@
 		670588A72798C938006F8C0E /* Grammar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670588A62798C938006F8C0E /* Grammar.swift */; };
 		670588A92798C995006F8C0E /* GrammarListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670588A82798C995006F8C0E /* GrammarListViewModel.swift */; };
 		6709506D27B85B8B005B056D /* WordListGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709506C27B85B8B005B056D /* WordListGrid.swift */; };
-		6709507127B86072005B056D /* WordGridGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709507027B86072005B056D /* WordGridGeneratorTests.swift */; };
 		6709507327B867B0005B056D /* WordSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709507227B867B0005B056D /* WordSearchViewModel.swift */; };
 		6709507527B8AA28005B056D /* GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709507427B8AA28005B056D /* GridCell.swift */; };
 		6710C44627AE34F500C5CB99 /* ListPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6710C44527AE34F500C5CB99 /* ListPictureView.swift */; };
@@ -104,7 +103,6 @@
 		670588A62798C938006F8C0E /* Grammar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grammar.swift; sourceTree = "<group>"; };
 		670588A82798C995006F8C0E /* GrammarListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrammarListViewModel.swift; sourceTree = "<group>"; };
 		6709506C27B85B8B005B056D /* WordListGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListGrid.swift; sourceTree = "<group>"; };
-		6709507027B86072005B056D /* WordGridGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGridGeneratorTests.swift; sourceTree = "<group>"; };
 		6709507227B867B0005B056D /* WordSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSearchViewModel.swift; sourceTree = "<group>"; };
 		6709507427B8AA28005B056D /* GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCell.swift; sourceTree = "<group>"; };
 		6710C44527AE34F500C5CB99 /* ListPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPictureView.swift; sourceTree = "<group>"; };
@@ -265,7 +263,6 @@
 		6709506E27B85EDD005B056D /* WordSearch */ = {
 			isa = PBXGroup;
 			children = (
-				6709507027B86072005B056D /* WordGridGeneratorTests.swift */,
 				679E70D727C0660F008BFC50 /* WordSearchGeneratorTests.swift */,
 				67A6E84327BB029F001013A7 /* WordGridManagerTests.swift */,
 			);
@@ -679,7 +676,6 @@
 				6718F32427B225E500BD857B /* RealmManagerTests.swift in Sources */,
 				67D4A71927B3E2B400642686 /* PictureGameViewModelTests.swift in Sources */,
 				67FD9D72279668EC00EF434F /* ProgressBar.swift in Sources */,
-				6709507127B86072005B056D /* WordGridGeneratorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

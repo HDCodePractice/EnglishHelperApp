@@ -15,7 +15,7 @@ struct WordListGrid: View {
             ZStack{
                 VStack{
                     ForEach (vm.grid,id:\.self){ row in
-                        HStack{
+                        HStack(spacing: 10){
                             ForEach (row){ c in
                                 GridCell(cell: c)
                                     .onTapGesture {

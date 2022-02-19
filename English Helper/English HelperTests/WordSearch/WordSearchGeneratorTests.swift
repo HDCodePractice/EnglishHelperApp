@@ -22,13 +22,7 @@ class WordSearchGeneratorTests: XCTestCase {
     }
 
     func test_UnitMakeGrid() throws {
-        let wg = WordSearchGenerator()
-        wg.words = [
-            WordCell(title: "hello"),
-            WordCell(title: "swift ui"),
-            WordCell(title: "english"),
-            WordCell(title: "your are good student")
-        ]
+        let wg = WordSearchGenerator(words: ["hello","swift ui","english","your are good student"], row: 10, column: 10)
         wg.difficulty = .hard
         wg.makeGrid()
         print(wg.printGrid())

@@ -168,7 +168,7 @@ class WordSearchGenerator {
                         for (index, letter) in word.enumerated() {
                             returnArray[index].character = letter
                         }
-                        wordsMap["\(row):\(col):\(finalX):\(finalY)"] = word
+                        wordsMap["\(col):\(row):\(finalX):\(finalY)"] = word
                         return true
                     }
                 }

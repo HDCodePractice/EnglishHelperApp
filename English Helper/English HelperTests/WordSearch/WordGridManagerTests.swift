@@ -29,6 +29,7 @@ class WordGridManagerTests: XCTestCase {
         
         //When
         manager.generatorWordGrid()
+        print(manager.wordsMap)
         
         //Then
         XCTAssertEqual(manager.grid.count,10)
