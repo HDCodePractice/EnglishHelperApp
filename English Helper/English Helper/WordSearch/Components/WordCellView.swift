@@ -19,14 +19,26 @@ struct WordCellView: View {
                 .foregroundColor(.secondary)
                 .lineLimit(1)
                 .minimumScaleFactor(0.01)
+                .padding(5)
                 .background(wordCell.color)
                 .opacity(0.5)
                 .cornerRadius(20)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.blue, lineWidth: 5)
+                )
         }else{
             Text(wordCell.title)
                 .lineLimit(1)
                 .minimumScaleFactor(0.01)
                 .foregroundColor(.primary)
+                .padding(10)
+                .cornerRadius(5)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.blue, lineWidth: 5)
+                )
+            
         }
         
     }

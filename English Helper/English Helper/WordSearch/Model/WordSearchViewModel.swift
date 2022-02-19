@@ -18,6 +18,8 @@ class WordSearchViewModel:ObservableObject{
     @Published var words : [WordCell] = []
     @Published var lines : [DrawLine] = []
     @Published var tempLine : DrawLine?
+    @Published var selectedWord : String = ""
+    
     let colors : [Color] = [.red,.blue,.green,.yellow,.pink,.mint,.purple,.gray]
     
     init(){}
@@ -29,7 +31,6 @@ class WordSearchViewModel:ObservableObject{
         manager.generatorWordGrid()
         grid = manager.grid
         words = manager.wordCells
-        print(manager.wordsMap)
         lines = []
     }
     
@@ -60,14 +61,16 @@ class WordSearchViewModel:ObservableObject{
             let _ = tempLine?.attempt(endPos: endPos)
         }
         
-        if let word = manager.checkWordByPosition(start: startPos, end: endPos), let tempLine=tempLine{
-            if !lines.contains(where: { $0.id == tempLine.id }){
+        if let start = tempLine?.startPosition, let end = tempLine?.endPosition{
+            selectedWord = manager.getWordByPosition(start: start, end: end)
+        }
+
+        if let index = words.firstIndex(where: {$0.word == selectedWord}),let tempLine=tempLine{
+            if !words[index].isSelected {
                 lines.append(tempLine)
                 lines[lines.count - 1].color = colors[lines.count - 1]
-            }
-            if let index = words.firstIndex(where: {$0.word == word}){
                 words[index].isSelected = true
-                words[index].color = colors[lines.count - 1]
+                words[index].color = colors[lines.count-1]
             }
         }
     }

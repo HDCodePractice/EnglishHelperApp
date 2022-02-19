@@ -53,6 +53,7 @@ struct WordListGrid: View {
             }
             .onEnded{ value in
                 vm.tempLine = nil
+                vm.selectedWord = ""
             }
     }
 }

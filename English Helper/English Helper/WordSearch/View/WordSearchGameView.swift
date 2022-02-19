@@ -17,16 +17,23 @@ struct WordSearchGameView: View {
                     WordCellView(wordCell: word)
                 }
             }
-            WordListGrid()
-                .padding()
-                .environmentObject(vm)
+            ZStack(alignment: .top){
+                Text(vm.selectedWord)
+                    .background(vm.tempLine?.color)
+                WordListGrid()
+                    .padding()
+                    .environmentObject(vm)
+            }
         }
     }
 }
 
 struct WordSearchGameView_Previews: PreviewProvider {
     static var previews: some View {
-        WordSearchGameView()
-            .environmentObject(WordSearchViewModel())
+        let vm = WordSearchViewModel()
+        vm.startGame()
+        vm.selectedWord = "TestSelect"
+        return WordSearchGameView()
+            .environmentObject(vm)
     }
 }

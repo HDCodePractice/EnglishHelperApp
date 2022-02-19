@@ -7,9 +7,13 @@
 
 import SwiftUI
 
-struct Position {
+struct Position: Equatable {
     var row: Int
     var col: Int
+    
+    static func == (lhs: Position, rhs: Position) -> Bool {
+        return lhs.row == rhs.row && lhs.col == rhs.col
+    }
 }
 
 struct LineStyle {
