@@ -10,7 +10,7 @@ import SwiftUI
 public struct EnumPicker<T: Hashable & CaseIterable, V: View>: View {
     
     @Binding var selected: T
-    var title: String? = nil
+    var title: LocalizedStringKey? = nil
     
     let mapping: (T) -> V
     
@@ -24,9 +24,9 @@ public struct EnumPicker<T: Hashable & CaseIterable, V: View>: View {
 }
 
 public extension EnumPicker where T: RawRepresentable, T.RawValue == String, V == Text {
-    init(selected: Binding<T>, title: String? = nil) {
+    init(selected: Binding<T>, title: LocalizedStringKey? = nil) {
         self.init(selected: selected, title: title) {
-            Text($0.rawValue)
+            Text(LocalizedStringKey($0.rawValue))
         }
     }
 }

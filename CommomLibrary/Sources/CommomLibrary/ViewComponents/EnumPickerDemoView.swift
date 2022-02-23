@@ -11,10 +11,6 @@ enum GameMode: String, CaseIterable {
     case uniq = "Uniq"
     case random = "Random"
     case finish = "Finish"
-    
-    func localizedString() -> String {
-        return NSLocalizedString(self.rawValue, comment: "")
-    }
 }
 
 struct EnumPickerDemoView: View {
@@ -32,5 +28,8 @@ struct EnumPickerDemoView: View {
 struct EnumPickerDemoView_Previews: PreviewProvider {
     static var previews: some View {
         EnumPickerDemoView()
+            .environment(\.locale, .init(identifier: "en"))
+        EnumPickerDemoView()
+            .environment(\.locale, .init(identifier: "zh"))
     }
 }
