@@ -10,7 +10,7 @@ import CommomLibrary
 
 struct TestView: View {
     var body: some View {
-        ProgressBar(length: 10, index: 3)
+        WebView(url: "https://www.google.com/search?client=safari&rls=en&q=pronounce+swift&ie=UTF-8&oe=UTF-8")
     }
 }
 

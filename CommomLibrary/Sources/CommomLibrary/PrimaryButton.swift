@@ -8,7 +8,7 @@
 import SwiftUI
 
 public struct PrimaryButton: View {
-    var text: String
+    var text: LocalizedStringKey
     var background: Color
     
     public var body: some View {
@@ -24,7 +24,7 @@ public struct PrimaryButton: View {
 }
 
 public extension PrimaryButton{
-    init(_ text: String, background: Color = Color.accent){
+    init(_ text: LocalizedStringKey, background: Color = Color.accent){
         self.text = text
         self.background = background
     }
