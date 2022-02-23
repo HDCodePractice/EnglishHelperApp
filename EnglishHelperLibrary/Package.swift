@@ -7,7 +7,6 @@ let package = Package(
     name: "EnglishHelperLibrary",
     platforms: [.iOS(.v15)],
     products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "EnglishHelperLibrary",
             targets: ["EnglishHelperLibrary"]),
@@ -16,17 +15,18 @@ let package = Package(
         .package(path: "../WordSearch"),
         .package(path: "../PictureGame"),
         .package(path: "../CommomLibrary"),
+        .package(path: "../GrammarBook"),
         .package(name: "Realm", url: "https://github.com/realm/realm-swift.git", from: "10.10.0")
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
+
         .target(
             name: "EnglishHelperLibrary",
             dependencies: [
                 .product(name: "WordSearch", package: "WordSearch"),
                 .product(name: "PictureGame", package: "PictureGame"),
                 .product(name: "CommomLibrary", package: "CommomLibrary"),
+                .product(name: "GrammarBook", package: "GrammarBook"),
                 .product(name: "Realm", package: "Realm")
             ]
         ),
