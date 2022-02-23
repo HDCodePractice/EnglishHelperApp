@@ -47,7 +47,7 @@ struct ListTopicView: View {
                     }
                 }
             }
-
+            
             Section{
                 Text("Resync Data From Server")
                     .onTapGesture {
