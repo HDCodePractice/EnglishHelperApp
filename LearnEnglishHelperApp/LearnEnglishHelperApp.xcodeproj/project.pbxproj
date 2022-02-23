@@ -15,6 +15,7 @@
 		675040B327C5991F00CD3B98 /* LearnEnglishHelperAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675040B227C5991F00CD3B98 /* LearnEnglishHelperAppUITests.swift */; };
 		675040B527C5991F00CD3B98 /* LearnEnglishHelperAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675040B427C5991F00CD3B98 /* LearnEnglishHelperAppUITestsLaunchTests.swift */; };
 		6755443127C5D1C700AAC923 /* EnglishHelperLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 6755443027C5D1C700AAC923 /* EnglishHelperLibrary */; };
+		67A5AE7727C5DE6100ED7AFA /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A5AE7627C5DE6100ED7AFA /* TestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		675040B227C5991F00CD3B98 /* LearnEnglishHelperAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnEnglishHelperAppUITests.swift; sourceTree = "<group>"; };
 		675040B427C5991F00CD3B98 /* LearnEnglishHelperAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnEnglishHelperAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		675040C127C5993000CD3B98 /* LearnEnglishHelperApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LearnEnglishHelperApp.entitlements; sourceTree = "<group>"; };
+		67A5AE7627C5DE6100ED7AFA /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				675040C127C5993000CD3B98 /* LearnEnglishHelperApp.entitlements */,
 				6750409727C5991E00CD3B98 /* LearnEnglishHelperAppApp.swift */,
 				6750409927C5991E00CD3B98 /* ContentView.swift */,
+				67A5AE7627C5DE6100ED7AFA /* TestView.swift */,
 				6750409B27C5991F00CD3B98 /* Assets.xcassets */,
 				6750409D27C5991F00CD3B98 /* Preview Content */,
 			);
@@ -274,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67A5AE7727C5DE6100ED7AFA /* TestView.swift in Sources */,
 				6750409A27C5991E00CD3B98 /* ContentView.swift in Sources */,
 				6750409827C5991E00CD3B98 /* LearnEnglishHelperAppApp.swift in Sources */,
 			);
