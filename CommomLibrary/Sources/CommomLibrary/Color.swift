@@ -8,5 +8,5 @@
 import SwiftUI
 
 public extension Color{
-    static let accent = Color("MyAccentColor",bundle: Bundle.module)
+    static let accent = Color("MyAccentColor",bundle: .module)
 }

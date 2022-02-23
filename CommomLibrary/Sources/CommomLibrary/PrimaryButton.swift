@@ -8,13 +8,8 @@
 import SwiftUI
 
 public struct PrimaryButton: View {
-    var text: String
+    var text: LocalizedStringKey
     var background: Color
-    
-    public init(_ text: String, background: Color = Color.accent){
-        self.text = text
-        self.background = background
-    }
     
     public var body: some View {
         Text(text)
@@ -25,6 +20,13 @@ public struct PrimaryButton: View {
             .background(background)
             .cornerRadius(30)
             .shadow(radius: 10)
+    }
+}
+
+public extension PrimaryButton{
+    init(_ text: LocalizedStringKey, background: Color = Color.accent){
+        self.text = text
+        self.background = background
     }
 }
 

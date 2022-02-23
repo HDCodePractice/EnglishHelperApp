@@ -5,6 +5,9 @@
       location = "group:LearnEnglishHelperApp/LearnEnglishHelperApp.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:GrammarBook">
+   </FileRef>
+   <FileRef
       location = "group:PictureGame">
    </FileRef>
    <FileRef

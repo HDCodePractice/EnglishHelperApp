@@ -1,6 +1,2 @@
 /* Bundle name */
 "CFBundleName" = "学习英语小助手";
-
-/* Privacy - Photo Library Additions Usage Description */
-"NSPhotoLibraryAddUsageDescription" = "需要将图片保存到相册.";
-
