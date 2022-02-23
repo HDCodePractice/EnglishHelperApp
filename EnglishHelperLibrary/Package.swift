@@ -15,6 +15,7 @@ let package = Package(
     dependencies: [
         .package(path: "../WordSearch"),
         .package(path: "../PictureGame"),
+        .package(path: "../CommomLibrary"),
         .package(name: "Realm", url: "https://github.com/realm/realm-swift.git", from: "10.10.0")
     ],
     targets: [
@@ -25,6 +26,7 @@ let package = Package(
             dependencies: [
                 .product(name: "WordSearch", package: "WordSearch"),
                 .product(name: "PictureGame", package: "PictureGame"),
+                .product(name: "CommomLibrary", package: "CommomLibrary"),
                 .product(name: "Realm", package: "Realm")
             ]
         ),

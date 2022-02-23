@@ -7,10 +7,11 @@
 
 import SwiftUI
 import WordSearch
+import CommomLibrary
 
 struct ContentView: View {
     var body: some View {
-        Text(WordSearch().text)
+        PrimaryButton(WordSearch().text)
             .padding()
     }
 }

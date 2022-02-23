@@ -10,4 +10,10 @@
    <FileRef
       location = "group:WordSearch">
    </FileRef>
+   <FileRef
+      location = "group:LearnEnglishHelperApp/../CommomLibrary">
+   </FileRef>
+   <FileRef
+      location = "group:LearnEnglishHelperApp/../EnglishHelperLibrary">
+   </FileRef>
 </Workspace>

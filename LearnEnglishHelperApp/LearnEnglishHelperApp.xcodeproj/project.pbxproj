@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6716675227C5BE1F0076DC78 /* EnglishHelperLibrary in Resources */ = {isa = PBXBuildFile; fileRef = 6716675127C5BE1F0076DC78 /* EnglishHelperLibrary */; };
 		6750409827C5991E00CD3B98 /* LearnEnglishHelperAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6750409727C5991E00CD3B98 /* LearnEnglishHelperAppApp.swift */; };
 		6750409A27C5991E00CD3B98 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6750409927C5991E00CD3B98 /* ContentView.swift */; };
 		6750409C27C5991F00CD3B98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6750409B27C5991F00CD3B98 /* Assets.xcassets */; };
@@ -15,7 +14,7 @@
 		675040A927C5991F00CD3B98 /* LearnEnglishHelperAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675040A827C5991F00CD3B98 /* LearnEnglishHelperAppTests.swift */; };
 		675040B327C5991F00CD3B98 /* LearnEnglishHelperAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675040B227C5991F00CD3B98 /* LearnEnglishHelperAppUITests.swift */; };
 		675040B527C5991F00CD3B98 /* LearnEnglishHelperAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675040B427C5991F00CD3B98 /* LearnEnglishHelperAppUITestsLaunchTests.swift */; };
-		675040C427C5B88B00CD3B98 /* EnglishHelperLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 675040C327C5B88B00CD3B98 /* EnglishHelperLibrary */; };
+		6755443127C5D1C700AAC923 /* EnglishHelperLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 6755443027C5D1C700AAC923 /* EnglishHelperLibrary */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,8 +35,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6716675127C5BE1F0076DC78 /* EnglishHelperLibrary */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = EnglishHelperLibrary; path = ../EnglishHelperLibrary; sourceTree = "<group>"; };
-		6716675327C5BE470076DC78 /* CommomLibrary */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CommomLibrary; path = /Users/hd/work/EnglishHelperApp/LearnEnglishHelperApp/CommomLibrary; sourceTree = "<absolute>"; };
 		6750409427C5991E00CD3B98 /* LearnEnglishHelperApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnEnglishHelperApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6750409727C5991E00CD3B98 /* LearnEnglishHelperAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnEnglishHelperAppApp.swift; sourceTree = "<group>"; };
 		6750409927C5991E00CD3B98 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				675040C427C5B88B00CD3B98 /* EnglishHelperLibrary in Frameworks */,
+				6755443127C5D1C700AAC923 /* EnglishHelperLibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,8 +77,6 @@
 		6750408B27C5991E00CD3B98 = {
 			isa = PBXGroup;
 			children = (
-				6716675127C5BE1F0076DC78 /* EnglishHelperLibrary */,
-				6716675327C5BE470076DC78 /* CommomLibrary */,
 				675040C227C5B88B00CD3B98 /* Frameworks */,
 				6750409627C5991E00CD3B98 /* LearnEnglishHelperApp */,
 				675040A727C5991F00CD3B98 /* LearnEnglishHelperAppTests */,
@@ -161,7 +156,7 @@
 			);
 			name = LearnEnglishHelperApp;
 			packageProductDependencies = (
-				675040C327C5B88B00CD3B98 /* EnglishHelperLibrary */,
+				6755443027C5D1C700AAC923 /* EnglishHelperLibrary */,
 			);
 			productName = LearnEnglishHelperApp;
 			productReference = 6750409427C5991E00CD3B98 /* LearnEnglishHelperApp.app */;
@@ -253,7 +248,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6716675227C5BE1F0076DC78 /* EnglishHelperLibrary in Resources */,
 				6750409F27C5991F00CD3B98 /* Preview Assets.xcassets in Resources */,
 				6750409C27C5991F00CD3B98 /* Assets.xcassets in Resources */,
 			);
@@ -616,7 +610,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		675040C327C5B88B00CD3B98 /* EnglishHelperLibrary */ = {
+		6755443027C5D1C700AAC923 /* EnglishHelperLibrary */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = EnglishHelperLibrary;
 		};
