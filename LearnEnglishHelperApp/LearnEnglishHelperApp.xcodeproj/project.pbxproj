@@ -14,6 +14,7 @@
 		675040A927C5991F00CD3B98 /* LearnEnglishHelperAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675040A827C5991F00CD3B98 /* LearnEnglishHelperAppTests.swift */; };
 		675040B327C5991F00CD3B98 /* LearnEnglishHelperAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675040B227C5991F00CD3B98 /* LearnEnglishHelperAppUITests.swift */; };
 		675040B527C5991F00CD3B98 /* LearnEnglishHelperAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675040B427C5991F00CD3B98 /* LearnEnglishHelperAppUITestsLaunchTests.swift */; };
+		675040C427C5B88B00CD3B98 /* EnglishHelperLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 675040C327C5B88B00CD3B98 /* EnglishHelperLibrary */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				675040C427C5B88B00CD3B98 /* EnglishHelperLibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +81,7 @@
 				675040A727C5991F00CD3B98 /* LearnEnglishHelperAppTests */,
 				675040B127C5991F00CD3B98 /* LearnEnglishHelperAppUITests */,
 				6750409527C5991E00CD3B98 /* Products */,
+				675040C227C5B88B00CD3B98 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,6 +132,13 @@
 			path = LearnEnglishHelperAppUITests;
 			sourceTree = "<group>";
 		};
+		675040C227C5B88B00CD3B98 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -145,6 +155,9 @@
 			dependencies = (
 			);
 			name = LearnEnglishHelperApp;
+			packageProductDependencies = (
+				675040C327C5B88B00CD3B98 /* EnglishHelperLibrary */,
+			);
 			productName = LearnEnglishHelperApp;
 			productReference = 6750409427C5991E00CD3B98 /* LearnEnglishHelperApp.app */;
 			productType = "com.apple.product-type.application";
@@ -595,6 +608,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		675040C327C5B88B00CD3B98 /* EnglishHelperLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = EnglishHelperLibrary;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6750408C27C5991E00CD3B98 /* Project object */;
 }
