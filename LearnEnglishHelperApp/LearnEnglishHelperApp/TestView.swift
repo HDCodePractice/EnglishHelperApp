@@ -8,14 +8,29 @@
 import SwiftUI
 import CommomLibrary
 
-struct TestView: View {
+enum GameMode: String, CaseIterable {
+    case uniq = "Uniq"
+    case random = "Random"
+    case finish = "Finish"
+}
+
+struct EnumPickerDemoView: View {
+    @State var gameMode = GameMode.finish
     var body: some View {
-        WebView(url: "https://www.google.com/search?client=safari&rls=en&q=pronounce+swift&ie=UTF-8&oe=UTF-8")
+        VStack{
+            Text("Select Mode")
+            EnumPicker(selected: $gameMode, title: "Select Mode:")
+                .pickerStyle(.segmented)
+
+        }
     }
 }
 
-struct TestView_Previews: PreviewProvider {
+struct EnumPickerDemoView_Previews: PreviewProvider {
     static var previews: some View {
-        TestView()
+        EnumPickerDemoView()
+            .environment(\.locale, .init(identifier: "en"))
+        EnumPickerDemoView()
+            .environment(\.locale, .init(identifier: "zh"))
     }
 }

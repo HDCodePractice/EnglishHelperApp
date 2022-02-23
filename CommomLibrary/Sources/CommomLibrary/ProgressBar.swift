@@ -15,7 +15,7 @@ public struct ProgressBar: View {
         return progressValue > 1.0 ? 1.0 : progressValue
     }
  
-    public init(length: Int,index: Int){
+    public init(length: Int = 1,index: Int = 1){
         self.length = length
         self.index = index
     }
