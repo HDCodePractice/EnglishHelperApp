@@ -37,5 +37,4 @@ struct ViewModel{
         ["z","x","c","v","b","n","m",",","."]
 
     ]
-}
-print (grid)
+
