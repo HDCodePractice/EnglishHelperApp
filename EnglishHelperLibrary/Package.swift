@@ -15,8 +15,7 @@ let package = Package(
         .package(path: "../WordSearch"),
         .package(path: "../PictureGame"),
         .package(path: "../CommomLibrary"),
-        .package(path: "../GrammarBook"),
-        .package(name: "Realm", url: "https://github.com/realm/realm-swift.git", from: "10.10.0")
+        .package(path: "../GrammarBook")
     ],
     targets: [
 
@@ -26,8 +25,7 @@ let package = Package(
                 .product(name: "WordSearch", package: "WordSearch"),
                 .product(name: "PictureGame", package: "PictureGame"),
                 .product(name: "CommomLibrary", package: "CommomLibrary"),
-                .product(name: "GrammarBook", package: "GrammarBook"),
-                .product(name: "Realm", package: "Realm")
+                .product(name: "GrammarBook", package: "GrammarBook")
             ]
         ),
         .testTarget(
