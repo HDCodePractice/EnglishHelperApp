@@ -8,6 +8,7 @@
 import SwiftUI
 import TranslateView
 import ActivityView
+import CommomLibrary
 
 struct PictureGameQuestionView: View {
     @EnvironmentObject var vm : PictureGameViewModel
