@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CommomLibrary
 
 struct PictureGameProgressView: View {
     @EnvironmentObject var vm : PictureGameViewModel
@@ -22,7 +23,7 @@ struct PictureGameProgressView: View {
                 Button{
                     vm.generatePictureExam()
                 }label: {
-                    PrimaryButton(text: "Play again")
+                    PrimaryButton("Play again")
                 }
                 GameOptionsView()
                     .environmentObject(vm)

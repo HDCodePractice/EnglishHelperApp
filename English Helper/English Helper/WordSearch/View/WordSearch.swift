@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CommomLibrary
 
 struct WordSearch: View {
     @StateObject var vm : WordSearchViewModel = WordSearchViewModel()
@@ -27,7 +28,7 @@ struct WordSearch: View {
                 WordSearchGameView()
                     .environmentObject(vm)
             }else{
-                PrimaryButton(text: "Start Game")
+                PrimaryButton("Start Game")
                     .padding()
                     .onTapGesture {
                         vm.startGame()

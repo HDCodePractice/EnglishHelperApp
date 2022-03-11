@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CommomLibrary
 
 struct ContentView: View {
     var body: some View {
@@ -14,22 +15,22 @@ struct ContentView: View {
                 NavigationLink{
                     PictureGame()
                 } label: {
-                    PrimaryButton(text: "Picture Game")
+                    PrimaryButton("Picture Game")
                 }
                 NavigationLink{
                     WordSearch()
                 } label: {
-                    PrimaryButton(text: "Word Search")
+                    PrimaryButton("Word Search")
                 }
                 NavigationLink{
                     GrammarListView()
                 } label: {
-                    PrimaryButton(text: "Grammar Book")
+                    PrimaryButton("Grammar Book")
                 }
                 NavigationLink{
                     ListTopicView()
                 } label: {
-                    PrimaryButton(text: "Browse Dictionary")
+                    PrimaryButton("Browse Dictionary")
                 }
                 Spacer()
                 NavigationLink{

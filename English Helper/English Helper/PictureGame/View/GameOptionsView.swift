@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CommomLibrary
 
 struct GameOptionsView: View {
     @EnvironmentObject var vm : PictureGameViewModel

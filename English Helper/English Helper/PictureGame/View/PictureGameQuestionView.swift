@@ -77,7 +77,7 @@ struct PictureGameQuestionView: View {
                 vm.goToNextQuestion()
             }label: {
                 PrimaryButton(
-                    text: "Next",
+                    "Next",
                     background: vm.answerSelected ? Color("AccentColor") : Color(.gray)
                 )
             }
