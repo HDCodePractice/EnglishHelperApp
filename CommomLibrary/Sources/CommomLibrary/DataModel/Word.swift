@@ -8,8 +8,8 @@
 import Foundation
 
 public struct WordViewModel{
-    let name:String
-    let picture: Picture?
+    public let name:String
+    public let picture: Picture?
 }
 
 public extension Word{

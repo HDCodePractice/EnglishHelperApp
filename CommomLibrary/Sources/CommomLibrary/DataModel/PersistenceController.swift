@@ -7,10 +7,10 @@
 import Foundation
 import CoreData
 
-struct PersistenceController {
-    static let shared = PersistenceController()
+public struct PersistenceController {
+    public static let shared = PersistenceController()
     
-    static var preview: PersistenceController = {
+    public static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for i in 0...3 {
@@ -41,9 +41,9 @@ struct PersistenceController {
         return result
     }()
     
-    let container: NSPersistentContainer
+    public let container: NSPersistentContainer
     
-    init(inMemory: Bool = false) {
+    public init(inMemory: Bool = false) {
         container = PersistentContainer(name: "DictionariesManager")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")

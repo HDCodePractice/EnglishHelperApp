@@ -7,12 +7,12 @@
 import CoreData
 import SwiftUI
 
-struct FilteredList<T: NSManagedObject,Content: View>: View {
+public struct FilteredList<T: NSManagedObject,Content: View>: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest var fetchRequest: FetchedResults<T>
     let content: (T) -> Content
     
-    var body: some View {
+    public var body: some View {
         List {
             ForEach(fetchRequest, id:\.self) { item in
                 self.content(item)
@@ -21,7 +21,7 @@ struct FilteredList<T: NSManagedObject,Content: View>: View {
         }
     }
     
-    init(predicate: NSPredicate? = nil, @ViewBuilder content: @escaping (T) -> Content){
+    public init(predicate: NSPredicate? = nil, @ViewBuilder content: @escaping (T) -> Content){
         _fetchRequest = FetchRequest<T>(
             sortDescriptors: [],
             predicate: predicate,
