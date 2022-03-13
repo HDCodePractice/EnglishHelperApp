@@ -53,16 +53,13 @@ struct PictureGameQuestionView: View {
                 index: vm.index
             )
             VStack(){
-                Text("Tap the answer of")
-                    .font(.subheadline.weight(.heavy))
-                    .foregroundColor(.gray)
                 HStack{
                     Spacer()
-                    Text(vm.question)
-                        .lineLimit(1)
-                        .font(.largeTitle.weight(.heavy))
-                        .minimumScaleFactor(0.01)
+                    Text("Tap the answer of")
+                        .font(.subheadline.weight(.heavy))
+                        .foregroundColor(.gray)
                     Spacer()
+                    PlayAudio(url: vm.audioFile,isAutoPlay: vm.audoPlayAudio)
                     Button(){
                         text = "Which is \(vm.question)?"
                     }label: {
@@ -70,6 +67,10 @@ struct PictureGameQuestionView: View {
                             .font(.title2)
                     }.translateSheet($text)
                 }
+                Text(vm.question)
+                    .lineLimit(1)
+                    .font(.largeTitle.weight(.heavy))
+                    .minimumScaleFactor(0.01)
                 AnswerGrid()
                     .environmentObject(vm)
             }

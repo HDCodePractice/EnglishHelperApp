@@ -18,6 +18,7 @@ class PictureGameViewModel: ObservableObject{
     @Published private(set) var loadFinished : Bool = false
     @Published private(set) var question : String = ""
     @Published private(set) var answerChoices: [Answer] = []
+    @Published private(set) var audioFile : String = ""
     @Published private(set) var reachedEnd = false
     
     @Published var answerSelected = false
@@ -27,6 +28,7 @@ class PictureGameViewModel: ObservableObject{
     @Published var length = 10
     @Published var startExam = false
     @Published var gameMode = GameMode.finish
+    @Published var audoPlayAudio = false
     
     init(){}
     
@@ -112,6 +114,7 @@ class PictureGameViewModel: ObservableObject{
             if let currentQuestion = currentQuestion {
                 question = currentQuestion.questionWord
                 answerChoices = currentQuestion.questAnswers
+                audioFile = currentQuestion.audioFile
             }
         }
         answerSelected = false

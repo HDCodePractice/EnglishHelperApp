@@ -34,5 +34,9 @@ struct PictureExam{
             }
             return _answers
         }
+        
+        var audioFile: String{
+            return "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/audio/\(chapter)/\(topic)/\(questionWord).wav"
+        }
     }
 }

@@ -54,10 +54,10 @@
 		67D2FAA827BDF9D600CA21E7 /* DrawLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D2FAA727BDF9D600CA21E7 /* DrawLine.swift */; };
 		67D3D6D4279D91590075BBF8 /* AnswerGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D3D6D3279D91590075BBF8 /* AnswerGrid.swift */; };
 		67D4A71927B3E2B400642686 /* PictureGameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D4A71827B3E2B400642686 /* PictureGameViewModelTests.swift */; };
-		67D7B53E27DACE1500FFC7C5 /* CommomLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 67D7B53D27DACE1500FFC7C5 /* CommomLibrary */; };
 		67D892BD27AF75A1006CD0CB /* GridePictureItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D892BC27AF75A1006CD0CB /* GridePictureItem.swift */; };
 		67D892C027AFF4AE006CD0CB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 67D892BF27AFF4AE006CD0CB /* Kingfisher */; };
 		67E7965927B71AA900B7E651 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E7965827B71AA900B7E651 /* AboutView.swift */; };
+		67EA424F27DAF5BC0024004B /* CommomLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 67EA424E27DAF5BC0024004B /* CommomLibrary */; };
 		67FD9D412796666E00EF434F /* English_HelperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D402796666E00EF434F /* English_HelperApp.swift */; };
 		67FD9D432796666E00EF434F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D422796666E00EF434F /* ContentView.swift */; };
 		67FD9D452796666F00EF434F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67FD9D442796666F00EF434F /* Assets.xcassets */; };
@@ -128,9 +128,9 @@
 		67D2FAA727BDF9D600CA21E7 /* DrawLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawLine.swift; sourceTree = "<group>"; };
 		67D3D6D3279D91590075BBF8 /* AnswerGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerGrid.swift; sourceTree = "<group>"; };
 		67D4A71827B3E2B400642686 /* PictureGameViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameViewModelTests.swift; sourceTree = "<group>"; };
-		67D7B53C27DACCD900FFC7C5 /* CommomLibrary */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CommomLibrary; path = ../CommomLibrary; sourceTree = "<group>"; };
 		67D892BC27AF75A1006CD0CB /* GridePictureItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridePictureItem.swift; sourceTree = "<group>"; };
 		67E7965827B71AA900B7E651 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		67EA424D27DAF5A50024004B /* CommomLibrary */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CommomLibrary; path = ../CommomLibrary; sourceTree = "<group>"; };
 		67FD9D3D2796666E00EF434F /* Learn English Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Learn English Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67FD9D402796666E00EF434F /* English_HelperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = English_HelperApp.swift; sourceTree = "<group>"; };
 		67FD9D422796666E00EF434F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 				6781236827AA9E2700E4F66F /* Realm in Frameworks */,
 				67C29B4227A2115900877C58 /* TranslateView in Frameworks */,
 				67BA8A16279F68EB00F4B743 /* ActivityView in Frameworks */,
-				67D7B53E27DACE1500FFC7C5 /* CommomLibrary in Frameworks */,
+				67EA424F27DAF5BC0024004B /* CommomLibrary in Frameworks */,
 				67D892C027AFF4AE006CD0CB /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,7 +223,7 @@
 		6705889C2798C601006F8C0E /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				67D7B53C27DACCD900FFC7C5 /* CommomLibrary */,
+				67EA424D27DAF5A50024004B /* CommomLibrary */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -473,7 +473,7 @@
 				6781236727AA9E2700E4F66F /* Realm */,
 				6781236927AA9E2700E4F66F /* RealmSwift */,
 				67D892BF27AFF4AE006CD0CB /* Kingfisher */,
-				67D7B53D27DACE1500FFC7C5 /* CommomLibrary */,
+				67EA424E27DAF5BC0024004B /* CommomLibrary */,
 			);
 			productName = "English Helper";
 			productReference = 67FD9D3D2796666E00EF434F /* Learn English Helper.app */;
@@ -838,7 +838,7 @@
 				CODE_SIGN_ENTITLEMENTS = "English Helper/English Helper.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"English Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4W3MN6QHA;
 				ENABLE_PREVIEWS = YES;
@@ -874,7 +874,7 @@
 				CODE_SIGN_ENTITLEMENTS = "English Helper/English Helper.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"English Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4W3MN6QHA;
 				ENABLE_PREVIEWS = YES;
@@ -1075,14 +1075,14 @@
 			package = 67C29B4027A2115900877C58 /* XCRemoteSwiftPackageReference "TranslateView" */;
 			productName = TranslateView;
 		};
-		67D7B53D27DACE1500FFC7C5 /* CommomLibrary */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CommomLibrary;
-		};
 		67D892BF27AFF4AE006CD0CB /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 67D892BE27AFF4AE006CD0CB /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		67EA424E27DAF5BC0024004B /* CommomLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CommomLibrary;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
