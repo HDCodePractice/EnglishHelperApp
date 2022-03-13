@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CommomLibrary
 
 struct GameOptionsView: View {
     @EnvironmentObject var vm : PictureGameViewModel
@@ -29,6 +30,7 @@ struct GameOptionsView: View {
                     .pickerStyle(.segmented)
 
             }
+            Toggle("Auto Play Audio", isOn: $vm.audoPlayAudio)
             Spacer()
             Text("Select Topics")
                 .onTapGesture {
@@ -39,6 +41,8 @@ struct GameOptionsView: View {
                         ListTopicView()
                     }
                 }
+            Text("")
+            Text("")
         }.padding(.horizontal)
     }
 }

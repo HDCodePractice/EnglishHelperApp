@@ -24,7 +24,7 @@ public struct PrimaryButton: View {
 }
 
 public extension PrimaryButton{
-    init(_ text: LocalizedStringKey, background: Color = Color.accent){
+    init(_ text: LocalizedStringKey, background: Color = .accent){
         self.text = text
         self.background = background
     }

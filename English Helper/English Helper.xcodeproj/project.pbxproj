@@ -13,7 +13,6 @@
 		6703FFED279A4C6400C4FADB /* PictureGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6703FFEC279A4C6400C4FADB /* PictureGame.swift */; };
 		6703FFEF279A4E3800C4FADB /* PictureGameProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6703FFEE279A4E3800C4FADB /* PictureGameProgressView.swift */; };
 		6703FFF1279A4EFB00C4FADB /* PictureGameQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6703FFF0279A4EFB00C4FADB /* PictureGameQuestionView.swift */; };
-		6705889F2798C67B006F8C0E /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6705889E2798C67B006F8C0E /* WebView.swift */; };
 		670588A12798C717006F8C0E /* GrammarListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670588A02798C717006F8C0E /* GrammarListView.swift */; };
 		670588A52798C7D6006F8C0E /* LoadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670588A42798C7D6006F8C0E /* LoadData.swift */; };
 		670588A72798C938006F8C0E /* Grammar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670588A62798C938006F8C0E /* Grammar.swift */; };
@@ -25,7 +24,6 @@
 		6718F32427B225E500BD857B /* RealmManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6718F32327B225E500BD857B /* RealmManagerTests.swift */; };
 		672E6B7327BD250A00DC3742 /* English Helper-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 672E6B7127BD250A00DC3742 /* English Helper-InfoPlist.strings */; };
 		672E6B7627BD250A00DC3742 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 672E6B7427BD250A00DC3742 /* Localizable.strings */; };
-		673ABE0A27B605BB006DA515 /* EnumPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673ABE0927B605BB006DA515 /* EnumPicker.swift */; };
 		674D427327A8061500061C70 /* ListTopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674D427227A8061500061C70 /* ListTopicView.swift */; };
 		674D427527A8065400061C70 /* BrowseDictionaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674D427427A8065400061C70 /* BrowseDictionaryViewModel.swift */; };
 		6763B56E27A4EF30000E98EC /* example_picture.json in Resources */ = {isa = PBXBuildFile; fileRef = 6763B56D27A4EF30000E98EC /* example_picture.json */; };
@@ -59,18 +57,13 @@
 		67D892BD27AF75A1006CD0CB /* GridePictureItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D892BC27AF75A1006CD0CB /* GridePictureItem.swift */; };
 		67D892C027AFF4AE006CD0CB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 67D892BF27AFF4AE006CD0CB /* Kingfisher */; };
 		67E7965927B71AA900B7E651 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E7965827B71AA900B7E651 /* AboutView.swift */; };
+		67EA424F27DAF5BC0024004B /* CommomLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 67EA424E27DAF5BC0024004B /* CommomLibrary */; };
 		67FD9D412796666E00EF434F /* English_HelperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D402796666E00EF434F /* English_HelperApp.swift */; };
 		67FD9D432796666E00EF434F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D422796666E00EF434F /* ContentView.swift */; };
 		67FD9D452796666F00EF434F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67FD9D442796666F00EF434F /* Assets.xcassets */; };
 		67FD9D482796666F00EF434F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67FD9D472796666F00EF434F /* Preview Assets.xcassets */; };
 		67FD9D5C2796666F00EF434F /* English_HelperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D5B2796666F00EF434F /* English_HelperUITests.swift */; };
 		67FD9D5E2796666F00EF434F /* English_HelperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D5D2796666F00EF434F /* English_HelperUITestsLaunchTests.swift */; };
-		67FD9D71279668EC00EF434F /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D70279668EC00EF434F /* ProgressBar.swift */; };
-		67FD9D72279668EC00EF434F /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D70279668EC00EF434F /* ProgressBar.swift */; };
-		67FD9D73279668EC00EF434F /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D70279668EC00EF434F /* ProgressBar.swift */; };
-		67FD9D762796695A00EF434F /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D752796695A00EF434F /* PrimaryButton.swift */; };
-		67FD9D772796695A00EF434F /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D752796695A00EF434F /* PrimaryButton.swift */; };
-		67FD9D782796695A00EF434F /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D752796695A00EF434F /* PrimaryButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,7 +90,6 @@
 		6703FFEC279A4C6400C4FADB /* PictureGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGame.swift; sourceTree = "<group>"; };
 		6703FFEE279A4E3800C4FADB /* PictureGameProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameProgressView.swift; sourceTree = "<group>"; };
 		6703FFF0279A4EFB00C4FADB /* PictureGameQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameQuestionView.swift; sourceTree = "<group>"; };
-		6705889E2798C67B006F8C0E /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebView.swift; path = "English Helper/WebView.swift"; sourceTree = SOURCE_ROOT; };
 		670588A02798C717006F8C0E /* GrammarListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrammarListView.swift; sourceTree = "<group>"; };
 		670588A42798C7D6006F8C0E /* LoadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadData.swift; sourceTree = "<group>"; };
 		670588A62798C938006F8C0E /* Grammar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grammar.swift; sourceTree = "<group>"; };
@@ -110,7 +102,6 @@
 		6718F32327B225E500BD857B /* RealmManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManagerTests.swift; sourceTree = "<group>"; };
 		672E6B7227BD250A00DC3742 /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-US"; path = "en-US.lproj/English Helper-InfoPlist.strings"; sourceTree = "<group>"; };
 		672E6B7527BD250A00DC3742 /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-US"; path = "en-US.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		673ABE0927B605BB006DA515 /* EnumPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumPicker.swift; sourceTree = "<group>"; };
 		674D427227A8061500061C70 /* ListTopicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTopicView.swift; sourceTree = "<group>"; };
 		674D427427A8065400061C70 /* BrowseDictionaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseDictionaryViewModel.swift; sourceTree = "<group>"; };
 		6763B56D27A4EF30000E98EC /* example_picture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = example_picture.json; sourceTree = "<group>"; };
@@ -139,6 +130,7 @@
 		67D4A71827B3E2B400642686 /* PictureGameViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGameViewModelTests.swift; sourceTree = "<group>"; };
 		67D892BC27AF75A1006CD0CB /* GridePictureItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridePictureItem.swift; sourceTree = "<group>"; };
 		67E7965827B71AA900B7E651 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		67EA424D27DAF5A50024004B /* CommomLibrary */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CommomLibrary; path = ../CommomLibrary; sourceTree = "<group>"; };
 		67FD9D3D2796666E00EF434F /* Learn English Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Learn English Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67FD9D402796666E00EF434F /* English_HelperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = English_HelperApp.swift; sourceTree = "<group>"; };
 		67FD9D422796666E00EF434F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -148,8 +140,6 @@
 		67FD9D572796666F00EF434F /* English HelperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "English HelperUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67FD9D5B2796666F00EF434F /* English_HelperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = English_HelperUITests.swift; sourceTree = "<group>"; };
 		67FD9D5D2796666F00EF434F /* English_HelperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = English_HelperUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		67FD9D70279668EC00EF434F /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
-		67FD9D752796695A00EF434F /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +151,7 @@
 				6781236827AA9E2700E4F66F /* Realm in Frameworks */,
 				67C29B4227A2115900877C58 /* TranslateView in Frameworks */,
 				67BA8A16279F68EB00F4B743 /* ActivityView in Frameworks */,
+				67EA424F27DAF5BC0024004B /* CommomLibrary in Frameworks */,
 				67D892C027AFF4AE006CD0CB /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,6 +223,7 @@
 		6705889C2798C601006F8C0E /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				67EA424D27DAF5A50024004B /* CommomLibrary */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -423,7 +415,6 @@
 				670588A32798C7B0006F8C0E /* Model */,
 				670588A22798C750006F8C0E /* GrammarBook */,
 				67E7965727B71A7B00B7E651 /* View */,
-				67FD9D742796691400EF434F /* Components */,
 				67ADE04327B7514100BEAC22 /* Resources */,
 				67FD9D462796666F00EF434F /* Preview Content */,
 				674D426E27A8049E00061C70 /* BrowseDictionary */,
@@ -460,17 +451,6 @@
 			path = "English HelperUITests";
 			sourceTree = "<group>";
 		};
-		67FD9D742796691400EF434F /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				6705889E2798C67B006F8C0E /* WebView.swift */,
-				67FD9D70279668EC00EF434F /* ProgressBar.swift */,
-				67FD9D752796695A00EF434F /* PrimaryButton.swift */,
-				673ABE0927B605BB006DA515 /* EnumPicker.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -493,6 +473,7 @@
 				6781236727AA9E2700E4F66F /* Realm */,
 				6781236927AA9E2700E4F66F /* RealmSwift */,
 				67D892BF27AFF4AE006CD0CB /* Kingfisher */,
+				67EA424E27DAF5BC0024004B /* CommomLibrary */,
 			);
 			productName = "English Helper";
 			productReference = 67FD9D3D2796666E00EF434F /* Learn English Helper.app */;
@@ -633,7 +614,6 @@
 				6703FFEA279A4ADA00C4FADB /* Answer.swift in Sources */,
 				6799875527BA85C1001C9B9E /* WordGridManager.swift in Sources */,
 				6799875727BA9199001C9B9E /* Cell.swift in Sources */,
-				6705889F2798C67B006F8C0E /* WebView.swift in Sources */,
 				67ADE03C27B7402D00BEAC22 /* GameOptionsView.swift in Sources */,
 				670588A92798C995006F8C0E /* GrammarListViewModel.swift in Sources */,
 				67C96EA227BB6DAA00A126C1 /* WordCell.swift in Sources */,
@@ -648,14 +628,11 @@
 				6703FFE5279A49F000C4FADB /* AnswerRow.swift in Sources */,
 				67D3D6D4279D91590075BBF8 /* AnswerGrid.swift in Sources */,
 				6703FFE3279A32EC00C4FADB /* Extension.swift in Sources */,
-				67FD9D71279668EC00EF434F /* ProgressBar.swift in Sources */,
 				6710C44627AE34F500C5CB99 /* ListPictureView.swift in Sources */,
-				67FD9D762796695A00EF434F /* PrimaryButton.swift in Sources */,
 				67E7965927B71AA900B7E651 /* AboutView.swift in Sources */,
 				6709507527B8AA28005B056D /* GridCell.swift in Sources */,
 				679E23A7279BB41500CB8A76 /* PictureGameManager.swift in Sources */,
 				67FD9D412796666E00EF434F /* English_HelperApp.swift in Sources */,
-				673ABE0A27B605BB006DA515 /* EnumPicker.swift in Sources */,
 				6703FFED279A4C6400C4FADB /* PictureGame.swift in Sources */,
 				670588A72798C938006F8C0E /* Grammar.swift in Sources */,
 				6709506D27B85B8B005B056D /* WordListGrid.swift in Sources */,
@@ -670,12 +647,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67FD9D772796695A00EF434F /* PrimaryButton.swift in Sources */,
 				679E70D827C0660F008BFC50 /* WordSearchGeneratorTests.swift in Sources */,
 				67A6E84427BB029F001013A7 /* WordGridManagerTests.swift in Sources */,
 				6718F32427B225E500BD857B /* RealmManagerTests.swift in Sources */,
 				67D4A71927B3E2B400642686 /* PictureGameViewModelTests.swift in Sources */,
-				67FD9D72279668EC00EF434F /* ProgressBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,8 +659,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				67FD9D5C2796666F00EF434F /* English_HelperUITests.swift in Sources */,
-				67FD9D73279668EC00EF434F /* ProgressBar.swift in Sources */,
-				67FD9D782796695A00EF434F /* PrimaryButton.swift in Sources */,
 				67FD9D5E2796666F00EF434F /* English_HelperUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -865,7 +838,7 @@
 				CODE_SIGN_ENTITLEMENTS = "English Helper/English Helper.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"English Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4W3MN6QHA;
 				ENABLE_PREVIEWS = YES;
@@ -901,7 +874,7 @@
 				CODE_SIGN_ENTITLEMENTS = "English Helper/English Helper.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"English Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4W3MN6QHA;
 				ENABLE_PREVIEWS = YES;
@@ -1106,6 +1079,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 67D892BE27AFF4AE006CD0CB /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		67EA424E27DAF5BC0024004B /* CommomLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CommomLibrary;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

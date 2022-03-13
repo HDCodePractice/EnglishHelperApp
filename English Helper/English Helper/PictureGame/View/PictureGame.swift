@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CommomLibrary
 
 struct PictureGame: View {
     @StateObject var vm = PictureGameViewModel()
@@ -30,7 +31,7 @@ struct PictureGame: View {
                     .foregroundColor(Color("AccentColor"))
             }
             PrimaryButton(
-                text: vm.loadFinished ? "Let't go!" : "Load Data...",
+                vm.loadFinished ? "Let't go!" : "Load Data...",
                 background: vm.loadFinished ? Color("AccentColor") : .secondary
             ).onTapGesture(){
                 vm.generatePictureExam()

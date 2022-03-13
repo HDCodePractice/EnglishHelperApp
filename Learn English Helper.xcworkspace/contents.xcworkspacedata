@@ -19,4 +19,7 @@
    <FileRef
       location = "group:LearnEnglishHelperApp/../EnglishHelperLibrary">
    </FileRef>
+   <FileRef
+      location = "group:DictionaryLibrary">
+   </FileRef>
 </Workspace>
