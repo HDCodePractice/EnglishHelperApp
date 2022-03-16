@@ -16,6 +16,7 @@ struct GridePictureItem: View {
     var body: some View {
         VStack{
             KFImage(vm.getURL(pictureFile: pictureFile))
+                .diskCacheExpiration(.days(1))
                 .resizable()
                 .scaledToFit()
             Text(pictureFile.words.joined(separator: " / "))

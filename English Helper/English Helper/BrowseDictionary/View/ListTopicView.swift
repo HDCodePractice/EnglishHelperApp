@@ -56,6 +56,10 @@ struct ListTopicView: View {
                             await vm.fromServerJsonToRealm()
                         }
                     }
+                Text("Clean Cache (\(vm.cacheSize))")
+                    .onTapGesture {
+                        vm.cleanCache()
+                    }
             }
         }
         .navigationBarTitle("Browse Dictionary")
