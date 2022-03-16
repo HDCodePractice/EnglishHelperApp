@@ -6,12 +6,38 @@
 //
 
 import Foundation
+import Kingfisher
 
 class BrowseDictionaryViewModel: ObservableObject{
     private var manager = PictureDictionaryManager.instance
     private var realmManager = RealmManager.instance
+    @Published var cacheSize = "0 MB"
     
     init(){
+        let cache = ImageCache.default
+        cache.calculateDiskStorageSize { result in
+            switch result{
+            case .success(let size):
+                self.cacheSize = "\(Int(Double(size) / 1024 / 1024)) MB"
+            case .failure(let error):
+                self.cacheSize = "\(error)"
+            }
+        }
+    }
+    
+    func cleanCache(){
+        let cache = ImageCache.default
+        print(cache.memoryStorage.config.expiration)
+        print(cache.diskStorage.config.expiration)
+        cache.clearCache()
+        cache.calculateDiskStorageSize { result in
+            switch result{
+            case .success(let size):
+                self.cacheSize = "\(Int(Double(size) / 1024 / 1024)) MB"
+            case .failure(let error):
+                self.cacheSize = "\(error)"
+            }
+        }
     }
     
     func cleanRealm(){
