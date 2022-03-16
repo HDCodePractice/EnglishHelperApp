@@ -11,7 +11,7 @@ import CommomLibrary
 struct GameOptionsView: View {
     @EnvironmentObject var vm : PictureGameViewModel
     @State private var showingSheet : Bool = false
-
+    
     var body: some View {
         VStack{
             Text("")
@@ -30,7 +30,7 @@ struct GameOptionsView: View {
                     .pickerStyle(.segmented)
 
             }
-            Toggle("Auto Play Audio", isOn: $vm.audoPlayAudio)
+            Toggle("Auto Pronounce", isOn: $vm.isAutoPronounce)
             Spacer()
             Text("Select Topics")
                 .onTapGesture {

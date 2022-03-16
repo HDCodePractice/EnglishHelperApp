@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CommomLibrary
 
 class PictureGameViewModel: ObservableObject{
     private var manager = PictureDictionaryManager.instance
@@ -28,7 +29,7 @@ class PictureGameViewModel: ObservableObject{
     @Published var length = 10
     @Published var startExam = false
     @Published var gameMode = GameMode.finish
-    @Published var audoPlayAudio = false
+    @AppStorage(UserDefaults.UserDefaultsKeys.isAutoPronounce.rawValue) var isAutoPronounce = true
     
     init(){}
     
