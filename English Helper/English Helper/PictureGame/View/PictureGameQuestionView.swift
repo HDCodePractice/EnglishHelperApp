@@ -60,7 +60,7 @@ struct PictureGameQuestionView: View {
                         .font(.subheadline.weight(.heavy))
                         .foregroundColor(.gray)
                     Spacer()
-                    Toggle("Auto Pronounce", isOn: $vm.isAutoPronounce)
+                    PlayAudio(url: vm.audioFile,isAutoPlay: vm.isAutoPronounce)
                     Button(){
                         text = "Which is \(vm.question)?"
                     }label: {
