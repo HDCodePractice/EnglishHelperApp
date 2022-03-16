@@ -14,6 +14,7 @@ struct PictureGameQuestionView: View {
     @EnvironmentObject var vm : PictureGameViewModel
     @State var text : String?
     @State private var item : ActivityItem?
+
     
     var body: some View {
         VStack(spacing: 20){
@@ -59,7 +60,7 @@ struct PictureGameQuestionView: View {
                         .font(.subheadline.weight(.heavy))
                         .foregroundColor(.gray)
                     Spacer()
-                    PlayAudio(url: vm.audioFile,isAutoPlay: vm.audoPlayAudio)
+                    Toggle("Auto Pronounce", isOn: $vm.isAutoPronounce)
                     Button(){
                         text = "Which is \(vm.question)?"
                     }label: {
