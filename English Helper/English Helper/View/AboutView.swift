@@ -18,7 +18,7 @@ struct AboutView: View {
  
             Text("Contributors")
                 .font(.headline)
-            Text("Jessie, [Bernie](https://github.com/bernieharvard), [Raymond](https://github.com/raynix), [Sunny](https://github.com/sunnypo), [Sichengthebest](https://github.com/Sichengthebest), [老房东](https://github.com/hdcola)")
+            Text("Jessie,[linbsd](https://github.com/linbsd), [Bernie](https://github.com/bernieharvard), [Raymond](https://github.com/raynix), [Sunny](https://github.com/sunnypo), [Sichengthebest](https://github.com/Sichengthebest), [老房东](https://github.com/hdcola)")
             Text("Thank")
                 .font(.headline)
             Text("[Stephen](https://github.com/stephenzhu01)")
@@ -26,7 +26,7 @@ struct AboutView: View {
             Text("Contact Us")
                 .font(.headline)
             Text("[Telegram channel](https://t.me/englisherupdate), [Telegram group](https://t.me/+JBMuFwlPYNgxMjU1)")
-            Text("The images used are from [Unsplash](https://unsplash.com), [pixabay](https://pixabay.com/zh), [ICONS8](https://icons8.com).")
+            Text("The images used are from [Unsplash](https://unsplash.com), [pixabay](https://pixabay.com/zh),[botox icons] (https://www.flaticon.com/free-icons/botox),[ICONS8](https://icons8.com).")
             Text("Version:\(appVersion).\(build)")
         }
         .navigationBarTitleDisplayMode(.inline)
