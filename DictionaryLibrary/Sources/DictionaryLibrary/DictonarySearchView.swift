@@ -11,27 +11,22 @@ import CommomLibrary
 struct DictonarySearchView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State private var searchText = ""
-    
-    let names = ["Holly", "Josh", "Rhonda", "Ted"]
-    
+        
     var body: some View {
         NavigationView {
-            FilteredList{ (item:Word) in
+            FilteredList(
+//                predicate: NSPredicate(format: "name LIKE %@", "*\(searchText)*")
+                predicate: NSPredicate(format: "name CONTAINS %@", searchText)
+            ){ (item:Word) in
                 let item = item.viewModel
                 Text("\(item.name)")
             }
             .environment(\.managedObjectContext,viewContext)
             .navigationTitle("Words")
+            .searchable(text: $searchText, prompt: "Look up for dictonary")
         }
     }
     
-    var searchResults: [String] {
-        if searchText.isEmpty {
-            return names
-        } else {
-            return names.filter { $0.contains(searchText) }
-        }
-    }
 }
 
 struct DictonarySearchView_Previews: PreviewProvider {
