@@ -60,7 +60,7 @@ public struct PersistenceController {
 }
 
 class PersistentContainer: NSPersistentContainer {
-    init(name: String, bundle: Bundle = .module,
+    init(name: String, bundle: Bundle = .swiftUIPreviewsCompatibleModule,
         inMemory: Bool = false) {
         guard let mom = NSManagedObjectModel.mergedModel(from: [bundle]) else {
           fatalError("Failed to create mom")
