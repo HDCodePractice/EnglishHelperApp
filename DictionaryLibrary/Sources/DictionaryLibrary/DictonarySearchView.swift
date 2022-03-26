@@ -8,13 +8,21 @@
 import SwiftUI
 import CommomLibrary
 
-struct DictonarySearchView: View {
+public struct DictonarySearchView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State private var searchText = ""
-        
-    var body: some View {
+    
+    public init(){}
+    public var body: some View {
         NavigationView {
             FilteredList(
+                sortDescriptors: [
+                    NSSortDescriptor(
+                        key: "name",
+                        ascending: true,
+                        selector: #selector(NSString.localizedStandardCompare(_:))
+                    )
+                ],
                 predicate: NSPredicate(format: "name LIKE %@", "*\(searchText)*")
 //                predicate: NSPredicate(format: "name CONTAINS %@", searchText)
             ){ (item:Word) in

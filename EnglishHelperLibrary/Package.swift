@@ -15,7 +15,8 @@ let package = Package(
         .package(path: "../WordSearch"),
         .package(path: "../PictureGame"),
         .package(path: "../CommomLibrary"),
-        .package(path: "../GrammarBook")
+        .package(path: "../GrammarBook"),
+        .package(path: "../DictionaryLibrary")
     ],
     targets: [
 
@@ -25,7 +26,8 @@ let package = Package(
                 .product(name: "WordSearch", package: "WordSearch"),
                 .product(name: "PictureGame", package: "PictureGame"),
                 .product(name: "CommomLibrary", package: "CommomLibrary"),
-                .product(name: "GrammarBook", package: "GrammarBook")
+                .product(name: "GrammarBook", package: "GrammarBook"),
+                .product(name: "DictionaryLibrary", package: "DictionaryLibrary")
             ]
         ),
         .testTarget(
