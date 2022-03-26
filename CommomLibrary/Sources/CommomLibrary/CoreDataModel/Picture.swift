@@ -25,3 +25,8 @@ public extension Picture{
         )
     }
 }
+
+struct JPictureFile: Codable {
+    var name: String
+    var words = [String]()
+}

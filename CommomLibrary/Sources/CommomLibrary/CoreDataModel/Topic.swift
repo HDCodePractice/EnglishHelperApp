@@ -25,3 +25,14 @@ public extension Topic{
         )
     }
 }
+
+struct JTopic: Codable, Identifiable {
+    var id = UUID()
+    var pictureFiles = [JPictureFile]()
+    var name: String
+    var isSelect = true
+    enum CodingKeys: String, CodingKey {
+        case pictureFiles
+        case name
+    }
+}

@@ -13,21 +13,23 @@ public struct PersistenceController {
     public static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for i in 0...3 {
-            let newChapter = Chapter(context: viewContext)
-            newChapter.name = "Chapter\(i)"
-            for j in 0...3{
-                let newTopic = Topic(context: viewContext)
-                newTopic.name = "Chapter\(i) Topic\(j)"
-                newChapter.addToTopics(newTopic)
-                for k in 0...3{
-                    let newPicture = Picture(context: viewContext)
-                    newPicture.name = "Chapter\(i) Topic\(j) Picture\(k)"
-                    newTopic.addToPictures(newPicture)
-                    for l in 0...3{
-                        let newWord = Word(context: viewContext)
-                        newWord.name = "Chapter\(i) Topic\(j) Picture\(k) Word\(l)"
-                        newPicture.addToWords(newWord)
+        if let jChapters: [JChapter] = load("example.json",bundel: .module){
+            for chapter in jChapters {
+                let newChapter = Chapter(context: viewContext)
+                newChapter.name = chapter.name
+                for topic in chapter.topics{
+                    let newTopic = Topic(context: viewContext)
+                    newTopic.name = topic.name
+                    newChapter.addToTopics(newTopic)
+                    for pic in topic.pictureFiles{
+                        let newPicture = Picture(context: viewContext)
+                        newPicture.name = pic.name
+                        newTopic.addToPictures(newPicture)
+                        for word in pic.words{
+                            let newWord = Word(context: viewContext)
+                            newWord.name = word
+                            newPicture.addToWords(newWord)
+                        }
                     }
                 }
             }
