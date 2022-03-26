@@ -13,7 +13,7 @@ public struct PersistenceController {
     public static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        if let jChapters: [JChapter] = load("example.json",bundel: .module){
+        if let jChapters: [JChapter] = load("example.json",bundel: .swiftUIPreviewsCompatibleModule){
             for chapter in jChapters {
                 let newChapter = Chapter(context: viewContext)
                 newChapter.name = chapter.name

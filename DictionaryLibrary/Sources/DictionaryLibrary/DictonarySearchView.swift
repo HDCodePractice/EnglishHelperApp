@@ -15,8 +15,8 @@ struct DictonarySearchView: View {
     var body: some View {
         NavigationView {
             FilteredList(
-//                predicate: NSPredicate(format: "name LIKE %@", "*\(searchText)*")
-                predicate: NSPredicate(format: "name CONTAINS %@", searchText)
+                predicate: NSPredicate(format: "name LIKE %@", "*\(searchText)*")
+//                predicate: NSPredicate(format: "name CONTAINS %@", searchText)
             ){ (item:Word) in
                 let item = item.viewModel
                 Text("\(item.name)")
