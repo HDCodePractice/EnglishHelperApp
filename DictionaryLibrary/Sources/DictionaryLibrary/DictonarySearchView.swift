@@ -23,7 +23,7 @@ public struct DictonarySearchView: View {
                         selector: #selector(NSString.localizedStandardCompare(_:))
                     )
                 ],
-                predicate: NSPredicate(format: "name LIKE %@", "*\(searchText)*")
+                predicate: NSPredicate(format: "name LIKE[c] %@", "*\(searchText)*")
 //                predicate: NSPredicate(format: "name CONTAINS %@", searchText)
             ){ (item:Word) in
                 let item = item.viewModel
