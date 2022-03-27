@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import CommomLibrary
 
 @main
 struct Learn_English_DictionaryApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
         }
     }
 }

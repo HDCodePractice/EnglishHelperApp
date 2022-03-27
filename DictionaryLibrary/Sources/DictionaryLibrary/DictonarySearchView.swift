@@ -32,6 +32,7 @@ public struct DictonarySearchView: View {
                     Text((item.viewModel.picture?.viewModel.topic?.viewModel.name)!)
                     Text((item.viewModel.picture?.viewModel.name)!)
                     Text(item.viewModel.name)
+                    Text((item.picture?.viewModel.path)!)
                 }
             } label: {
                 let item = item.viewModel
@@ -65,7 +66,6 @@ public struct DictonarySearchView: View {
                     vm.loadStatue = .load
                 } label: {
                     Image(systemName: "arrow.clockwise.circle")
-                        .font(.title)
                 }
                 
             }

@@ -13,7 +13,6 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             DictonarySearchView()
-                .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
         }
     }
 }

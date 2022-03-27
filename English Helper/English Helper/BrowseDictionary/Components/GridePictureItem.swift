@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Kingfisher
+import CommomLibrary
 
 struct GridePictureItem: View {
     @EnvironmentObject var vm : BrowseDictionaryViewModel
@@ -15,10 +15,7 @@ struct GridePictureItem: View {
     
     var body: some View {
         VStack{
-            KFImage(vm.getURL(pictureFile: pictureFile))
-                .diskCacheExpiration(.days(1))
-                .resizable()
-                .scaledToFit()
+            PictureView(url: vm.getURL(pictureFile: pictureFile))
             Text(pictureFile.words.joined(separator: " / "))
         }
         .shadow(radius: 10)
