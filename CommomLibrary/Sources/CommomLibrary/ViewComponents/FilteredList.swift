@@ -18,6 +18,7 @@ public struct FilteredList<T: NSManagedObject,Content: View>: View {
                 self.content(item)
             }
         }
+        .listStyle(InsetGroupedListStyle())
     }
     
     public init(
