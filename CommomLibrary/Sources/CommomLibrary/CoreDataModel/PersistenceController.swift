@@ -63,20 +63,20 @@ public struct PersistenceController {
 
 class PersistentContainer: NSPersistentContainer {
     init(name: String, bundle: Bundle = .swiftUIPreviewsCompatibleModule,
-        inMemory: Bool = false) {
+         inMemory: Bool = false) {
         guard let mom = NSManagedObjectModel.mergedModel(from: [bundle]) else {
-          fatalError("Failed to create mom")
+            fatalError("Failed to create mom")
         }
         super.init(name: name, managedObjectModel: mom)
-      }
+    }
 }
 
 class PersistentCloudKitContainer: NSPersistentCloudKitContainer {
     init(name: String, bundle: Bundle = .module,
-        inMemory: Bool = false) {
+         inMemory: Bool = false) {
         guard let mom = NSManagedObjectModel.mergedModel(from: [bundle]) else {
-          fatalError("Failed to create mom")
+            fatalError("Failed to create mom")
         }
         super.init(name: name, managedObjectModel: mom)
-      }
+    }
 }

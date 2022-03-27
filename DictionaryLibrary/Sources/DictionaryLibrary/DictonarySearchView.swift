@@ -14,32 +14,36 @@ public struct DictonarySearchView: View {
     
     public init(){}
     public var body: some View {
-        NavigationView {
-            FilteredList(
-                sortDescriptors: [
-                    NSSortDescriptor(
-                        key: "name",
-                        ascending: true,
-                        selector: #selector(NSString.localizedStandardCompare(_:))
-                    )
-                ],
-                predicate: NSPredicate(format: "name LIKE[c] %@", "*\(searchText)*")
-//                predicate: NSPredicate(format: "name CONTAINS %@", searchText)
-            ){ (item:Word) in
-                let item = item.viewModel
-                Text("\(item.name)")
-            }
-            .environment(\.managedObjectContext,viewContext)
-            .navigationTitle("Words")
-            .searchable(text: $searchText, prompt: "Look up for dictonary")
+        FilteredList(
+            sortDescriptors: [
+                NSSortDescriptor(
+                    key: "name",
+                    ascending: true,
+                    selector: #selector(NSString.localizedStandardCompare(_:))
+                )
+            ],
+            predicate: NSPredicate(format: "name LIKE[c] %@", "*\(searchText)*")
+            //                predicate: NSPredicate(format: "name CONTAINS %@", searchText)
+        ){ (item:Word) in
+            let item = item.viewModel
+            Text("\(item.name)")
         }
+        .environment(\.managedObjectContext,viewContext)
+        .navigationTitle("Words")
+        .searchable(
+            text: $searchText,
+            placement: .navigationBarDrawer(displayMode: .always),
+            prompt: "Look up for dictonary"
+        )
+        
     }
-    
 }
 
 struct DictonarySearchView_Previews: PreviewProvider {
     static var previews: some View {
-        DictonarySearchView()
-            .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
+        NavigationView {
+            DictonarySearchView()
+                .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
+        }
     }
 }

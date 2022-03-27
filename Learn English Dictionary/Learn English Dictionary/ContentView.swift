@@ -11,8 +11,10 @@ import CommomLibrary
 
 struct ContentView: View {
     var body: some View {
-        DictonarySearchView()
-            .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
+        NavigationView{
+            DictonarySearchView()
+                .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
+        }
     }
 }
 
