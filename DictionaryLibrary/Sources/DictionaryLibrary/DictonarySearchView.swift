@@ -10,7 +10,7 @@ import CommomLibrary
 
 public struct DictonarySearchView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @State private var searchText = ""
+    @State private var vm = DictonarySearchViewModel()
     
     public init(){}
     public var body: some View {
@@ -22,7 +22,7 @@ public struct DictonarySearchView: View {
                     selector: #selector(NSString.localizedStandardCompare(_:))
                 )
             ],
-            predicate: NSPredicate(format: "name LIKE[c] %@", "*\(searchText)*")
+            predicate: NSPredicate(format: "name LIKE[c] %@", "*\(vm.searchText)*")
             //                predicate: NSPredicate(format: "name CONTAINS %@", searchText)
         ){ (item:Word) in
             let item = item.viewModel
@@ -31,7 +31,7 @@ public struct DictonarySearchView: View {
         .environment(\.managedObjectContext,viewContext)
         .navigationTitle("Words")
         .searchable(
-            text: $searchText,
+            text: $vm.searchText,
             placement: .navigationBarDrawer(displayMode: .always),
             prompt: "Look up for dictonary"
         )
