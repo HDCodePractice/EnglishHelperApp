@@ -55,7 +55,6 @@
 		67D3D6D4279D91590075BBF8 /* AnswerGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D3D6D3279D91590075BBF8 /* AnswerGrid.swift */; };
 		67D4A71927B3E2B400642686 /* PictureGameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D4A71827B3E2B400642686 /* PictureGameViewModelTests.swift */; };
 		67D892BD27AF75A1006CD0CB /* GridePictureItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D892BC27AF75A1006CD0CB /* GridePictureItem.swift */; };
-		67D892C027AFF4AE006CD0CB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 67D892BF27AFF4AE006CD0CB /* Kingfisher */; };
 		67E7965927B71AA900B7E651 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E7965827B71AA900B7E651 /* AboutView.swift */; };
 		67EA424F27DAF5BC0024004B /* CommomLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 67EA424E27DAF5BC0024004B /* CommomLibrary */; };
 		67FD9D412796666E00EF434F /* English_HelperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD9D402796666E00EF434F /* English_HelperApp.swift */; };
@@ -152,7 +151,6 @@
 				67C29B4227A2115900877C58 /* TranslateView in Frameworks */,
 				67BA8A16279F68EB00F4B743 /* ActivityView in Frameworks */,
 				67EA424F27DAF5BC0024004B /* CommomLibrary in Frameworks */,
-				67D892C027AFF4AE006CD0CB /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,7 +470,6 @@
 				67C29B4127A2115900877C58 /* TranslateView */,
 				6781236727AA9E2700E4F66F /* Realm */,
 				6781236927AA9E2700E4F66F /* RealmSwift */,
-				67D892BF27AFF4AE006CD0CB /* Kingfisher */,
 				67EA424E27DAF5BC0024004B /* CommomLibrary */,
 			);
 			productName = "English Helper";
@@ -838,7 +835,7 @@
 				CODE_SIGN_ENTITLEMENTS = "English Helper/English Helper.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_ASSET_PATHS = "\"English Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4W3MN6QHA;
 				ENABLE_PREVIEWS = YES;
@@ -874,7 +871,7 @@
 				CODE_SIGN_ENTITLEMENTS = "English Helper/English Helper.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_ASSET_PATHS = "\"English Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4W3MN6QHA;
 				ENABLE_PREVIEWS = YES;
@@ -1074,11 +1071,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 67C29B4027A2115900877C58 /* XCRemoteSwiftPackageReference "TranslateView" */;
 			productName = TranslateView;
-		};
-		67D892BF27AFF4AE006CD0CB /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 67D892BE27AFF4AE006CD0CB /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
 		};
 		67EA424E27DAF5BC0024004B /* CommomLibrary */ = {
 			isa = XCSwiftPackageProductDependency;

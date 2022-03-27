@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Learn English Dictionary/Learn English Dictionary.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:LearnEnglishHelperApp/LearnEnglishHelperApp.xcodeproj">
    </FileRef>
    <FileRef

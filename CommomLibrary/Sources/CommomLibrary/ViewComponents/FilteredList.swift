@@ -17,13 +17,44 @@ public struct FilteredList<T: NSManagedObject,Content: View>: View {
             ForEach(fetchRequest, id:\.self) { item in
                 self.content(item)
             }
+        }
+        .listStyle(InsetGroupedListStyle())
+    }
+    
+    public init(
+        sortDescriptors: [NSSortDescriptor]=[],
+        predicate: NSPredicate? = nil,
+        @ViewBuilder content: @escaping (T) -> Content
+    ){
+        _fetchRequest = FetchRequest<T>(
+            sortDescriptors: sortDescriptors,
+            predicate: predicate,
+            animation: .default)
+        self.content = content
+    }
+}
+
+public struct FilteredListDelete<T: NSManagedObject,Content: View>: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest var fetchRequest: FetchedResults<T>
+    let content: (T) -> Content
+    
+    public var body: some View {
+        List {
+            ForEach(fetchRequest, id:\.self) { item in
+                self.content(item)
+            }
             .onDelete(perform: deleteItems)
         }
     }
     
-    public init(predicate: NSPredicate? = nil, @ViewBuilder content: @escaping (T) -> Content){
+    public init(
+        sortDescriptors: [NSSortDescriptor]=[],
+        predicate: NSPredicate? = nil,
+        @ViewBuilder content: @escaping (T) -> Content
+    ){
         _fetchRequest = FetchRequest<T>(
-            sortDescriptors: [],
+            sortDescriptors: sortDescriptors,
             predicate: predicate,
             animation: .default)
         self.content = content

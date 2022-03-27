@@ -48,11 +48,11 @@ class PersistenceControllerTests: XCTestCase {
     }
 
     func testInitChapternameAndCountTopics() throws {
+        // Given
         guard let viewContext = viewContext else {
             XCTAssertTrue(false)
             return
         }
-        // Given
         
         // When
         let fetchRequest: NSFetchRequest<Chapter> = Chapter.fetchRequest()

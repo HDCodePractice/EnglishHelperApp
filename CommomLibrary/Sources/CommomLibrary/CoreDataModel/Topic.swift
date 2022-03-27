@@ -8,9 +8,9 @@
 import Foundation
 
 public struct TopicViewModel{
-    let name:String
-    let pictures: [Picture]
-    let chapter: Chapter?
+    public let name:String
+    public let pictures: [Picture]
+    public let chapter: Chapter?
 }
 
 public extension Topic{
@@ -23,5 +23,16 @@ public extension Topic{
             },
             chapter: self.chapter
         )
+    }
+}
+
+struct JTopic: Codable, Identifiable {
+    var id = UUID()
+    var pictureFiles = [JPictureFile]()
+    var name: String
+    var isSelect = true
+    enum CodingKeys: String, CodingKey {
+        case pictureFiles
+        case name
     }
 }

@@ -8,8 +8,8 @@
 import Foundation
 
 public struct ChapterViewModel{
-    let name:String
-    let topics: [Topic]
+    public let name:String
+    public let topics: [Topic]
 }
 
 public extension Chapter{
@@ -21,5 +21,16 @@ public extension Chapter{
                 $0.viewModel.name < $1.viewModel.name
             }
         )
+    }
+}
+
+struct JChapter: Codable,Identifiable {
+    public var id = UUID()
+    var name: String
+    var topics = [JTopic]()
+    var isSelect = true
+    enum CodingKeys: String, CodingKey {
+        case topics
+        case name
     }
 }

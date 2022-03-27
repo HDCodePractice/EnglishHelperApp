@@ -8,35 +8,76 @@
 import SwiftUI
 import CommomLibrary
 
-struct DictonarySearchView: View {
+public struct DictonarySearchView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @State private var searchText = ""
+    @StateObject private var vm = DictonarySearchViewModel()
     
-    let names = ["Holly", "Josh", "Rhonda", "Ted"]
+    public init(){}
     
-    var body: some View {
-        NavigationView {
-            FilteredList{ (item:Word) in
+    fileprivate func FilterView() -> some View {
+        return FilteredList(
+            sortDescriptors: [
+                NSSortDescriptor(
+                    key: "name",
+                    ascending: true,
+                    selector: #selector(NSString.localizedStandardCompare(_:))
+                )
+            ],
+            predicate: NSPredicate(format: "name LIKE[c] %@", "*\(vm.searchText)*")
+            //predicate: NSPredicate(format: "name CONTAINS %@", searchText)
+        ){ (item:Word) in
+            NavigationLink {
+                VStack{
+                    Text((item.viewModel.picture?.viewModel.topic?.viewModel.chapter?.viewModel.name)!)
+                    Text((item.viewModel.picture?.viewModel.topic?.viewModel.name)!)
+                    Text((item.viewModel.picture?.viewModel.name)!)
+                    Text(item.viewModel.name)
+                    Text((item.picture?.viewModel.path)!)
+                }
+            } label: {
                 let item = item.viewModel
                 Text("\(item.name)")
             }
-            .environment(\.managedObjectContext,viewContext)
-            .navigationTitle("Words")
         }
+        .environment(\.managedObjectContext,viewContext)
     }
     
-    var searchResults: [String] {
-        if searchText.isEmpty {
-            return names
-        } else {
-            return names.filter { $0.contains(searchText) }
+    public var body: some View {
+        VStack{
+            if vm.loadStatue == .load {
+                ProgressView()
+                    .onAppear {
+                        vm.fetchData(viewContext: viewContext)
+                    }
+            }else{
+                FilterView()
+            }
+        }
+        .navigationTitle(vm.loadStatue == .load ? "Syncing Words..." : "Words")
+        .navigationBarTitleDisplayMode(.inline)
+        .searchable(
+            text: $vm.searchText,
+//            placement: .navigationBarDrawer(displayMode: .always),
+            prompt: "Look up for dictonary"
+        )
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    vm.loadStatue = .load
+                } label: {
+                    Image(systemName: "arrow.clockwise.circle")
+                }
+                
+            }
         }
     }
 }
 
 struct DictonarySearchView_Previews: PreviewProvider {
     static var previews: some View {
-        DictonarySearchView()
-            .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
+        NavigationView {
+            DictonarySearchView()
+                .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
+        }
     }
 }
