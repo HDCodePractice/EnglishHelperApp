@@ -10,11 +10,12 @@ import CommomLibrary
 
 public struct DictonarySearchView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @State private var vm = DictonarySearchViewModel()
+    @StateObject private var vm = DictonarySearchViewModel()
     
     public init(){}
-    public var body: some View {
-        FilteredList(
+    
+    fileprivate func FilterView() -> some View {
+        return FilteredList(
             sortDescriptors: [
                 NSSortDescriptor(
                     key: "name",
@@ -23,19 +24,43 @@ public struct DictonarySearchView: View {
                 )
             ],
             predicate: NSPredicate(format: "name LIKE[c] %@", "*\(vm.searchText)*")
-            //                predicate: NSPredicate(format: "name CONTAINS %@", searchText)
+            //predicate: NSPredicate(format: "name CONTAINS %@", searchText)
         ){ (item:Word) in
             let item = item.viewModel
             Text("\(item.name)")
         }
         .environment(\.managedObjectContext,viewContext)
-        .navigationTitle("Words")
+    }
+    
+    public var body: some View {
+        VStack{
+            if vm.loadStatue == .load {
+                ProgressView()
+                    .onAppear {
+                        vm.fetchData(viewContext: viewContext)
+                    }
+            }else{
+                FilterView()
+            }
+        }
+        .navigationTitle(vm.loadStatue == .load ? "Syncing Words..." : "Words")
+        .navigationBarTitleDisplayMode(.inline)
         .searchable(
             text: $vm.searchText,
-            placement: .navigationBarDrawer(displayMode: .always),
+//            placement: .navigationBarDrawer(displayMode: .always),
             prompt: "Look up for dictonary"
         )
-        
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    vm.loadStatue = .load
+                } label: {
+                    Image(systemName: "arrow.clockwise.circle")
+                        .font(.title)
+                }
+                
+            }
+        }
     }
 }
 

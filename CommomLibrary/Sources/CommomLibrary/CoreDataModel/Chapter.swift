@@ -24,7 +24,7 @@ public extension Chapter{
     }
 }
 
-public struct JChapter: Codable,Identifiable {
+struct JChapter: Codable,Identifiable {
     public var id = UUID()
     var name: String
     var topics = [JTopic]()

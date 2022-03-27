@@ -13,8 +13,8 @@ public struct PersistenceController {
     public static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        if let jChapters: [JChapter] = load("example.json",bundel: .swiftUIPreviewsCompatibleModule){
-            for chapter in jChapters {
+        if let chapters: [JChapter] = load("example.json",bundel: .swiftUIPreviewsCompatibleModule){
+            for chapter in chapters {
                 let newChapter = Chapter(context: viewContext)
                 newChapter.name = chapter.name
                 for topic in chapter.topics{
@@ -58,6 +58,46 @@ public struct PersistenceController {
             }
         })
         container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+    }
+    
+    @MainActor
+    public static func fetchData(url: String, viewContext: NSManagedObjectContext) async{
+        if let chapters: [JChapter] = await loadDataByServer(url: url){
+            let fetchRequest: NSFetchRequest<Chapter> = Chapter.fetchRequest()
+            let result = try! viewContext.fetch(fetchRequest)
+            
+            for chapter in result{
+                viewContext.delete(chapter)
+            }
+            
+            try! viewContext.save()
+            
+            for chapter in chapters {
+                let newChapter = Chapter(context: viewContext)
+                newChapter.name = chapter.name
+                for topic in chapter.topics{
+                    let newTopic = Topic(context: viewContext)
+                    newTopic.name = topic.name
+                    newChapter.addToTopics(newTopic)
+                    for pic in topic.pictureFiles{
+                        let newPicture = Picture(context: viewContext)
+                        newPicture.name = pic.name
+                        newTopic.addToPictures(newPicture)
+                        for word in pic.words{
+                            let newWord = Word(context: viewContext)
+                            newWord.name = word
+                            newPicture.addToWords(newWord)
+                        }
+                    }
+                }
+            }
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                print("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
     }
 }
 

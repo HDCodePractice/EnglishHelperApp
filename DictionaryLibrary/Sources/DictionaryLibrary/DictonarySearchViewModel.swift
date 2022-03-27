@@ -6,7 +6,24 @@
 //
 
 import Foundation
+import CoreData
+import CommomLibrary
 
-struct DictonarySearchViewModel{
-    var searchText : String = ""
+class DictonarySearchViewModel: ObservableObject{
+    @Published var searchText : String = ""
+    @Published var loadStatue : LoadStatue = .load
+    
+    private let jsonURL = "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/picture.json"
+    
+    func fetchData(viewContext: NSManagedObjectContext){
+        Task{
+            await PersistenceController.fetchData(url: jsonURL, viewContext: viewContext)
+            self.loadStatue = .finish
+        }
+    }
+}
+
+enum LoadStatue{
+    case load
+    case finish
 }
