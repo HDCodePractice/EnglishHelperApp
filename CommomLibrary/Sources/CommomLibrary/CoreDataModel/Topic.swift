@@ -8,9 +8,9 @@
 import Foundation
 
 public struct TopicViewModel{
-    let name:String
-    let pictures: [Picture]
-    let chapter: Chapter?
+    public let name:String
+    public let pictures: [Picture]
+    public let chapter: Chapter?
 }
 
 public extension Topic{

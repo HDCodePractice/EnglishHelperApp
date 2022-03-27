@@ -26,8 +26,17 @@ public struct DictonarySearchView: View {
             predicate: NSPredicate(format: "name LIKE[c] %@", "*\(vm.searchText)*")
             //predicate: NSPredicate(format: "name CONTAINS %@", searchText)
         ){ (item:Word) in
-            let item = item.viewModel
-            Text("\(item.name)")
+            NavigationLink {
+                VStack{
+                    Text((item.viewModel.picture?.viewModel.topic?.viewModel.chapter?.viewModel.name)!)
+                    Text((item.viewModel.picture?.viewModel.topic?.viewModel.name)!)
+                    Text((item.viewModel.picture?.viewModel.name)!)
+                    Text(item.viewModel.name)
+                }
+            } label: {
+                let item = item.viewModel
+                Text("\(item.name)")
+            }
         }
         .environment(\.managedObjectContext,viewContext)
     }

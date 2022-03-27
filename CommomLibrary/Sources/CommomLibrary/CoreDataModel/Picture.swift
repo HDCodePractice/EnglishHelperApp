@@ -8,9 +8,9 @@
 import Foundation
 
 public struct PictureViewModel{
-    let name:String
-    let words: [Word]
-    let topic: Topic?
+    public let name:String
+    public let words: [Word]
+    public let topic: Topic?
 }
 
 public extension Picture{

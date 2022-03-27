@@ -8,8 +8,8 @@
 import Foundation
 
 public struct ChapterViewModel{
-    let name:String
-    let topics: [Topic]
+    public let name:String
+    public let topics: [Topic]
 }
 
 public extension Chapter{
