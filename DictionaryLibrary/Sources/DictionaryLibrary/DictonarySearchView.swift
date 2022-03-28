@@ -14,7 +14,7 @@ public struct DictonarySearchView: View {
     
     public init(){}
     
-    fileprivate func FilterView() -> some View {
+    func FilterView() -> some View {
         return FilteredList(
             sortDescriptors: [
                 NSSortDescriptor(
@@ -27,19 +27,18 @@ public struct DictonarySearchView: View {
             //predicate: NSPredicate(format: "name CONTAINS %@", searchText)
         ){ (item:Word) in
             NavigationLink {
-                VStack{
-                    Text((item.viewModel.picture?.viewModel.topic?.viewModel.chapter?.viewModel.name)!)
-                    Text((item.viewModel.picture?.viewModel.topic?.viewModel.name)!)
-                    Text((item.viewModel.picture?.viewModel.name)!)
-                    Text(item.viewModel.name)
-                    Text((item.picture?.viewModel.path)!)
-                }
+                WordDetailView(item: item)
             } label: {
-                let item = item.viewModel
-                Text("\(item.name)")
+                HStack{
+                    if let url = item.picture?.viewModel.path{
+                        PictureView(url: URL(string: url))
+                            .frame(width: 60, height: 60)
+                            .shadow(radius: 10)
+                    }
+                    Text("\(item.viewModel.name)")
+                }
             }
         }
-        .environment(\.managedObjectContext,viewContext)
     }
     
     public var body: some View {

@@ -29,7 +29,7 @@ public extension Picture{
                    let topicname = topic.name,
                    let chapter = topic.chapter,
                    let chaptername = chapter.name{
-                    return "\(chaptername)/\(topicname)/\(filename)"
+                    return "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/\(chaptername)/\(topicname)/\(filename)".urlEncoded()
                 }else{
                     return ""
                 }
