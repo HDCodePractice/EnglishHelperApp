@@ -27,17 +27,7 @@ public struct DictonarySearchView: View {
             //predicate: NSPredicate(format: "name CONTAINS %@", searchText)
         ){ (item:Word) in
             NavigationLink {
-                VStack{
-                    Text(item.viewModel.name)
-                        .font(.largeTitle)
-                    if let url = item.picture?.viewModel.path{
-                        PictureView(url: URL(string: url))
-                            .shadow(radius: 10)
-                            .padding()
-                    }
-                    Text((item.viewModel.picture?.viewModel.topic?.viewModel.chapter?.viewModel.name)!)
-                    Text((item.viewModel.picture?.viewModel.topic?.viewModel.name)!)
-                }
+                WordDetailView(item: item)
             } label: {
                 HStack{
                     if let url = item.picture?.viewModel.path{
@@ -45,8 +35,7 @@ public struct DictonarySearchView: View {
                             .frame(width: 60, height: 60)
                             .shadow(radius: 10)
                     }
-                    let item = item.viewModel
-                    Text("\(item.name)")
+                    Text("\(item.viewModel.name)")
                 }
             }
         }
