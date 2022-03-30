@@ -9,33 +9,49 @@ import SwiftUI
 import CommomLibrary
 
 public struct DictonarySearchView: View {
-    @Environment(\.managedObjectContext) private var viewContext
     @StateObject private var vm = DictonarySearchViewModel()
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @FetchRequest(sortDescriptors: [
+        NSSortDescriptor(
+            key: "name",
+            ascending: true,
+            selector: #selector(NSString.localizedStandardCompare(_:))
+        )
+    ],animation: .default)
+    private var items: FetchedResults<Word>
+    @State private var searchText = ""
+    var query: Binding<String>{
+        Binding{
+            searchText
+        }set:{ newValue in
+            searchText = newValue
+            items.nsPredicate = newValue.isEmpty
+            ? nil
+            : NSPredicate(format: "name CONTAINS[c] %@", newValue)
+        }
+    }
     
     public init(){}
     
     func FilterView() -> some View {
-        return FilteredList(
-            sortDescriptors: [
-                NSSortDescriptor(
-                    key: "name",
-                    ascending: true,
-                    selector: #selector(NSString.localizedStandardCompare(_:))
-                )
-            ],
-            predicate: NSPredicate(format: "name LIKE[c] %@", "*\(vm.searchText)*")
-            //predicate: NSPredicate(format: "name CONTAINS %@", searchText)
-        ){ (item:Word) in
-            NavigationLink {
-                WordDetailView(item: item)
-            } label: {
-                HStack{
-                    if let url = item.picture?.viewModel.path{
-                        PictureView(url: URL(string: url))
+        return List{
+            ForEach(items){item in
+                NavigationLink {
+                    WordDetailView(item: item)
+                } label: {
+                    HStack{
+                        PictureView(url: URL(string: item.viewModel.pictureUrl))
                             .frame(width: 60, height: 60)
                             .shadow(radius: 10)
+                        VStack(alignment:.leading){
+                            Text("\(item.viewModel.name)")
+                            Text("\(item.viewModel.topicName)")
+                                .font(.footnote)
+                                .lineLimit(1)
+                                
+                        }
                     }
-                    Text("\(item.viewModel.name)")
                 }
             }
         }
@@ -53,10 +69,10 @@ public struct DictonarySearchView: View {
             }
         }
         .navigationTitle(vm.loadStatue == .load ? "Syncing Words..." : "Words")
-        .navigationBarTitleDisplayMode(.inline)
+//        .navigationBarTitleDisplayMode(.inline)
         .searchable(
-            text: $vm.searchText,
-//            placement: .navigationBarDrawer(displayMode: .always),
+            text: query,
+            placement: .navigationBarDrawer(displayMode: .always),
             prompt: "Look up for dictonary"
         )
         .toolbar {
