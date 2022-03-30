@@ -11,29 +11,26 @@ public struct PictureViewModel{
     public let name:String
     public let words: [Word]
     public let topic: Topic?
-    public let path : String
+    public let topicName : String
+    public let chapterName : String
+    public let pictureUrl : String
 }
 
 public extension Picture{
     var viewModel: PictureViewModel {
         let wordSet = words as? Set<Word> ?? []
+        let topicName = self.topic?.name ?? ""
+        let chapterName = self.topic?.chapter?.name ?? ""
+        let filename = self.name ?? "Unknow"
         return PictureViewModel(
-            name: self.name ?? "Unknow",
+            name: filename,
             words: wordSet.sorted{
                 $0.viewModel.name < $1.viewModel.name
             },
             topic: self.topic,
-            path : {
-                if let filename = self.name,
-                   let topic = self.topic,
-                   let topicname = topic.name,
-                   let chapter = topic.chapter,
-                   let chaptername = chapter.name{
-                    return "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/\(chaptername)/\(topicname)/\(filename)".urlEncoded()
-                }else{
-                    return ""
-                }
-            }()
+            topicName: topicName,
+            chapterName: chapterName,
+            pictureUrl : "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/\(chapterName)/\(topicName)/\(filename)".urlEncoded()
         )
     }
 }
