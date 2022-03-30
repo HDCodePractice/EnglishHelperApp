@@ -10,7 +10,6 @@ import CoreData
 import CommomLibrary
 
 class DictonarySearchViewModel: ObservableObject{
-    @Published var searchText : String = ""
     @Published var loadStatue : LoadStatue = .load
     
     private let jsonURL = "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/picture.json"
