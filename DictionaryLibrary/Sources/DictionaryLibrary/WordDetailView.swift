@@ -13,9 +13,12 @@ struct WordDetailView: View {
     
     var body: some View {
         VStack{
+            HStack{
             Text(item.viewModel.name)
                 .font(.largeTitle)
             PlayAudio(url: item.viewModel.audioUrl,isAutoPlay: false)
+            }
+            Text(item.viewModel.words)
             PictureView(url: URL(string: item.viewModel.pictureUrl))
                 .shadow(radius: 10)
                 .padding()
