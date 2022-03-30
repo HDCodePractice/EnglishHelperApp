@@ -8,13 +8,14 @@
 import Foundation
 
 public struct WordViewModel{
-    public let name:String
+    public let name: String
     public let picture: Picture?
     public let pictureName : String
     public let topicName : String
     public let chapterName : String
     public let audioUrl : String
     public let pictureUrl : String
+    public let words: String
 }
 
 public extension Word{
@@ -29,6 +30,16 @@ public extension Word{
         let pictureName = self.picture?.name ?? ""
         let topicName = self.picture?.topic?.name ?? ""
         let chapterName = self.picture?.topic?.chapter?.name ?? ""
+        let wordSet = self.picture?.words as? Set<Word> ?? []
+        let wordArray = Array(wordSet)
+        var words = ""
+        if wordArray.count > 0{
+            for i in 0..<wordArray.count-1{
+                words += wordArray[i].name ?? ""
+                words += " / "
+            }
+        }
+        words += wordArray[wordArray.count-1].name ?? ""
         
         return WordViewModel(
             name: fileName,
@@ -37,7 +48,8 @@ public extension Word{
             topicName: topicName,
             chapterName: chapterName,
             audioUrl: "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/audio/\(chapterName)/\(topicName)/\(fileName).wav",
-            pictureUrl : "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/\(chapterName)/\(topicName)/\(pictureName)".urlEncoded()
+            pictureUrl : "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/\(chapterName)/\(topicName)/\(pictureName)".urlEncoded(),
+            words: words
         )
     }
 }
