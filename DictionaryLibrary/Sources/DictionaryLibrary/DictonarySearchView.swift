@@ -12,14 +12,6 @@ public struct DictonarySearchView: View {
     @StateObject private var vm = DictonarySearchViewModel()
     @Environment(\.managedObjectContext) private var viewContext
     
-    @FetchRequest(sortDescriptors: [
-        NSSortDescriptor(
-            key: "name",
-            ascending: true,
-            selector: #selector(NSString.localizedStandardCompare(_:))
-        )
-    ],animation: .default)
-    private var items: FetchedResults<Word>
     @State private var searchText = ""
     var query: Binding<String>{
         Binding{
@@ -34,28 +26,68 @@ public struct DictonarySearchView: View {
     
     public init(){}
     
+    @SectionedFetchRequest<String,Word>(
+        sectionIdentifier: \.topicSection,
+        sortDescriptors: [
+            SortDescriptor(\.picture?.topic?.name),
+            SortDescriptor(\.name)
+        ]
+    )
+    private var items: SectionedFetchResults<String,Word>
+
     func FilterView() -> some View {
         return List{
-            ForEach(items){item in
-                NavigationLink {
-                    WordDetailView(item: item)
-                } label: {
-                    HStack{
-                        PictureView(url: URL(string: item.viewModel.pictureUrl))
-                            .frame(width: 60, height: 60)
-                            .shadow(radius: 10)
-                        VStack(alignment:.leading){
-                            Text("\(item.viewModel.name)")
-                            Text("\(item.viewModel.topicName)")
-                                .font(.footnote)
-                                .lineLimit(1)
-                                
+            ForEach(items){section in
+                Section(header: Text(section.id)){
+                    ForEach(section){ item in
+                        NavigationLink {
+                            WordDetailView(item: item)
+                        } label: {
+                            HStack{
+                                PictureView(url: URL(string: item.viewModel.pictureUrl))
+                                    .frame(width: 60, height: 60)
+                                    .shadow(radius: 10)
+                                VStack(alignment:.leading){
+                                    Text("\(item.viewModel.name)")
+                                }
+                            }
                         }
                     }
                 }
             }
         }
     }
+    
+
+    
+//    @FetchRequest<Word>(sortDescriptors: [
+//        SortDescriptor(\.picture?.topic?.name),
+//        SortDescriptor(\.name)
+//    ],animation: .default)
+//    private var items: FetchedResults<Word>
+//
+//    func FilterView() -> some View {
+//        return List{
+//            ForEach(items){item in
+//                NavigationLink {
+//                    WordDetailView(item: item)
+//                } label: {
+//                    HStack{
+//                        PictureView(url: URL(string: item.viewModel.pictureUrl))
+//                            .frame(width: 60, height: 60)
+//                            .shadow(radius: 10)
+//                        VStack(alignment:.leading){
+//                            Text("\(item.viewModel.name)")
+//                            Text("\(item.viewModel.topicName)")
+//                                .font(.footnote)
+//                                .lineLimit(1)
+//
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
     
     public var body: some View {
         VStack{
@@ -69,7 +101,7 @@ public struct DictonarySearchView: View {
             }
         }
         .navigationTitle(vm.loadStatue == .load ? "Syncing Words..." : "Words")
-//        .navigationBarTitleDisplayMode(.inline)
+        //        .navigationBarTitleDisplayMode(.inline)
         .searchable(
             text: query,
             placement: .navigationBarDrawer(displayMode: .always),

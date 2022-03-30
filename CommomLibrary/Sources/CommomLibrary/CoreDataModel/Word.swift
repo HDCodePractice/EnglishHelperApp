@@ -18,6 +18,12 @@ public struct WordViewModel{
 }
 
 public extension Word{
+    @objc
+    var topicSection : String{
+        let topicName = self.picture?.topic?.name ?? "Unknow"
+        return topicName
+    }
+    
     var viewModel: WordViewModel {
         let fileName = self.name ?? ""
         let pictureName = self.picture?.name ?? ""
