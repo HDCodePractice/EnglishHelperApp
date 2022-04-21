@@ -6,14 +6,14 @@
 //
 
 import Foundation
-extension String {
-    func urlEncoded() -> String {
+public extension String {
+    public func urlEncoded() -> String {
         let encodeUrlString = addingPercentEncoding(withAllowedCharacters:.urlQueryAllowed)
         return encodeUrlString ?? ""
     }
 
     //将编码后的url转换回原始的url
-    func urlDecoded() -> String {
+    public func urlDecoded() -> String {
         return removingPercentEncoding ?? ""
     }
 }

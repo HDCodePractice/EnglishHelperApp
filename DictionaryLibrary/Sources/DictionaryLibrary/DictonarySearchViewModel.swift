@@ -10,19 +10,11 @@ import CoreData
 import CommomLibrary
 
 class DictonarySearchViewModel: ObservableObject{
-    @Published var loadStatue : LoadStatue = .load
     
     private let jsonURL = "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/picture.json"
     
-    func fetchData(viewContext: NSManagedObjectContext){
-        Task{
-            await PersistenceController.fetchData(url: jsonURL, viewContext: viewContext)
-            self.loadStatue = .finish
-        }
+    func fetchData() async{
+        // await PersistenceController.fetchData(url: jsonURL, viewContext: viewContext)
     }
 }
 
-enum LoadStatue{
-    case load
-    case finish
-}

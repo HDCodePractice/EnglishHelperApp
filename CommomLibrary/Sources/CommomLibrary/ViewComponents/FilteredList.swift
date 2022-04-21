@@ -73,17 +73,17 @@ public struct FilteredListDelete<T: NSManagedObject,Content: View>: View {
     }
 }
 
-struct FilteredList_Previews: PreviewProvider {
-    static var previews: some View {
-        Group{
-            FilteredList(predicate: NSPredicate(format: "%K BEGINSWITH %@", "name", "C")){ (item:Chapter) in
-                let item = item.viewModel
-                Text("\(item.name)")
-            }.environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
-            FilteredList{ (item:Word) in
-                let item = item.viewModel
-                Text("\(item.name)")
-            }.environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
-        }
-    }
-}
+//struct FilteredList_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group{
+//            FilteredList(predicate: NSPredicate(format: "%K BEGINSWITH %@", "name", "C")){ (item:Chapter) in
+//                let item = item.viewModel
+//                Text("\(item.name)")
+//            }.environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
+//            FilteredList{ (item:Word) in
+//                let item = item.viewModel
+//                Text("\(item.name)")
+//            }.environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
+//        }
+//    }
+//}

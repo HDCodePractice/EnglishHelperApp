@@ -1,54 +1,44 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by 老房东 on 2022-03-08.
 //
 
 import SwiftUI
 import CommomLibrary
+import RealmSwift
 
-public struct DictonarySearchView: View {
-    @StateObject private var vm = DictonarySearchViewModel()
-    @Environment(\.managedObjectContext) private var viewContext
-    
-    @State private var searchText = ""
-    var query: Binding<String>{
-        Binding{
-            searchText
-        }set:{ newValue in
-            searchText = newValue
-            items.nsPredicate = newValue.isEmpty
-            ? nil
-            : NSPredicate(format: "name CONTAINS[c] %@", newValue)
-        }
-    }
-    
-    public init(){}
-    
-    @SectionedFetchRequest<String,Word>(
-        sectionIdentifier: \.topicSection,
-        sortDescriptors: [
-            SortDescriptor(\.picture?.topic?.name),
-            SortDescriptor(\.name)
-        ]
-    )
-    private var items: SectionedFetchResults<String,Word>
+struct DictonarySearchView: View {
+    @StateObject var vm = DictonarySearchViewModel()
+    @ObservedResults(Topic.self) var topics
+    @ObservedResults(Word.self) var words
+    @State private var isLoading = false
+    @State var searchFilter = ""
 
-    func FilterView() -> some View {
-        return List{
-            ForEach(items){section in
-                Section(header: Text(section.id)){
-                    ForEach(section){ item in
-                        NavigationLink {
-                            WordDetailView(item: item)
-                        } label: {
+    var body: some View {
+        List{
+            ForEach(topics){ topic in
+                Section(topic.name){
+                    if searchFilter.isEmpty{
+                        ForEach(words.where({$0.assignee.assignee.name==topic.name})){ word in
                             HStack{
-                                PictureView(url: URL(string: item.viewModel.pictureUrl))
+                                PictureView(url: URL(string: word.pictureUrl.urlEncoded()))
                                     .frame(width: 60, height: 60)
                                     .shadow(radius: 10)
                                 VStack(alignment:.leading){
-                                    Text("\(item.viewModel.name)")
+                                    Text(word.name)
+                                }
+                            }
+                        }
+                    }else{
+                        ForEach(words.where({$0.assignee.assignee.name==topic.name && $0.name.contains(searchFilter, options: .caseInsensitive)})){ word in
+                            HStack{
+                                PictureView(url: URL(string: word.pictureUrl.urlEncoded()))
+                                    .frame(width: 60, height: 60)
+                                    .shadow(radius: 10)
+                                VStack(alignment:.leading){
+                                    Text(word.name)
                                 }
                             }
                         }
@@ -56,65 +46,27 @@ public struct DictonarySearchView: View {
                 }
             }
         }
-    }
-    
-
-    
-//    @FetchRequest<Word>(sortDescriptors: [
-//        SortDescriptor(\.picture?.topic?.name),
-//        SortDescriptor(\.name)
-//    ],animation: .default)
-//    private var items: FetchedResults<Word>
-//
-//    func FilterView() -> some View {
-//        return List{
-//            ForEach(items){item in
-//                NavigationLink {
-//                    WordDetailView(item: item)
-//                } label: {
-//                    HStack{
-//                        PictureView(url: URL(string: item.viewModel.pictureUrl))
-//                            .frame(width: 60, height: 60)
-//                            .shadow(radius: 10)
-//                        VStack(alignment:.leading){
-//                            Text("\(item.viewModel.name)")
-//                            Text("\(item.viewModel.topicName)")
-//                                .font(.footnote)
-//                                .lineLimit(1)
-//
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-    
-    public var body: some View {
-        VStack{
-            if vm.loadStatue == .load {
-                ProgressView()
-                    .onAppear {
-                        vm.fetchData(viewContext: viewContext)
-                    }
-            }else{
-                FilterView()
-            }
-        }
-        .navigationTitle(vm.loadStatue == .load ? "Syncing Words..." : "Words")
-        //        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Words")
         .searchable(
-            text: query,
+            text: $searchFilter,
             placement: .navigationBarDrawer(displayMode: .always),
             prompt: "Look up for dictonary"
         )
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    vm.loadStatue = .load
+                    Task{
+                        isLoading = true
+                        await vm.fetchData()
+                        isLoading = false
+                    }
                 } label: {
-                    Image(systemName: "arrow.clockwise.circle")
+                    if isLoading{
+                        ProgressView()
+                    }else{
+                        Image(systemName: "arrow.clockwise.circle")
+                    }
                 }
-                
             }
         }
     }
@@ -122,9 +74,9 @@ public struct DictonarySearchView: View {
 
 struct DictonarySearchView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        let _ = RealmController.preview
+        return NavigationView {
             DictonarySearchView()
-                .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
         }
     }
 }
