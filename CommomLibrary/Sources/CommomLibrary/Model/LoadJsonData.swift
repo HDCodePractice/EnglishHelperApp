@@ -7,7 +7,6 @@
 
 import Foundation
 
-@MainActor
 public func loadDataByServer<T: Decodable>(url: String) async -> T?{
     guard let url = URL(string: url) else { return nil}
     

@@ -11,8 +11,7 @@ import CommomLibrary
 
 class DictonarySearchViewModel: ObservableObject{
     private var realmController : RealmController
-    private let jsonURL = "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/picture.json"
-
+    
     @Published var filteredTopics = [String]()
     
     init(isPreview:Bool=false){
@@ -23,9 +22,9 @@ class DictonarySearchViewModel: ObservableObject{
         }
     }
     
-    
+    @MainActor
     func fetchData() async{
-        // await PersistenceController.fetchData(url: jsonURL, viewContext: viewContext)
+        await realmController.fetchData()
     }
     
     func setFilteredTopicList(searchFilter: String){

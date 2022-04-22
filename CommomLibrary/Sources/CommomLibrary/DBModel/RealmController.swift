@@ -14,6 +14,7 @@ public class RealmController{
     public var localRealm : Realm?
     public var memoRealm : Realm?
     private let logger = Logger()
+    private let pictureJsonURL = "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/picture.json"
     
     let config = Realm.Configuration(schemaVersion: 3)
     let memoConfig = Realm.Configuration(inMemoryIdentifier: "memo")
@@ -38,6 +39,14 @@ public class RealmController{
             memoRealm = try Realm(configuration: memoConfig)
         }catch{
             logger.error("Error opening Realm:\(error.localizedDescription)")
+        }
+    }
+    
+    // 从服务器上同步JSON数据到本地数据库
+    @MainActor
+    public func fetchData() async{
+        if let jChapter:[JChapter] = await loadDataByServer(url: pictureJsonURL){
+            syncFromServer(chapters: jChapter)
         }
     }
     
