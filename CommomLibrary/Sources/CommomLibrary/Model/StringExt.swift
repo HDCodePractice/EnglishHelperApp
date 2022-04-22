@@ -6,7 +6,7 @@
 //
 
 import Foundation
-extension String {
+public extension String {
     func urlEncoded() -> String {
         let encodeUrlString = addingPercentEncoding(withAllowedCharacters:.urlQueryAllowed)
         return encodeUrlString ?? ""

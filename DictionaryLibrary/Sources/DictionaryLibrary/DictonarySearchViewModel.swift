@@ -10,19 +10,39 @@ import CoreData
 import CommomLibrary
 
 class DictonarySearchViewModel: ObservableObject{
-    @Published var loadStatue : LoadStatue = .load
+    private var realmController : RealmController
     
-    private let jsonURL = "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/picture.json"
+    @Published var filteredTopics = [String]()
     
-    func fetchData(viewContext: NSManagedObjectContext){
-        Task{
-            await PersistenceController.fetchData(url: jsonURL, viewContext: viewContext)
-            self.loadStatue = .finish
+    init(isPreview:Bool=false){
+        if isPreview{
+            realmController = RealmController.preview
+        }else{
+            realmController = RealmController.shared
+        }
+    }
+    
+    @MainActor
+    func fetchData() async{
+        await realmController.fetchData()
+    }
+    
+    func setFilteredTopicList(searchFilter: String){
+        if searchFilter.isEmpty{
+            return
+        }
+        if let localRealm = realmController.localRealm{
+            let topics = localRealm.objects(Topic.self).where{
+                $0.pictures.words.name.contains(searchFilter, options: .caseInsensitive)
+            }
+            if topics.isEmpty{
+                return
+            }
+            filteredTopics = []
+            for topic in topics{
+                filteredTopics.append(topic.name)
+            }
         }
     }
 }
 
-enum LoadStatue{
-    case load
-    case finish
-}

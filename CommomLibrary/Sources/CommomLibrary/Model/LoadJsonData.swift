@@ -7,7 +7,6 @@
 
 import Foundation
 
-@MainActor
 public func loadDataByServer<T: Decodable>(url: String) async -> T?{
     guard let url = URL(string: url) else { return nil}
     
@@ -41,8 +40,7 @@ public func loadByURL<T: Decodable>(_ file: URL) -> T? {
 public func load<T: Decodable>(_ filename: String, bundel: Bundle = Bundle.main) -> T {
     let data: Data
     
-    guard let file = bundel.url(forResource: filename, withExtension: nil)
-    else {
+    guard let file = bundel.url(forResource: filename, withExtension: nil) else {
         fatalError("Couldn't find \(filename) in \(bundel) bundle.")
     }
     

@@ -1,130 +1,124 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by 老房东 on 2022-03-08.
 //
 
 import SwiftUI
 import CommomLibrary
+import RealmSwift
 
-public struct DictonarySearchView: View {
-    @StateObject private var vm = DictonarySearchViewModel()
-    @Environment(\.managedObjectContext) private var viewContext
+struct DictonarySearchView: View {
+    @EnvironmentObject var vm : DictonarySearchViewModel
+    @ObservedResults(Topic.self) var topics
+    @ObservedResults(Word.self) var words
     
-    @State private var searchText = ""
-    var query: Binding<String>{
-        Binding{
-            searchText
-        }set:{ newValue in
-            searchText = newValue
-            items.nsPredicate = newValue.isEmpty
-            ? nil
-            : NSPredicate(format: "name CONTAINS[c] %@", newValue)
-        }
-    }
-    
-    public init(){}
-    
-    @SectionedFetchRequest<String,Word>(
-        sectionIdentifier: \.topicSection,
-        sortDescriptors: [
-            SortDescriptor(\.picture?.topic?.name),
-            SortDescriptor(\.name)
-        ]
-    )
-    private var items: SectionedFetchResults<String,Word>
-
-    func FilterView() -> some View {
-        return List{
-            ForEach(items){section in
-                Section(header: Text(section.id)){
-                    ForEach(section){ item in
-                        NavigationLink {
-                            WordDetailView(item: item)
-                        } label: {
-                            HStack{
-                                PictureView(url: URL(string: item.viewModel.pictureUrl))
-                                    .frame(width: 60, height: 60)
-                                    .shadow(radius: 10)
-                                VStack(alignment:.leading){
-                                    Text("\(item.viewModel.name)")
+    @State private var isLoading = false
+    @State private var searchFilter = ""
+    @State private var selectedTopic = ""
+    @State private var showSelectTopicSheet : Bool = false
+        
+    public var body: some View {
+        List{
+            ForEach(topics.where({
+                searchFilter.isEmpty ? $0.name.like(selectedTopic.isEmpty ? "*" : selectedTopic ) : $0.pictures.words.name.contains(searchFilter, options: .caseInsensitive)})){ topic in
+                    Section(topic.name){
+                        if searchFilter.isEmpty{
+                            ForEach(words.where({$0.assignee.assignee.name==topic.name})){ word in
+                                NavigationLink{
+                                    WordDetailView(item: word)
+                                }label: {
+                                    HStack{
+                                        PictureView(url: URL(string: word.pictureUrl.urlEncoded()))
+                                            .frame(width: 60, height: 60)
+                                            .shadow(radius: 10)
+                                        VStack(alignment:.leading){
+                                            Text(word.name)
+                                        }
+                                    }
+                                }
+                            }
+                        }else{
+                            ForEach(words.where({$0.assignee.assignee.name==topic.name && $0.name.contains(searchFilter, options: .caseInsensitive)})){ word in
+                                NavigationLink{
+                                    WordDetailView(item: word)
+                                }label: {
+                                    HStack{
+                                        PictureView(url: URL(string: word.pictureUrl.urlEncoded()))
+                                            .frame(width: 60, height: 60)
+                                            .shadow(radius: 10)
+                                        VStack(alignment:.leading){
+                                            Text(word.name)
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
         }
-    }
-    
-
-    
-//    @FetchRequest<Word>(sortDescriptors: [
-//        SortDescriptor(\.picture?.topic?.name),
-//        SortDescriptor(\.name)
-//    ],animation: .default)
-//    private var items: FetchedResults<Word>
-//
-//    func FilterView() -> some View {
-//        return List{
-//            ForEach(items){item in
-//                NavigationLink {
-//                    WordDetailView(item: item)
-//                } label: {
-//                    HStack{
-//                        PictureView(url: URL(string: item.viewModel.pictureUrl))
-//                            .frame(width: 60, height: 60)
-//                            .shadow(radius: 10)
-//                        VStack(alignment:.leading){
-//                            Text("\(item.viewModel.name)")
-//                            Text("\(item.viewModel.topicName)")
-//                                .font(.footnote)
-//                                .lineLimit(1)
-//
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-    
-    public var body: some View {
-        VStack{
-            if vm.loadStatue == .load {
-                ProgressView()
-                    .onAppear {
-                        vm.fetchData(viewContext: viewContext)
-                    }
-            }else{
-                FilterView()
-            }
-        }
-        .navigationTitle(vm.loadStatue == .load ? "Syncing Words..." : "Words")
-        //        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Words")
         .searchable(
-            text: query,
+            text: $searchFilter,
             placement: .navigationBarDrawer(displayMode: .always),
             prompt: "Look up for dictonary"
         )
+        .disableAutocorrection(true)
         .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    Task{
+                        isLoading = true
+                        await vm.fetchData()
+                        isLoading = false
+                    }
+                } label: {
+                    if isLoading{
+                        ProgressView()
+                    }else{
+                        Image(systemName: "arrow.clockwise.circle")
+                    }
+                }
+            }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    vm.loadStatue = .load
+                    showSelectTopicSheet = true
                 } label: {
-                    Image(systemName: "arrow.clockwise.circle")
+                    if selectedTopic.isEmpty {
+                        Image(systemName: "lock.circle")
+                    }else{
+                        Image(systemName: "lock.circle.fill")
+                    }
                 }
-                
+            }
+        }
+        .sheet(isPresented: $showSelectTopicSheet) {
+            NavigationView{
+                ChooseTopicView(selectedTopic: $selectedTopic)
             }
         }
     }
 }
 
+public struct DictonarySearchMainView: View {
+    @StateObject var vm = DictonarySearchViewModel()
+    
+    public init(){}
+    
+    public var body: some View {
+        DictonarySearchView()
+            .environmentObject(vm)
+    }
+}
+
 struct DictonarySearchView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        let _ = RealmController.preview
+        let vm = DictonarySearchViewModel()
+        return NavigationView {
             DictonarySearchView()
-                .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
+                .environmentObject(vm)
         }
     }
 }
