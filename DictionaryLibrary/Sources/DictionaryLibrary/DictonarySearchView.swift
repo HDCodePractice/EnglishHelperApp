@@ -22,7 +22,7 @@ struct DictonarySearchView: View {
     public var body: some View {
         List{
             ForEach(topics.where({
-                searchFilter.isEmpty ? $0.name.like(selectedTopic.isEmpty ? "*" : selectedTopic) : $0.pictures.words.name.contains(searchFilter, options: .caseInsensitive)}).sorted(byKeyPath: "name")){ topic in
+                searchFilter.isEmpty ? $0.name.like(selectedTopic.isEmpty ? "*" : selectedTopic) : $0.name.like(selectedTopic.isEmpty ? "*" : selectedTopic) && $0.pictures.words.name.contains(searchFilter, options: .caseInsensitive)}).sorted(byKeyPath: "name")){ topic in
                     Section(topic.name){
                         if searchFilter.isEmpty{
                             ForEach(words.where({$0.assignee.assignee.name==topic.name}).sorted(byKeyPath: "name")){ word in
