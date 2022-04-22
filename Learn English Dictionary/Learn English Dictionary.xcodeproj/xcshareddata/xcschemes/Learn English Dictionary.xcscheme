@@ -38,6 +38,16 @@
                ReferencedContainer = "container:../CommomLibrary">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DictionaryLibraryTests"
+               BuildableName = "DictionaryLibraryTests"
+               BlueprintName = "DictionaryLibraryTests"
+               ReferencedContainer = "container:../DictionaryLibrary">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

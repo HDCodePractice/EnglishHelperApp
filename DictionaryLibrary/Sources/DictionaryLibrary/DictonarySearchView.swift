@@ -10,15 +10,19 @@ import CommomLibrary
 import RealmSwift
 
 struct DictonarySearchView: View {
-    @StateObject var vm = DictonarySearchViewModel()
+    @EnvironmentObject var vm : DictonarySearchViewModel
     @ObservedResults(Topic.self) var topics
     @ObservedResults(Word.self) var words
+    
     @State private var isLoading = false
-    @State var searchFilter = ""
-
+    @State private var searchFilter = ""
+    @State private var selectedTopic = ""
+    @State private var showSelectTopicSheet : Bool = false
+    
     var body: some View {
         List{
-            ForEach(topics){ topic in
+            ForEach(topics.where({
+                searchFilter.isEmpty ? $0.name.like(selectedTopic.isEmpty ? "*" : selectedTopic ) : $0.pictures.words.name.contains(searchFilter, options: .caseInsensitive)})){ topic in
                 Section(topic.name){
                     if searchFilter.isEmpty{
                         ForEach(words.where({$0.assignee.assignee.name==topic.name})){ word in
@@ -52,8 +56,9 @@ struct DictonarySearchView: View {
             placement: .navigationBarDrawer(displayMode: .always),
             prompt: "Look up for dictonary"
         )
+        .disableAutocorrection(true)
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
+            ToolbarItem(placement: .navigationBarLeading) {
                 Button {
                     Task{
                         isLoading = true
@@ -68,6 +73,22 @@ struct DictonarySearchView: View {
                     }
                 }
             }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    showSelectTopicSheet = true
+                } label: {
+                    if selectedTopic.isEmpty {
+                        Image(systemName: "lock.circle")
+                    }else{
+                        Image(systemName: "lock.circle.fill")
+                    }
+                }
+            }
+        }
+        .sheet(isPresented: $showSelectTopicSheet) {
+            NavigationView{
+                ChooseTopicView(selectedTopic: $selectedTopic)
+            }
         }
     }
 }
@@ -75,8 +96,10 @@ struct DictonarySearchView: View {
 struct DictonarySearchView_Previews: PreviewProvider {
     static var previews: some View {
         let _ = RealmController.preview
+        let vm = DictonarySearchViewModel()
         return NavigationView {
             DictonarySearchView()
+                .environmentObject(vm)
         }
     }
 }

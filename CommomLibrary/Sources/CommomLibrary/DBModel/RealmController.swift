@@ -11,8 +11,8 @@ import OSLog
 import UIKit
 
 public class RealmController{
-    private var localRealm : Realm?
-    private var memoRealm : Realm?
+    public var localRealm : Realm?
+    public var memoRealm : Realm?
     private let logger = Logger()
     
     let config = Realm.Configuration(schemaVersion: 3)
