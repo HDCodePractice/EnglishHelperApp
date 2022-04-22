@@ -75,8 +75,20 @@ public extension Word{
         return ""
     }
     
+    var audioFilePath:String{
+        if let picture=self.assignee.first,
+           let topic=picture.assignee.first,
+           let chapter=topic.assignee.first{
+            let chapterName = chapter.name
+            let topicName = topic.name
+            let fileName = self.name
+            return "\(chapterName)/\(topicName)/\(fileName)"
+        }
+        return ""
+    }
+    
     var audioUrl:String{
-        return "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/audio/\(filePath).wav"
+        return "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/audio/\(audioFilePath).wav"
     }
     
     var pictureUrl:String{

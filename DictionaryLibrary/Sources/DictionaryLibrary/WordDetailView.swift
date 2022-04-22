@@ -7,9 +7,10 @@
 
 import SwiftUI
 import CommomLibrary
+import RealmSwift
 
 struct WordDetailView: View {
-    var item : Word
+    @ObservedRealmObject var item : Word
     
     var body: some View {
         VStack{
@@ -19,11 +20,28 @@ struct WordDetailView: View {
                 PlayAudio(url: item.audioUrl,isAutoPlay: false)
             }
             Text(item.wordsTitle)
-            PictureView(url: URL(string: item.pictureUrl))
+            PictureView(url: URL(string: item.pictureUrl.urlEncoded()))
                 .shadow(radius: 10)
                 .padding()
             Text(item.chapterName)
             Text(item.topicName)
         }
+    }
+}
+
+
+
+private struct testView: View {
+    @ObservedResults(Word.self) var words
+    
+    var body: some View {
+        WordDetailView(item: words.first!)
+    }
+}
+
+struct testView_Previews: PreviewProvider {
+    static var previews: some View {
+        let _ = RealmController.preview
+        return testView()
     }
 }

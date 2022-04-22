@@ -18,37 +18,45 @@ struct DictonarySearchView: View {
     @State private var searchFilter = ""
     @State private var selectedTopic = ""
     @State private var showSelectTopicSheet : Bool = false
-    
-    var body: some View {
+        
+    public var body: some View {
         List{
             ForEach(topics.where({
                 searchFilter.isEmpty ? $0.name.like(selectedTopic.isEmpty ? "*" : selectedTopic ) : $0.pictures.words.name.contains(searchFilter, options: .caseInsensitive)})){ topic in
-                Section(topic.name){
-                    if searchFilter.isEmpty{
-                        ForEach(words.where({$0.assignee.assignee.name==topic.name})){ word in
-                            HStack{
-                                PictureView(url: URL(string: word.pictureUrl.urlEncoded()))
-                                    .frame(width: 60, height: 60)
-                                    .shadow(radius: 10)
-                                VStack(alignment:.leading){
-                                    Text(word.name)
+                    Section(topic.name){
+                        if searchFilter.isEmpty{
+                            ForEach(words.where({$0.assignee.assignee.name==topic.name})){ word in
+                                NavigationLink{
+                                    WordDetailView(item: word)
+                                }label: {
+                                    HStack{
+                                        PictureView(url: URL(string: word.pictureUrl.urlEncoded()))
+                                            .frame(width: 60, height: 60)
+                                            .shadow(radius: 10)
+                                        VStack(alignment:.leading){
+                                            Text(word.name)
+                                        }
+                                    }
                                 }
                             }
-                        }
-                    }else{
-                        ForEach(words.where({$0.assignee.assignee.name==topic.name && $0.name.contains(searchFilter, options: .caseInsensitive)})){ word in
-                            HStack{
-                                PictureView(url: URL(string: word.pictureUrl.urlEncoded()))
-                                    .frame(width: 60, height: 60)
-                                    .shadow(radius: 10)
-                                VStack(alignment:.leading){
-                                    Text(word.name)
+                        }else{
+                            ForEach(words.where({$0.assignee.assignee.name==topic.name && $0.name.contains(searchFilter, options: .caseInsensitive)})){ word in
+                                NavigationLink{
+                                    WordDetailView(item: word)
+                                }label: {
+                                    HStack{
+                                        PictureView(url: URL(string: word.pictureUrl.urlEncoded()))
+                                            .frame(width: 60, height: 60)
+                                            .shadow(radius: 10)
+                                        VStack(alignment:.leading){
+                                            Text(word.name)
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
         }
         .navigationTitle("Words")
         .searchable(
@@ -90,6 +98,17 @@ struct DictonarySearchView: View {
                 ChooseTopicView(selectedTopic: $selectedTopic)
             }
         }
+    }
+}
+
+public struct DictonarySearchMainView: View {
+    @StateObject var vm = DictonarySearchViewModel()
+    
+    public init(){}
+    
+    public var body: some View {
+        DictonarySearchView()
+            .environmentObject(vm)
     }
 }
 
