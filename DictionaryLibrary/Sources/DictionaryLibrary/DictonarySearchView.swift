@@ -45,16 +45,6 @@ struct DictonarySearchView: View {
                     }).sorted(byKeyPath: "name")){ word in
                         WordListItemView(word: word)
                     }
-                    
-//                    if searchFilter.isEmpty{
-//                        ForEach(words.where({$0.assignee.assignee.name==topic.name}).sorted(byKeyPath: "name")){ word in
-//                            WordListItemView(word: word)
-//                        }
-//                    }else{
-//                        ForEach(words.where({$0.assignee.assignee.name==topic.name && $0.name.contains(searchFilter, options: .caseInsensitive)}).sorted(byKeyPath: "name")){ word in
-//                            WordListItemView(word: word)
-//                        }
-//                    }
                 }
             }
         }
