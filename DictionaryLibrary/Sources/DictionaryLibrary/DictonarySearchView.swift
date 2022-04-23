@@ -18,45 +18,45 @@ struct DictonarySearchView: View {
     @State private var searchFilter = ""
     @State private var selectedTopic = ""
     @State private var showSelectTopicSheet : Bool = false
-        
+    @State private var showOptionSheet : Bool = false
+    
     public var body: some View {
         List{
             ForEach(topics.where({
-                searchFilter.isEmpty ? $0.name.like(selectedTopic.isEmpty ? "*" : selectedTopic) : $0.name.like(selectedTopic.isEmpty ? "*" : selectedTopic) && $0.pictures.words.name.contains(searchFilter, options: .caseInsensitive)}).sorted(byKeyPath: "name")){ topic in
-                    Section(topic.name){
-                        if searchFilter.isEmpty{
-                            ForEach(words.where({$0.assignee.assignee.name==topic.name}).sorted(byKeyPath: "name")){ word in
-                                NavigationLink{
-                                    WordDetailView(item: word)
-                                }label: {
-                                    HStack{
-                                        PictureView(url: URL(string: word.pictureUrl.urlEncoded()))
-                                            .frame(width: 60, height: 60)
-                                            .shadow(radius: 10)
-                                        VStack(alignment:.leading){
-                                            Text(word.name)
-                                        }
-                                    }
-                                }
-                            }
-                        }else{
-                            ForEach(words.where({$0.assignee.assignee.name==topic.name && $0.name.contains(searchFilter, options: .caseInsensitive)}).sorted(byKeyPath: "name")){ word in
-                                NavigationLink{
-                                    WordDetailView(item: word)
-                                }label: {
-                                    HStack{
-                                        PictureView(url: URL(string: word.pictureUrl.urlEncoded()))
-                                            .frame(width: 60, height: 60)
-                                            .shadow(radius: 10)
-                                        VStack(alignment:.leading){
-                                            Text(word.name)
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                var filter = $0.name.like(selectedTopic.isEmpty ? "*" : selectedTopic)
+                if !searchFilter.isEmpty {
+                    filter = filter && $0.pictures.words.name.contains(searchFilter, options: .caseInsensitive)
                 }
+                if vm.isOnlyShowNewWord{
+                    filter = filter && $0.pictures.words.isNew == true
+                }
+                return filter
+            }).sorted(byKeyPath: "name")){ topic in
+                Section(topic.name){
+                    ForEach(words.where({
+                        var filter = $0.assignee.assignee.name==topic.name
+                        if !searchFilter.isEmpty{
+                            filter = filter && $0.name.contains(searchFilter, options: .caseInsensitive)
+                        }
+                        if vm.isOnlyShowNewWord{
+                            filter = filter && $0.isNew==true
+                        }
+                        return filter
+                    }).sorted(byKeyPath: "name")){ word in
+                        WordListItemView(word: word)
+                    }
+                    
+//                    if searchFilter.isEmpty{
+//                        ForEach(words.where({$0.assignee.assignee.name==topic.name}).sorted(byKeyPath: "name")){ word in
+//                            WordListItemView(word: word)
+//                        }
+//                    }else{
+//                        ForEach(words.where({$0.assignee.assignee.name==topic.name && $0.name.contains(searchFilter, options: .caseInsensitive)}).sorted(byKeyPath: "name")){ word in
+//                            WordListItemView(word: word)
+//                        }
+//                    }
+                }
+            }
         }
         .navigationTitle("Words")
         .searchable(
@@ -81,14 +81,23 @@ struct DictonarySearchView: View {
                     }
                 }
             }
+            
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    showSelectTopicSheet = true
-                } label: {
-                    if selectedTopic.isEmpty {
-                        Image(systemName: "lock.circle")
-                    }else{
-                        Image(systemName: "lock.circle.fill")
+                HStack(spacing: 0){
+                    Button{
+                        showOptionSheet = true
+                    }label:{
+                        Image(systemName: "gearshape.circle")
+                    }
+                    
+                    Button {
+                        showSelectTopicSheet = true
+                    } label: {
+                        if selectedTopic.isEmpty {
+                            Image(systemName: "lock.circle")
+                        }else{
+                            Image(systemName: "lock.circle.fill")
+                        }
                     }
                 }
             }
@@ -96,6 +105,12 @@ struct DictonarySearchView: View {
         .sheet(isPresented: $showSelectTopicSheet) {
             NavigationView{
                 ChooseTopicView(selectedTopic: $selectedTopic)
+            }
+        }
+        .sheet(isPresented: $showOptionSheet) {
+            NavigationView{
+                DictonarySearchOptionView()
+                    .environmentObject(vm)
             }
         }
     }

@@ -8,12 +8,14 @@
 import Foundation
 import CoreData
 import CommomLibrary
+import RealmSwift
+import OSLog
 
 class DictonarySearchViewModel: ObservableObject{
     private var realmController : RealmController
     
-    @Published var filteredTopics = [String]()
-    
+    @Published var isOnlyShowNewWord = false
+        
     init(isPreview:Bool=false){
         if isPreview{
             realmController = RealmController.preview
@@ -27,20 +29,38 @@ class DictonarySearchViewModel: ObservableObject{
         await realmController.fetchData()
     }
     
-    func setFilteredTopicList(searchFilter: String){
-        if searchFilter.isEmpty{
-            return
-        }
+    @MainActor
+    func cleanAllNew() async{
         if let localRealm = realmController.localRealm{
-            let topics = localRealm.objects(Topic.self).where{
-                $0.pictures.words.name.contains(searchFilter, options: .caseInsensitive)
+            let words = localRealm.objects(Word.self).where{
+                $0.isNew == true
             }
-            if topics.isEmpty{
-                return
+            do{
+                try localRealm.write{
+                    for word in words{
+                        word.isNew=false
+                    }
+                }
+            }catch{
+                Logger().error("Error cleanAllNew Word to Realm:\(error.localizedDescription)")
             }
-            filteredTopics = []
-            for topic in topics{
-                filteredTopics.append(topic.name)
+        }
+    }
+    
+    @MainActor
+    func makeAllToNew() async{
+        if let localRealm = realmController.localRealm{
+            let words = localRealm.objects(Word.self).where{
+                $0.isNew == false
+            }
+            do{
+                try localRealm.write{
+                    for word in words{
+                        word.isNew=true
+                    }
+                }
+            }catch{
+                Logger().error("Error makeAllToNew Word to Realm:\(error.localizedDescription)")
             }
         }
     }

@@ -16,7 +16,7 @@ public class RealmController{
     private let logger = Logger()
     private let pictureJsonURL = "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/picture.json"
     
-    let config = Realm.Configuration(schemaVersion: 3)
+    let config = Realm.Configuration(schemaVersion: 4)
     let memoConfig = Realm.Configuration(inMemoryIdentifier: "memo")
     
     public static let shared: RealmController = {
