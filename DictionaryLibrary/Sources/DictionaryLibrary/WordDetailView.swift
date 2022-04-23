@@ -26,7 +26,7 @@ struct WordDetailView: View {
             Text(item.chapterName)
             Text(item.topicName)
         }
-        .onAppear {
+        .onDisappear {
             $item.isNew.wrappedValue = false
         }
     }
