@@ -26,12 +26,15 @@ struct WordDetailView: View {
             Text(item.chapterName)
             Text(item.topicName)
         }
+        .onAppear {
+            $item.isNew.wrappedValue = false
+        }
     }
 }
 
 
 
-private struct testView: View {
+struct testWordDetailView: View {
     @ObservedResults(Word.self) var words
     
     var body: some View {
@@ -39,9 +42,9 @@ private struct testView: View {
     }
 }
 
-struct testView_Previews: PreviewProvider {
+struct testWordDetailView_Previews: PreviewProvider {
     static var previews: some View {
         let _ = RealmController.preview
-        return testView()
+        return testWordDetailView()
     }
 }

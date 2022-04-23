@@ -18,17 +18,17 @@ class DictonarySearchViewModelTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testFilteredTopicList() throws {
-        //Give
-        let vm = DictonarySearchViewModel(isPreview: true)
-        
-        //When
-        vm.setFilteredTopicList(searchFilter: "")
-        //Then
-        XCTAssertEqual(vm.filteredTopics.count, 0)
-        
-        //When
-        vm.setFilteredTopicList(searchFilter: "b")
-        print(vm.filteredTopics)
-    }
+//    func testFilteredTopicList() throws {
+//        //Give
+//        let vm = DictonarySearchViewModel(isPreview: true)
+//        
+//        //When
+//        vm.setFilteredTopicList(searchFilter: "")
+//        //Then
+//        XCTAssertEqual(vm.filteredTopics.count, 0)
+//        
+//        //When
+//        vm.setFilteredTopicList(searchFilter: "b")
+//        print(vm.filteredTopics)
+//    }
 }

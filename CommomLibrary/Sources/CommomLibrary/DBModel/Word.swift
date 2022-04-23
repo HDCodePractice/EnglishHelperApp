@@ -11,6 +11,7 @@ import RealmSwift
 public class Word: Object, ObjectKeyIdentifiable{
     @Persisted(primaryKey: true) public var id: ObjectId
     @Persisted(indexed: true) public var name: String
+    @Persisted public var isNew: Bool = true
     
     @Persisted(originProperty: "words") public var assignee: LinkingObjects<Picture>
 }
