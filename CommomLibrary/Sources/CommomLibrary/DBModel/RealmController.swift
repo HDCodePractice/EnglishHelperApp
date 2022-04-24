@@ -51,7 +51,7 @@ public class RealmController{
     }
     
     // 清除所有本地数据
-    func cleanRealm(){
+    public func cleanRealm(){
         if let localRealm = localRealm {
             do{
                 try localRealm.write{

@@ -29,6 +29,9 @@ public extension Word{
     
     var wordsTitle: String{
         var title=""
+        if words.isEmpty{
+            return ""
+        }
         if words.count == 1{
             return words[0]
         }

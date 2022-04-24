@@ -48,6 +48,13 @@ struct DictonarySearchView: View {
                 }
             }
         }
+        .onAppear(perform: {
+            Task{
+                isLoading = true
+                await vm.fetchData()
+                isLoading = false
+            }
+        })
         .navigationTitle("Words")
         .searchable(
             text: $searchFilter,
@@ -70,6 +77,7 @@ struct DictonarySearchView: View {
                         Image(systemName: "arrow.clockwise.circle")
                     }
                 }
+                .disabled(isLoading)
             }
             
             ToolbarItem(placement: .navigationBarTrailing) {

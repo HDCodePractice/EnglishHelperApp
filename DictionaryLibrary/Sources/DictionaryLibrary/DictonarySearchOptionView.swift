@@ -24,9 +24,9 @@ struct DictonarySearchOptionView: View {
                             isCleanAllNew = true
                             await vm.cleanAllNew()
                             isCleanAllNew = false
-                            print("finish clean")
                         }
                     }
+                    .disabled(isCleanAllNew)
                     if isCleanAllNew{
                         ProgressView()
                     }
@@ -37,9 +37,9 @@ struct DictonarySearchOptionView: View {
                             isMakeAllToNew = true
                             await vm.makeAllToNew()
                             isMakeAllToNew = false
-                            print("finish clean")
                         }
                     }
+                    .disabled(isCleanAllNew)
                     if isMakeAllToNew{
                         ProgressView()
                     }
