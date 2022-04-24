@@ -55,11 +55,11 @@ struct DictonarySearchView: View {
                 isLoading = false
             }
         })
-        .navigationTitle("Words")
+        .navigationTitle("Dictionary")
         .searchable(
             text: $searchFilter,
             placement: .navigationBarDrawer(displayMode: .always),
-            prompt: "Look up for dictonary"
+            prompt: "Lookup Dictionary"
         )
         .disableAutocorrection(true)
         .toolbar {

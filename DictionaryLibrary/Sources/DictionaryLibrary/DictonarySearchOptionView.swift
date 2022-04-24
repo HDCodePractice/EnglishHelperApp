@@ -48,14 +48,14 @@ struct DictonarySearchOptionView: View {
                     Toggle("Only Show New", isOn: $vm.isOnlyShowNewWord)
                 }
             }
-            .navigationBarTitle("Search Option")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                Button(){
-                    dismiss()
-                }label: {
-                    Text("Done").fontWeight(.semibold)
-                }
+        }
+        .navigationBarTitle("Search Option")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            Button(){
+                dismiss()
+            }label: {
+                Text("Done").fontWeight(.semibold)
             }
         }
     }
