@@ -8,6 +8,7 @@
 import SwiftUI
 import CommomLibrary
 import GrammarBook
+import DictionaryLibrary
 
 struct ContentView: View {
     var body: some View {
@@ -28,11 +29,11 @@ struct ContentView: View {
                 } label: {
                     PrimaryButton("Grammar Book")
                 }
-//                NavigationLink{
-//                    ListTopicView()
-//                } label: {
-//                    PrimaryButton(text: "Browse Dictionary")
-//                }
+                NavigationLink{
+                    DictonarySearchMainView()
+                } label: {
+                    PrimaryButton("Dictionary")
+                }
                 Spacer()
                 NavigationLink{
                     AboutView()
