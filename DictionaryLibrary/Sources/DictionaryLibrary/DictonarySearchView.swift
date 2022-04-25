@@ -62,26 +62,24 @@ struct DictonarySearchView: View {
             prompt: "Lookup Dictionary"
         )
         .disableAutocorrection(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    Task{
-                        isLoading = true
-                        await vm.fetchData()
-                        isLoading = false
-                    }
-                } label: {
-                    if isLoading{
-                        ProgressView()
-                    }else{
-                        Image(systemName: "arrow.clockwise.circle")
-                    }
-                }
-                .disabled(isLoading)
-            }
-            
+        .toolbar {           
             ToolbarItem(placement: .navigationBarTrailing) {
                 HStack(spacing: 0){
+                    Button {
+                        Task{
+                            isLoading = true
+                            await vm.fetchData()
+                            isLoading = false
+                        }
+                    } label: {
+                        if isLoading{
+                            ProgressView()
+                        }else{
+                            Image(systemName: "arrow.clockwise.circle")
+                        }
+                    }
+                    .disabled(isLoading)
+                    
                     Button{
                         showOptionSheet = true
                     }label:{
