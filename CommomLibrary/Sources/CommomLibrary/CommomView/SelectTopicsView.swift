@@ -10,6 +10,7 @@ import RealmSwift
 
 public struct SelectTopicsView: View {
     @ObservedResults(Chapter.self) var chapters
+    @ObservedResults(Word.self) var words
     @Environment(\.dismiss) var dismiss
     @StateObject private var vm = SelectTopicsViewModel()
     
@@ -29,9 +30,12 @@ public struct SelectTopicsView: View {
                                     .foregroundColor(topic.isSelect ? .yellow :
                                             .secondary)
                                     .onTapGesture {
-                                         vm.toggleTopic(topic: topic)
+                                        vm.toggleTopic(topic: topic)
                                     }
-                                Text(topic.name)
+                                let wordCount = words.where({
+                                    $0.assignee.assignee.name == topic.name
+                                }).count
+                                Text("\(topic.name)(\(wordCount))")
                             }
                         }
                     }label: {
@@ -41,7 +45,10 @@ public struct SelectTopicsView: View {
                                 .onTapGesture(){
                                     vm.toggleChapter(chapter: chapter)
                                 }
-                            Text(chapter.name)
+                            let wordCount = words.where({
+                                $0.assignee.assignee.assignee.name == chapter.name
+                            }).count
+                            Text("\(chapter.name)(\(wordCount))")
                         }
                     }
                 }
@@ -65,9 +72,13 @@ public struct SelectTopicsView: View {
                     .onTapGesture {
                         vm.cleanCache()
                     }
+                Text("Clean Local Data")
+                    .onTapGesture {
+                        vm.cleanRealm()
+                    }
             }
         }
-        .navigationBarTitle("Browse Dictionary")
+        .navigationBarTitle("Select Topics(\(words.count))")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar{
             ToolbarItem(placement: .primaryAction){

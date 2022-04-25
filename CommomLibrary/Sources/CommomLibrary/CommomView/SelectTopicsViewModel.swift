@@ -15,6 +15,10 @@ class SelectTopicsViewModel: ObservableObject{
     
     @Published var cacheSize = "0 MB"
     
+    var realmFilePath : String{
+        return realmController.realmFilePath
+    }
+    
     init(isPreview:Bool=false){
         if isPreview{
             self.realmController = RealmController.preview
@@ -53,6 +57,10 @@ class SelectTopicsViewModel: ObservableObject{
         await realmController.fetchData()
     }
 
+    func cleanRealm(){
+        realmController.cleanRealm()
+    }
+    
     func toggleTopic(topic: Topic){
         if let localRealm = realmController.localRealm {
             do{
