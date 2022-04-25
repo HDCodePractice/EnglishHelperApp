@@ -19,6 +19,13 @@ public class RealmController{
     let config = Realm.Configuration(schemaVersion: 4)
     let memoConfig = Realm.Configuration(inMemoryIdentifier: "memo")
     
+    public var realmFilePath: String{
+        if let localRealm = localRealm, let url = localRealm.configuration.fileURL{
+            return url.path
+        }
+        return "NoRealmFile"
+    }
+    
     public static let shared: RealmController = {
         let realmController = RealmController()
         return realmController
@@ -131,8 +138,10 @@ public class RealmController{
     private func deleteTopic(topic: Topic) {
         if let localRealm = localRealm {
             do{
+                for picture in topic.pictures{
+                    deletePictureFiles(picture: picture)
+                }
                 try localRealm.write{
-                    localRealm.delete(topic.pictures)
                     localRealm.delete(topic)
                 }
             } catch {
@@ -158,6 +167,9 @@ public class RealmController{
     private func deletePictureFiles(picture: Picture){
         if let localRealm = localRealm {
             do{
+                for word in picture.words{
+                    deleteWord(word: word)
+                }
                 try localRealm.write{
                     localRealm.delete(picture)
                 }
