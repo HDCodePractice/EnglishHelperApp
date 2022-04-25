@@ -25,7 +25,7 @@ struct WordListItemView: View {
                         if word.isNew{
                             Image(systemName: "circle.fill")
                                 .font(.caption2)
-                                .foregroundColor(.blue)
+                                .foregroundColor(.cyan)
                                 .shadow(radius: 5)
                         }
                         Text(word.name)
