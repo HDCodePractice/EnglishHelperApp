@@ -21,6 +21,7 @@
 		675040A927C5991F00CD3B98 /* LearnEnglishHelperAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675040A827C5991F00CD3B98 /* LearnEnglishHelperAppTests.swift */; };
 		675040B327C5991F00CD3B98 /* LearnEnglishHelperAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675040B227C5991F00CD3B98 /* LearnEnglishHelperAppUITests.swift */; };
 		675040B527C5991F00CD3B98 /* LearnEnglishHelperAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675040B427C5991F00CD3B98 /* LearnEnglishHelperAppUITestsLaunchTests.swift */; };
+		67608A7D28175EA700A1AF61 /* PictureGame in Frameworks */ = {isa = PBXBuildFile; productRef = 67608A7C28175EA700A1AF61 /* PictureGame */; };
 		6764C22927C5E6C100861D83 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6764C22827C5E6C100861D83 /* AboutView.swift */; };
 		67A5AE7727C5DE6100ED7AFA /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A5AE7627C5DE6100ED7AFA /* TestView.swift */; };
 /* End PBXBuildFile section */
@@ -68,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				671AA2802816008900081001 /* GrammarBook in Frameworks */,
+				67608A7D28175EA700A1AF61 /* PictureGame in Frameworks */,
 				671AA27E2816004200081001 /* CommomLibrary in Frameworks */,
 				671AA27C2815FFB300081001 /* DictionaryLibrary in Frameworks */,
 			);
@@ -205,6 +207,7 @@
 				671AA27B2815FFB300081001 /* DictionaryLibrary */,
 				671AA27D2816004200081001 /* CommomLibrary */,
 				671AA27F2816008900081001 /* GrammarBook */,
+				67608A7C28175EA700A1AF61 /* PictureGame */,
 			);
 			productName = LearnEnglishHelperApp;
 			productReference = 6750409427C5991E00CD3B98 /* LearnEnglishHelperApp.app */;
@@ -712,6 +715,10 @@
 		671AA27F2816008900081001 /* GrammarBook */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GrammarBook;
+		};
+		67608A7C28175EA700A1AF61 /* PictureGame */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PictureGame;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

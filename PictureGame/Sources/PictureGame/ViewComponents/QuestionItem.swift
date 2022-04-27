@@ -31,21 +31,21 @@ struct QuestionItem: View {
                     .font(.largeTitle )
                     .foregroundColor(answer.isCorrect ? .green : .red)
                     .opacity(0.8)
-
+                
             }
         }.shadow( color: isShowSelected ? (answer.isCorrect ? .green : .red) : .gray, radius: 5)
         
         
     }
-    
-    struct QuestionItem_Previews: PreviewProvider {
-        static var previews: some View {
-            Group{
-                QuestionItem(answer: Answer(picUrl: URL(string: "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/Clothing/Everyday%20Clothes/blouse.jpg")!,isSeleted: true, isCorrect: true))
-                QuestionItem(answer: Answer(picUrl: URL(string: "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/Clothing/Everyday%20Clothes/blouse.jpg")!,isSeleted: true, isCorrect: false))
-                QuestionItem(answer: Answer(picUrl: URL(string: "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/Clothing/Everyday%20Clothes/blouse.jpg")!,isSeleted: false, isCorrect: false))
-            }
-            
+}
+
+struct QuestionItem_Previews: PreviewProvider {
+    static var previews: some View {
+        Group{
+            QuestionItem(answer: Answer(picUrl: URL(string: "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/Clothing/Everyday%20Clothes/blouse.jpg")!,isSeleted: true, isCorrect: true))
+            QuestionItem(answer: Answer(picUrl: URL(string: "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/Clothing/Everyday%20Clothes/blouse.jpg")!,isSeleted: true, isCorrect: false))
+            QuestionItem(answer: Answer(picUrl: URL(string: "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/Clothing/Everyday%20Clothes/blouse.jpg")!,isSeleted: false, isCorrect: false))
         }
+        
     }
 }
