@@ -20,7 +20,7 @@ struct WordDetailView: View {
                 PlayAudio(url: item.audioUrl,isAutoPlay: false)
             }
             Text(item.wordsTitle)
-            PictureView(url: URL(string: item.pictureUrl.urlEncoded()))
+            PictureView(url: URL(string: item.pictureUrl))
                 .shadow(radius: 10)
                 .padding()
             Text(item.chapterName)

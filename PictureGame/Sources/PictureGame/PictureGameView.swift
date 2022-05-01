@@ -10,15 +10,11 @@ struct PictureGameMainView: View {
                 PictureGameStartView()
                     .environmentObject(vm)
             case .inProgress:
-                Text("In Progress")
-                    .onTapGesture {
-                        vm.gameStatus = .finish
-                    }
+                PictureGameProgressView()
+                    .environmentObject(vm)
             case .finish:
-                Text("Finish")
-                    .onTapGesture {
-                        vm.gameStatus = .start
-                    }
+                PictureGameEndView()
+                    .environmentObject(vm)
             }
         }
         .animation(Animation.easeIn(duration: 1),value: vm.gameStatus)

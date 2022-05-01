@@ -24,7 +24,7 @@ public extension View {
     }
 }
 
-extension UIView {
+public extension UIView {
     func asImage() -> UIImage {
         let renderer = UIGraphicsImageRenderer(size: self.bounds.size)
         return renderer.image { ctx in

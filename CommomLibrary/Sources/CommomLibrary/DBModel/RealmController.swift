@@ -33,11 +33,15 @@ public class RealmController{
     
     public static var preview: RealmController = {
         let realmController = RealmController()
-        if let chapters: [JChapter] = load("example.json",bundel: .swiftUIPreviewsCompatibleModule){
-            realmController.syncFromServer(chapters: chapters)
-        }
+        realmController.reloadPreviewData()
         return realmController
     }()
+    
+    public func reloadPreviewData(jsonFile:String="example.json"){
+        if let chapters: [JChapter] = load(jsonFile,bundel: .swiftUIPreviewsCompatibleModule){
+            syncFromServer(chapters: chapters)
+        }
+    }
     
     init(){
         do{

@@ -15,7 +15,7 @@ public class Picture: Object, ObjectKeyIdentifiable{
     @Persisted(originProperty: "pictures") public var assignee: LinkingObjects<Topic>
 }
 
-extension Picture{
+public extension Picture{
     var filePath:String{
         if let topic=self.assignee.first,
            let chapter = topic.assignee.first{
@@ -27,12 +27,8 @@ extension Picture{
         return ""
     }
     
-    var audioUrl:String{
-        return "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/audio/\(filePath).wav"
-    }
-    
     var pictureUrl:String{
-        return "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/\(filePath).jpg"
+        return "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/\(filePath)".urlEncoded()
     }
 }
 

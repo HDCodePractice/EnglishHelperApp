@@ -17,7 +17,7 @@ struct WordListItemView: View {
             WordDetailView(item: word)
         }label: {
             HStack{
-                PictureView(url: URL(string: word.pictureUrl.urlEncoded()))
+                PictureView(url: URL(string: word.pictureUrl))
                     .frame(width: 60, height: 60)
                     .shadow(radius: 10)
                 VStack(alignment:.leading){

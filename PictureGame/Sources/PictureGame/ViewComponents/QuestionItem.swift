@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CommomLibrary
 
 struct QuestionItem: View {
     var answer: Answer
@@ -16,16 +17,7 @@ struct QuestionItem: View {
     var body: some View {
         ZStack {
             Color.clear
-            AsyncImage(url: answer.picUrl)
-            {
-                image in
-                
-                image.resizable()
-                    .scaledToFit()
-                    .padding()
-            } placeholder: {
-                ProgressView()
-            }
+            PictureView(url: URL(string:answer.picUrl))
             if (isShowSelected) {
                 Image(systemName: answer.isCorrect ? "checkmark.circle.fill" : "x.circle.fill")
                     .font(.largeTitle )
@@ -42,9 +34,24 @@ struct QuestionItem: View {
 struct QuestionItem_Previews: PreviewProvider {
     static var previews: some View {
         Group{
-            QuestionItem(answer: Answer(picUrl: URL(string: "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/Clothing/Everyday%20Clothes/blouse.jpg")!,isSeleted: true, isCorrect: true))
-            QuestionItem(answer: Answer(picUrl: URL(string: "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/Clothing/Everyday%20Clothes/blouse.jpg")!,isSeleted: true, isCorrect: false))
-            QuestionItem(answer: Answer(picUrl: URL(string: "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/Clothing/Everyday%20Clothes/blouse.jpg")!,isSeleted: false, isCorrect: false))
+            QuestionItem(answer: Answer(
+                name: "blouse",
+                isSeleted: true,
+                isCorrect: true,
+                picUrl: "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/Clothing/Everyday%20Clothes/blouse.jpg",
+                filePath: "Clothing/Everyday%20Clothes/blouse"))
+            QuestionItem(answer: Answer(
+                name: "blouse",
+                isSeleted: true,
+                isCorrect: false,
+                picUrl: "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/Clothing/Everyday%20Clothes/blouse.jpg",
+                filePath: "Clothing/Everyday%20Clothes/blouse"))
+            QuestionItem(answer: Answer(
+                name: "blouse",
+                isSeleted: false,
+                isCorrect: false,
+                picUrl: "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/Clothing/Everyday%20Clothes/blouse.jpg",
+                filePath: "Clothing/Everyday%20Clothes/blouse"))
         }
         
     }

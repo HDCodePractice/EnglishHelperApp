@@ -16,7 +16,6 @@ struct PictureGameStartView: View {
     
     var body: some View {
         VStack(spacing:40){
-            Spacer()
             VStack(spacing:20){
                 Text("Picture Game")
                     .liacTitle()
@@ -39,10 +38,9 @@ struct PictureGameStartView: View {
             }else{
                 PrimaryButton("Let's go!",background: .accent)
                     .onTapGesture(){
-    //                vm.generatePictureExam()
+                    vm.generatePictureExam()
                 }
             }
-//            .disabled(vm.loadFinished ? false : true)
             GameOptionsView()
                 .environmentObject(vm)
         }
