@@ -13,7 +13,7 @@ public struct PlayAudio: View {
     var isReady: Bool = false
     
     public init(url:String, isAutoPlay: Bool = true){
-        if let audioURL = URL(string: url.urlEncoded()){
+        if let audioURL = URL(string: url){
             player = AVPlayer(url: audioURL)
             isReady = true
             if isAutoPlay{

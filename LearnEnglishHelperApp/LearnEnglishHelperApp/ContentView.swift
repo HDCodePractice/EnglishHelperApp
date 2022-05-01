@@ -9,16 +9,17 @@ import SwiftUI
 import CommomLibrary
 import GrammarBook
 import DictionaryLibrary
+import PictureGame
 
 struct ContentView: View {
     var body: some View {
         NavigationView{
             VStack(spacing:50){
-//                NavigationLink{
-//                    PictureGame()
-//                } label: {
-//                    PrimaryButton(text: "Picture Game")
-//                }
+                NavigationLink{
+                    PictureGameView()
+                } label: {
+                    PrimaryButton("Picture Game")
+                }
 //                NavigationLink{
 //                    WordSearch()
 //                } label: {

@@ -17,7 +17,7 @@ struct WordListItemView: View {
             WordDetailView(item: word)
         }label: {
             HStack{
-                PictureView(url: URL(string: word.pictureUrl.urlEncoded()))
+                PictureView(url: URL(string: word.pictureUrl))
                     .frame(width: 60, height: 60)
                     .shadow(radius: 10)
                 VStack(alignment:.leading){
@@ -25,7 +25,7 @@ struct WordListItemView: View {
                         if word.isNew{
                             Image(systemName: "circle.fill")
                                 .font(.caption2)
-                                .foregroundColor(.blue)
+                                .foregroundColor(.cyan)
                                 .shadow(radius: 5)
                         }
                         Text(word.name)

@@ -92,10 +92,10 @@ public extension Word{
     }
     
     var audioUrl:String{
-        return "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/audio/\(audioFilePath).wav"
+        return "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/audio/\(audioFilePath).wav".urlEncoded()
     }
     
     var pictureUrl:String{
-        return "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/\(filePath)"
+        return "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/\(filePath)".urlEncoded()
     }
 }
