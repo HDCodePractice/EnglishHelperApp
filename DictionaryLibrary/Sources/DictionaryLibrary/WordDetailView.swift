@@ -8,16 +8,24 @@
 import SwiftUI
 import CommomLibrary
 import RealmSwift
+import TranslateView
 
 struct WordDetailView: View {
     @ObservedRealmObject var item : Word
+    @State var text : String?
     
     var body: some View {
         VStack{
+            Text(item.name)
+                .font(.largeTitle)
             HStack{
-                Text(item.name)
-                    .font(.largeTitle)
                 PlayAudio(url: item.audioUrl,isAutoPlay: false)
+                Button(){
+                    text = "This is \(item.name)"
+                }label: {
+                    Image(systemName: "questionmark.circle")
+                        .font(.title2)
+                }.translateSheet($text)
             }
             Text(item.wordsTitle)
             PictureView(url: URL(string: item.pictureUrl))
