@@ -26,6 +26,7 @@ struct WordDetailView: View {
                     Image(systemName: "questionmark.circle")
                         .font(.title2)
                 }.translateSheet($text)
+                CopyToClipboard(putString: item.name)
             }
             Text(item.wordsTitle)
             PictureView(url: URL(string: item.pictureUrl))
