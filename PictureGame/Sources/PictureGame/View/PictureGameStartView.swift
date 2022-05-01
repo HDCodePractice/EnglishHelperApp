@@ -22,6 +22,8 @@ struct PictureGameStartView: View {
                 Text("Are you ready to test out English words?")
                     .foregroundColor(.accent)
                     .multilineTextAlignment(.center)
+//                Text(vm.realmPath)
+//                CopyToClipboard(putString: vm.realmPath)
             }
             if !isLoadFinished {
                 HStack{

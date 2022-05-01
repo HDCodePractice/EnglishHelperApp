@@ -18,6 +18,14 @@ public class RealmController{
     
     let config = Realm.Configuration(schemaVersion: 4)
     let memoConfig = Realm.Configuration(inMemoryIdentifier: "memo")
+    // 可以使用这个配置来将内存放在磁盘上进行观察
+//    let memoConfig : Realm.Configuration = {
+//        var config = Realm.Configuration.defaultConfiguration
+//        config.fileURL!.deleteLastPathComponent()
+//        config.fileURL!.appendPathComponent("memo")
+//        config.fileURL!.appendPathExtension("realm")
+//        return config
+//    }()
     
     public var realmFilePath: String{
         if let localRealm = localRealm, let url = localRealm.configuration.fileURL{

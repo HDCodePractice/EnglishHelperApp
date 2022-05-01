@@ -21,13 +21,20 @@ class PictureGameViewModel: ObservableObject{
     
     @Published private(set) var index = 0
     @Published private(set) var score = 0
-    @Published private(set) var reachedEnd = false
     
     @Published var answerSelected = false
     
     @Published private(set) var question : String = ""
     @Published private(set) var answerChoices: [Answer] = []
     @Published private(set) var audioFile : String = ""
+    
+    var realmPath:String{
+        if let localRealm = realmController.localRealm,
+           let fileURL = localRealm.configuration.fileURL{
+            return fileURL.path
+        }
+        return "NoPath"
+    }
     
     init(isPreview:Bool=false){
         if isPreview{
@@ -98,7 +105,6 @@ class PictureGameViewModel: ObservableObject{
         if length == 0 {
             return
         }
-        reachedEnd = false
         index = 0
         score = 0
         
@@ -148,13 +154,13 @@ class PictureGameViewModel: ObservableObject{
                 index += 1
                 setQuestion()
             }else{
-                reachedEnd = true
+                gameStatus = .finish
             }
         case .finish:
             if index < length{
                 setQuestion()
             }else{
-                reachedEnd = true
+                gameStatus = .finish
             }
         }
     }

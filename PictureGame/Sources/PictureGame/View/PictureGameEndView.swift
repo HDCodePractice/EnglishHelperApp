@@ -1,5 +1,5 @@
 //
-//  PictureGameReachedEndView.swift
+//  PictureGameEndView.swift
 //  
 //
 //  Created by 老房东 on 2022-04-30.

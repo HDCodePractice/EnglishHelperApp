@@ -8,9 +8,14 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct CopyToClipboard: View {
+public struct CopyToClipboard: View {
     var putString : String
-    var body: some View {
+    
+    public init(putString:String){
+        self.putString = putString
+    }
+    
+    public var body: some View {
         Button {
             UIPasteboard.general.setValue(
                 putString,
