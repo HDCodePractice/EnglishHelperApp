@@ -67,10 +67,13 @@ struct PictureGameProgressView: View {
                             .font(.title2)
                     }.translateSheet($text)
                 }
-                Text(vm.question)
-                    .lineLimit(1)
-                    .font(.largeTitle.weight(.heavy))
-                    .minimumScaleFactor(0.01)
+                HStack{
+                    Text(vm.question)
+                        .lineLimit(1)
+                        .font(.largeTitle.weight(.heavy))
+                        .minimumScaleFactor(0.01)
+                    CopyToClipboard(putString: vm.question)
+                }
                 AnswerGrid()
                     .environmentObject(vm)
             }
