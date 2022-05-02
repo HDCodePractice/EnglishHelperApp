@@ -235,7 +235,7 @@ class PictureGameViewModel: ObservableObject{
     /*
      * 使用一条LocalPicturefile从localRealm中生成一个PictureExam.Result
      */
-    private func fromPictureGenExam(picture: Picture ,answerLength : Int) -> PictureExam.Result?{
+    private func fromPictureGenExam(picture: CommomLibrary.Picture ,answerLength : Int) -> PictureExam.Result?{
         if let localRealm = realmController.localRealm {
             if let topicName = picture.assignee.first?.name {
                 if let topic = localRealm.objects(Topic.self).where({$0.name == topicName}).first{
@@ -262,7 +262,7 @@ class PictureGameViewModel: ObservableObject{
         return nil
     }
     
-    private func PicturesToAnswerss(pictures: [Picture],correctAnswer: Int)-> [Answer]{
+    private func PicturesToAnswerss(pictures: [CommomLibrary.Picture],correctAnswer: Int)-> [Answer]{
         var answers = [Answer]()
         for i in 0...pictures.count-1 {
             answers.append(
