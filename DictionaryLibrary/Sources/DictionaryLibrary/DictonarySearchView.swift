@@ -48,13 +48,6 @@ struct DictonarySearchView: View {
                 }
             }
         }
-        .onAppear(perform: {
-            Task{
-                isLoading = true
-                await vm.fetchData()
-                isLoading = false
-            }
-        })
         .navigationTitle("Dictionary")
         .searchable(
             text: $searchFilter,

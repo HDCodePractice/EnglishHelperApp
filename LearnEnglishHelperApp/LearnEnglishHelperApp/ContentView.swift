@@ -12,6 +12,8 @@ import DictionaryLibrary
 import PictureGame
 
 struct ContentView: View {
+    @EnvironmentObject var vm: LearnEnglishHelperViewModel
+    
     var body: some View {
         NavigationView{
             VStack(spacing:50){
@@ -35,6 +37,12 @@ struct ContentView: View {
                 } label: {
                     PrimaryButton("Dictionary")
                 }
+                if vm.isLoading{
+                    HStack{
+                        ProgressView()
+                        Text("Syncing....")
+                    }
+                }
                 Spacer()
                 NavigationLink{
                     AboutView()
@@ -54,8 +62,10 @@ struct ContentView_Previews: PreviewProvider {
         Group{
             ContentView()
                 .environment(\.locale, .init(identifier: "en"))
+                .environmentObject(LearnEnglishHelperViewModel())
             ContentView()
                 .environment(\.locale, .init(identifier: "zh"))
+                .environmentObject(LearnEnglishHelperViewModel())
         }
     }
 }

@@ -12,7 +12,8 @@ import RealmSwift
 struct PictureGameStartView: View {
     @EnvironmentObject var vm : PictureGameViewModel
     @ObservedResults(Word.self) var words
-    @State var isLoadFinished = false
+    //TODO: 晚些要清除这个加载
+    @State var isLoadFinished = true
     
     var body: some View {
         VStack(spacing:40){
