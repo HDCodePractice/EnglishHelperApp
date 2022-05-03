@@ -24,6 +24,7 @@
 		67C92787281DDC92001A0F84 /* DictionaryLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 67C92786281DDC92001A0F84 /* DictionaryLibrary */; };
 		67C92789281DDC92001A0F84 /* GrammarBook in Frameworks */ = {isa = PBXBuildFile; productRef = 67C92788281DDC92001A0F84 /* GrammarBook */; };
 		67C9278B281DDC92001A0F84 /* PictureGame in Frameworks */ = {isa = PBXBuildFile; productRef = 67C9278A281DDC92001A0F84 /* PictureGame */; };
+		67D316D628214912004AE9A6 /* LearnEnglishHelperViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D316D528214912004AE9A6 /* LearnEnglishHelperViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		675F31A3281E2BF200779EDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6764C22827C5E6C100861D83 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		67A5AE7627C5DE6100ED7AFA /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		67D316D528214912004AE9A6 /* LearnEnglishHelperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnEnglishHelperViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 				6724FE2527C6669E0007486B /* Resources */,
 				675040C127C5993000CD3B98 /* LearnEnglishHelperApp.entitlements */,
 				6750409727C5991E00CD3B98 /* LearnEnglishHelperAppApp.swift */,
+				67D316D528214912004AE9A6 /* LearnEnglishHelperViewModel.swift */,
 				6750409927C5991E00CD3B98 /* ContentView.swift */,
 				6764C22827C5E6C100861D83 /* AboutView.swift */,
 				67A5AE7627C5DE6100ED7AFA /* TestView.swift */,
@@ -333,6 +336,7 @@
 			files = (
 				6764C22927C5E6C100861D83 /* AboutView.swift in Sources */,
 				67A5AE7727C5DE6100ED7AFA /* TestView.swift in Sources */,
+				67D316D628214912004AE9A6 /* LearnEnglishHelperViewModel.swift in Sources */,
 				6750409A27C5991E00CD3B98 /* ContentView.swift in Sources */,
 				6750409827C5991E00CD3B98 /* LearnEnglishHelperAppApp.swift in Sources */,
 			);
