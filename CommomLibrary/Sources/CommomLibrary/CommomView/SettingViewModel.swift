@@ -1,0 +1,63 @@
+//
+//  File.swift
+//  
+//
+//  Created by 老房东 on 2022-05-04.
+//
+
+import Foundation
+import RealmSwift
+import OSLog
+
+class SettingViewModel:ObservableObject{
+    private var realmController : RealmController
+    
+    init(isPreview:Bool=false){
+        if isPreview{
+            realmController = RealmController.preview
+        }else{
+            realmController = RealmController.shared
+        }
+    }
+    
+    @MainActor
+    func fetchData() async{
+        await realmController.fetchData()
+    }
+    
+    @MainActor
+    func cleanAllNew() async{
+        if let localRealm = realmController.localRealm{
+            let words = localRealm.objects(Word.self).where{
+                $0.isNew == true
+            }
+            do{
+                try localRealm.write{
+                    for word in words{
+                        word.isNew=false
+                    }
+                }
+            }catch{
+                Logger().error("Error cleanAllNew Word to Realm:\(error.localizedDescription)")
+            }
+        }
+    }
+    
+    @MainActor
+    func makeAllToNew() async{
+        if let localRealm = realmController.localRealm{
+            let words = localRealm.objects(Word.self).where{
+                $0.isNew == false
+            }
+            do{
+                try localRealm.write{
+                    for word in words{
+                        word.isNew=true
+                    }
+                }
+            }catch{
+                Logger().error("Error makeAllToNew Word to Realm:\(error.localizedDescription)")
+            }
+        }
+    }
+}

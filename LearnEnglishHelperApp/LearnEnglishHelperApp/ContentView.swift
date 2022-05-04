@@ -37,6 +37,11 @@ struct ContentView: View {
                 } label: {
                     PrimaryButton("Dictionary")
                 }
+                NavigationLink{
+                    MainSettingView()
+                } label: {
+                    PrimaryButton("Setting")
+                }
                 if vm.isLoading{
                     HStack{
                         ProgressView()
