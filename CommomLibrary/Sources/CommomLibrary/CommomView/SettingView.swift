@@ -20,10 +20,11 @@ struct SettingView: View {
     @EnvironmentObject var vm : SettingViewModel
     @State var isCleanAllNew = false
     @State var isMakeAllToNew = false
+    @State var isSyncing = false
     
     var body: some View {
         List{
-            Section("Sync Option") {
+            Section("New Words") {
                 HStack{
                     Text("Clean All New")
                     Spacer()
@@ -59,6 +60,33 @@ struct SettingView: View {
                         }
                     }
                 }
+            }
+            
+            Section("Syncing"){
+                HStack{
+                    Text("Resync Data From Server")
+                    Spacer()
+                    if isSyncing{
+                        ProgressView()
+                    }
+                }
+                .onTapGesture {
+                    Task{
+                        if isSyncing==false{
+                            isSyncing = true
+                            await vm.fetchData()
+                            isSyncing = false
+                        }
+                    }
+                }
+                Text("Clean Cache (\(vm.cacheSize))")
+                    .onTapGesture {
+                        vm.cleanCache()
+                    }
+                Text("Clean Local Data")
+                    .onTapGesture {
+                        vm.cleanRealm()
+                    }
             }
         }
     }
