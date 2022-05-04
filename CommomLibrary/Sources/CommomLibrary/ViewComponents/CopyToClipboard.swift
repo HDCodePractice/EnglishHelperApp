@@ -17,10 +17,8 @@ public struct CopyToClipboard: View {
     
     public var body: some View {
         Button {
-            UIPasteboard.general.setValue(
-                putString,
-                forPasteboardType: UTType.plainText.identifier
-            )
+            let pasteboard = UIPasteboard.general
+            pasteboard.string = putString
         } label: {
             Image(systemName: "doc.on.doc")
         }
