@@ -9,18 +9,8 @@ import SwiftUI
 
 @main
 struct LearnEnglishHelperAppApp: App {
-    var vm : LearnEnglishHelperViewModel
+    @StateObject var vm = LearnEnglishHelperViewModel()
     @Environment(\.scenePhase) var scenePhase
-    
-    init(){
-        let v = LearnEnglishHelperViewModel()
-        vm = v
-        Task.init {
-            v.isLoading = true
-            await v.fetchData()
-            v.isLoading = false
-        }
-    }
     
     var body: some Scene {
         WindowGroup {
@@ -31,11 +21,9 @@ struct LearnEnglishHelperAppApp: App {
             switch phase{
             case .active:
                 print("app active")
-                Task.init {
+                Task{
                     if vm.isLoading == false{
-                        vm.isLoading = true
                         await vm.fetchData()
-                        vm.isLoading = false
                     }
                 }
             case .inactive:

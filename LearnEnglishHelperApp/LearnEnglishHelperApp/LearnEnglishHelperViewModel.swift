@@ -15,10 +15,14 @@ class LearnEnglishHelperViewModel:ObservableObject{
     
     init(){
         realmController = RealmController.shared
+        Task{
+            await fetchData()
+        }
     }
     
-    @MainActor
     func fetchData() async{
+        isLoading = true
         await realmController.fetchData()
+        isLoading = false
     }
 }
