@@ -63,6 +63,14 @@ struct SettingView: View {
             }
             
             Section("Syncing"){
+                Text("Clean Cache (\(vm.cacheSize))")
+                    .onTapGesture {
+                        vm.cleanCache()
+                    }
+                Text("Clean Local Data")
+                    .onTapGesture {
+                        vm.cleanRealm()
+                    }
                 HStack{
                     Text("Resync Data From Server")
                     Spacer()
@@ -79,14 +87,6 @@ struct SettingView: View {
                         }
                     }
                 }
-                Text("Clean Cache (\(vm.cacheSize))")
-                    .onTapGesture {
-                        vm.cleanCache()
-                    }
-                Text("Clean Local Data")
-                    .onTapGesture {
-                        vm.cleanRealm()
-                    }
             }
         }
     }
