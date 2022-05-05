@@ -35,6 +35,7 @@ struct WordDetailView: View {
             Text(item.chapterName)
             Text(item.topicName)
         }
+        .padding()
         .onDisappear {
             $item.isNew.wrappedValue = false
         }
