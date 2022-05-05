@@ -18,7 +18,6 @@ struct DictonarySearchView: View {
     @State private var searchFilter = ""
     @State private var selectedTopic = ""
     @State private var showSelectTopicSheet : Bool = false
-    @State private var showOptionSheet : Bool = false
     
     public var body: some View {
         List{
@@ -74,18 +73,22 @@ struct DictonarySearchView: View {
                     .disabled(isLoading)
                     
                     Button{
-                        showOptionSheet = true
+                        vm.isOnlyShowNewWord.toggle()
                     }label:{
-                        Image(systemName: "gearshape.circle")
+                        if vm.isOnlyShowNewWord{
+                            Image(systemName: "newspaper.circle.fill")
+                        }else{
+                            Image(systemName: "newspaper.circle")
+                        }
                     }
                     
                     Button {
                         showSelectTopicSheet = true
                     } label: {
                         if selectedTopic.isEmpty {
-                            Image(systemName: "lock.circle")
+                            Image(systemName: "gearshape.circle")
                         }else{
-                            Image(systemName: "lock.circle.fill")
+                            Image(systemName: "gearshape.circle.fill")
                         }
                     }
                 }
@@ -94,12 +97,6 @@ struct DictonarySearchView: View {
         .sheet(isPresented: $showSelectTopicSheet) {
             NavigationView{
                 ChooseTopicView(selectedTopic: $selectedTopic)
-            }
-        }
-        .sheet(isPresented: $showOptionSheet) {
-            NavigationView{
-                DictonarySearchOptionView()
-                    .environmentObject(vm)
             }
         }
     }
