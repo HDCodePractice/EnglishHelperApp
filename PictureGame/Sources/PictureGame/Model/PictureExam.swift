@@ -21,23 +21,5 @@ struct PictureExam{
         var topic : String
         var chapter : String
         var audioFile: String
-        
-//        var questAnswers: [Answer]{
-//            var _answers : [Answer] = []
-//            for i in 0..<answers.count {
-//                _answers.append(
-//                    Answer(
-//                        name: answers[i].name,
-//                        isCorrect: i==correctAnswer ? true : false,
-//                        picUrl: URL(string: answers[i].pictureUrl)!
-//                    )
-//                )
-//            }
-//            return _answers
-//        }
-        
-//        var audioFile: String{
-//            return "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/audio/\(chapter)/\(topic)/\(questionWord).wav"
-//        }
     }
 }
