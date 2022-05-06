@@ -23,6 +23,7 @@ class PictureGameViewModel: ObservableObject{
     @Published private(set) var score = 0
     
     @Published var answerSelected = false
+    @Published var isShowOne = false
     
     @Published private(set) var question : String = ""
     @Published private(set) var answerChoices: [Answer] = []
@@ -133,6 +134,7 @@ class PictureGameViewModel: ObservableObject{
             }
         }
         answerSelected = false
+        isShowOne = false
     }
     
     /*

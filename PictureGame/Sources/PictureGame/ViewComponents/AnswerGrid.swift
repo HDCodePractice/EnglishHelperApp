@@ -10,11 +10,10 @@ import CommomLibrary
 
 struct AnswerGrid: View {
     @EnvironmentObject var vm : PictureGameViewModel
-    @State var isShowOne = false
     @State var showOneAnswer: Answer?
     
     var body: some View {
-        if let showOneAnswer=showOneAnswer,isShowOne{
+        if let showOneAnswer=showOneAnswer,vm.isShowOne{
             ZStack{
                 Color.clear
                 PictureView(
@@ -24,7 +23,7 @@ struct AnswerGrid: View {
                 .shadow(color: showOneAnswer.isSelected ? (showOneAnswer.isCorrect ? .green : .red) : .gray, radius: 5, x: 0.5, y: 0.5)
                 .onTapGesture{
                     withAnimation {
-                        isShowOne = false
+                        vm.isShowOne = false
                     }
                 }
             }
@@ -35,7 +34,7 @@ struct AnswerGrid: View {
                         AnswerRow(answer: item)
                             .onTapGesture(count: 2) {
                                 withAnimation {
-                                    isShowOne = true
+                                    vm.isShowOne = true
                                     showOneAnswer = item
                                     
                                 }
@@ -52,7 +51,7 @@ struct AnswerGrid: View {
                         AnswerRow(answer: item)
                             .onTapGesture(count: 2) {
                                 withAnimation {
-                                    isShowOne = true
+                                    vm.isShowOne = true
                                     showOneAnswer = item
                                     
                                 }
