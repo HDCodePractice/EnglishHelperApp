@@ -15,13 +15,21 @@ struct AnswerGrid: View {
             HStack(spacing:10){
                 ForEach(vm.answerChoices.prefix(3)){ item in
                     AnswerRow(answer: item)
-                        .environmentObject(vm)
+                        .onTapGesture {
+                            if !vm.answerSelected{
+                                vm.selectAnswer(answer: item)
+                            }
+                        }
                 }
             }
             HStack{
                 ForEach(vm.answerChoices.suffix(3)){ item in
                     AnswerRow(answer: item)
-                        .environmentObject(vm)
+                        .onTapGesture {
+                            if !vm.answerSelected{
+                                vm.selectAnswer(answer: item)
+                            }
+                        }
                 }
             }
 

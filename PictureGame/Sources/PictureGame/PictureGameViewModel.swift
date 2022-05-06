@@ -27,6 +27,7 @@ class PictureGameViewModel: ObservableObject{
     @Published private(set) var question : String = ""
     @Published private(set) var answerChoices: [Answer] = []
     @Published private(set) var audioFile : String = ""
+    @Published private(set) var correctAnswer: Int = 0
     
     var realmPath:String{
         if let localRealm = realmController.localRealm,
@@ -128,6 +129,7 @@ class PictureGameViewModel: ObservableObject{
                 question = currentQuestion.questionWord
                 answerChoices = currentQuestion.answers
                 audioFile = currentQuestion.audioFile
+                correctAnswer = currentQuestion.correctAnswer
             }
         }
         answerSelected = false
@@ -167,6 +169,14 @@ class PictureGameViewModel: ObservableObject{
     
     func selectAnswer(answer: Answer){
         answerSelected = true
+        // 找到点击的answer
+        if let selectIndex = answerChoices.firstIndex(where: {$0.id==answer.id}){
+            answerChoices[selectIndex].isSelected = true
+            if correctAnswer != selectIndex{
+                answerChoices[correctAnswer].isSelected = true
+            }
+        }
+        
         if answer.isCorrect {
             score += 1
             if gameMode == .finish{
