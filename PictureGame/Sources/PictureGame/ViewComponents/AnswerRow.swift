@@ -20,7 +20,7 @@ struct AnswerRow: View {
     
     var body: some View {
         ZStack{
-            PictureView(url: URL(string:answer.picUrl),errorMsg: answer.name)
+            PictureView(url: URL(string:answer.picUrl),errorMsg: answer.name,isFill: true)
             if isShowSelect{
                 Image(systemName: answer.isCorrect ? "checkmark.circle.fill" : "x.circle.fill")
                     .font(.largeTitle )

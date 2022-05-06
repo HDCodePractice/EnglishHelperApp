@@ -14,32 +14,46 @@ public struct PictureView: View {
     var url : URL?
     var errorText = ""
     var isErrorText = false
+    var isFill = false
     
-    public init(url: URL?, errorMsg:String?=nil){
+    public init(url: URL?, errorMsg:String?=nil, isFill:Bool=false){
         self.url = url
         if let errorMsg = errorMsg {
             errorText = errorMsg
             isErrorText = true
         }
+        self.isFill = isFill
     }
     public var body: some View {
         ZStack{
-            KFImage(url)
-                .placeholder({
-                    ProgressView()
-                })
-                .diskCacheExpiration(.seconds(600))
-                .onFailure({ _ in
-                    if isErrorText{
-                        isShowErrorMsg = true
-                    }
-                })
-                .resizable()
-                .scaledToFit()
+            if isFill{
+                Color.clear.overlay{
+                    image
+                        .scaledToFill()
+                }
+                .clipped()
+            }else{
+                image
+                    .scaledToFit()
+            }
             if isShowErrorMsg{
                 Text(errorText)
             }
         }
+    }
+    
+    var image: some View{
+        KFImage(url)
+            .placeholder({
+                ProgressView()
+            })
+            .diskCacheExpiration(.seconds(600))
+            .onFailure({ _ in
+                if isErrorText{
+                    isShowErrorMsg = true
+                }
+            })
+            .resizable()
     }
 }
 

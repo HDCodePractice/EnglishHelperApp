@@ -83,6 +83,7 @@ struct SettingView: View {
                         if isSyncing==false{
                             isSyncing = true
                             await vm.fetchData()
+                            try! await Task.sleep(seconds: 1)
                             isSyncing = false
                         }
                     }
