@@ -9,11 +9,14 @@ import SwiftUI
 import CommomLibrary
 import ActivityView
 import TranslateView
+import AVKit
 
 struct PictureGameProgressView: View {
     @EnvironmentObject var vm : PictureGameViewModel
     @State var text : String?
     @State private var item : ActivityItem?
+    
+    @State var player: AVPlayer?
     
     var body: some View {
         VStack(spacing: 20){
@@ -26,6 +29,8 @@ struct PictureGameProgressView: View {
                     Text("Picture Game")
                         .foregroundColor(.accent)
                         .fontWeight(.heavy)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.1)
                 }
                 
                 Spacer()
@@ -59,7 +64,7 @@ struct PictureGameProgressView: View {
                         .font(.subheadline.weight(.heavy))
                         .foregroundColor(.gray)
                     Spacer()
-                    PlayAudio(url: vm.audioFile,isAutoPlay: vm.isAutoPronounce)
+                    PlayAudio(url: vm.audioFile)
                     Button(){
                         text = "Which is \(vm.question)?"
                     }label: {
@@ -79,6 +84,7 @@ struct PictureGameProgressView: View {
             }
             Button{
                 vm.goToNextQuestion()
+                playAudio()
             }label: {
                 PrimaryButton(
                     "Next",
@@ -91,6 +97,21 @@ struct PictureGameProgressView: View {
         .padding()
         .frame(maxWidth:.infinity,maxHeight: .infinity)
         .navigationBarHidden(true)
+        .onAppear {
+            playAudio()
+        }
+    }
+    
+    func playAudio(){
+        if vm.isAutoPronounce{
+            if let audioURL = URL(string: vm.audioFile){
+                print("Player audio")
+                player = AVPlayer(url: audioURL)
+                if let player=player{
+                    player.play()
+                }
+            }
+        }
     }
 }
 
@@ -98,6 +119,7 @@ struct PictureGameProgressView_Previews: PreviewProvider {
     static var previews: some View {
         let vm = PictureGameViewModel(isPreview: true)
         vm.generatePictureExam()
+        vm.isAutoPronounce = true
         return NavigationView{
             PictureGameProgressView()
                 .environmentObject(vm)

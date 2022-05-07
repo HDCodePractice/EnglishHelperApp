@@ -12,13 +12,10 @@ public struct PlayAudio: View {
     var player: AVPlayer
     var isReady: Bool = false
     
-    public init(url:String, isAutoPlay: Bool = true){
+    public init(url:String){
         if let audioURL = URL(string: url){
             player = AVPlayer(url: audioURL)
             isReady = true
-            if isAutoPlay{
-                player.play()
-            }
         }else{
             print(url)
             player = AVPlayer()
@@ -52,8 +49,8 @@ public struct PlayAudio: View {
 struct PlayAudio_Previews: PreviewProvider {
     static var previews: some View {
         VStack{
-            PlayAudio(url: "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/audio/Health/Symptoms and Injuries/decongestant.wav", isAutoPlay: false)
-            PlayAudio(url: "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/audio/Recreation/Winter and Water Sports/kayak.wav", isAutoPlay: false)
+            PlayAudio(url: "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/audio/Health/Symptoms and Injuries/decongestant.wav")
+            PlayAudio(url: "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/audio/Recreation/Winter and Water Sports/kayak.wav")
 
         }
     }

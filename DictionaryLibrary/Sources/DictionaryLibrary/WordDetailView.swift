@@ -19,7 +19,7 @@ struct WordDetailView: View {
             Text(item.name)
                 .font(.largeTitle)
             HStack{
-                PlayAudio(url: item.audioUrl,isAutoPlay: false)
+                PlayAudio(url: item.audioUrl)
                 Button(){
                     text = "This is \(item.name)"
                 }label: {
