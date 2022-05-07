@@ -17,7 +17,6 @@ struct PictureGameMainView: View {
                     .environmentObject(vm)
             }
         }
-        .animation(Animation.easeIn(duration: 1),value: vm.gameStatus)
     }
 }
 
