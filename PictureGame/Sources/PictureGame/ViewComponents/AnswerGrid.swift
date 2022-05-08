@@ -11,10 +11,13 @@ import CommomLibrary
 struct AnswerGrid: View {
     @EnvironmentObject var vm : PictureGameViewModel
     @State var showOneAnswer: Answer?
+    var columns:Int = 3
+    var rows:Int = 2
     
     var body: some View {
         if let showOneAnswer=showOneAnswer,vm.isShowOne{
             ZStack{
+                // 显示单一放大图片
                 Color.clear
                 PictureView(
                     url: URL(string:showOneAnswer.picUrl),
@@ -29,41 +32,26 @@ struct AnswerGrid: View {
             }
         }else{
             VStack(spacing:10){
-                HStack(spacing:10){
-                    ForEach(vm.answerChoices.prefix(3)){ item in
-                        AnswerRow(answer: item)
-                            .onTapGesture(count: 2) {
-                                withAnimation {
-                                    vm.isShowOne = true
-                                    showOneAnswer = item
-                                    
+                ForEach(1...rows,id:\.self){row in
+                    HStack(spacing:10){
+                        ForEach(1...columns,id:\.self){ column in
+                            let item = vm.answerChoices[row*columns+column-columns-1]
+                            AnswerRow(answer: item)
+                                .onTapGesture(count: 2) {
+                                    withAnimation {
+                                        vm.isShowOne = true
+                                        showOneAnswer = item
+                                        
+                                    }
                                 }
-                            }
-                            .onTapGesture(count: 1) {
-                                if !vm.answerSelected{
-                                    vm.selectAnswer(answer: item)
+                                .onTapGesture(count: 1) {
+                                    if !vm.answerSelected{
+                                        vm.selectAnswer(answer: item)
+                                    }
                                 }
-                            }
+                        }
                     }
                 }
-                HStack{
-                    ForEach(vm.answerChoices.suffix(3)){ item in
-                        AnswerRow(answer: item)
-                            .onTapGesture(count: 2) {
-                                withAnimation {
-                                    vm.isShowOne = true
-                                    showOneAnswer = item
-                                    
-                                }
-                            }
-                            .onTapGesture(count: 1) {
-                                if !vm.answerSelected{
-                                    vm.selectAnswer(answer: item)
-                                }
-                            }
-                    }
-                }
-                
             }
         }
     }
