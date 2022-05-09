@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6718681D2828C1D1002E7470 /* GrammarBook in Frameworks */ = {isa = PBXBuildFile; productRef = 6718681C2828C1D1002E7470 /* GrammarBook */; };
 		6724FE2A27C666EE0007486B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6724FE2827C666EE0007486B /* Localizable.strings */; };
 		6724FE2D27C666F80007486B /* English Helper-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6724FE2B27C666F80007486B /* English Helper-InfoPlist.strings */; };
 		6724FE3027C667060007486B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6724FE2E27C667060007486B /* Localizable.strings */; };
@@ -22,7 +23,6 @@
 		67A5AE7727C5DE6100ED7AFA /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A5AE7627C5DE6100ED7AFA /* TestView.swift */; };
 		67C92785281DDC92001A0F84 /* CommomLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 67C92784281DDC92001A0F84 /* CommomLibrary */; };
 		67C92787281DDC92001A0F84 /* DictionaryLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 67C92786281DDC92001A0F84 /* DictionaryLibrary */; };
-		67C92789281DDC92001A0F84 /* GrammarBook in Frameworks */ = {isa = PBXBuildFile; productRef = 67C92788281DDC92001A0F84 /* GrammarBook */; };
 		67C9278B281DDC92001A0F84 /* PictureGame in Frameworks */ = {isa = PBXBuildFile; productRef = 67C9278A281DDC92001A0F84 /* PictureGame */; };
 		67D316D628214912004AE9A6 /* LearnEnglishHelperViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D316D528214912004AE9A6 /* LearnEnglishHelperViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -71,8 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67C92789281DDC92001A0F84 /* GrammarBook in Frameworks */,
 				67C9278B281DDC92001A0F84 /* PictureGame in Frameworks */,
+				6718681D2828C1D1002E7470 /* GrammarBook in Frameworks */,
 				67C92787281DDC92001A0F84 /* DictionaryLibrary in Frameworks */,
 				67C92785281DDC92001A0F84 /* CommomLibrary in Frameworks */,
 			);
@@ -211,8 +211,8 @@
 			packageProductDependencies = (
 				67C92784281DDC92001A0F84 /* CommomLibrary */,
 				67C92786281DDC92001A0F84 /* DictionaryLibrary */,
-				67C92788281DDC92001A0F84 /* GrammarBook */,
 				67C9278A281DDC92001A0F84 /* PictureGame */,
+				6718681C2828C1D1002E7470 /* GrammarBook */,
 			);
 			productName = LearnEnglishHelperApp;
 			productReference = 6750409427C5991E00CD3B98 /* LearnEnglishHelperApp.app */;
@@ -710,6 +710,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6718681C2828C1D1002E7470 /* GrammarBook */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GrammarBook;
+		};
 		67C92784281DDC92001A0F84 /* CommomLibrary */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CommomLibrary;
@@ -717,10 +721,6 @@
 		67C92786281DDC92001A0F84 /* DictionaryLibrary */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DictionaryLibrary;
-		};
-		67C92788281DDC92001A0F84 /* GrammarBook */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = GrammarBook;
 		};
 		67C9278A281DDC92001A0F84 /* PictureGame */ = {
 			isa = XCSwiftPackageProductDependency;

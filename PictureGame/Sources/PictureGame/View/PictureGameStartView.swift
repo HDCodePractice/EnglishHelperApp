@@ -23,8 +23,8 @@ struct PictureGameStartView: View {
                 Text("Are you ready to test out English words?")
                     .foregroundColor(.accent)
                     .multilineTextAlignment(.center)
-//                Text(vm.realmPath)
-//                CopyToClipboard(putString: vm.realmPath)
+                //                Text(vm.realmPath)
+                //                CopyToClipboard(putString: vm.realmPath)
             }
             if !isLoadFinished {
                 HStack{
@@ -40,16 +40,18 @@ struct PictureGameStartView: View {
                 }
             }else{
                 PrimaryButton("Let's go!",background: .accent)
-                    .onTapGesture(){
-                    vm.generatePictureExam()
-                }
+                    .onTapGesture{
+                        withAnimation {
+                            vm.generatePictureExam()
+                        }
+                    }
             }
             GameOptionsView()
                 .environmentObject(vm)
         }
         .padding()
         .frame(maxWidth:.infinity,maxHeight: .infinity)
-//        .edgesIgnoringSafeArea(.all)
+        //        .edgesIgnoringSafeArea(.all)
     }
 }
 

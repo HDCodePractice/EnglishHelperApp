@@ -54,7 +54,7 @@ struct DictonarySearchView: View {
             prompt: "Lookup Dictionary"
         )
         .disableAutocorrection(true)
-        .toolbar {           
+        .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 HStack(spacing: 0){
                     Button {
@@ -75,10 +75,28 @@ struct DictonarySearchView: View {
                     Button{
                         vm.isOnlyShowNewWord.toggle()
                     }label:{
-                        if vm.isOnlyShowNewWord{
-                            Image(systemName: "newspaper.circle.fill")
-                        }else{
-                            Image(systemName: "newspaper.circle")
+                        ZStack{
+                            if vm.isOnlyShowNewWord{
+                                Image(systemName: "newspaper.circle.fill")
+                            }else{
+                                Image(systemName: "newspaper.circle")
+                            }
+                        }.overlay {
+                            if vm.isNewWords > 0{
+                                Color.cyan
+                                    .overlay{
+                                        let showNumber = vm.isNewWords > 99 ? "99+" : "\(vm.isNewWords)"
+                                        Text("\(showNumber)")
+                                            .font(.caption)
+                                            .minimumScaleFactor(0.01)
+                                            .foregroundColor(.white)
+                                    }
+                                    .frame(width:16,height: 16)
+                                    .cornerRadius(8)
+                                    .offset(x:8,y:-8)
+                            }else{
+                                Color.clear
+                            }
                         }
                     }
                     
@@ -121,5 +139,6 @@ struct DictonarySearchView_Previews: PreviewProvider {
             DictonarySearchView()
                 .environmentObject(vm)
         }
+        .previewInterfaceOrientation(.portrait)
     }
 }
