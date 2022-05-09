@@ -15,6 +15,17 @@ class DictonarySearchViewModel: ObservableObject{
     private var realmController : RealmController
     
     @Published var isOnlyShowNewWord = false
+    
+    
+    var isNewWords : Int {
+        if let localRealm = realmController.localRealm{
+            let count = localRealm.objects(Word.self).where{
+                $0.isNew == true
+            }.count
+            return count
+        }
+        return 0
+    }
         
     init(isPreview:Bool=false){
         if isPreview{

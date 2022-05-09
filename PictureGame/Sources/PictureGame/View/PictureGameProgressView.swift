@@ -83,7 +83,9 @@ struct PictureGameProgressView: View {
                     .environmentObject(vm)
             }
             Button{
-                vm.goToNextQuestion()
+                withAnimation {
+                    vm.goToNextQuestion()
+                }
                 playAudio()
             }label: {
                 PrimaryButton(
@@ -94,6 +96,7 @@ struct PictureGameProgressView: View {
             .disabled(!vm.answerSelected)
             Spacer()
         }
+        .transition(.slide)
         .padding()
         .frame(maxWidth:.infinity,maxHeight: .infinity)
         .navigationBarHidden(true)
