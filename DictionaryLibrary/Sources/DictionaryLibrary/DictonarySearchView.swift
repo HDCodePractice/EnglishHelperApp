@@ -90,6 +90,7 @@ struct DictonarySearchView: View {
                                             .font(.caption)
                                             .minimumScaleFactor(0.01)
                                             .foregroundColor(.white)
+                                            .scaleEffect(0.8)
                                     }
                                     .frame(width:16,height: 16)
                                     .cornerRadius(8)
@@ -133,8 +134,7 @@ public struct DictonarySearchMainView: View {
 
 struct DictonarySearchView_Previews: PreviewProvider {
     static var previews: some View {
-        let _ = RealmController.preview
-        let vm = DictonarySearchViewModel()
+        let vm = DictonarySearchViewModel(isPreview: true)
         return NavigationView {
             DictonarySearchView()
                 .environmentObject(vm)
