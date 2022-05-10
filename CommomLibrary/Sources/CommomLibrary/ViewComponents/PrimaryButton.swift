@@ -10,28 +10,48 @@ import SwiftUI
 public struct PrimaryButton: View {
     var text: LocalizedStringKey
     var background: Color
+    var newNumber: String
     
     public var body: some View {
-        Text(text)
-            .frame(maxWidth: .infinity)
-            .foregroundColor(.white)
-            .padding()
-            .padding(.horizontal)
-            .background(background)
-            .cornerRadius(30)
-            .shadow(radius: 10)
+        HStack{
+            Text(text)
+            if newNumber.count>0 {
+                Color.cyan
+                    .overlay {
+                        Text("\(newNumber)")
+                            .font(.caption)
+                            .minimumScaleFactor(0.01)
+                            .foregroundColor(.white)
+                            .scaleEffect(0.8)
+                    }
+                    .frame(width:16,height: 16)
+                    .cornerRadius(8)
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .foregroundColor(.white)
+        .padding()
+        .padding(.horizontal)
+        .background(background)
+        .cornerRadius(30)
+        .shadow(radius: 10)
     }
 }
 
 public extension PrimaryButton{
-    init(_ text: LocalizedStringKey, background: Color = .accent){
+    init(_ text: LocalizedStringKey, background: Color = .accent, newNumber: String = ""){
         self.text = text
         self.background = background
+        self.newNumber = newNumber
     }
 }
 
 struct PrimaryButton_Previews: PreviewProvider {
     static var previews: some View {
-        PrimaryButton("Next")
+        VStack{
+            PrimaryButton("Next")
+            PrimaryButton("Next",background: .red)
+            PrimaryButton("Next",newNumber: "99+")
+        }
     }
 }

@@ -35,7 +35,7 @@ struct ContentView: View {
                 NavigationLink{
                     DictonarySearchMainView()
                 } label: {
-                    PrimaryButton("Dictionary")
+                    DictionaryPrimaryButton()
                 }
                 NavigationLink{
                     MainSettingView()
