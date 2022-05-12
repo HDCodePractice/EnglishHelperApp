@@ -92,9 +92,9 @@ struct DictonarySearchView: View {
                                             .foregroundColor(.white)
                                             .scaleEffect(0.8)
                                     }
-                                    .frame(width:16,height: 16)
-                                    .cornerRadius(8)
-                                    .offset(x:8,y:-8)
+                                    .frame(width:18,height: 18)
+                                    .cornerRadius(9)
+                                    .offset(x:9,y:-9)
                             }else{
                                 Color.clear
                             }
