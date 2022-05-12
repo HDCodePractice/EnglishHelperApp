@@ -31,7 +31,6 @@ struct PictureGameEndView: View {
         .padding()
         .frame(maxWidth:.infinity,maxHeight: .infinity)
         .navigationBarTitle("")
-        .navigationBarHidden(true)
     }
 }
 
