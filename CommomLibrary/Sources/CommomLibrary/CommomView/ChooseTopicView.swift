@@ -10,10 +10,11 @@ import RealmSwift
 
 public struct ChooseTopicView: View {
     @ObservedResults(Chapter.self) var chapters
-    @Binding var topicName : String
+    @ObservedResults(Word.self) var words
+    @Binding var topicNames : [String]
     
-    public init(selectedTopic: Binding<String>){
-        self._topicName = selectedTopic
+    public init(selectedTopic: Binding<[String]>){
+        self._topicNames = selectedTopic
     }
     
     @Environment(\.dismiss) var dismiss
@@ -21,40 +22,57 @@ public struct ChooseTopicView: View {
     public var body: some View {
         List{
             ForEach(chapters){ chapter in
-                Section("\(chapter.name)"){
+                let wordCount = words.where({
+                    $0.assignee.assignee.assignee.name == chapter.name
+                }).count
+                Section("\(chapter.name)(\(wordCount))"){
                     ForEach(chapter.topics){ topic in
                         HStack{
-                            Text("\(topic.name)")
+                            let wordCount = words.where({
+                                $0.assignee.assignee.name == topic.name
+                            }).count
+                            Text("\(topic.name)(\(wordCount))")
                             Spacer()
-                            if topicName == topic.name{
-                                Image(systemName: "checkmark")
+                            if topicNames.contains(topic.name){
+                                Image(systemName: "checkmark.circle.fill")
                             }
                         }
                         .onTapGesture {
-                            if topicName == topic.name {
-                                topicName = ""
+                            if topicNames.contains(topic.name){
+                                if let index = topicNames.firstIndex(of: topic.name){
+                                    topicNames.remove(at: index)
+                                }
                             }else{
-                                topicName = topic.name
+                                topicNames.append(topic.name)
                             }
                         }
                     }
                 }
             }
         }
-        .navigationBarTitle("Choose topic")
+        .navigationBarTitle("Choose topic(\(words.count))")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            Button(){
-                dismiss()
-            }label: {
-                Text("Done").fontWeight(.semibold)
+            ToolbarItem(placement: .navigationBarLeading){
+                Button(){
+                    topicNames = []
+                }label: {
+                    Text("Clean").fontWeight(.semibold)
+                }
+            }
+            ToolbarItem(placement: .navigationBarTrailing){
+                Button(){
+                    dismiss()
+                }label: {
+                    Text("Done").fontWeight(.semibold)
+                }
             }
         }
     }
 }
 
 private struct testView: View {
-    @State var selectedTopic = ""
+    @State var selectedTopic = [String]()
     var body: some View {
         ChooseTopicView(selectedTopic: $selectedTopic)
     }

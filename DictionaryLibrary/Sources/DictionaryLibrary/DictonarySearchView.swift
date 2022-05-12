@@ -16,13 +16,16 @@ struct DictonarySearchView: View {
     
     @State private var isLoading = false
     @State private var searchFilter = ""
-    @State private var selectedTopic = ""
+    @State private var selectedTopic: [String] = []
     @State private var showSelectTopicSheet : Bool = false
     
     public var body: some View {
         List{
             ForEach(topics.where({
-                var filter = $0.name.like(selectedTopic.isEmpty ? "*" : selectedTopic)
+                var filter = $0.name.like("*")
+                if !selectedTopic.isEmpty{
+                    filter = $0.name.in(selectedTopic)
+                }
                 if !searchFilter.isEmpty {
                     filter = filter && $0.pictures.words.name.contains(searchFilter, options: .caseInsensitive)
                 }
