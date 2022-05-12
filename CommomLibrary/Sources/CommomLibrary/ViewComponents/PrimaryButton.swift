@@ -16,16 +16,16 @@ public struct PrimaryButton: View {
         HStack{
             Text(text)
             if newNumber.count>0 {
-                Color.cyan
+                Color.white
                     .overlay {
                         Text("\(newNumber)")
                             .font(.caption)
                             .minimumScaleFactor(0.01)
-                            .foregroundColor(.white)
+                            .foregroundColor(background)
                             .scaleEffect(0.8)
                     }
-                    .frame(width:16,height: 16)
-                    .cornerRadius(8)
+                    .frame(width:18,height: 18)
+                    .cornerRadius(9)
             }
         }
         .frame(maxWidth: .infinity)
