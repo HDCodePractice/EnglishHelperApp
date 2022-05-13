@@ -17,6 +17,7 @@ struct WordListItemView: View {
             WordDetailView(item: word)
         }label: {
             HStack{
+                WordFavoriteButton(word: word)
                 PictureView(url: URL(string: word.pictureUrl))
                     .frame(width: 60, height: 60)
                     .shadow(radius: 10)

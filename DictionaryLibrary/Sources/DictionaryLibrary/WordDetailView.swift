@@ -9,6 +9,7 @@ import SwiftUI
 import CommomLibrary
 import RealmSwift
 import TranslateView
+import OSLog
 
 struct WordDetailView: View {
     @ObservedRealmObject var item : Word
@@ -27,6 +28,7 @@ struct WordDetailView: View {
                         .font(.title2)
                 }.translateSheet($text)
                 CopyToClipboard(putString: item.name)
+                WordFavoriteButton(word: item,isButton: true)
             }
             Text(item.wordsTitle)
             PictureView(url: URL(string: item.pictureUrl))

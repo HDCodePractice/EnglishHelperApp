@@ -18,6 +18,7 @@ struct DictonarySearchView: View {
     @State private var searchFilter = ""
     @State private var selectedTopic: [String] = []
     @State private var showSelectTopicSheet : Bool = false
+    @State private var isShowFavorite : Bool = false
     
     public var body: some View {
         List{
@@ -30,7 +31,10 @@ struct DictonarySearchView: View {
                     filter = filter && $0.pictures.words.name.contains(searchFilter, options: .caseInsensitive)
                 }
                 if vm.isOnlyShowNewWord{
-                    filter = filter && $0.pictures.words.isNew == true
+                    filter = filter && $0.pictures.words.isNew==true
+                }
+                if isShowFavorite{
+                    filter = filter && $0.pictures.words.isFavorited==true
                 }
                 return filter
             }).sorted(byKeyPath: "name")){ topic in
@@ -42,6 +46,9 @@ struct DictonarySearchView: View {
                         }
                         if vm.isOnlyShowNewWord{
                             filter = filter && $0.isNew==true
+                        }
+                        if isShowFavorite{
+                            filter = filter && $0.isFavorited==true
                         }
                         return filter
                     }).sorted(byKeyPath: "name")){ word in
@@ -101,6 +108,16 @@ struct DictonarySearchView: View {
                             }else{
                                 Color.clear
                             }
+                        }
+                    }
+
+                    Button {
+                        isShowFavorite.toggle()
+                    } label: {
+                        if isShowFavorite {
+                            Image(systemName: "star.circle.fill")
+                        }else{
+                            Image(systemName: "star.circle")
                         }
                     }
                     
