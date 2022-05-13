@@ -16,7 +16,7 @@ public class RealmController{
     private let logger = Logger()
     private let pictureJsonURL = "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/picture.json"
     
-    let config = Realm.Configuration(schemaVersion: 4)
+    let config = Realm.Configuration(schemaVersion: 6)
     let memoConfig = Realm.Configuration(inMemoryIdentifier: "memo")
     // 可以使用这个配置来将内存放在磁盘上进行观察
 //    let memoConfig : Realm.Configuration = {

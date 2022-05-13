@@ -7,11 +7,13 @@
 
 import Foundation
 import RealmSwift
+import OSLog
 
 public class Word: Object, ObjectKeyIdentifiable{
     @Persisted(primaryKey: true) public var id: ObjectId
     @Persisted(indexed: true) public var name: String
     @Persisted public var isNew: Bool = true
+    @Persisted public var isFavorited: Bool = false
     
     @Persisted(originProperty: "words") public var assignee: LinkingObjects<Picture>
 }
@@ -97,5 +99,19 @@ public extension Word{
     
     var pictureUrl:String{
         return "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/pictures/\(filePath)".urlEncoded()
+    }
+    
+    func toggleFavorite(){
+        if let thawWord = self.thaw(){
+            if let localRealm = thawWord.realm{
+                do{
+                    try localRealm.write{
+                        thawWord.isFavorited.toggle()
+                    }
+                } catch {
+                    Logger().error("Error toggle isFavorite \(self) from Realm: \(error.localizedDescription)")
+                }
+            }
+        }
     }
 }
