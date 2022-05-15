@@ -16,7 +16,7 @@ class PictureGameViewModel: ObservableObject{
     
     @Published var gameStatus : GameStatus = .start
     @AppStorage(UserDefaults.UserDefaultsKeys.isAutoPronounce.rawValue) var isAutoPronounce = true
-    @Published var gameMode = GameMode.finish
+    @Published var gameMode = GameMode.topics
     @Published var length = 10
     
     @Published private(set) var index = 0
@@ -44,6 +44,7 @@ class PictureGameViewModel: ObservableObject{
         }else{
             realmController = RealmController.shared
         }
+        setGameMode(mode: .topics)
     }
     
     @MainActor
@@ -59,51 +60,98 @@ class PictureGameViewModel: ObservableObject{
         realmController.reloadPreviewData(jsonFile:jsonFile)
     }
     
+    func setGameMode(mode: GameMode){
+        self.gameMode = mode
+        guard let localRealm = realmController.localRealm else{
+            return
+        }
+        
+        let wordsNumber = localRealm.objects(Word.self).where { word in
+            let filter : Query<Bool>
+            switch gameMode {
+            case .topics:
+                filter = word.assignee.assignee.isSelect == true
+            case .new:
+                filter = word.isNew == true
+            case .favorite:
+                filter = word.isFavorited == true
+            }
+            return filter
+        }.count
+        
+        length = wordsNumber
+    }
+    
+    /**
+     生成出题的题库
+     **/
     func generatePictureExam(){
         guard let localRealm = realmController.localRealm , let memoRealm = realmController.memoRealm else{
             return
         }
-        
-        var memoRealmWordCount = 0
+                
+        // 将包括目标内容的chapters过滤出来
         let chapters = localRealm.objects(Chapter.self).where{
-            $0.isSelect == true
+            let filter : Query<Bool>
+            switch gameMode {
+            case .topics:
+                filter=$0.isSelect==true
+            case .new:
+                filter=$0.topics.pictures.words.isNew==true
+            case .favorite:
+                filter=$0.topics.pictures.words.isFavorited==true
+            }
+            return filter
         }
         
         try! memoRealm.write{
             memoRealm.deleteAll()
+            // 将内容复制到内存中
             for chapter in chapters{
                 memoRealm.create(Chapter.self, value: chapter)
             }
             
             let noSelectWords = memoRealm.objects(Word.self).where { word in
-                word.assignee.assignee.isSelect == false
+                let filter : Query<Bool>
+                switch gameMode {
+                case .topics:
+                    filter = word.assignee.assignee.isSelect == false
+                case .new:
+                    filter = word.isNew == false
+                case .favorite:
+                    filter = word.isFavorited == false
+                }
+                return filter
             }
             memoRealm.delete(noSelectWords)
             
             let noSelectPictureFiles = memoRealm.objects(Picture.self).where{
-                $0.assignee.isSelect == false
+                let filter : Query<Bool>
+                switch gameMode {
+                case .topics:
+                    filter = $0.assignee.isSelect == false
+                case .new,.favorite:
+                    filter = $0.words.count==0
+                }
+                return filter
             }
             memoRealm.delete(noSelectPictureFiles)
             
             let noSelectTopics = memoRealm.objects(Topic.self).where{
-                $0.isSelect == false
+                let filter : Query<Bool>
+                switch gameMode {
+                case .topics:
+                    filter = $0.isSelect == false
+                case .new,.favorite:
+                    filter = $0.pictures.count==0
+                }
+                return filter
             }
             memoRealm.delete(noSelectTopics)
         }
-        memoRealmWordCount = memoRealm.objects(Word.self).count
         
-        switch gameMode {
-        case .uniq:
-            if memoRealmWordCount < length{
-                length = memoRealmWordCount
-            }
-        case .random:
-            // 不做任何事
-            length = length
-        case .finish:
-            length = memoRealmWordCount
-        }
-        
+        length = memoRealm.objects(Word.self).count
+                
         if length == 0 {
             return
         }
@@ -151,7 +199,7 @@ class PictureGameViewModel: ObservableObject{
     
     func goToNextQuestion(){
         switch gameMode {
-        case .uniq,.random:
+        case .topics,.new:
             if index+1 < length{
                 // 在random和uniq模式下，做完一题index就多一步
                 // finish模式的index增涨是必须答对
@@ -160,7 +208,7 @@ class PictureGameViewModel: ObservableObject{
             }else{
                 gameStatus = .finish
             }
-        case .finish:
+        case .favorite:
             if index < length{
                 setQuestion()
             }else{
@@ -181,7 +229,7 @@ class PictureGameViewModel: ObservableObject{
         
         if answer.isCorrect {
             score += 1
-            if gameMode == .finish{
+            if gameMode == .topics{
                 // 如果是finish模式，把答对的word从memoRealm中清除
                 deleteMemoRealmWord(word: question, pictureFileName: answer.name)
                 index += 1
@@ -291,9 +339,9 @@ class PictureGameViewModel: ObservableObject{
 }
 
 enum GameMode: String, CaseIterable {
-    case uniq = "Uniq"
-    case random = "Random"
-    case finish = "Finish"
+    case new = "News"
+    case favorite = "Favorites"
+    case topics = "Topics"
     
     func localizedString() -> String {
         return NSLocalizedString(self.rawValue, comment: "")

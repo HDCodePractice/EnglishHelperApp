@@ -35,7 +35,7 @@
 "Load Data..." = "加载数据中...";
 
 /* No comment provided by engineer. */
-"Max number of games:%lld" = "最多单词数: %lld";
+"Number of Vocabulary:%lld" = "词汇数量: %lld";
 
 /* No comment provided by engineer. */
 "Next" = "下一个";
@@ -67,10 +67,10 @@
 /* No comment provided by engineer. */
 "Word Search" = "乱中寻词";
 
-"Uniq" = "唯一";
+"Topics" = "选定的主题";
 
-"Random" = "随机";
+"Favorites" = "收藏词汇";
 
-"Finish" = "完整";
+"News" = "新增词汇";
 
 "Setting" = "设置";
