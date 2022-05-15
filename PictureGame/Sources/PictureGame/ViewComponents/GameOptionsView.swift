@@ -13,24 +13,21 @@ struct GameOptionsView: View {
     @State private var showingSheet : Bool = false
     
     var body: some View {
+        let gameMode_bind = Binding {
+            vm.gameMode
+        } set: {
+            vm.setGameMode(mode: $0)
+        }
+
         VStack{
-            // 先只使用finish模式
-            //            Text("Max number of games:\(vm.length)")
-            //                .foregroundColor(Color("AccentColor"))
-            //            Slider(value: .init(get: {Double(vm.length)}, set: {vm.length = Int($0)}),
-            //                in: 10...100,
-            //                step: 10,
-            //                minimumValueLabel: Text("10"),
-            //                maximumValueLabel: Text("100"),
-            //                label: {}
-            //            )
-            
-            //            VStack{
-            //                Text("Select Mode")
-            //                EnumPicker(selected: $vm.gameMode, title: "Select Mode:")
-            //                    .pickerStyle(.segmented)
-            //
-            //            }
+            Text("Number of Vocabulary: \(vm.length)")
+                .foregroundColor(.accent)
+            VStack{
+//                Text("Select Mode")
+                EnumPicker(selected: gameMode_bind, title: "Select Mode:")
+                    .pickerStyle(.segmented)
+                
+            }
             Toggle("Auto Pronounce", isOn: $vm.isAutoPronounce)
             Spacer()
             Text("Select Topics")
