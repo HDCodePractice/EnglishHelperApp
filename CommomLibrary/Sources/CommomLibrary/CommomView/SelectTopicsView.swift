@@ -29,26 +29,26 @@ public struct SelectTopicsView: View {
                                 Image(systemName: "star.fill")
                                     .foregroundColor(topic.isSelect ? .yellow :
                                             .secondary)
-                                    .onTapGesture {
-                                        vm.toggleTopic(topic: topic)
-                                    }
                                 let wordCount = words.where({
                                     $0.assignee.assignee.name == topic.name
                                 }).count
                                 Text("\(topic.name)(\(wordCount))")
+                            }
+                            .onTapGesture {
+                                vm.toggleTopic(topic: topic)
                             }
                         }
                     }label: {
                         HStack{
                             Image(systemName: "star.fill")
                                 .foregroundColor(chapter.isSelect ? .yellow : .secondary)
-                                .onTapGesture(){
-                                    vm.toggleChapter(chapter: chapter)
-                                }
                             let wordCount = words.where({
                                 $0.assignee.assignee.assignee.name == chapter.name
                             }).count
                             Text("\(chapter.name)(\(wordCount))")
+                        }
+                        .onTapGesture(){
+                            vm.toggleChapter(chapter: chapter)
                         }
                     }
                 }
