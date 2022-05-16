@@ -108,7 +108,6 @@ struct PictureGameProgressView: View {
     func playAudio(){
         if vm.isAutoPronounce{
             if let audioURL = URL(string: vm.audioFile){
-                print("Player audio")
                 player = AVPlayer(url: audioURL)
                 if let player=player{
                     player.play()
