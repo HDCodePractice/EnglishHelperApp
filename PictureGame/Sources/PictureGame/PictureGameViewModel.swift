@@ -165,14 +165,6 @@ class PictureGameViewModel: ObservableObject{
     func setQuestion(){
         if index < length{
             var currentQuestion : PictureExam.Result?
-            //            switch gameMode {
-            //                    case .uniq:
-            //                        currentQuestion = realmManager.getUniqExam(answerLength: answerLength)
-            //                    case .random:
-            //                        currentQuestion = realmManager.getRandomExam(answerLength: answerLength)
-            //                    case .finish:
-            //                        currentQuestion = realmManager.getRandomExam(answerLength: answerLength)
-            //                    }
             currentQuestion = getRandomExam(answerLength: answerLength)
             if let currentQuestion = currentQuestion {
                 question = currentQuestion.questionWord
@@ -198,22 +190,13 @@ class PictureGameViewModel: ObservableObject{
     }
     
     func goToNextQuestion(){
-        switch gameMode {
-        case .topics,.new:
-            if index+1 < length{
-                // 在random和uniq模式下，做完一题index就多一步
-                // finish模式的index增涨是必须答对
-                index += 1
-                setQuestion()
-            }else{
-                gameStatus = .finish
-            }
-        case .favorite:
-            if index < length{
-                setQuestion()
-            }else{
-                gameStatus = .finish
-            }
+        if index+1 < length{
+            // 在random和uniq模式下，做完一题index就多一步
+            // finish模式的index增涨是必须答对
+            index += 1
+            setQuestion()
+        }else{
+            gameStatus = .finish
         }
     }
     

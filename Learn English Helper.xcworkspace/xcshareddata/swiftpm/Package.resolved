@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "Realm",
+        "repositoryURL": "https://github.com/realm/realm-cocoa",
+        "state": {
+          "branch": null,
+          "revision": "41fe221e2209ad31bee35593513d957dc3e6e458",
+          "version": "10.25.2"
+        }
+      },
+      {
         "package": "RealmDatabase",
         "repositoryURL": "https://github.com/realm/realm-core",
         "state": {
@@ -29,12 +38,12 @@
         }
       },
       {
-        "package": "Realm",
-        "repositoryURL": "https://github.com/realm/realm-swift.git",
+        "package": "SyncKit",
+        "repositoryURL": "https://github.com/mentrena/SyncKit.git",
         "state": {
           "branch": null,
-          "revision": "41fe221e2209ad31bee35593513d957dc3e6e458",
-          "version": "10.25.2"
+          "revision": "873dcbc9f275bccea770b9afdd113b4813e59033",
+          "version": "1.3.1"
         }
       },
       {

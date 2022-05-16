@@ -35,7 +35,7 @@
 "Load Data..." = "加载数据中...";
 
 /* No comment provided by engineer. */
-"Number of Vocabulary:%lld" = "词汇数量: %lld";
+"Number of Vocabulary: %lld" = "词汇数量: %lld";
 
 /* No comment provided by engineer. */
 "Next" = "下一个";
@@ -74,3 +74,5 @@
 "News" = "新增词汇";
 
 "Setting" = "设置";
+
+"Auto Pronounce" = "自动念出词汇";
