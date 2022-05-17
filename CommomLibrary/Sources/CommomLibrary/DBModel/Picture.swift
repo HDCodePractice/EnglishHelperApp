@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 public class Picture: Object, ObjectKeyIdentifiable{
-    @Persisted(primaryKey: true) public var id: ObjectId
+    @Persisted(primaryKey: true) public var id: String = UUID().uuidString
     @Persisted public var name: String
     @Persisted public var words = RealmSwift.List<Word>()
     @Persisted(originProperty: "pictures") public var assignee: LinkingObjects<Topic>
