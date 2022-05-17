@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 public class Chapter: Object, ObjectKeyIdentifiable {
-    @Persisted(primaryKey: true) public var id: ObjectId
+    @Persisted(primaryKey: true) public var id: String = UUID().uuidString
     @Persisted public var name: String
     @Persisted public var isSelect = true
     @Persisted public var topics = RealmSwift.List<Topic>()

@@ -10,7 +10,7 @@ import RealmSwift
 import OSLog
 
 public class Word: Object, ObjectKeyIdentifiable{
-    @Persisted(primaryKey: true) public var id: ObjectId
+    @Persisted(primaryKey: true) public var id: String = UUID().uuidString
     @Persisted(indexed: true) public var name: String
     @Persisted public var isNew: Bool = true
     @Persisted public var isFavorited: Bool = false
