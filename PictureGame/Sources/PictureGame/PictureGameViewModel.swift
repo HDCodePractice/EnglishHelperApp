@@ -211,9 +211,32 @@ class PictureGameViewModel: ObservableObject{
         if answer.isCorrect {
             // 把答对的word从memoRealm中清除
             deleteMemoRealmWord(word: question, pictureFileName: answer.name)
+            // 设置对currentQuestion的isNew为false
+            setWordToNotNew()
             index += 1
         }
         answerCount += 1
+    }
+    
+    private func setWordToNotNew(){
+        if let localRealm = realmController.localRealm,let currentQuestion=currentQuestion{
+            let ws = localRealm.objects(Word.self).where {
+                $0.name==question &&
+                $0.isNew==true &&
+                $0.assignee.name==currentQuestion.picture &&
+                $0.assignee.assignee.name==currentQuestion.topic
+            }
+            if let w = ws.first{
+                do{
+                    try localRealm.write{
+                        w.isNew=false
+                        print("set new to false")
+                    }
+                }catch{
+                    Logger().error("Error set word \(currentQuestion.questionWord) to not new from Realm:\(error.localizedDescription)")
+                }
+            }
+        }
     }
     
     /*
