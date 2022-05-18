@@ -10,6 +10,7 @@ import CommomLibrary
 import ActivityView
 import TranslateView
 import AVKit
+import RealmSwift
 
 struct PictureGameProgressView: View {
     @EnvironmentObject var vm : PictureGameViewModel
@@ -17,6 +18,7 @@ struct PictureGameProgressView: View {
     @State private var item : ActivityItem?
     
     @State var player: AVPlayer?
+    @ObservedResults(Word.self) var words
     
     var body: some View {
         VStack(spacing: 20){
@@ -71,8 +73,21 @@ struct PictureGameProgressView: View {
                         Image(systemName: "questionmark.circle")
                             .font(.title2)
                     }.translateSheet($text)
+                    if let currentQuestion=vm.currentQuestion,let word = words.where({
+                        $0.name==currentQuestion.questionWord &&
+                        $0.assignee.name==currentQuestion.picture &&
+                        $0.assignee.assignee.name==currentQuestion.topic
+                    }).first{
+                        WordFavoriteButton(word: word,isButton: true)
+                    }
                 }
                 HStack{
+                    if let currentQuestion = vm.currentQuestion, currentQuestion.isNew{
+                        Image(systemName: "circle.fill")
+                            .font(.caption2)
+                            .foregroundColor(.cyan)
+                            .shadow(radius: 5)
+                    }
                     Text(vm.question)
                         .lineLimit(1)
                         .font(.largeTitle.weight(.heavy))
