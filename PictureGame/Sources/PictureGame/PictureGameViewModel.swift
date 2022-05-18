@@ -30,6 +30,8 @@ class PictureGameViewModel: ObservableObject{
     @Published private(set) var audioFile : String = ""
     @Published private(set) var correctAnswer: Int = 0
     
+    @Published private(set) var currentQuestion : PictureExam.Result?
+    
     var realmPath:String{
         if let localRealm = realmController.localRealm,
            let fileURL = localRealm.configuration.fileURL{
@@ -164,7 +166,6 @@ class PictureGameViewModel: ObservableObject{
     
     func setQuestion(){
         if index < length{
-            var currentQuestion : PictureExam.Result?
             currentQuestion = getRandomExam(answerLength: answerLength)
             if let currentQuestion = currentQuestion {
                 question = currentQuestion.questionWord
@@ -221,31 +222,6 @@ class PictureGameViewModel: ObservableObject{
     }
     
     /*
-     * 生成独一无二的一道Exam，注意，在执行前务必调用
-     * genExamRealm 生成题目源
-     */
-    func getUniqExam(answerLength : Int) -> PictureExam.Result?{
-        //        if let memoRealm = realmController.memoRealm {
-        //            if let pictureFile = memoRealm.objects(Picture.self).randomElement(),
-        //               let exam = fromLocalPictureFileGenExam(pictureFile: pictureFile, answerLength: answerLength){
-        //                if pictureFile.words.count < 2 {
-        //                    try! memoRealm.write{
-        //                        memoRealm.delete(pictureFile)
-        //                    }
-        //                }else{
-        //                    try! memoRealm.write{
-        //                        if let index = pictureFile.words.firstIndex(of: exam.questionWord){
-        //                            pictureFile.words.remove(at: index)
-        //                        }
-        //                    }
-        //                }
-        //                return exam
-        //            }
-        //        }
-        return nil
-    }
-    
-    /*
      * 将pictureFileName的words中的word清除，如果只有唯一的一个word了，将对应的pictureFile清除
      * 用于答对题目时，将已经对的单词从要记忆的单词库中去除
      */
@@ -295,9 +271,13 @@ class PictureGameViewModel: ObservableObject{
                             questionWord: questionWord.name,
                             correctAnswer: correctAnswer,
                             answers: PicturesToAnswerss(pictures: pictures,correctAnswer:correctAnswer),
+                            picture: picture.name,
                             topic: topic.name,
                             chapter: chapter.name,
-                            audioFile: questionWord.audioUrl)
+                            audioFile: questionWord.audioUrl,
+                            isNew: questionWord.isNew,
+                            isFavorited: questionWord.isFavorited
+                        )
                     }
                 }
             }

@@ -18,8 +18,11 @@ struct PictureExam{
         var questionWord: String
         var correctAnswer: Int
         var answers : [Answer]
+        var picture : String
         var topic : String
         var chapter : String
         var audioFile: String
+        var isNew: Bool
+        var isFavorited: Bool
     }
 }
