@@ -62,7 +62,7 @@
 "Thank" = "鸣谢";
 
 /* No comment provided by engineer. */
-"You scored %lld out of %lld" = "你的分数是 %lld 满分为 %lld";
+"%lld words used %lld times" = "%lld个词汇使用了%lld次";
 
 /* No comment provided by engineer. */
 "Word Search" = "乱中寻词";
