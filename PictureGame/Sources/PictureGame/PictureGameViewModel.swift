@@ -20,7 +20,7 @@ class PictureGameViewModel: ObservableObject{
     @Published var length = 10
     
     @Published private(set) var index = 0
-    @Published private(set) var score = 0
+    @Published private(set) var answerCount = 0
     
     @Published var answerSelected = false
     @Published var isShowOne = false
@@ -91,7 +91,7 @@ class PictureGameViewModel: ObservableObject{
         guard let localRealm = realmController.localRealm , let memoRealm = realmController.memoRealm else{
             return
         }
-                
+        
         // 将包括目标内容的chapters过滤出来
         let chapters = localRealm.objects(Chapter.self).where{
             let filter : Query<Bool>
@@ -153,12 +153,12 @@ class PictureGameViewModel: ObservableObject{
         }
         
         length = memoRealm.objects(Word.self).count
-                
+        
         if length == 0 {
             return
         }
         index = 0
-        score = 0
+        answerCount = 0
         
         setQuestion()
         gameStatus = .inProgress
@@ -191,10 +191,7 @@ class PictureGameViewModel: ObservableObject{
     }
     
     func goToNextQuestion(){
-        if index+1 < length{
-            // 在random和uniq模式下，做完一题index就多一步
-            // finish模式的index增涨是必须答对
-            index += 1
+        if index < length{
             setQuestion()
         }else{
             gameStatus = .finish
@@ -212,13 +209,11 @@ class PictureGameViewModel: ObservableObject{
         }
         
         if answer.isCorrect {
-            score += 1
-            if gameMode == .topics{
-                // 如果是finish模式，把答对的word从memoRealm中清除
-                deleteMemoRealmWord(word: question, pictureFileName: answer.name)
-                index += 1
-            }
+            // 把答对的word从memoRealm中清除
+            deleteMemoRealmWord(word: question, pictureFileName: answer.name)
+            index += 1
         }
+        answerCount += 1
     }
     
     /*

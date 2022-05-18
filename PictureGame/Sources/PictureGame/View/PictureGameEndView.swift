@@ -17,7 +17,7 @@ struct PictureGameEndView: View {
                 .liacTitle()
             Text("Congratulations, you completed the game!")
             
-            Text("You scored \(vm.score) out of \(vm.length)")
+            Text("\(vm.length) words used \(vm.answerCount) times")
             
             Button{
                 vm.generatePictureExam()
