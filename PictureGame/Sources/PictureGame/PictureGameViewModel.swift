@@ -230,7 +230,6 @@ class PictureGameViewModel: ObservableObject{
                 do{
                     try localRealm.write{
                         w.isNew=false
-                        print("set new to false")
                     }
                 }catch{
                     Logger().error("Error set word \(currentQuestion.questionWord) to not new from Realm:\(error.localizedDescription)")

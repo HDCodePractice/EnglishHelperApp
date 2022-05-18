@@ -18,6 +18,13 @@ struct GameOptionsView: View {
         } set: {
             vm.setGameMode(mode: $0)
         }
+        
+        let showingSheet_bind = Binding{
+            showingSheet
+        } set: {
+            showingSheet = $0
+            vm.setGameMode(mode: vm.gameMode)
+        }
 
         VStack{
             Text("Number of Vocabulary: \(vm.length)")
@@ -34,7 +41,7 @@ struct GameOptionsView: View {
                 .onTapGesture {
                     showingSheet = true
                 }
-                .sheet(isPresented: $showingSheet){
+                .sheet(isPresented: showingSheet_bind){
                     NavigationView{
                         SelectTopicsView()
                     }
