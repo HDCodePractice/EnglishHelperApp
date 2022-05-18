@@ -12,7 +12,6 @@ import RealmSwift
 struct PictureGameStartView: View {
     @EnvironmentObject var vm : PictureGameViewModel
     @ObservedResults(Word.self) var words
-    //TODO: 晚些要清除这个加载
     @State var isLoadFinished = true
     
     var body: some View {
@@ -23,8 +22,6 @@ struct PictureGameStartView: View {
                 Text("Are you ready to test out English words?")
                     .foregroundColor(.accent)
                     .multilineTextAlignment(.center)
-                //                Text(vm.realmPath)
-                //                CopyToClipboard(putString: vm.realmPath)
             }
             if !isLoadFinished {
                 HStack{
