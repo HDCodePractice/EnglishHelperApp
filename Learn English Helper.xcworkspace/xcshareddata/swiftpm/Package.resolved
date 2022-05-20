@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "IceCream",
+        "repositoryURL": "https://github.com/leoz/IceCream.git",
+        "state": {
+          "branch": "master",
+          "revision": "fb59f31497d3cfbfa5e7174bb41d1501434f46bc",
+          "version": null
+        }
+      },
+      {
         "package": "Kingfisher",
         "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
         "state": {

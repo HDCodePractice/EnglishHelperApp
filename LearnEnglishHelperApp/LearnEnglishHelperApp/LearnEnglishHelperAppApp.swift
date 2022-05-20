@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import CommomLibrary
 
 @main
 struct LearnEnglishHelperAppApp: App {
     @StateObject var vm = LearnEnglishHelperViewModel()
     @Environment(\.scenePhase) var scenePhase
+    @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
     
     var body: some Scene {
         WindowGroup {

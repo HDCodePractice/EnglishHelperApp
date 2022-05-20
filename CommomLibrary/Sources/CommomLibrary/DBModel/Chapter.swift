@@ -7,16 +7,23 @@
 
 import Foundation
 import RealmSwift
+import IceCream
 
 public class Chapter: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) public var id: String = UUID().uuidString
     @Persisted public var name: String
     @Persisted public var isSelect = true
+    @Persisted public var isDeleted = false
     @Persisted public var topics = RealmSwift.List<Topic>()
 }
 
+extension Chapter: CKRecordConvertible{}
+extension Chapter: CKRecordRecoverable{}
+
 struct JChapter: Codable,Identifiable {
-    public var id = UUID()
+    public var id : String {
+        return name
+    }
     var name: String
     var topics = [JTopic]()
     var isSelect = true

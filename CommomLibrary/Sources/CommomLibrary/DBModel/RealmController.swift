@@ -17,7 +17,7 @@ public class RealmController{
     private let pictureJsonURL = "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/picture.json"
     
     let config = Realm.Configuration(
-        schemaVersion: 7,
+        schemaVersion: 8,
         migrationBlock: { migration, oldSchemaVersion in
             if oldSchemaVersion < 7{
                 let types = [Chapter.className(),Picture.className(),Topic.className(),Word.className()]

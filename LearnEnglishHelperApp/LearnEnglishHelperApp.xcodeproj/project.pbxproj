@@ -20,6 +20,7 @@
 		675040B327C5991F00CD3B98 /* LearnEnglishHelperAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675040B227C5991F00CD3B98 /* LearnEnglishHelperAppUITests.swift */; };
 		675040B527C5991F00CD3B98 /* LearnEnglishHelperAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675040B427C5991F00CD3B98 /* LearnEnglishHelperAppUITestsLaunchTests.swift */; };
 		6764C22927C5E6C100861D83 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6764C22827C5E6C100861D83 /* AboutView.swift */; };
+		67883EFC2836DA4A007AC2B0 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67883EFB2836DA4A007AC2B0 /* CloudKit.framework */; };
 		67A5AE7727C5DE6100ED7AFA /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A5AE7627C5DE6100ED7AFA /* TestView.swift */; };
 		67C92785281DDC92001A0F84 /* CommomLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 67C92784281DDC92001A0F84 /* CommomLibrary */; };
 		67C92787281DDC92001A0F84 /* DictionaryLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 67C92786281DDC92001A0F84 /* DictionaryLibrary */; };
@@ -62,6 +63,7 @@
 		675040C127C5993000CD3B98 /* LearnEnglishHelperApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LearnEnglishHelperApp.entitlements; sourceTree = "<group>"; };
 		675F31A3281E2BF200779EDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6764C22827C5E6C100861D83 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		67883EFB2836DA4A007AC2B0 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		67A5AE7627C5DE6100ED7AFA /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		67D316D528214912004AE9A6 /* LearnEnglishHelperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnEnglishHelperViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67883EFC2836DA4A007AC2B0 /* CloudKit.framework in Frameworks */,
 				67C9278B281DDC92001A0F84 /* PictureGame in Frameworks */,
 				6718681D2828C1D1002E7470 /* GrammarBook in Frameworks */,
 				67C92787281DDC92001A0F84 /* DictionaryLibrary in Frameworks */,
@@ -188,6 +191,7 @@
 		675040C227C5B88B00CD3B98 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				67883EFB2836DA4A007AC2B0 /* CloudKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
