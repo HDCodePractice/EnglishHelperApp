@@ -41,7 +41,7 @@ public struct SelectTopicsView: View {
                     }label: {
                         HStack{
                             Image(systemName: "star.fill")
-                                .foregroundColor(chapter.isSelect ? .yellow : .secondary)
+                                .foregroundColor((chapter.isSelected) ? .yellow : .secondary)
                             let wordCount = words.where({
                                 $0.assignee.assignee.assignee.name == chapter.name
                             }).count

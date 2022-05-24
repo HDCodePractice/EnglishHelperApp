@@ -11,16 +11,12 @@ import OSLog
 import IceCream
 
 public class Word: Object, ObjectKeyIdentifiable{
-    @Persisted(primaryKey: true) public var id: String = UUID().uuidString
+    @Persisted(primaryKey: true) public var id: String
     @Persisted(indexed: true) public var name: String
     @Persisted public var isNew: Bool = true
     @Persisted public var isFavorited: Bool = false
-    @Persisted public var isDeleted = false
     @Persisted(originProperty: "words") public var assignee: LinkingObjects<Picture>
 }
-
-extension Word: CKRecordConvertible{}
-extension Word: CKRecordRecoverable{}
 
 public extension Word{
     var words : [String]{

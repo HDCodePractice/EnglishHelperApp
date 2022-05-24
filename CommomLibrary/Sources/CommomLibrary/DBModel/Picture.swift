@@ -7,18 +7,13 @@
 
 import Foundation
 import RealmSwift
-import IceCream
 
 public class Picture: Object, ObjectKeyIdentifiable{
-    @Persisted(primaryKey: true) public var id: String = UUID().uuidString
+    @Persisted(primaryKey: true) public var id: String
     @Persisted public var name: String
-    @Persisted public var isDeleted = false
     @Persisted public var words = RealmSwift.List<Word>()
     @Persisted(originProperty: "pictures") public var assignee: LinkingObjects<Topic>
 }
-
-extension Picture: CKRecordConvertible{}
-extension Picture: CKRecordRecoverable{}
 
 public extension Picture{
     var filePath:String{

@@ -91,17 +91,23 @@ class PictureGameViewModel: ObservableObject{
         guard let localRealm = realmController.localRealm , let memoRealm = realmController.memoRealm else{
             return
         }
+        // 准备好subquery
+        let chapterSelect = localRealm.objects(ChapterSelect.self)
         
         // 将包括目标内容的chapters过滤出来
-        let chapters = localRealm.objects(Chapter.self).where{
+        let chapters = localRealm.objects(Chapter.self).where{ chapter in
             let filter : Query<Bool>
             switch gameMode {
             case .topics:
-                filter=$0.isSelect==true
+                // 找出所有没被选中的chapters
+                let isNotSelecteds = chapterSelect.where { select in
+                    select.isSelected==false
+                }.map{ $0.name }
+                filter = !chapter.name.in(isNotSelecteds)
             case .new:
-                filter=$0.topics.pictures.words.isNew==true
+                filter=chapter.topics.pictures.words.isNew==true
             case .favorite:
-                filter=$0.topics.pictures.words.isFavorited==true
+                filter=chapter.topics.pictures.words.isFavorited==true
             }
             return filter
         }

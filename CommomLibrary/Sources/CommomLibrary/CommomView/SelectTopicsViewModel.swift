@@ -68,19 +68,19 @@ class SelectTopicsViewModel: ObservableObject{
                     try localRealm.write{
                         topic.isSelect.toggle()
                         // 如果chapter没选，顺便选上
-                        if topic.isSelect && !chapter.isSelect{
-                            chapter.isSelect = true
+                        if topic.isSelect && !chapter.isSelected{
+                            chapter.setChapterSelect(isSelected: true)
                             return
                         }
                         // 如果chapter选上了，查看是不是所有的都是没选中的，如果都没选，chapter也取消选择
-                        if chapter.isSelect{
+                        if chapter.isSelected{
                             for t in chapter.topics{
                                 if t.isSelect{
                                     return
                                 }
                             }
                             // 所有子项都没选择，把chapter也取消选择
-                            chapter.isSelect = false
+                            chapter.setChapterSelect(isSelected: false)
                         }
                     }
                 }
@@ -91,14 +91,14 @@ class SelectTopicsViewModel: ObservableObject{
     }
     
     func toggleChapter(chapter: Chapter){
+        chapter.toggleSelect()
         if let localRealm = realmController.localRealm {
             do{
                 if let chapter = chapter.thaw(){
                     try localRealm.write{
-                        chapter.isSelect.toggle()
                         for topic in chapter.topics{
-                            if topic.isSelect != chapter.isSelect {
-                                topic.isSelect = chapter.isSelect
+                            if topic.isSelect != chapter.isSelected {
+                                topic.isSelect = chapter.isSelected
                             }
                         }
                     }
@@ -108,4 +108,6 @@ class SelectTopicsViewModel: ObservableObject{
             }
         }
     }
+    
+
 }

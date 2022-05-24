@@ -14,16 +14,23 @@ public class AppDelegate: NSObject, UIApplicationDelegate {
     
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        let _ = RealmController.shared
+        
         // Enable CloudKit / IceCream Syncronization ----------------------
         syncEngine = SyncEngine(objects: [
-            SyncObject(type: Word.self),
-            SyncObject(type: Picture.self, uListElementType: Word.self),
-            SyncObject(type: Topic.self, uListElementType: Picture.self),
-            SyncObject(type: Chapter.self, uListElementType: Topic.self),
+            //            SyncObject(type: Chapter.self, uListElementType: Topic.self),
+            SyncObject(type: ChapterSelect.self)
         ])
+        // try 
+        if let syncEngine = syncEngine {
+            syncEngine.pull(completionHandler: { error in
+                let defaults = UserDefaults.standard
+                defaults.setIsCloudSynced(true)
+            })
+        }
+        
         application.registerForRemoteNotifications()
         // ----------------------------------------------------------------
-        print("didFinishLaunchingWithOptions")
         return true
     }
     
@@ -34,7 +41,6 @@ public class AppDelegate: NSObject, UIApplicationDelegate {
             NotificationCenter.default.post(name: Notifications.cloudKitDataDidChangeRemotely.name, object: nil, userInfo: userInfo)
             completionHandler(.newData)
         }
-        print("didReceiveRemoteNotification")
     }
     
 }

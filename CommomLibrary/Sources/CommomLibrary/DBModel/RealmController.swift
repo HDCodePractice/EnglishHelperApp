@@ -17,14 +17,16 @@ public class RealmController{
     private let pictureJsonURL = "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/picture.json"
     
     let config = Realm.Configuration(
-        schemaVersion: 8,
+        schemaVersion: 9,
         migrationBlock: { migration, oldSchemaVersion in
-            if oldSchemaVersion < 7{
-                let types = [Chapter.className(),Picture.className(),Topic.className(),Word.className()]
+            if oldSchemaVersion < 9{
+                let types = [Picture.className(),Word.className()]
                 for type in types {
+                    // 老板本的ID是在每台设备上都不相同的，所以只能放弃重新完全从服务器上进行一次同步了
                     migration.enumerateObjects(ofType: type) { oldObject, newObject in
-                        let id = oldObject!["id"] as? ObjectId
-                        newObject!["id"] = id?.stringValue ?? UUID().uuidString
+                        if let newObject = newObject{
+                            migration.delete(newObject)
+                        }
                     }
                 }
             }
@@ -69,11 +71,12 @@ public class RealmController{
             Realm.Configuration.defaultConfiguration = config
             localRealm = try Realm()
             memoRealm = try Realm(configuration: memoConfig)
+            print(realmFilePath)
         }catch{
             logger.error("Error opening Realm:\(error.localizedDescription)")
         }
     }
-    
+        
     // 从服务器上同步JSON数据到本地数据库
     @MainActor
     public func fetchData() async{
@@ -140,8 +143,19 @@ public class RealmController{
                     deleteChapter(chapter: lchapter)
                 }
             }
+            let lwords = localRealm.objects(Word.self).where {
+                $0.assignee.count==0
+            }
+            do{
+                try localRealm.write{
+                    localRealm.delete(lwords)
+                }
+            } catch {
+                logger.error("Error deleting Word from Realm: \(error.localizedDescription)")
+            }
         }
     }
+    
     
     // 删除数据库中指定的chapter记录
     private func deleteChapter(chapter: Chapter) {
@@ -273,12 +287,13 @@ public class RealmController{
                                                     $0.name == qword
                                                 }
                                                 if dbwords.count == 0{
-                                                    pictureFile.words.append(genWord(word: qword))
+                                                    let wid = "\(pictureFile.id)|\(qword)"
+                                                    pictureFile.words.append(genWord(word: qword,id: wid))
                                                 }
                                             }
                                         }else{
                                             // 增加对应的pictureFile
-                                            let newPictureFile = genPicture(pictureFile: qpictureFile)
+                                            let newPictureFile = genPicture(pictureFile: qpictureFile, id: "\(qtopic.name)|\(qpictureFile.name)")
                                             topic.pictures.append(newPictureFile)
                                         }
                                     }
@@ -313,25 +328,28 @@ public class RealmController{
             "name" : topic.name
         ])
         for pictureFile in topic.pictureFiles{
-            let newPicture = genPicture(pictureFile: pictureFile)
+            let newPicture = genPicture(pictureFile: pictureFile, id: "\(topic.name)|\(pictureFile.name)")
             newTopic.pictures.append(newPicture)
         }
         return newTopic
     }
     
-    private func genPicture ( pictureFile: JPictureFile ) -> Picture{
+    private func genPicture ( pictureFile: JPictureFile,id: String) -> Picture{
         let newPictureFile = Picture(value: [
-            "name" : pictureFile.name
+            "id": id.sha256(),
+            "name": pictureFile.name
         ])
         for word in pictureFile.words{
-            let newWord = genWord(word: word)
+            let wid = "\(id.sha256())|\(word)"
+            let newWord = genWord(word: word,id: wid)
             newPictureFile.words.append(newWord)
         }
         return newPictureFile
     }
     
-    private func genWord(word: String) -> Word{
+    private func genWord(word: String,id: String) -> Word{
         let newWord = Word(value: [
+            "id": id.sha256(),
             "name": word
         ])
         return newWord
