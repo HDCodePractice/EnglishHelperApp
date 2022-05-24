@@ -21,7 +21,7 @@ class PictureTests: XCTestCase {
             for j in 1...5{
                 var newTopic=JTopic(name: "Topic\(j)")
                 for k in 1...5{
-                    let newPictureFile=JPictureFile(id: "\(i)\(j)\(k)", name: "Pic\(k)", words: ["words\(i)\(j)\(k)1","words\(i)\(j)\(k)2"])
+                    let newPictureFile=JPictureFile(name: "Pic\(k)", words: ["words\(i)\(j)\(k)1","words\(i)\(j)\(k)2"])
                     newTopic.pictureFiles.append(newPictureFile)
                 }
                 newChapter.topics.append(newTopic)

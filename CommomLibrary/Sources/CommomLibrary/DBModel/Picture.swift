@@ -7,12 +7,31 @@
 
 import Foundation
 import RealmSwift
+import OSLog
 
 public class Picture: Object, ObjectKeyIdentifiable{
     @Persisted(primaryKey: true) public var id: String
     @Persisted public var name: String
     @Persisted public var words = RealmSwift.List<Word>()
     @Persisted(originProperty: "pictures") public var assignee: LinkingObjects<Topic>
+}
+
+public extension Picture{
+    func delete(){
+        if let thawed=self.thaw(), let localRealm = thawed.realm{
+            do{
+                for word in self.words{
+                    word.delete()
+                }
+                try localRealm.write{
+                    localRealm.delete(self)
+                }
+            } catch {
+                Logger().error("Error deleting pictureFiles \(self) from Realm: \(error.localizedDescription)")
+            }
+        }
+    }
+    
 }
 
 public extension Picture{

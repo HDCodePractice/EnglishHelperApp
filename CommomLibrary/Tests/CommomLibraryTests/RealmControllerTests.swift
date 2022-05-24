@@ -21,7 +21,7 @@ class RealmControllerTests: XCTestCase {
             for j in 1...5{
                 var newTopic=JTopic(name: "Topic\(j)")
                 for k in 1...5{
-                    let newPictureFile=JPictureFile(id:"ijk",name: "Pic\(k)", words: ["words\(i)\(j)\(k)1","words\(i)\(j)\(k)2"])
+                    let newPictureFile=JPictureFile(name: "Pic\(k)", words: ["words\(i)\(j)\(k)1","words\(i)\(j)\(k)2"])
                     newTopic.pictureFiles.append(newPictureFile)
                 }
                 newChapter.topics.append(newTopic)
@@ -53,7 +53,7 @@ class RealmControllerTests: XCTestCase {
         jchapters.append(
             JChapter(name: "newChapter", topics: [
                 JTopic( name: "newTopic", pictureFiles: [
-                    JPictureFile(id: "newChapternewTopicnewPic", name: "newPic", words: ["newWord"])
+                    JPictureFile(name: "newPic", words: ["newWord"])
                 ])
             ])
         )

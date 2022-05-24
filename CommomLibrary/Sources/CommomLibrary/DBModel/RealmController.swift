@@ -127,22 +127,23 @@ public class RealmController{
                                     // 服务器上有picture
                                     for lword in lpictureFile.words{
                                         if findWords(name: lword.name, words: rpictureFile.words) == nil{
-                                            deleteWord(word: lword)
+                                            lword.delete()
                                         }
                                     }
                                 }else{
-                                    deletePictureFiles(picture: lpictureFile)
+                                    lpictureFile.delete()
                                 }
                             }
                         }else{
-                            deleteTopic(topic: ltopic)
+                            ltopic.delete()
                         }
                     }
                 }else{
                     //服务器上没有这个chapter
-                    deleteChapter(chapter: lchapter)
+                    lchapter.delete()
                 }
             }
+            // 清除没有任何指向的words
             let lwords = localRealm.objects(Word.self).where {
                 $0.assignee.count==0
             }
@@ -152,68 +153,6 @@ public class RealmController{
                 }
             } catch {
                 logger.error("Error deleting Word from Realm: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    
-    // 删除数据库中指定的chapter记录
-    private func deleteChapter(chapter: Chapter) {
-        if let localRealm = localRealm {
-            do{
-                for topic in chapter.topics{
-                    deleteTopic(topic: topic)
-                }
-                try localRealm.write{
-                    localRealm.delete(chapter)
-                }
-            } catch {
-                logger.error("Error deleting chapter \(chapter) from Realm: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    // 删除数据库中指定的topic记录
-    private func deleteTopic(topic: Topic) {
-        if let localRealm = localRealm {
-            do{
-                for picture in topic.pictures{
-                    deletePictureFiles(picture: picture)
-                }
-                try localRealm.write{
-                    localRealm.delete(topic)
-                }
-            } catch {
-                logger.error("Error deleting topic \(topic) from Realm: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    // 删除数据中指定的word记录
-    private func deleteWord(word: Word){
-        if let localRealm = localRealm {
-            do{
-                try localRealm.write{
-                    localRealm.delete(word)
-                }
-            } catch {
-                logger.error("Error deleting Word \(word) from Realm: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    // 删除数据库中指定的picture记录
-    private func deletePictureFiles(picture: Picture){
-        if let localRealm = localRealm {
-            do{
-                for word in picture.words{
-                    deleteWord(word: word)
-                }
-                try localRealm.write{
-                    localRealm.delete(picture)
-                }
-            } catch {
-                logger.error("Error deleting pictureFiles \(picture) from Realm: \(error.localizedDescription)")
             }
         }
     }

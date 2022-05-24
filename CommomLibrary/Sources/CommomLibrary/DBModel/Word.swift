@@ -9,6 +9,7 @@ import Foundation
 import RealmSwift
 import OSLog
 import IceCream
+import OSLog
 
 public class Word: Object, ObjectKeyIdentifiable{
     @Persisted(primaryKey: true) public var id: String
@@ -16,6 +17,20 @@ public class Word: Object, ObjectKeyIdentifiable{
     @Persisted public var isNew: Bool = true
     @Persisted public var isFavorited: Bool = false
     @Persisted(originProperty: "words") public var assignee: LinkingObjects<Picture>
+}
+
+public extension Word{
+    func delete(){
+        if let thawed=self.thaw(), let localRealm = thawed.realm{
+            do{
+                try localRealm.write{
+                    localRealm.delete(self)
+                }
+            } catch {
+                Logger().error("Error deleting Word \(self) from Realm: \(error.localizedDescription)")
+            }
+        }
+    }
 }
 
 public extension Word{

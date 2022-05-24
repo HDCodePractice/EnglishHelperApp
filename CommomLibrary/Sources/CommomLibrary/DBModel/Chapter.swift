@@ -14,6 +14,22 @@ public class Chapter: Object, ObjectKeyIdentifiable {
 }
 
 extension Chapter{
+    // 删除数据库中指定的chapter记录
+    func delete() {
+        if let thawed=self.thaw(), let localRealm = thawed.realm{
+            do{
+                for topic in self.topics{
+                    topic.delete()
+                }
+                try localRealm.write{
+                    localRealm.delete(self)
+                }
+            } catch {
+                Logger().error("Error deleting chapter \(self) from Realm: \(error.localizedDescription)")
+            }
+        }
+    }
+    
     var isSelected: Bool{
         if let localRealm = self.realm{
             let count = localRealm.objects(ChapterSelect.self).where {
