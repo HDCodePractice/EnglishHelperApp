@@ -72,10 +72,6 @@ public struct SelectTopicsView: View {
                     .onTapGesture {
                         vm.cleanCache()
                     }
-                Text("Clean Local Data")
-                    .onTapGesture {
-                        vm.cleanRealm()
-                    }
             }
         }
         .navigationBarTitle("Select Topics(\(words.count))")

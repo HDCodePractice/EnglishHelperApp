@@ -15,14 +15,24 @@ public class Chapter: Object, ObjectKeyIdentifiable {
 
 extension Chapter{
     // 删除数据库中指定的chapter记录
-    func delete() {
+    func delete(_ isAsync:Bool=false) {
         if let thawed=self.thaw(), let localRealm = thawed.realm{
             do{
                 for topic in self.topics{
                     topic.delete()
                 }
-                try localRealm.write{
-                    localRealm.delete(self)
+                if isAsync{
+                    localRealm.writeAsync{
+                        localRealm.delete(self)
+                    } onComplete: { error in
+                        if let error=error{
+                            Logger().error("Error deleting chapter \(self) from Realm: \(error.localizedDescription)")
+                        }
+                    }
+                }else{
+                    try localRealm.write{
+                        localRealm.delete(self)
+                    }
                 }
             } catch {
                 Logger().error("Error deleting chapter \(self) from Realm: \(error.localizedDescription)")
@@ -52,32 +62,31 @@ extension Chapter{
     
     private func setChapterSelect(isToggle:Bool,isSelected:Bool?=nil){
         if let thawed=self.thaw(), let localRealm = thawed.realm {
-            do{
-                try localRealm.write{
-                    
-                    let chapterSelects = localRealm.objects(ChapterSelect.self).where {
-                        $0.name==self.name
-                    }
-                    
-                    if chapterSelects.count==0{
-                        let chapterSelect = ChapterSelect(value: [
-                            "name": self.name,
-                            // 如果isSelected存在用它，不存在说明要toggle，则变为false
-                            "isSelected":isSelected ?? false
-                        ])
-                        localRealm.add(chapterSelect)
-                    }else if let chapterSelect = chapterSelects.first{
-                        if isToggle{
-                            chapterSelect.isSelected.toggle()
-                        }else{
-                            if let isSelected=isSelected{
-                                chapterSelect.isSelected=isSelected
-                            }
+            localRealm.writeAsync{
+                let chapterSelects = localRealm.objects(ChapterSelect.self).where {
+                    $0.name==self.name
+                }
+                
+                if chapterSelects.count==0{
+                    let chapterSelect = ChapterSelect(value: [
+                        "name": self.name,
+                        // 如果isSelected存在用它，不存在说明要toggle，则变为false
+                        "isSelected":isSelected ?? false
+                    ])
+                    localRealm.add(chapterSelect)
+                }else if let chapterSelect = chapterSelects.first{
+                    if isToggle{
+                        chapterSelect.isSelected.toggle()
+                    }else{
+                        if let isSelected=isSelected{
+                            chapterSelect.isSelected=isSelected
                         }
                     }
                 }
-            }catch{
-                Logger().error("setChapterSelect \(self.name) error: \(error.localizedDescription)")
+            } onComplete: { error in
+                if let error=error {
+                    Logger().error("setChapterSelect \(self.name) error: \(error.localizedDescription)")
+                }
             }
         }
     }

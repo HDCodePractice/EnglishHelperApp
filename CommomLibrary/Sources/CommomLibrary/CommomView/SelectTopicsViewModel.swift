@@ -39,8 +39,8 @@ class SelectTopicsViewModel: ObservableObject{
     
     func cleanCache(){
         let cache = ImageCache.default
-//        print(cache.memoryStorage.config.expiration)
-//        print(cache.diskStorage.config.expiration)
+        //        print(cache.memoryStorage.config.expiration)
+        //        print(cache.diskStorage.config.expiration)
         cache.clearCache()
         cache.calculateDiskStorageSize { result in
             switch result{
@@ -55,10 +55,6 @@ class SelectTopicsViewModel: ObservableObject{
     @MainActor
     func fetchData() async{
         await realmController.fetchData()
-    }
-
-    func cleanRealm(){
-        realmController.cleanRealm()
     }
     
     func toggleTopic(topic: Topic){
@@ -91,23 +87,20 @@ class SelectTopicsViewModel: ObservableObject{
     }
     
     func toggleChapter(chapter: Chapter){
+        let selected = !chapter.isSelected
         chapter.toggleSelect()
-        if let localRealm = realmController.localRealm {
-            do{
-                if let chapter = chapter.thaw(){
-                    try localRealm.write{
-                        for topic in chapter.topics{
-                            if topic.isSelect != chapter.isSelected {
-                                topic.isSelect = chapter.isSelected
-                            }
-                        }
+        if let localRealm = chapter.thaw()?.realm {
+            localRealm.writeAsync{
+                for topic in chapter.topics{
+                    if topic.isSelect != selected {
+                        topic.isSelect = selected
                     }
                 }
-            }catch{
-                Logger().error("toggle chapter \(chapter.name) error: \(error.localizedDescription)")
+            } onComplete: { error in
+                if let error=error{
+                    Logger().error("toggle chapter \(chapter.name) error: \(error.localizedDescription)")
+                }
             }
         }
     }
-    
-
 }
