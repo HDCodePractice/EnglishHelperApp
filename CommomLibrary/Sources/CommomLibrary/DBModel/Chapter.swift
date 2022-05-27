@@ -14,30 +14,42 @@ public class Chapter: Object, ObjectKeyIdentifiable {
 }
 
 extension Chapter{
-    // 删除数据库中指定的chapter记录
-    func delete(_ isAsync:Bool=false) {
+    func delete(isAsync:Bool=false,onComplete: ((Swift.Error?) -> Void)? = nil) {
         if let thawed=self.thaw(), let localRealm = thawed.realm{
-            do{
-                for topic in self.topics{
-                    topic.delete()
-                }
-                if isAsync{
-                    localRealm.writeAsync{
-                        localRealm.delete(self)
-                    } onComplete: { error in
-                        if let error=error{
-                            Logger().error("Error deleting chapter \(self) from Realm: \(error.localizedDescription)")
-                        }
+            if isAsync{
+                localRealm.writeAsync{
+                    self.deleteTransaction(localRealm)
+                } onComplete: { error in
+                    if let error=error{
+                        Logger().error("Error deleting \(self) from Realm: \(error.localizedDescription)")
                     }
-                }else{
+                    if let onComplete = onComplete {
+                        onComplete(error)
+                    }
+                }
+            }else{
+                do{
                     try localRealm.write{
-                        localRealm.delete(self)
+                        self.deleteTransaction(localRealm)
                     }
+                } catch {
+                    Logger().error("Error deleting \(self) from Realm: \(error.localizedDescription)")
                 }
-            } catch {
-                Logger().error("Error deleting chapter \(self) from Realm: \(error.localizedDescription)")
             }
         }
+    }
+    
+    func deleteTransaction(_ localRealm: Realm){
+        for topic in self.topics{
+            topic.deleteTransaction(localRealm)
+        }
+        let chapterSelects = localRealm.objects(ChapterSelect.self).where {
+            $0.name==self.name
+        }
+        if let chapterSelect=chapterSelects.first{
+            chapterSelect.isDeleted = true
+        }
+        localRealm.delete(self)
     }
     
     var isSelected: Bool{
@@ -62,18 +74,16 @@ extension Chapter{
     
     private func setChapterSelect(isToggle:Bool,isSelected:Bool?=nil){
         if let thawed=self.thaw(), let localRealm = thawed.realm {
+            let chapterSelects = localRealm.objects(ChapterSelect.self).where {
+                $0.name==self.name
+            }
             localRealm.writeAsync{
-                let chapterSelects = localRealm.objects(ChapterSelect.self).where {
-                    $0.name==self.name
-                }
-                
                 if chapterSelects.count==0{
-                    let chapterSelect = ChapterSelect(value: [
-                        "name": self.name,
-                        // 如果isSelected存在用它，不存在说明要toggle，则变为false
-                        "isSelected":isSelected ?? false
-                    ])
-                    localRealm.add(chapterSelect)
+                    ChapterSelect.addNewChapterSelectTransaction(
+                        localRealm: localRealm,
+                        name: self.name,
+                        isSelected: isSelected ?? false
+                    )
                 }else if let chapterSelect = chapterSelects.first{
                     if isToggle{
                         chapterSelect.isSelected.toggle()

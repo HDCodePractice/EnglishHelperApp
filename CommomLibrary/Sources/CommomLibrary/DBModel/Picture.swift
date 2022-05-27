@@ -17,21 +17,37 @@ public class Picture: Object, ObjectKeyIdentifiable{
 }
 
 public extension Picture{
-    func delete(){
+    func delete(isAsync:Bool=false,onComplete: ((Swift.Error?) -> Void)? = nil) {
         if let thawed=self.thaw(), let localRealm = thawed.realm{
-            do{
-                for word in self.words{
-                    word.delete()
+            if isAsync{
+                localRealm.writeAsync{
+                    self.deleteTransaction(localRealm)
+                } onComplete: { error in
+                    if let error=error{
+                        Logger().error("Error deleting \(self) from Realm: \(error.localizedDescription)")
+                    }
+                    if let onComplete = onComplete {
+                        onComplete(error)
+                    }
                 }
-                try localRealm.write{
-                    localRealm.delete(self)
+            }else{
+                do{
+                    try localRealm.write{
+                        self.deleteTransaction(localRealm)
+                    }
+                } catch {
+                    Logger().error("Error deleting \(self) from Realm: \(error.localizedDescription)")
                 }
-            } catch {
-                Logger().error("Error deleting pictureFiles \(self) from Realm: \(error.localizedDescription)")
             }
         }
     }
     
+    func deleteTransaction(_ localRealm: Realm){
+        for word in self.words{
+            word.deleteTransaction(localRealm)
+        }
+        localRealm.delete(self)
+    }
 }
 
 public extension Picture{

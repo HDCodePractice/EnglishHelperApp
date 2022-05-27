@@ -71,7 +71,9 @@ public class RealmController{
             Realm.Configuration.defaultConfiguration = config
             localRealm = try Realm()
             memoRealm = try Realm(configuration: memoConfig)
+#if DEBUG
             print(realmFilePath)
+#endif
         }catch{
             logger.error("Error opening Realm:\(error.localizedDescription)")
         }
@@ -227,18 +229,18 @@ public class RealmController{
                                                 }
                                                 if dbwords.count == 0{
                                                     let wid = "\(pictureFile.id)|\(qword)"
-                                                    pictureFile.words.append(genWord(word: qword,id: wid))
+                                                    pictureFile.words.append(self.genWord(word: qword,id: wid))
                                                 }
                                             }
                                         }else{
                                             // 增加对应的pictureFile
-                                            let newPictureFile = genPicture(pictureFile: qpictureFile, id: "\(qtopic.name)|\(qpictureFile.name)")
+                                            let newPictureFile = self.genPicture(pictureFile: qpictureFile, id: "\(qtopic.name)|\(qpictureFile.name)")
                                             topic.pictures.append(newPictureFile)
                                         }
                                     }
                                 }else{
                                     // 不存在这个topic
-                                    let newTopic = genTopic(topic: qtopic)
+                                    let newTopic = self.genTopic(topic: qtopic)
                                     chapter.topics.append(newTopic)
                                 }
                             }
@@ -248,7 +250,7 @@ public class RealmController{
                                 "name" : qchapter.name
                             ])
                             for topic in qchapter.topics{
-                                let newTopic = genTopic(topic: topic)
+                                let newTopic = self.genTopic(topic: topic)
                                 newChapter.topics.append(newTopic)
                             }
                             localRealm.add(newChapter)

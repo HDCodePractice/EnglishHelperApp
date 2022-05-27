@@ -100,9 +100,12 @@ class PictureGameViewModel: ObservableObject{
             switch gameMode {
             case .topics:
                 // 找出所有没被选中的chapters
-                let isNotSelecteds = chapterSelect.where { select in
+                var isNotSelecteds: [String] = chapterSelect.where { select in
                     select.isSelected==false
                 }.map{ $0.name }
+                if isNotSelecteds.count==0{
+                    isNotSelecteds = [""]
+                }
                 filter = !chapter.name.in(isNotSelecteds)
             case .new:
                 filter=chapter.topics.pictures.words.isNew==true

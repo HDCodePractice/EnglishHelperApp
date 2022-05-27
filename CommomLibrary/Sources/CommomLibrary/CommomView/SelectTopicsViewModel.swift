@@ -92,7 +92,7 @@ class SelectTopicsViewModel: ObservableObject{
         if let localRealm = chapter.thaw()?.realm {
             localRealm.writeAsync{
                 for topic in chapter.topics{
-                    if topic.isSelect != selected {
+                    if topic.isSelect != selected , let topic=topic.thaw(){
                         topic.isSelect = selected
                     }
                 }

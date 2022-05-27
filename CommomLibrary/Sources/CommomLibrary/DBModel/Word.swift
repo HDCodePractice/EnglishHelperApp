@@ -20,16 +20,33 @@ public class Word: Object, ObjectKeyIdentifiable{
 }
 
 public extension Word{
-    func delete(){
+    func delete(isAsync:Bool=false,onComplete: ((Swift.Error?) -> Void)? = nil) {
         if let thawed=self.thaw(), let localRealm = thawed.realm{
-            do{
-                try localRealm.write{
-                    localRealm.delete(self)
+            if isAsync{
+                localRealm.writeAsync{
+                    self.deleteTransaction(localRealm)
+                } onComplete: { error in
+                    if let error=error{
+                        Logger().error("Error deleting \(self) from Realm: \(error.localizedDescription)")
+                    }
+                    if let onComplete = onComplete {
+                        onComplete(error)
+                    }
                 }
-            } catch {
-                Logger().error("Error deleting Word \(self) from Realm: \(error.localizedDescription)")
+            }else{
+                do{
+                    try localRealm.write{
+                        self.deleteTransaction(localRealm)
+                    }
+                } catch {
+                    Logger().error("Error deleting \(self) from Realm: \(error.localizedDescription)")
+                }
             }
         }
+    }
+    
+    func deleteTransaction(_ localRealm: Realm){
+        localRealm.delete(self)
     }
 }
 

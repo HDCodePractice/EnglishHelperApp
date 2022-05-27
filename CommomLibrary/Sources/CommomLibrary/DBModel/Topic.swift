@@ -18,19 +18,36 @@ public class Topic: Object, ObjectKeyIdentifiable {
 }
 
 public extension Topic{
-    func delete() {
+    func delete(isAsync:Bool=false,onComplete: ((Swift.Error?) -> Void)? = nil) {
         if let thawed=self.thaw(), let localRealm = thawed.realm{
-            do{
-                for picture in self.pictures{
-                    picture.delete()
+            if isAsync{
+                localRealm.writeAsync{
+                    self.deleteTransaction(localRealm)
+                } onComplete: { error in
+                    if let error=error{
+                        Logger().error("Error deleting \(self) from Realm: \(error.localizedDescription)")
+                    }
+                    if let onComplete = onComplete {
+                        onComplete(error)
+                    }
                 }
-                try localRealm.write{
-                    localRealm.delete(self)
+            }else{
+                do{
+                    try localRealm.write{
+                        self.deleteTransaction(localRealm)
+                    }
+                } catch {
+                    Logger().error("Error deleting \(self) from Realm: \(error.localizedDescription)")
                 }
-            } catch {
-                Logger().error("Error deleting topic \(self) from Realm: \(error.localizedDescription)")
             }
         }
+    }
+    
+    func deleteTransaction(_ localRealm: Realm){
+        for picture in self.pictures{
+            picture.deleteTransaction(localRealm)
+        }
+        localRealm.delete(self)
     }
 }
 
