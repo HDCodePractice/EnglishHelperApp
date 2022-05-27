@@ -18,6 +18,18 @@ public class Topic: Object, ObjectKeyIdentifiable {
 }
 
 public extension Topic{
+    var isSelected: Bool{
+        if let localRealm = self.realm{
+            let count = localRealm.objects(TopicSelect.self).where {
+                $0.name==self.name && $0.isSelected==false
+            }.count
+            if count>0{
+                return false
+            }
+        }
+        return true
+    }
+    
     func delete(isAsync:Bool=false,onComplete: ((Swift.Error?) -> Void)? = nil) {
         if let thawed=self.thaw(), let localRealm = thawed.realm{
             if isAsync{
@@ -48,6 +60,20 @@ public extension Topic{
             picture.deleteTransaction(localRealm)
         }
         localRealm.delete(self)
+    }
+    
+    
+    /// 设置Topic的选择状态的数据库Transaction操作，可以将多个Transaction放入一个write保持数据库的事务
+    /// - Parameters:
+    ///   - localRealm: 进行操作的Realm实例，应该已经初始化好进入write状态
+    ///   - isSelected: 将选择设置为的状态
+    ///   - isChangeChapter: 是否同步设置topic所属的chapter的选择状态
+    func setTopicSelectTransaction(localRealm:Realm, isSelected:Bool, isChangeChapter:Bool){
+        TopicSelect.addNewTopicSelectTransaction(
+            localRealm: localRealm,
+            name: self.name,
+            isSelected: isSelected
+        )
     }
 }
 

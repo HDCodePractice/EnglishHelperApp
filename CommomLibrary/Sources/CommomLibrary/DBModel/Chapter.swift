@@ -102,9 +102,11 @@ extension Chapter{
         )
         if isChangeTopics{
             for topic in self.topics{
-                if topic.isSelect != isSelected, let topic=topic.thaw(){
-                    topic.isSelect = isSelected
-                }
+                topic.setTopicSelectTransaction(
+                    localRealm: localRealm,
+                    isSelected: isSelected,
+                    isChangeChapter: false
+                )
             }
         }
     }

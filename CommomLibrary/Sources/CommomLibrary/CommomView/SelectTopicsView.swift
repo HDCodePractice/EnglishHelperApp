@@ -12,6 +12,7 @@ public struct SelectTopicsView: View {
     @ObservedResults(Chapter.self) var chapters
     @ObservedResults(Word.self) var words
     @ObservedResults(ChapterSelect.self) var chapterSelects
+    @ObservedResults(TopicSelect.self) var topicSelects
     @Environment(\.dismiss) var dismiss
     @StateObject private var vm = SelectTopicsViewModel()
     
@@ -27,8 +28,11 @@ public struct SelectTopicsView: View {
                     DisclosureGroup(isExpanded:$topExpanded){
                         ForEach (chapter.topics){ topic in
                             HStack{
+                                let topicSelectCount = topicSelects.where{
+                                    $0.name==topic.name && $0.isSelected==false
+                                }.count
                                 Image(systemName: "star.fill")
-                                    .foregroundColor(topic.isSelect ? .yellow :
+                                    .foregroundColor((topicSelectCount==0) ? .yellow :
                                             .secondary)
                                 let wordCount = words.where{
                                     $0.assignee.assignee.name == topic.name
