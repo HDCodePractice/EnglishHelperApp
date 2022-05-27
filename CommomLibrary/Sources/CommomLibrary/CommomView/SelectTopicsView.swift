@@ -11,6 +11,7 @@ import RealmSwift
 public struct SelectTopicsView: View {
     @ObservedResults(Chapter.self) var chapters
     @ObservedResults(Word.self) var words
+    @ObservedResults(ChapterSelect.self) var chapterSelects
     @Environment(\.dismiss) var dismiss
     @StateObject private var vm = SelectTopicsViewModel()
     
@@ -29,9 +30,9 @@ public struct SelectTopicsView: View {
                                 Image(systemName: "star.fill")
                                     .foregroundColor(topic.isSelect ? .yellow :
                                             .secondary)
-                                let wordCount = words.where({
+                                let wordCount = words.where{
                                     $0.assignee.assignee.name == topic.name
-                                }).count
+                                }.count
                                 Text("\(topic.name)(\(wordCount))")
                             }
                             .onTapGesture {
@@ -40,11 +41,14 @@ public struct SelectTopicsView: View {
                         }
                     }label: {
                         HStack{
+                            let chapterSelectCount = chapterSelects.where{
+                                $0.name==chapter.name && $0.isSelected==false
+                            }.count
                             Image(systemName: "star.fill")
-                                .foregroundColor((chapter.isSelected) ? .yellow : .secondary)
-                            let wordCount = words.where({
+                                .foregroundColor((chapterSelectCount==0) ? .yellow : .secondary)
+                            let wordCount = words.where{
                                 $0.assignee.assignee.assignee.name == chapter.name
-                            }).count
+                            }.count
                             Text("\(chapter.name)(\(wordCount))")
                         }
                         .onTapGesture(){

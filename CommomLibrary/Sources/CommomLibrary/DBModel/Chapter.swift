@@ -14,6 +14,18 @@ public class Chapter: Object, ObjectKeyIdentifiable {
 }
 
 extension Chapter{
+    var isSelected: Bool{
+        if let localRealm = self.realm{
+            let count = localRealm.objects(ChapterSelect.self).where {
+                $0.name==self.name && $0.isSelected==false
+            }.count
+            if count>0{
+                return false
+            }
+        }
+        return true
+    }
+    
     func delete(isAsync:Bool=false,onComplete: ((Swift.Error?) -> Void)? = nil) {
         if let thawed=self.thaw(), let localRealm = thawed.realm{
             if isAsync{
@@ -52,50 +64,46 @@ extension Chapter{
         localRealm.delete(self)
     }
     
-    var isSelected: Bool{
-        if let localRealm = self.realm{
-            let count = localRealm.objects(ChapterSelect.self).where {
-                $0.name==self.name && $0.isSelected==false
-            }.count
-            if count>0{
-                return false
+    func toggleSelect(isChangeTopics:Bool=false){
+        if let thawed=self.thaw(), let localRealm = thawed.realm {
+            do{
+                try localRealm.write{
+                    let setSelect = !self.isSelected
+                    self.setChapterSelectTransaction(localRealm: localRealm, isSelected: setSelect, isChangeTopics: true)
+                }
+            }catch{
+                Logger().error("setChapterSelect \(self.name) error: \(error.localizedDescription)")
             }
         }
-        return true
     }
     
-    func toggleSelect(){
-        setChapterSelect(isToggle: true)
-    }
-    
-    func setChapterSelect(isSelected:Bool){
-        setChapterSelect(isToggle: false, isSelected: isSelected)
-    }
-    
-    private func setChapterSelect(isToggle:Bool,isSelected:Bool?=nil){
+    func setChapterSelect(isSelected:Bool,isChangeTopics:Bool=false){
         if let thawed=self.thaw(), let localRealm = thawed.realm {
-            let chapterSelects = localRealm.objects(ChapterSelect.self).where {
-                $0.name==self.name
-            }
-            localRealm.writeAsync{
-                if chapterSelects.count==0{
-                    ChapterSelect.addNewChapterSelectTransaction(
-                        localRealm: localRealm,
-                        name: self.name,
-                        isSelected: isSelected ?? false
-                    )
-                }else if let chapterSelect = chapterSelects.first{
-                    if isToggle{
-                        chapterSelect.isSelected.toggle()
-                    }else{
-                        if let isSelected=isSelected{
-                            chapterSelect.isSelected=isSelected
-                        }
-                    }
+            do{
+                try localRealm.write{
+                    self.setChapterSelectTransaction(localRealm: localRealm, isSelected: isSelected, isChangeTopics: isChangeTopics)
                 }
-            } onComplete: { error in
-                if let error=error {
-                    Logger().error("setChapterSelect \(self.name) error: \(error.localizedDescription)")
+            }catch{
+                Logger().error("setChapterSelect \(self.name) error: \(error.localizedDescription)")
+            }
+        }
+    }
+ 
+    /// 设置chapter的选择状态的数据库Transaction操作，可以将多个Transaction放入一个write保持数据库的事务
+    /// - Parameters:
+    ///   - localRealm: 进行操作的Realm实例，应该已经初始化好进入write状态
+    ///   - isSelected: 将选择设置为的状态
+    ///   - isChangeTopics: 是否同步设置所属topic选择状态
+    func setChapterSelectTransaction(localRealm:Realm, isSelected:Bool, isChangeTopics:Bool){
+        ChapterSelect.addNewChapterSelectTransaction(
+            localRealm: localRealm,
+            name: self.name,
+            isSelected: isSelected
+        )
+        if isChangeTopics{
+            for topic in self.topics{
+                if topic.isSelect != isSelected, let topic=topic.thaw(){
+                    topic.isSelect = isSelected
                 }
             }
         }

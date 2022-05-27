@@ -87,20 +87,6 @@ class SelectTopicsViewModel: ObservableObject{
     }
     
     func toggleChapter(chapter: Chapter){
-        let selected = !chapter.isSelected
-        chapter.toggleSelect()
-        if let localRealm = chapter.thaw()?.realm {
-            localRealm.writeAsync{
-                for topic in chapter.topics{
-                    if topic.isSelect != selected , let topic=topic.thaw(){
-                        topic.isSelect = selected
-                    }
-                }
-            } onComplete: { error in
-                if let error=error{
-                    Logger().error("toggle chapter \(chapter.name) error: \(error.localizedDescription)")
-                }
-            }
-        }
+        chapter.toggleSelect(isChangeTopics: true)
     }
 }
