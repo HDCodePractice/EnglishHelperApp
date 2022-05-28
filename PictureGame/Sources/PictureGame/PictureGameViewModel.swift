@@ -119,7 +119,7 @@ class PictureGameViewModel: ObservableObject{
                 let filter : Query<Bool>
                 switch gameMode {
                 case .topics:
-                    filter = Topic.isSelectedFilter(localRealm: localRealm, assignee: word.assignee.assignee)
+                    filter = Topic.isSelectedFilter(localRealm: localRealm,isSelected: false, assignee: word.assignee.assignee)
                 case .new:
                     filter = word.isNew == false
                 case .favorite:
