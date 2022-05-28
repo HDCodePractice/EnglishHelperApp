@@ -46,14 +46,23 @@ class ChapterTests: XCTestCase {
         XCTAssertEqual(localRealm.objects(Picture.self).count, 125)
         XCTAssertEqual(localRealm.objects(Word.self).count, 250)
         
-        
         let chapter = localRealm.objects(Chapter.self).randomElement()!
+        XCTAssertNil(localRealm.object(ofType: ChapterSelect.self, forPrimaryKey: chapter.name))
+        chapter.toggleSelect()
+        XCTAssertEqual(chapter.isSelected, false)
+        XCTAssertNotNil(localRealm.object(ofType: ChapterSelect.self, forPrimaryKey: chapter.name))
+        let chapterSelect = localRealm.object(ofType: ChapterSelect.self, forPrimaryKey: chapter.name)!
+        XCTAssertEqual(chapterSelect.isDeleted, false)
+        XCTAssertEqual(chapterSelect.isSelected, false)
+        chapter.toggleSelect()
+        XCTAssertEqual(chapterSelect.isSelected, true)
         
         chapter.delete()
         XCTAssertEqual(localRealm.objects(Chapter.self).count, 4)
         XCTAssertEqual(localRealm.objects(Topic.self).count, 20)
         XCTAssertEqual(localRealm.objects(Picture.self).count, 100)
         XCTAssertEqual(localRealm.objects(Word.self).count, 200)
+        XCTAssertEqual(chapterSelect.isDeleted, true)
     }
 
     func test_givePicture_whenChapterAsyncDeleteAboutCount() throws{

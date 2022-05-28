@@ -62,6 +62,8 @@ class PictureGameViewModel: ObservableObject{
         realmController.reloadPreviewData(jsonFile:jsonFile)
     }
     
+    /// 设置游戏模式，为了更新这个模式下的可用词汇量
+    /// - Parameter mode: 模式
     func setGameMode(mode: GameMode){
         self.gameMode = mode
         guard let localRealm = realmController.localRealm else{
@@ -72,7 +74,7 @@ class PictureGameViewModel: ObservableObject{
             let filter : Query<Bool>
             switch gameMode {
             case .topics:
-                filter = word.assignee.assignee.isSelect == true
+                filter = Topic.isSelectedFilter(localRealm: localRealm, assignee: word.assignee.assignee)
             case .new:
                 filter = word.isNew == true
             case .favorite:
@@ -91,22 +93,13 @@ class PictureGameViewModel: ObservableObject{
         guard let localRealm = realmController.localRealm , let memoRealm = realmController.memoRealm else{
             return
         }
-        // 准备好subquery
-        let chapterSelect = localRealm.objects(ChapterSelect.self)
         
         // 将包括目标内容的chapters过滤出来
         let chapters = localRealm.objects(Chapter.self).where{ chapter in
             let filter : Query<Bool>
             switch gameMode {
             case .topics:
-                // 找出所有没被选中的chapters
-                var isNotSelecteds: [String] = chapterSelect.where { select in
-                    select.isSelected==false
-                }.map{ $0.name }
-                if isNotSelecteds.count==0{
-                    isNotSelecteds = [""]
-                }
-                filter = !chapter.name.in(isNotSelecteds)
+                filter = Chapter.isSelectedFilter(localRealm: localRealm, chapter: chapter)
             case .new:
                 filter=chapter.topics.pictures.words.isNew==true
             case .favorite:
@@ -126,7 +119,7 @@ class PictureGameViewModel: ObservableObject{
                 let filter : Query<Bool>
                 switch gameMode {
                 case .topics:
-                    filter = word.assignee.assignee.isSelect == false
+                    filter = Topic.isSelectedFilter(localRealm: localRealm, assignee: word.assignee.assignee)
                 case .new:
                     filter = word.isNew == false
                 case .favorite:
@@ -140,7 +133,7 @@ class PictureGameViewModel: ObservableObject{
                 let filter : Query<Bool>
                 switch gameMode {
                 case .topics:
-                    filter = $0.assignee.isSelect == false
+                    filter = Topic.isSelectedFilter(localRealm: localRealm, isSelected: false, assignee: $0.assignee)
                 case .new,.favorite:
                     filter = $0.words.count==0
                 }
@@ -152,7 +145,7 @@ class PictureGameViewModel: ObservableObject{
                 let filter : Query<Bool>
                 switch gameMode {
                 case .topics:
-                    filter = $0.isSelect == false
+                    filter = Topic.isSelectedFilter(localRealm: localRealm, isSelected: false, topic: $0)
                 case .new,.favorite:
                     filter = $0.pictures.count==0
                 }

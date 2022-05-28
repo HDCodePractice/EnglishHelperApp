@@ -30,10 +30,8 @@ struct GameOptionsView: View {
             Text("Number of Vocabulary: \(vm.length)")
                 .foregroundColor(.accent)
             VStack{
-//                Text("Select Mode")
                 EnumPicker(selected: gameMode_bind, title: "Select Mode:")
                     .pickerStyle(.segmented)
-                
             }
             Toggle("Auto Pronounce", isOn: $vm.isAutoPronounce)
             Spacer()

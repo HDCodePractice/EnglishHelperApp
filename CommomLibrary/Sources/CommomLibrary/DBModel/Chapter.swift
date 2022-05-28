@@ -13,7 +13,7 @@ public class Chapter: Object, ObjectKeyIdentifiable {
     @Persisted public var topics = RealmSwift.List<Topic>()
 }
 
-extension Chapter{
+public extension Chapter{
     var isSelected: Bool{
         if let localRealm = self.realm{
             let count = localRealm.objects(ChapterSelect.self).where {
@@ -109,6 +109,25 @@ extension Chapter{
                 )
             }
         }
+    }
+    
+    
+    /// 生成被选择的Chapter查询表达式
+    /// - Parameters:
+    ///   - localRealm: 可用的Realm实例
+    ///   - chapter: 执行where查询的chapter实例
+    /// - Returns: 查询表达式
+    static func isSelectedFilter(localRealm:Realm, chapter: Query<Chapter>) -> Query<Bool> {
+        // 准备好subquery
+        let chapterSelects = localRealm.objects(ChapterSelect.self)
+        // 找出所有没被选中的chapters
+        var isNotSelecteds: [String] = chapterSelects.where { select in
+            select.isSelected==false && select.isDeleted==false
+        }.map{ $0.name }
+        if isNotSelecteds.count==0{
+            isNotSelecteds = [""]
+        }
+        return !chapter.name.in(isNotSelecteds)
     }
 }
 

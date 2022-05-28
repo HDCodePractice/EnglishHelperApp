@@ -18,8 +18,8 @@ public class AppDelegate: NSObject, UIApplicationDelegate {
         
         // Enable CloudKit / IceCream Syncronization ----------------------
         syncEngine = SyncEngine(objects: [
-            //            SyncObject(type: Chapter.self, uListElementType: Topic.self),
-            SyncObject(type: ChapterSelect.self)
+            SyncObject(type: ChapterSelect.self),
+            SyncObject(type: TopicSelect.self)
         ])
         // try 
         if let syncEngine = syncEngine {

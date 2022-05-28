@@ -11,7 +11,6 @@ import OSLog
 
 public class Topic: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) public var name: String
-    @Persisted public var isSelect = true
     @Persisted public var pictures = RealmSwift.List<Picture>()
     
     @Persisted(originProperty: "topics") public var assignee: LinkingObjects<Chapter>
@@ -58,6 +57,11 @@ public extension Topic{
     func deleteTransaction(_ localRealm: Realm){
         for picture in self.pictures{
             picture.deleteTransaction(localRealm)
+        }
+        if let topicSelect = localRealm.objects(TopicSelect.self).where({
+            $0.name==self.name
+        }).first{
+            topicSelect.isDeleted=true
         }
         localRealm.delete(self)
     }
@@ -119,6 +123,35 @@ public extension Topic{
                     )
                 }
             }
+        }
+    }
+    
+    /// 生成被选择的Topic查询表达式
+    /// - Parameters:
+    ///   - localRealm: 可用的Realm实例
+    ///   - topic: 执行where查询的topic实例
+    /// - Returns: 查询表达式
+    static func isSelectedFilter(localRealm:Realm, isSelected:Bool=true,topic: Query<Topic>?=nil, assignee: Query<LinkingObjects<Topic>>?=nil) -> Query<Bool> {
+        // 准备好subquery
+        let topicSelects = localRealm.objects(TopicSelect.self)
+        // 找出所有没被选中的chapters
+        var isNotSelecteds: [String] = topicSelects.where { select in
+            select.isSelected==false && select.isDeleted==false
+        }.map{ $0.name }
+        if isNotSelecteds.count==0{
+            isNotSelecteds = [""]
+        }
+        if let topic = topic {            
+            if isSelected {
+                return !topic.name.in(isNotSelecteds)
+            }else{
+                return topic.name.in(isNotSelecteds)
+            }
+        }
+        if isSelected {
+            return !assignee!.name.in(isNotSelecteds)
+        }else{
+            return assignee!.name.in(isNotSelecteds)
         }
     }
 }
