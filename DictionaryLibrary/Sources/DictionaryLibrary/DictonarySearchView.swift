@@ -13,6 +13,7 @@ struct DictonarySearchView: View {
     @EnvironmentObject var vm : DictonarySearchViewModel
     @ObservedResults(Topic.self) var topics
     @ObservedResults(Word.self) var words
+    @ObservedResults(WordSelect.self) var wordSelects
     
     @State private var isLoading = false
     @State private var searchFilter = ""
@@ -22,6 +23,7 @@ struct DictonarySearchView: View {
     
     public var body: some View {
         List{
+            let isNotNews = wordSelects.where{ $0.isNew==false && $0.isDeleted==false }.map{ $0.id }
             ForEach(topics.where({
                 var filter = $0.name.like("*")
                 if !selectedTopic.isEmpty{
@@ -31,7 +33,8 @@ struct DictonarySearchView: View {
                     filter = filter && $0.pictures.words.name.contains(searchFilter, options: .caseInsensitive)
                 }
                 if vm.isOnlyShowNewWord{
-                    filter = filter && $0.pictures.words.isNew==true
+                    filter = filter && !$0.pictures.words.id.in(isNotNews)
+                    //filter = filter && $0.pictures.words.isNew==true
                 }
                 if isShowFavorite{
                     filter = filter && $0.pictures.words.isFavorited==true
@@ -45,7 +48,7 @@ struct DictonarySearchView: View {
                             filter = filter && $0.name.contains(searchFilter, options: .caseInsensitive)
                         }
                         if vm.isOnlyShowNewWord{
-                            filter = filter && $0.isNew==true
+                            filter = filter && !$0.id.in(isNotNews)
                         }
                         if isShowFavorite{
                             filter = filter && $0.isFavorited==true

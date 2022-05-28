@@ -76,6 +76,7 @@ class PictureGameViewModel: ObservableObject{
             case .topics:
                 filter = Topic.isSelectedFilter(localRealm: localRealm, assignee: word.assignee.assignee)
             case .new:
+                // TODO: 更新为isNewFilter
                 filter = word.isNew == true
             case .favorite:
                 filter = word.isFavorited == true
@@ -121,6 +122,7 @@ class PictureGameViewModel: ObservableObject{
                 case .topics:
                     filter = Topic.isSelectedFilter(localRealm: localRealm,isSelected: false, assignee: word.assignee.assignee)
                 case .new:
+                    // TODO: 更新为isNewFilter
                     filter = word.isNew == false
                 case .favorite:
                     filter = word.isFavorited == false
@@ -231,7 +233,7 @@ class PictureGameViewModel: ObservableObject{
             if let w = ws.first{
                 do{
                     try localRealm.write{
-                        w.isNew=false
+                        w.setIsNewTransaction(localRealm: localRealm, isNew: false)
                     }
                 }catch{
                     Logger().error("Error set word \(currentQuestion.questionWord) to not new from Realm:\(error.localizedDescription)")

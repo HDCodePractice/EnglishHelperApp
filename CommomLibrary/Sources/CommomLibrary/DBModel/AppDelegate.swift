@@ -19,7 +19,8 @@ public class AppDelegate: NSObject, UIApplicationDelegate {
         // Enable CloudKit / IceCream Syncronization ----------------------
         syncEngine = SyncEngine(objects: [
             SyncObject(type: ChapterSelect.self),
-            SyncObject(type: TopicSelect.self)
+            SyncObject(type: TopicSelect.self),
+            SyncObject(type: WordSelect.self)
         ])
         // try 
         if let syncEngine = syncEngine {

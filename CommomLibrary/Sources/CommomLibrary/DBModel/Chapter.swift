@@ -59,7 +59,7 @@ public extension Chapter{
             $0.name==self.name
         }
         if let chapterSelect=chapterSelects.first{
-            chapterSelect.isDeleted = true
+            chapterSelect.deleteTransaction(localRealm)
         }
         localRealm.delete(self)
     }

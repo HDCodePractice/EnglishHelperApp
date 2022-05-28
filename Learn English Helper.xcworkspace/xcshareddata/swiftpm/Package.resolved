@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/leoz/IceCream.git",
         "state": {
           "branch": "master",
-          "revision": "fb59f31497d3cfbfa5e7174bb41d1501434f46bc",
+          "revision": "10cfad791c2d54ccd5c4dc54ddc6d708e69bea9b",
           "version": null
         }
       },
@@ -33,17 +33,17 @@
         "repositoryURL": "https://github.com/realm/realm-core",
         "state": {
           "branch": null,
-          "revision": "d97eed3ae7dff2f2e2ffbda83fa8f3b8c445c6ba",
-          "version": "11.17.0"
+          "revision": "9e2f3cb730a546ff33e95c563a85e3cf61f17d17",
+          "version": "12.0.0"
         }
       },
       {
         "package": "Realm",
-        "repositoryURL": "https://github.com/realm/realm-swift.git",
+        "repositoryURL": "https://github.com/realm/realm-swift",
         "state": {
           "branch": null,
-          "revision": "7f123e48ec12926bb5080e449df360127ee0352d",
-          "version": "10.26.0"
+          "revision": "0762a9eb77929fdfbefa476ae62afed2b3e41bae",
+          "version": "10.27.0"
         }
       },
       {

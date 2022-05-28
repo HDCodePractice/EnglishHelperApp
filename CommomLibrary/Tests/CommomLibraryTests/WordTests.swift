@@ -54,6 +54,5 @@ class WordTests: XCTestCase {
         topic.toggleSelect()
         XCTAssertEqual(words.where({ Topic.isSelectedFilter(localRealm: localRealm, isSelected: false, assignee: $0.assignee.assignee) }).count , 10)
         XCTAssertEqual(words.where({ Topic.isSelectedFilter(localRealm: localRealm, isSelected: true, assignee: $0.assignee.assignee) }).count , 240)
-        
     }
 }
