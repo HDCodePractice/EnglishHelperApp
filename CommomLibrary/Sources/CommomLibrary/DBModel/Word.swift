@@ -306,7 +306,7 @@ public extension Word{
                             localRealm: localRealm,
                             id: self.id,
                             name: self.name,
-                            isFavorited: isFavorited
+                            isFavorited: true
                         )
                     }
                 }
