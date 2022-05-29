@@ -10,6 +10,7 @@ import RealmSwift
 
 public struct WordFavoriteButton: View {
     @ObservedRealmObject var word: Word
+    @ObservedResults(WordSelect.self) var wordSelects
     var isButton: Bool
     
     public init(word: Word,isButton:Bool = false){
@@ -18,8 +19,9 @@ public struct WordFavoriteButton: View {
     }
     
     public var body: some View {
+        let isFavorited = wordSelects.where({ $0.id==word.id && $0.isFavorited==true }).count > 0
         if isButton{
-            if word.isFavorited{
+            if isFavorited{
                 Button(){
                     word.toggleFavorite()
                 }label: {
@@ -34,7 +36,7 @@ public struct WordFavoriteButton: View {
                 }
             }
         }else{
-            if word.isFavorited{
+            if isFavorited{
                 Image(systemName: "star.fill")
                     .foregroundColor(.yellow)
                     .onTapGesture {

@@ -12,9 +12,7 @@ struct PictureExam{
     var results: [Result]
     
     struct Result: Identifiable{
-        var id:UUID{
-            UUID()
-        }
+        var id: String
         var questionWord: String
         var correctAnswer: Int
         var answers : [Answer]

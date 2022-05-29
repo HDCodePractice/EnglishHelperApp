@@ -19,7 +19,7 @@ public class Word: Object, ObjectKeyIdentifiable{
 
 public extension Word{
     var isNew: Bool{
-        if let localRealm = self.realm{
+        if let localRealm = RealmController.shared.localRealm{
             let count = localRealm.objects(WordSelect.self).where {
                 $0.id==self.id && $0.isNew==false
             }.count
@@ -31,7 +31,7 @@ public extension Word{
     }
     
     var isFavorited: Bool{
-        if let localRealm = self.realm{
+        if let localRealm = RealmController.shared.localRealm{
             let count = localRealm.objects(WordSelect.self).where {
                 $0.id==self.id && $0.isFavorited==true
             }.count
@@ -296,7 +296,7 @@ public extension Word{
     }
     
     func toggleFavorite(){
-        if let thawWord = self.thaw(),let localRealm = thawWord.realm{
+        if let thawed=self.thaw(), let localRealm = thawed.realm {
             do{
                 try localRealm.write{
                     if let wordSelect = localRealm.object(ofType: WordSelect.self, forPrimaryKey: self.id){
