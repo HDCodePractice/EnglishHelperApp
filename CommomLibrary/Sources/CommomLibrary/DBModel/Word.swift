@@ -103,7 +103,28 @@ public extension Word{
         if isNotSelecteds.count==0{
             isNotSelecteds = [""]
         }
-        return !word.id.in(isNotSelecteds)
+        if isNew{
+            return !word.id.in(isNotSelecteds)
+        }else{
+            return word.id.in(isNotSelecteds)
+        }
+    }
+    
+    static func isNewFilter(localRealm:Realm, isNew:Bool=true, words: Query<List<Word>>) -> Query<Bool> {
+        // 准备好subquery
+        let wordSelects = localRealm.objects(WordSelect.self)
+        // 找出所有isNew为false的word id
+        var isNotSelecteds: [String] = wordSelects.where { select in
+            select.isNew==false && select.isDeleted==false
+        }.map{ $0.id }
+        if isNotSelecteds.count==0{
+            isNotSelecteds = [""]
+        }
+        if isNew{
+            return !words.id.in(isNotSelecteds)
+        }else{
+            return words.id.in(isNotSelecteds)
+        }
     }
     
     static func setAllIsNewTransaction(localRealm:Realm, isNew: Bool){

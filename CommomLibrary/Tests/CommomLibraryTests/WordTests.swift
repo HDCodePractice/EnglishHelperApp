@@ -55,4 +55,33 @@ class WordTests: XCTestCase {
         XCTAssertEqual(words.where({ Topic.isSelectedFilter(localRealm: localRealm, isSelected: false, assignee: $0.assignee.assignee) }).count , 10)
         XCTAssertEqual(words.where({ Topic.isSelectedFilter(localRealm: localRealm, isSelected: true, assignee: $0.assignee.assignee) }).count , 240)
     }
+    
+    func test_setAllIsNewTransaction_whenCleanAllNewAboutCount() throws{
+        guard let localRealm = realmController.localRealm else { return }
+        XCTAssertEqual(localRealm.objects(Word.self).count, 250)
+        XCTAssertEqual(localRealm.objects(WordSelect.self).count, 0)
+        // cleanAllNew
+        localRealm.writeAsync{
+            Word.setAllIsNewTransaction(localRealm: localRealm, isNew: false)
+        } onComplete: { error in
+            XCTAssertNil(error)
+            XCTAssertEqual(localRealm.objects(WordSelect.self).count, 250)
+            XCTAssertEqual(localRealm.objects(WordSelect.self).where({$0.isNew==false}).count, 250)
+        }
+    }
+    
+    func test_setAllIsNewTransaction_whenSetAllNewAboutCount() throws{
+        guard let localRealm = realmController.localRealm else { return }
+        XCTAssertEqual(localRealm.objects(Word.self).count, 250)
+        XCTAssertEqual(localRealm.objects(WordSelect.self).count, 0)
+        // SetAllNew
+        localRealm.writeAsync{
+            Word.setAllIsNewTransaction(localRealm: localRealm, isNew: false)
+            Word.setAllIsNewTransaction(localRealm: localRealm, isNew: true)
+        } onComplete: { error in
+            XCTAssertNil(error)
+            XCTAssertEqual(localRealm.objects(WordSelect.self).count, 250)
+            XCTAssertEqual(localRealm.objects(WordSelect.self).where({$0.isNew==true}).count, 250)
+        }
+    }
 }

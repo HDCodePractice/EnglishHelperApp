@@ -76,14 +76,12 @@ class PictureGameViewModel: ObservableObject{
             case .topics:
                 filter = Topic.isSelectedFilter(localRealm: localRealm, assignee: word.assignee.assignee)
             case .new:
-                // TODO: 更新为isNewFilter
-                filter = word.isNew == true
+                filter = Word.isNewFilter(localRealm: localRealm, word: word)
             case .favorite:
                 filter = word.isFavorited == true
             }
             return filter
         }.count
-        
         length = wordsNumber
     }
     
@@ -102,7 +100,7 @@ class PictureGameViewModel: ObservableObject{
             case .topics:
                 filter = Chapter.isSelectedFilter(localRealm: localRealm, chapter: chapter)
             case .new:
-                filter=chapter.topics.pictures.words.isNew==true
+                filter = Word.isNewFilter(localRealm: localRealm, isNew: true, words: chapter.topics.pictures.words)
             case .favorite:
                 filter=chapter.topics.pictures.words.isFavorited==true
             }
@@ -122,8 +120,7 @@ class PictureGameViewModel: ObservableObject{
                 case .topics:
                     filter = Topic.isSelectedFilter(localRealm: localRealm,isSelected: false, assignee: word.assignee.assignee)
                 case .new:
-                    // TODO: 更新为isNewFilter
-                    filter = word.isNew == false
+                    filter = Word.isNewFilter(localRealm: localRealm, isNew: false, word: word)
                 case .favorite:
                     filter = word.isFavorited == false
                 }
@@ -226,7 +223,6 @@ class PictureGameViewModel: ObservableObject{
         if let localRealm = realmController.localRealm,let currentQuestion=currentQuestion{
             let ws = localRealm.objects(Word.self).where {
                 $0.name==question &&
-                $0.isNew==true &&
                 $0.assignee.name==currentQuestion.picture &&
                 $0.assignee.assignee.name==currentQuestion.topic
             }
