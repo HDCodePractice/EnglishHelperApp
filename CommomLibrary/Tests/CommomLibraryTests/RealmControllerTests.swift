@@ -19,7 +19,7 @@ class RealmControllerTests: XCTestCase {
         for i in 1...5 {
             var newChapter = JChapter(name: "Chapter\(i)")
             for j in 1...5{
-                var newTopic=JTopic(name: "Topic\(j)")
+                var newTopic=JTopic(name: "Topic\(i)\(j)")
                 for k in 1...5{
                     let newPictureFile=JPictureFile(name: "Pic\(k)", words: ["words\(i)\(j)\(k)1","words\(i)\(j)\(k)2"])
                     newTopic.pictureFiles.append(newPictureFile)

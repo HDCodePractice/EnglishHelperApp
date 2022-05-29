@@ -39,8 +39,8 @@ class SelectTopicsViewModel: ObservableObject{
     
     func cleanCache(){
         let cache = ImageCache.default
-//        print(cache.memoryStorage.config.expiration)
-//        print(cache.diskStorage.config.expiration)
+        //        print(cache.memoryStorage.config.expiration)
+        //        print(cache.diskStorage.config.expiration)
         cache.clearCache()
         cache.calculateDiskStorageSize { result in
             switch result{
@@ -56,56 +56,12 @@ class SelectTopicsViewModel: ObservableObject{
     func fetchData() async{
         await realmController.fetchData()
     }
-
-    func cleanRealm(){
-        realmController.cleanRealm()
-    }
     
     func toggleTopic(topic: Topic){
-        if let localRealm = realmController.localRealm {
-            do{
-                if let topic = topic.thaw() , let chapter = topic.assignee.first{
-                    try localRealm.write{
-                        topic.isSelect.toggle()
-                        // 如果chapter没选，顺便选上
-                        if topic.isSelect && !chapter.isSelect{
-                            chapter.isSelect = true
-                            return
-                        }
-                        // 如果chapter选上了，查看是不是所有的都是没选中的，如果都没选，chapter也取消选择
-                        if chapter.isSelect{
-                            for t in chapter.topics{
-                                if t.isSelect{
-                                    return
-                                }
-                            }
-                            // 所有子项都没选择，把chapter也取消选择
-                            chapter.isSelect = false
-                        }
-                    }
-                }
-            }catch{
-                Logger().error("toggle topict \(topic.name) error:\(error.localizedDescription)")
-            }
-        }
+        topic.toggleSelect(isChangeChapter: true)
     }
     
     func toggleChapter(chapter: Chapter){
-        if let localRealm = realmController.localRealm {
-            do{
-                if let chapter = chapter.thaw(){
-                    try localRealm.write{
-                        chapter.isSelect.toggle()
-                        for topic in chapter.topics{
-                            if topic.isSelect != chapter.isSelect {
-                                topic.isSelect = chapter.isSelect
-                            }
-                        }
-                    }
-                }
-            }catch{
-                Logger().error("toggle chapter \(chapter.name) error: \(error.localizedDescription)")
-            }
-        }
+        chapter.toggleSelect(isChangeTopics: true)
     }
 }

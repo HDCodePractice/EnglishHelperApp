@@ -38,38 +38,26 @@ class SettingViewModel:ObservableObject{
         await realmController.fetchData()
     }
     
-    @MainActor
     func cleanAllNew() async{
         if let localRealm = realmController.localRealm{
-            let words = localRealm.objects(Word.self).where{
-                $0.isNew == true
-            }
-            do{
-                try localRealm.write{
-                    for word in words{
-                        word.isNew=false
-                    }
+            localRealm.writeAsync{
+                Word.setAllIsNewTransaction(localRealm: localRealm, isNew: false)
+            } onComplete: { error in
+                if let error=error{
+                    Logger().error("Error cleanAllNew Word to Realm:\(error.localizedDescription)")
                 }
-            }catch{
-                Logger().error("Error cleanAllNew Word to Realm:\(error.localizedDescription)")
             }
         }
     }
     
-    @MainActor
     func makeAllToNew() async{
         if let localRealm = realmController.localRealm{
-            let words = localRealm.objects(Word.self).where{
-                $0.isNew == false
-            }
-            do{
-                try localRealm.write{
-                    for word in words{
-                        word.isNew=true
-                    }
+            localRealm.writeAsync{
+                Word.setAllIsNewTransaction(localRealm: localRealm, isNew: true)
+            } onComplete: { error in
+                if let error=error{
+                    Logger().error("Error makeAllToNew Word to Realm:\(error.localizedDescription)")
                 }
-            }catch{
-                Logger().error("Error makeAllToNew Word to Realm:\(error.localizedDescription)")
             }
         }
     }

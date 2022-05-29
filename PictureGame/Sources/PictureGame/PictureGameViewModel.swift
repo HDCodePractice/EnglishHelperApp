@@ -62,6 +62,8 @@ class PictureGameViewModel: ObservableObject{
         realmController.reloadPreviewData(jsonFile:jsonFile)
     }
     
+    /// 设置游戏模式，为了更新这个模式下的可用词汇量
+    /// - Parameter mode: 模式
     func setGameMode(mode: GameMode){
         self.gameMode = mode
         guard let localRealm = realmController.localRealm else{
@@ -72,15 +74,14 @@ class PictureGameViewModel: ObservableObject{
             let filter : Query<Bool>
             switch gameMode {
             case .topics:
-                filter = word.assignee.assignee.isSelect == true
+                filter = Topic.isSelectedFilter(localRealm: localRealm, assignee: word.assignee.assignee)
             case .new:
-                filter = word.isNew == true
+                filter = Word.isNewFilter(localRealm: localRealm, word: word)
             case .favorite:
-                filter = word.isFavorited == true
+                filter = Word.isFavoritedFilter(localRealm: localRealm,isFavorited: true, word: word)
             }
             return filter
         }.count
-        
         length = wordsNumber
     }
     
@@ -93,15 +94,15 @@ class PictureGameViewModel: ObservableObject{
         }
         
         // 将包括目标内容的chapters过滤出来
-        let chapters = localRealm.objects(Chapter.self).where{
+        let chapters = localRealm.objects(Chapter.self).where{ chapter in
             let filter : Query<Bool>
             switch gameMode {
             case .topics:
-                filter=$0.isSelect==true
+                filter = Chapter.isSelectedFilter(localRealm: localRealm, chapter: chapter)
             case .new:
-                filter=$0.topics.pictures.words.isNew==true
+                filter = Word.isNewFilter(localRealm: localRealm, isNew: true, words: chapter.topics.pictures.words)
             case .favorite:
-                filter=$0.topics.pictures.words.isFavorited==true
+                filter=Word.isFavoritedFilter(localRealm: localRealm, isFavorited: true, words: chapter.topics.pictures.words)
             }
             return filter
         }
@@ -117,11 +118,11 @@ class PictureGameViewModel: ObservableObject{
                 let filter : Query<Bool>
                 switch gameMode {
                 case .topics:
-                    filter = word.assignee.assignee.isSelect == false
+                    filter = Topic.isSelectedFilter(localRealm: localRealm,isSelected: false, assignee: word.assignee.assignee)
                 case .new:
-                    filter = word.isNew == false
+                    filter = Word.isNewFilter(localRealm: localRealm, isNew: false, word: word)
                 case .favorite:
-                    filter = word.isFavorited == false
+                    filter = Word.isFavoritedFilter(localRealm: localRealm, isFavorited: false, word: word)
                 }
                 return filter
             }
@@ -131,7 +132,7 @@ class PictureGameViewModel: ObservableObject{
                 let filter : Query<Bool>
                 switch gameMode {
                 case .topics:
-                    filter = $0.assignee.isSelect == false
+                    filter = Topic.isSelectedFilter(localRealm: localRealm, isSelected: false, assignee: $0.assignee)
                 case .new,.favorite:
                     filter = $0.words.count==0
                 }
@@ -143,7 +144,7 @@ class PictureGameViewModel: ObservableObject{
                 let filter : Query<Bool>
                 switch gameMode {
                 case .topics:
-                    filter = $0.isSelect == false
+                    filter = Topic.isSelectedFilter(localRealm: localRealm, isSelected: false, topic: $0)
                 case .new,.favorite:
                     filter = $0.pictures.count==0
                 }
@@ -212,7 +213,9 @@ class PictureGameViewModel: ObservableObject{
             // 把答对的word从memoRealm中清除
             deleteMemoRealmWord(word: question, pictureFileName: answer.name)
             // 设置对currentQuestion的isNew为false
-            setWordToNotNew()
+            if currentQuestion?.isNew ?? false{
+                setWordToNotNew()
+            }
             index += 1
         }
         answerCount += 1
@@ -220,16 +223,10 @@ class PictureGameViewModel: ObservableObject{
     
     private func setWordToNotNew(){
         if let localRealm = realmController.localRealm,let currentQuestion=currentQuestion{
-            let ws = localRealm.objects(Word.self).where {
-                $0.name==question &&
-                $0.isNew==true &&
-                $0.assignee.name==currentQuestion.picture &&
-                $0.assignee.assignee.name==currentQuestion.topic
-            }
-            if let w = ws.first{
+            if let w = localRealm.object(ofType: Word.self, forPrimaryKey: currentQuestion.id){
                 do{
                     try localRealm.write{
-                        w.isNew=false
+                        w.setIsNewTransaction(localRealm: localRealm, isNew: false)
                     }
                 }catch{
                     Logger().error("Error set word \(currentQuestion.questionWord) to not new from Realm:\(error.localizedDescription)")
@@ -285,6 +282,7 @@ class PictureGameViewModel: ObservableObject{
                        let chapter = topic.assignee.first{
                         
                         return PictureExam.Result(
+                            id: questionWord.id,
                             questionWord: questionWord.name,
                             correctAnswer: correctAnswer,
                             answers: PicturesToAnswerss(pictures: pictures,correctAnswer:correctAnswer),

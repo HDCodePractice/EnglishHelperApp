@@ -11,14 +11,17 @@ import CommomLibrary
 
 public struct DictionaryPrimaryButton: View {
     @ObservedResults(Word.self) var words
+    @ObservedResults(WordSelect.self) var wordSelects
     
     public init(){}
     
     public var body: some View {
-        let wordCount = words.where{
-            $0.isNew == true
+        let wordCount = words.count
+        let isNotNewCount = wordSelects.where {
+            $0.isNew==false && $0.isDeleted==false
         }.count
-        let showNew = wordCount < 1 ? "" : wordCount>99 ? "99+" : "\(wordCount)"
+        let newCount = wordCount - isNotNewCount
+        let showNew = newCount < 1 ? "" : newCount>99 ? "99+" : "\(newCount)"
         PrimaryButton("Dictionary",newNumber: showNew)
     }
 }

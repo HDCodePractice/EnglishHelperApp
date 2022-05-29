@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "IceCream",
+        "repositoryURL": "https://github.com/leoz/IceCream.git",
+        "state": {
+          "branch": "master",
+          "revision": "10cfad791c2d54ccd5c4dc54ddc6d708e69bea9b",
+          "version": null
+        }
+      },
+      {
         "package": "Kingfisher",
         "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
         "state": {
@@ -24,17 +33,17 @@
         "repositoryURL": "https://github.com/realm/realm-core",
         "state": {
           "branch": null,
-          "revision": "472d325a2e844fcb48c400db74e6b9646f92ca93",
-          "version": "11.15.0"
+          "revision": "9e2f3cb730a546ff33e95c563a85e3cf61f17d17",
+          "version": "12.0.0"
         }
       },
       {
         "package": "Realm",
-        "repositoryURL": "https://github.com/realm/realm-swift.git",
+        "repositoryURL": "https://github.com/realm/realm-swift",
         "state": {
           "branch": null,
-          "revision": "41fe221e2209ad31bee35593513d957dc3e6e458",
-          "version": "10.25.2"
+          "revision": "0762a9eb77929fdfbefa476ae62afed2b3e41bae",
+          "version": "10.27.0"
         }
       },
       {

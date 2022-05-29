@@ -13,6 +13,7 @@ struct DictonarySearchView: View {
     @EnvironmentObject var vm : DictonarySearchViewModel
     @ObservedResults(Topic.self) var topics
     @ObservedResults(Word.self) var words
+    @ObservedResults(WordSelect.self) var wordSelects
     
     @State private var isLoading = false
     @State private var searchFilter = ""
@@ -21,6 +22,8 @@ struct DictonarySearchView: View {
     @State private var isShowFavorite : Bool = false
     
     public var body: some View {
+        let isNotNews: [String] = wordSelects.where{ $0.isNew==false && $0.isDeleted==false }.map{ $0.id }
+        let isFavoriteds: [String] = wordSelects.where{ $0.isFavorited==true && $0.isDeleted==false }.map{ $0.id }
         List{
             ForEach(topics.where({
                 var filter = $0.name.like("*")
@@ -31,10 +34,14 @@ struct DictonarySearchView: View {
                     filter = filter && $0.pictures.words.name.contains(searchFilter, options: .caseInsensitive)
                 }
                 if vm.isOnlyShowNewWord{
-                    filter = filter && $0.pictures.words.isNew==true
+                    if isNotNews.count > 0 {
+                        filter = filter && !$0.pictures.words.id.in(isNotNews)
+                    }
                 }
                 if isShowFavorite{
-                    filter = filter && $0.pictures.words.isFavorited==true
+                    if isFavoriteds.count > 0{
+                        filter = filter && $0.pictures.words.id.in(isFavoriteds)
+                    }
                 }
                 return filter
             }).sorted(byKeyPath: "name")){ topic in
@@ -45,10 +52,14 @@ struct DictonarySearchView: View {
                             filter = filter && $0.name.contains(searchFilter, options: .caseInsensitive)
                         }
                         if vm.isOnlyShowNewWord{
-                            filter = filter && $0.isNew==true
+                            if isNotNews.count > 0{
+                                filter = filter && !$0.id.in(isNotNews)
+                            }
                         }
                         if isShowFavorite{
-                            filter = filter && $0.isFavorited==true
+                            if isFavoriteds.count > 0{
+                                filter = filter && $0.id.in(isFavoriteds)
+                            }
                         }
                         return filter
                     }).sorted(byKeyPath: "name")){ word in

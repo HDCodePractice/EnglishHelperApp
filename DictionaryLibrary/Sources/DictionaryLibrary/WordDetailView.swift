@@ -39,7 +39,7 @@ struct WordDetailView: View {
         }
         .padding()
         .onDisappear {
-            $item.isNew.wrappedValue = false
+            item.setIsNew(isNew: false)
         }
     }
 }

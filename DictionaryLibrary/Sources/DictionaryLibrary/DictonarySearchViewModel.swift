@@ -18,10 +18,12 @@ class DictonarySearchViewModel: ObservableObject{
     
     var isNewWords : Int {
         if let localRealm = realmController.localRealm{
-            let count = localRealm.objects(Word.self).where{
-                $0.isNew == true
+            let wordCount = localRealm.objects(Word.self).count
+            let isNotNewCount = localRealm.objects(WordSelect.self).where {
+                $0.isNew==false && $0.isDeleted==false
             }.count
-            return count
+            let newCount = wordCount - isNotNewCount
+            return newCount
         }
         return 0
     }
@@ -42,14 +44,9 @@ class DictonarySearchViewModel: ObservableObject{
     @MainActor
     func cleanAllNew() async{
         if let localRealm = realmController.localRealm{
-            let words = localRealm.objects(Word.self).where{
-                $0.isNew == true
-            }
             do{
                 try localRealm.write{
-                    for word in words{
-                        word.isNew=false
-                    }
+                    Word.setAllIsNewTransaction(localRealm: localRealm, isNew: false)
                 }
             }catch{
                 Logger().error("Error cleanAllNew Word to Realm:\(error.localizedDescription)")
@@ -60,14 +57,9 @@ class DictonarySearchViewModel: ObservableObject{
     @MainActor
     func makeAllToNew() async{
         if let localRealm = realmController.localRealm{
-            let words = localRealm.objects(Word.self).where{
-                $0.isNew == false
-            }
             do{
                 try localRealm.write{
-                    for word in words{
-                        word.isNew=true
-                    }
+                    Word.setAllIsNewTransaction(localRealm: localRealm, isNew: true)
                 }
             }catch{
                 Logger().error("Error makeAllToNew Word to Realm:\(error.localizedDescription)")

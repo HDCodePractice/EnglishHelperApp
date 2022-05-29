@@ -17,14 +17,16 @@ public class RealmController{
     private let pictureJsonURL = "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/picture.json"
     
     let config = Realm.Configuration(
-        schemaVersion: 7,
+        schemaVersion: 9,
         migrationBlock: { migration, oldSchemaVersion in
-            if oldSchemaVersion < 7{
-                let types = [Chapter.className(),Picture.className(),Topic.className(),Word.className()]
+            if oldSchemaVersion < 9{
+                let types = [Picture.className(),Word.className()]
                 for type in types {
+                    // 老板本的ID是在每台设备上都不相同的，所以只能放弃重新完全从服务器上进行一次同步了
                     migration.enumerateObjects(ofType: type) { oldObject, newObject in
-                        let id = oldObject!["id"] as? ObjectId
-                        newObject!["id"] = id?.stringValue ?? UUID().uuidString
+                        if let newObject = newObject{
+                            migration.delete(newObject)
+                        }
                     }
                 }
             }
@@ -69,11 +71,14 @@ public class RealmController{
             Realm.Configuration.defaultConfiguration = config
             localRealm = try Realm()
             memoRealm = try Realm(configuration: memoConfig)
+#if DEBUG
+            print(realmFilePath)
+#endif
         }catch{
             logger.error("Error opening Realm:\(error.localizedDescription)")
         }
     }
-    
+        
     // 从服务器上同步JSON数据到本地数据库
     @MainActor
     public func fetchData() async{
@@ -124,82 +129,32 @@ public class RealmController{
                                     // 服务器上有picture
                                     for lword in lpictureFile.words{
                                         if findWords(name: lword.name, words: rpictureFile.words) == nil{
-                                            deleteWord(word: lword)
+                                            lword.delete()
                                         }
                                     }
                                 }else{
-                                    deletePictureFiles(picture: lpictureFile)
+                                    lpictureFile.delete()
                                 }
                             }
                         }else{
-                            deleteTopic(topic: ltopic)
+                            ltopic.delete()
                         }
                     }
                 }else{
                     //服务器上没有这个chapter
-                    deleteChapter(chapter: lchapter)
+                    lchapter.delete()
                 }
             }
-        }
-    }
-    
-    // 删除数据库中指定的chapter记录
-    private func deleteChapter(chapter: Chapter) {
-        if let localRealm = localRealm {
-            do{
-                for topic in chapter.topics{
-                    deleteTopic(topic: topic)
-                }
-                try localRealm.write{
-                    localRealm.delete(chapter)
-                }
-            } catch {
-                logger.error("Error deleting chapter \(chapter) from Realm: \(error.localizedDescription)")
+            // 清除没有任何指向的words
+            let lwords = localRealm.objects(Word.self).where {
+                $0.assignee.count==0
             }
-        }
-    }
-    
-    // 删除数据库中指定的topic记录
-    private func deleteTopic(topic: Topic) {
-        if let localRealm = localRealm {
-            do{
-                for picture in topic.pictures{
-                    deletePictureFiles(picture: picture)
-                }
-                try localRealm.write{
-                    localRealm.delete(topic)
-                }
-            } catch {
-                logger.error("Error deleting topic \(topic) from Realm: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    // 删除数据中指定的word记录
-    private func deleteWord(word: Word){
-        if let localRealm = localRealm {
             do{
                 try localRealm.write{
-                    localRealm.delete(word)
+                    localRealm.delete(lwords)
                 }
             } catch {
-                logger.error("Error deleting Word \(word) from Realm: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    // 删除数据库中指定的picture记录
-    private func deletePictureFiles(picture: Picture){
-        if let localRealm = localRealm {
-            do{
-                for word in picture.words{
-                    deleteWord(word: word)
-                }
-                try localRealm.write{
-                    localRealm.delete(picture)
-                }
-            } catch {
-                logger.error("Error deleting pictureFiles \(picture) from Realm: \(error.localizedDescription)")
+                logger.error("Error deleting Word from Realm: \(error.localizedDescription)")
             }
         }
     }
@@ -273,18 +228,19 @@ public class RealmController{
                                                     $0.name == qword
                                                 }
                                                 if dbwords.count == 0{
-                                                    pictureFile.words.append(genWord(word: qword))
+                                                    let wid = "\(pictureFile.id)|\(qword)"
+                                                    pictureFile.words.append(self.genWord(word: qword,id: wid))
                                                 }
                                             }
                                         }else{
                                             // 增加对应的pictureFile
-                                            let newPictureFile = genPicture(pictureFile: qpictureFile)
+                                            let newPictureFile = self.genPicture(pictureFile: qpictureFile, id: "\(qtopic.name)|\(qpictureFile.name)")
                                             topic.pictures.append(newPictureFile)
                                         }
                                     }
                                 }else{
                                     // 不存在这个topic
-                                    let newTopic = genTopic(topic: qtopic)
+                                    let newTopic = self.genTopic(topic: qtopic)
                                     chapter.topics.append(newTopic)
                                 }
                             }
@@ -294,7 +250,7 @@ public class RealmController{
                                 "name" : qchapter.name
                             ])
                             for topic in qchapter.topics{
-                                let newTopic = genTopic(topic: topic)
+                                let newTopic = self.genTopic(topic: topic)
                                 newChapter.topics.append(newTopic)
                             }
                             localRealm.add(newChapter)
@@ -313,25 +269,28 @@ public class RealmController{
             "name" : topic.name
         ])
         for pictureFile in topic.pictureFiles{
-            let newPicture = genPicture(pictureFile: pictureFile)
+            let newPicture = genPicture(pictureFile: pictureFile, id: "\(topic.name)|\(pictureFile.name)")
             newTopic.pictures.append(newPicture)
         }
         return newTopic
     }
     
-    private func genPicture ( pictureFile: JPictureFile ) -> Picture{
+    private func genPicture ( pictureFile: JPictureFile,id: String) -> Picture{
         let newPictureFile = Picture(value: [
-            "name" : pictureFile.name
+            "id": id.sha256(),
+            "name": pictureFile.name
         ])
         for word in pictureFile.words{
-            let newWord = genWord(word: word)
+            let wid = "\(id.sha256())|\(word)"
+            let newWord = genWord(word: word,id: wid)
             newPictureFile.words.append(newWord)
         }
         return newPictureFile
     }
     
-    private func genWord(word: String) -> Word{
+    private func genWord(word: String,id: String) -> Word{
         let newWord = Word(value: [
+            "id": id.sha256(),
             "name": word
         ])
         return newWord

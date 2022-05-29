@@ -74,9 +74,7 @@ struct PictureGameProgressView: View {
                             .font(.title2)
                     }.translateSheet($text)
                     if let currentQuestion=vm.currentQuestion,let word = words.where({
-                        $0.name==currentQuestion.questionWord &&
-                        $0.assignee.name==currentQuestion.picture &&
-                        $0.assignee.assignee.name==currentQuestion.topic
+                        $0.id==currentQuestion.id
                     }).first{
                         WordFavoriteButton(word: word,isButton: true)
                     }

@@ -10,6 +10,7 @@ import Foundation
 public extension UserDefaults{
     enum  UserDefaultsKeys:String {
         case isAutoPronounce
+        case isCloudSynced
     }
     
     func isAutoPronounce()->Bool{
@@ -19,5 +20,14 @@ public extension UserDefaults{
     
     func setIsAutoPronounce(_ value: Bool){
         set(value, forKey: UserDefaultsKeys.isAutoPronounce.rawValue)
+    }
+    
+    func isCloudSynced()->Bool{
+        register(defaults: [UserDefaultsKeys.isCloudSynced.rawValue : false])
+        return bool(forKey: UserDefaultsKeys.isCloudSynced.rawValue)
+    }
+    
+    func setIsCloudSynced(_ value: Bool){
+        set(value, forKey: UserDefaultsKeys.isCloudSynced.rawValue)
     }
 }
