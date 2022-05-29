@@ -67,10 +67,10 @@ struct SettingView: View {
                     .onTapGesture {
                         vm.cleanCache()
                     }
-                Text("Clean Local Data")
-                    .onTapGesture {
-                        vm.cleanRealm()
-                    }
+//                Text("Clean Local Data")
+//                    .onTapGesture {
+//                        vm.cleanRealm()
+//                    }
                 HStack{
                     Text("Resync Data From Server")
                     Spacer()
