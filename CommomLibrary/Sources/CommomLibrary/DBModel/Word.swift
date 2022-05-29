@@ -14,7 +14,6 @@ import OSLog
 public class Word: Object, ObjectKeyIdentifiable{
     @Persisted(primaryKey: true) public var id: String
     @Persisted(indexed: true) public var name: String
-    @Persisted public var isFavorited: Bool = false
     @Persisted(originProperty: "words") public var assignee: LinkingObjects<Picture>
 }
 
@@ -29,6 +28,18 @@ public extension Word{
             }
         }
         return true
+    }
+    
+    var isFavorited: Bool{
+        if let localRealm = self.realm{
+            let count = localRealm.objects(WordSelect.self).where {
+                $0.id==self.id && $0.isFavorited==true
+            }.count
+            if count>0{
+                return true
+            }
+        }
+        return false
     }
     
     func delete(isAsync:Bool=false,onComplete: ((Swift.Error?) -> Void)? = nil) {
@@ -160,6 +171,45 @@ public extension Word{
             )
         }
     }
+    
+    /// 生成isFavorited的查询表达式
+    /// - Parameters:
+    ///   - localRealm: 可用的Realm实例
+    ///   - word: 执行where查询的word实例
+    /// - Returns: 查询表达式
+    static func isFavoritedFilter(localRealm:Realm, isFavorited:Bool=true, word: Query<Word>) -> Query<Bool> {
+        // 准备好subquery
+        let wordSelects = localRealm.objects(WordSelect.self)
+        // 找出所有isFavorited为false的word id
+        var isSelecteds: [String] = wordSelects.where { select in
+            select.isFavorited==true && select.isDeleted==false
+        }.map{ $0.id }
+        if isSelecteds.count==0{
+            isSelecteds = [""]
+        }
+        if isFavorited{
+            return word.id.in(isSelecteds)
+        }else{
+            return !word.id.in(isSelecteds)
+        }
+    }
+    
+    static func isFavoritedFilter(localRealm:Realm, isFavorited:Bool=true, words: Query<List<Word>>) -> Query<Bool> {
+        // 准备好subquery
+        let wordSelects = localRealm.objects(WordSelect.self)
+        // 找出所有isFavorited为false的word id
+        var isSelecteds: [String] = wordSelects.where { select in
+            select.isFavorited==true && select.isDeleted==false
+        }.map{ $0.id }
+        if isSelecteds.count==0{
+            isSelecteds = [""]
+        }
+        if isFavorited{
+            return words.id.in(isSelecteds)
+        }else{
+            return !words.id.in(isSelecteds)
+        }
+    }
 }
 
 public extension Word{
@@ -246,15 +296,22 @@ public extension Word{
     }
     
     func toggleFavorite(){
-        if let thawWord = self.thaw(){
-            if let localRealm = thawWord.realm{
-                do{
-                    try localRealm.write{
-                        thawWord.isFavorited.toggle()
+        if let thawWord = self.thaw(),let localRealm = thawWord.realm{
+            do{
+                try localRealm.write{
+                    if let wordSelect = localRealm.object(ofType: WordSelect.self, forPrimaryKey: self.id){
+                        wordSelect.isFavorited.toggle()
+                    }else{
+                        WordSelect.addNewWordSelectTransaction(
+                            localRealm: localRealm,
+                            id: self.id,
+                            name: self.name,
+                            isFavorited: isFavorited
+                        )
                     }
-                } catch {
-                    Logger().error("Error toggle isFavorite \(self) from Realm: \(error.localizedDescription)")
                 }
+            } catch {
+                Logger().error("Error toggle isFavorite \(self) from Realm: \(error.localizedDescription)")
             }
         }
     }

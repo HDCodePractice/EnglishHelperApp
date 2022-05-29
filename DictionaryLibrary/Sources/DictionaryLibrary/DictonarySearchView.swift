@@ -23,6 +23,7 @@ struct DictonarySearchView: View {
     
     public var body: some View {
         let isNotNews: [String] = wordSelects.where{ $0.isNew==false && $0.isDeleted==false }.map{ $0.id }
+        let isFavoriteds: [String] = wordSelects.where{ $0.isFavorited==true && $0.isDeleted==false }.map{ $0.id }
         List{
             ForEach(topics.where({
                 var filter = $0.name.like("*")
@@ -38,7 +39,9 @@ struct DictonarySearchView: View {
                     }
                 }
                 if isShowFavorite{
-                    filter = filter && $0.pictures.words.isFavorited==true
+                    if isFavoriteds.count > 0{
+                        filter = filter && $0.pictures.words.id.in(isFavoriteds)
+                    }
                 }
                 return filter
             }).sorted(byKeyPath: "name")){ topic in
@@ -54,7 +57,9 @@ struct DictonarySearchView: View {
                             }
                         }
                         if isShowFavorite{
-                            filter = filter && $0.isFavorited==true
+                            if isFavoriteds.count > 0{
+                                filter = filter && $0.id.in(isFavoriteds)
+                            }
                         }
                         return filter
                     }).sorted(byKeyPath: "name")){ word in

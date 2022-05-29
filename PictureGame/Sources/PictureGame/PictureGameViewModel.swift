@@ -78,7 +78,7 @@ class PictureGameViewModel: ObservableObject{
             case .new:
                 filter = Word.isNewFilter(localRealm: localRealm, word: word)
             case .favorite:
-                filter = word.isFavorited == true
+                filter = Word.isFavoritedFilter(localRealm: localRealm,isFavorited: true, word: word)
             }
             return filter
         }.count
@@ -102,7 +102,7 @@ class PictureGameViewModel: ObservableObject{
             case .new:
                 filter = Word.isNewFilter(localRealm: localRealm, isNew: true, words: chapter.topics.pictures.words)
             case .favorite:
-                filter=chapter.topics.pictures.words.isFavorited==true
+                filter=Word.isFavoritedFilter(localRealm: localRealm, isFavorited: true, words: chapter.topics.pictures.words)
             }
             return filter
         }
@@ -122,7 +122,7 @@ class PictureGameViewModel: ObservableObject{
                 case .new:
                     filter = Word.isNewFilter(localRealm: localRealm, isNew: false, word: word)
                 case .favorite:
-                    filter = word.isFavorited == false
+                    filter = Word.isFavoritedFilter(localRealm: localRealm, isFavorited: false, word: word)
                 }
                 return filter
             }
