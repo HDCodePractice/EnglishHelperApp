@@ -100,7 +100,8 @@ class PictureGameViewModel: ObservableObject{
             case .topics:
                 filter = Chapter.isSelectedFilter(localRealm: localRealm, chapter: chapter)
             case .new:
-                filter = Word.isNewFilter(localRealm: localRealm, isNew: true, words: chapter.topics.pictures.words)
+//                filter = Word.isNewFilter(localRealm: localRealm, isNew: true, words: chapter.topics.pictures.words)
+                filter = chapter.name==chapter.name
             case .favorite:
                 filter=Word.isFavoritedFilter(localRealm: localRealm, isFavorited: true, words: chapter.topics.pictures.words)
             }
@@ -113,6 +114,9 @@ class PictureGameViewModel: ObservableObject{
             for chapter in chapters{
                 memoRealm.create(Chapter.self, value: chapter)
             }
+            print(localRealm.objects(Chapter.self).count)
+            print(memoRealm.objects(Chapter.self).count)
+            print(memoRealm.objects(Word.self).count)
             
             let noSelectWords = memoRealm.objects(Word.self).where { word in
                 let filter : Query<Bool>

@@ -84,4 +84,26 @@ class WordTests: XCTestCase {
             XCTAssertEqual(localRealm.objects(WordSelect.self).where({$0.isNew==true}).count, 250)
         }
     }
+    
+    func test_isNewFilter_whenSomeWordNotNewAboutChaptersCount() throws{
+        guard let localRealm = realmController.localRealm else { return }
+        
+        let chapters = localRealm.objects(Chapter.self)
+        let words = localRealm.objects(Word.self)
+        
+        var count = chapters.count
+        XCTAssertEqual(count, 5)
+        XCTAssertEqual(words.count, 250)
+        XCTAssertEqual(words[0].isNew,true)
+        
+        words[0].setIsNew(isNew: false)
+        count = words.where{
+            Word.isNewFilter(localRealm: localRealm, isNew: true, word: $0)
+        }.count
+        XCTAssertEqual(count, 249)
+        count = chapters.where{
+            Word.isNewFilter(localRealm: localRealm, isNew: true, words: $0.topics.pictures.words)
+        }.count
+        XCTAssertEqual(count, 4)
+    }
 }
