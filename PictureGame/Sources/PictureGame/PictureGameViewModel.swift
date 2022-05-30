@@ -114,9 +114,6 @@ class PictureGameViewModel: ObservableObject{
             for chapter in chapters{
                 memoRealm.create(Chapter.self, value: chapter)
             }
-            print(localRealm.objects(Chapter.self).count)
-            print(memoRealm.objects(Chapter.self).count)
-            print(memoRealm.objects(Word.self).count)
             
             let noSelectWords = memoRealm.objects(Word.self).where { word in
                 let filter : Query<Bool>
