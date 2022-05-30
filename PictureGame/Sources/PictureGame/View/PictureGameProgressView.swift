@@ -40,14 +40,9 @@ struct PictureGameProgressView: View {
                     .foregroundColor(.accent)
                     .fontWeight(.heavy)
                 Button{
+                    let answers = String(localized: "Which picture is \(vm.question)?\n\n#EnglishHelper #\(vm.currentQuestion?.topic.replacingOccurrences(of: " ", with: "", options: .literal, range: nil) ?? "Unknow")")
                     let scenes = UIApplication.shared.connectedScenes
                     if let windowScenes = scenes.first as? UIWindowScene,let window = windowScenes.windows.first{
-                        var answers = ""
-                        var answerCount = 1
-                        for a in vm.answerChoices{
-                            answers += "\(answerCount).\(a.filePath)\n"
-                            answerCount += 1
-                        }
                         item =  ActivityItem(items: window.asImage(),answers)
                     }
                 }label: {

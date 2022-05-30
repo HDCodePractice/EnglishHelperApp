@@ -78,3 +78,8 @@
 "Auto Pronounce" = "自动念出词汇";
 
 "Version:%@.%@" = "版本号:%@.%@";
+
+"Which picture is %@?\n\n#EnglishHelper #%@" = "%@ 是哪张图片?\n\n#EnglishHelper #%@";
+
+/**/
+"Which-picture-string" = "%@ 是哪张图片?\n\n#EnglishHelper #%@";
