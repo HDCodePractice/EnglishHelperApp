@@ -6,21 +6,17 @@
 //
 
 import SwiftUI
-import CommomLibrary
 
-enum GameMode: String, CaseIterable {
-    case uniq = "Uniq"
-    case random = "Random"
-    case finish = "Finish"
-}
 
 struct EnumPickerDemoView: View {
-    @State var gameMode = GameMode.finish
     var body: some View {
         VStack{
-            Text("Select Mode")
-            EnumPicker(selected: $gameMode, title: "Select Mode:")
-                .pickerStyle(.segmented)
+            let a = "Hello"
+//            let answers1  = NSLocalizedString("Which picture is \(a)?\n\n#EnglishHelper #\(a)", comment: "")
+            let answers1 = String(localized: "Which picture is \(a)?\n\n#EnglishHelper #\(a)")
+            Text(answers1)
+            let answers  = LocalizedStringKey("Which picture is \(a)?\n\n#EnglishHelper #\(a)")
+            Text(answers)
 
         }
     }
