@@ -84,6 +84,16 @@ class IrregularVerbTests: XCTestCase {
                 "baseForm":"baseForm2",
                 "simplePast":["simplePast21","simplePast22","simplePast23"],
                 "pastParticiple": ["pastParticiple2"]
+            },
+            {
+                "baseForm":"baseForm3",
+                "simplePast":["simplePast21","simplePast22","simplePast23"],
+                "pastParticiple": ["pastParticiple2"]
+            },
+            {
+                "baseForm":"baseForm4",
+                "simplePast":["simplePast21","simplePast22","simplePast23"],
+                "pastParticiple": ["pastParticiple2"]
             }
         ]
         """.data(using: .utf8)!
@@ -93,14 +103,14 @@ class IrregularVerbTests: XCTestCase {
                 for i in 0..<jsons.count {
                     localRealm.create(IrregularVerb.self, value: jsons[i], update: .modified)
                     let irregularVerbs = localRealm.objects(IrregularVerb.self)
+                    print(irregularVerbs.count)
                     XCTAssertEqual(irregularVerbs.count, i+1)
                 }
             }
             let irregularVerbs = localRealm.objects(IrregularVerb.self)
-            XCTAssertEqual(2, irregularVerbs.filter{ $0.simplePast.contains(where: { $0.contains("simplePast")})}.count)
+            XCTAssertEqual(4, irregularVerbs.filter{ $0.simplePast.contains(where: { $0.contains("simplePast")})}.count)
             XCTAssertEqual(1, irregularVerbs.filter{ $0.simplePast.contains(where: { $0.contains("11")})}.count)
             XCTAssertEqual(1, irregularVerbs.filter{ $0.simplePast.contains(where: { $0.contains("12")})}.count)
         }
-        
     }
 }

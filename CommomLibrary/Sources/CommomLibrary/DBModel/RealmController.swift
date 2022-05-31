@@ -14,7 +14,8 @@ public class RealmController{
     public var localRealm : Realm?
     public var memoRealm : Realm?
     private let logger = Logger()
-    private let pictureJsonURL = "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/picture.json"
+    private let pictureJsonURL="https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/picture.json"
+    private let iVerbsJsonURL="https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/iverbs.json"
     
     let config = Realm.Configuration(
         schemaVersion: 9,
@@ -84,6 +85,25 @@ public class RealmController{
     public func fetchData() async{
         if let jChapter:[JChapter] = await loadDataByServer(url: pictureJsonURL){
             syncFromServer(chapters: jChapter)
+        }
+        do{
+            let (data,_) = try await URLSession.shared.data(from: URL(string: iVerbsJsonURL)!)
+            if let jsons = try! JSONSerialization.jsonObject(with: data, options: []) as? [Any], let localRealm=localRealm{
+                localRealm.writeAsync{
+                    print(localRealm.objects(IrregularVerb.self).count)
+                    let irregularVerbs = localRealm.objects(IrregularVerb.self)
+                    localRealm.delete(irregularVerbs)
+                    for i in 0..<jsons.count {
+                        localRealm.create(IrregularVerb.self, value: jsons[i], update: .modified)
+                    }
+                }onComplete: { error in
+                    if let error=error{
+                        Logger().error("create IrregularVery erryr:\(error.localizedDescription)")
+                    }
+                }
+            }
+        }catch{
+            Logger().error("load \(iVerbsJsonURL) error:\(error.localizedDescription)")
         }
     }
     
