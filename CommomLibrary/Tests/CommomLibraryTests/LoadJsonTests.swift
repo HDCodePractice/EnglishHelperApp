@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Foundation
 @testable import CommomLibrary
 
 class LoadJsonTests: XCTestCase {
@@ -25,10 +26,22 @@ class LoadJsonTests: XCTestCase {
         }
     }
     
-    func testLoadJsonFromRemote() async throws {
+    func testLoadPictureJsonFromRemote() async throws {
         let pictureJsonURL="https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/picture.json"
         if let jChapter:[JChapter] = await loadDataByServer(url: pictureJsonURL){
-            print(jChapter)
+            XCTAssertTrue(jChapter.count > 0)
+        }
+    }
+    
+    func testLoadIrregularVerJsonFromRemote() async throws {
+        let url="https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/iverbs.json"
+        do{
+            let (data,_) = try await URLSession.shared.data(from: URL(string: url)!)
+            if let jsons = try! JSONSerialization.jsonObject(with: data, options: []) as? [Any]{
+                XCTAssertTrue(jsons.count > 0)
+            }
+        }catch{
+            print("load \(url) error:\(error)")
         }
     }
 }

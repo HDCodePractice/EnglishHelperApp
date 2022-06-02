@@ -1,46 +1,31 @@
 //
-//  File.swift
+//  RealmSwiftObjectExt.swift
 //  
 //
 //  Created by 老房东 on 2022-05-26.
 //
 
-//import RealmSwift
-//import OSLog
-//
-//protocol Deleteable {
-//    func delete(isAsync:Bool,onComplete: ((Swift.Error?) -> Void)?)
-//
-//    func deleteTransaction(_ localRealm: Realm)
-//}
-//
-//extension Object: Deleteable{
-//    func deleteTransaction(_ localRealm: Realm) {
-//        return
-//    }
-//
-//    func delete(isAsync:Bool=false,onComplete: ((Swift.Error?) -> Void)? = nil) {
-//        if let thawed=self.thaw(), let localRealm = thawed.realm{
-//            if isAsync{
-//                localRealm.writeAsync{
-//                    self.deleteTransaction(localRealm)
-//                } onComplete: { error in
-//                    if let error=error{
-//                        Logger().error("Error deleting \(self) from Realm: \(error.localizedDescription)")
-//                    }
-//                    if let onComplete = onComplete {
-//                        onComplete(error)
-//                    }
-//                }
-//            }else{
-//                do{
-//                    try localRealm.write{
-//                        self.deleteTransaction(localRealm)
-//                    }
-//                } catch {
-//                    Logger().error("Error deleting \(self) from Realm: \(error.localizedDescription)")
-//                }
-//            }
-//        }
-//    }
-//}
+import RealmSwift
+import Realm
+import OSLog
+
+extension Object {
+    func toDictionary() -> [String: Any] {
+        let properties = self.objectSchema.properties.map { $0.name }
+        var mutabledic = self.dictionaryWithValues(forKeys: properties)
+        for prop in self.objectSchema.properties as [Property] {
+            // find lists
+            if let nestedObject = self[prop.name] as? Object {
+                mutabledic[prop.name] = nestedObject.toDictionary()
+            } else if let nestedListObject = self[prop.name] as? RLMSwiftCollectionBase {
+                var objects = [[String: Any]]()
+                for index in 0..<nestedListObject._rlmCollection.count  {
+                    let object = nestedListObject._rlmCollection[index] as! Object
+                    objects.append(object.toDictionary())
+                }
+                mutabledic[prop.name] = objects
+            }
+        }
+        return mutabledic
+    }
+}

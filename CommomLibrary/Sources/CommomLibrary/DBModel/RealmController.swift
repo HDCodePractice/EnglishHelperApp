@@ -14,7 +14,8 @@ public class RealmController{
     public var localRealm : Realm?
     public var memoRealm : Realm?
     private let logger = Logger()
-    private let pictureJsonURL = "https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/picture.json"
+    private let pictureJsonURL="https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/picture.json"
+    private let iVerbsJsonURL="https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/iverbs.json"
     
     let config = Realm.Configuration(
         schemaVersion: 9,
@@ -64,6 +65,25 @@ public class RealmController{
         if let chapters: [JChapter] = load(jsonFile,bundel: .swiftUIPreviewsCompatibleModule){
             syncFromServer(chapters: chapters)
         }
+        
+        let data: Data
+        
+        do {
+            data = try Data(contentsOf: URL(string: iVerbsJsonURL)!)
+            if let jsons = try! JSONSerialization.jsonObject(with: data, options: []) as? [Any], let localRealm=localRealm{
+                try localRealm.write{
+                    let irregularVerbs = localRealm.objects(IrregularVerb.self)
+                    localRealm.delete(irregularVerbs)
+                    for i in 0..<jsons.count {
+                        localRealm.create(IrregularVerb.self, value: jsons[i], update: .modified)
+                    }
+                }
+            }
+        } catch {
+            print("\(error)")
+            
+        }
+        
     }
     
     init(){
@@ -85,6 +105,24 @@ public class RealmController{
         if let jChapter:[JChapter] = await loadDataByServer(url: pictureJsonURL){
             syncFromServer(chapters: jChapter)
         }
+        do{
+            let (data,_) = try await URLSession.shared.data(from: URL(string: iVerbsJsonURL)!)
+            if let jsons = try! JSONSerialization.jsonObject(with: data, options: []) as? [Any], let localRealm=localRealm{
+                localRealm.writeAsync{
+                    let irregularVerbs = localRealm.objects(IrregularVerb.self)
+                    localRealm.delete(irregularVerbs)
+                    for i in 0..<jsons.count {
+                        localRealm.create(IrregularVerb.self, value: jsons[i], update: .modified)
+                    }
+                }onComplete: { error in
+                    if let error=error{
+                        Logger().error("create IrregularVery erryr:\(error.localizedDescription)")
+                    }
+                }
+            }
+        }catch{
+            Logger().error("load \(self.iVerbsJsonURL) error:\(error.localizedDescription)")
+        }
     }
     
     // 清除所有本地数据
@@ -97,7 +135,6 @@ public class RealmController{
             } catch {
                 logger.error("clean realm Error: \(error.localizedDescription)")
             }
-            
         }
     }
     
