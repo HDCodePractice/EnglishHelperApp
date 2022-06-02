@@ -65,6 +65,25 @@ public class RealmController{
         if let chapters: [JChapter] = load(jsonFile,bundel: .swiftUIPreviewsCompatibleModule){
             syncFromServer(chapters: chapters)
         }
+        
+        let data: Data
+        
+        do {
+            data = try Data(contentsOf: URL(string: iVerbsJsonURL)!)
+            if let jsons = try! JSONSerialization.jsonObject(with: data, options: []) as? [Any], let localRealm=localRealm{
+                try localRealm.write{
+                    let irregularVerbs = localRealm.objects(IrregularVerb.self)
+                    localRealm.delete(irregularVerbs)
+                    for i in 0..<jsons.count {
+                        localRealm.create(IrregularVerb.self, value: jsons[i], update: .modified)
+                    }
+                }
+            }
+        } catch {
+            print("\(error)")
+            
+        }
+        
     }
     
     init(){
@@ -90,7 +109,6 @@ public class RealmController{
             let (data,_) = try await URLSession.shared.data(from: URL(string: iVerbsJsonURL)!)
             if let jsons = try! JSONSerialization.jsonObject(with: data, options: []) as? [Any], let localRealm=localRealm{
                 localRealm.writeAsync{
-                    print(localRealm.objects(IrregularVerb.self).count)
                     let irregularVerbs = localRealm.objects(IrregularVerb.self)
                     localRealm.delete(irregularVerbs)
                     for i in 0..<jsons.count {
@@ -103,7 +121,7 @@ public class RealmController{
                 }
             }
         }catch{
-            Logger().error("load \(iVerbsJsonURL) error:\(error.localizedDescription)")
+            Logger().error("load \(self.iVerbsJsonURL) error:\(error.localizedDescription)")
         }
     }
     
@@ -117,7 +135,6 @@ public class RealmController{
             } catch {
                 logger.error("clean realm Error: \(error.localizedDescription)")
             }
-            
         }
     }
     

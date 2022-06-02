@@ -10,7 +10,7 @@ import RealmSwift
 
 public class IrregularVerb: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) public var baseForm: String
-    @Persisted public var simplePast = RealmSwift.List<String>()
-    @Persisted public var pastParticiple = RealmSwift.List<String>()
+    @Persisted public var simplePast : String = ""
+    @Persisted public var pastParticiple : String = ""
 }
 
