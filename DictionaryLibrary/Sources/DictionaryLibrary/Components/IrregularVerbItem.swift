@@ -11,15 +11,15 @@ import RealmSwift
 
 struct IrregularVerbItem: View {
     var search : String
-    var limit : Int = 3
+    var limit : Int = 2
     @ObservedResults(IrregularVerb.self) var irregularVerbs
     
     var body: some View {
         let items = irregularVerbs.where{ item in
             item.baseForm.contains(search) || item.simplePast.contains(search) || item.pastParticiple.contains(search)
-        }.prefix(3)
+        }.prefix(limit)
         if !items.isEmpty{
-            Section("Irregulary Verbs"){
+            Section("Irregulary Verb"){
                 ForEach(items){ item in
                     HStack{
                         Text("\(item.baseForm) \(item.simplePast) \(item.pastParticiple)")

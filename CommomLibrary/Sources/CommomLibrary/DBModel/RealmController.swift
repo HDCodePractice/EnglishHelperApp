@@ -16,6 +16,7 @@ public class RealmController{
     private let logger = Logger()
     private let pictureJsonURL="https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/picture.json"
     private let iVerbsJsonURL="https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/iverbs.json"
+    private let iNounsJsonURL="https://raw.githubusercontent.com/HDCodePractice/EnglishHelper/main/res/inouns.json"
     
     let config = Realm.Configuration(
         schemaVersion: 9,
@@ -66,7 +67,7 @@ public class RealmController{
             syncFromServer(chapters: chapters)
         }
         
-        let data: Data
+        var data: Data
         
         do {
             data = try Data(contentsOf: URL(string: iVerbsJsonURL)!)
@@ -79,11 +80,20 @@ public class RealmController{
                     }
                 }
             }
+            data = try Data(contentsOf: URL(string: iNounsJsonURL)!)
+            if let jsons = try! JSONSerialization.jsonObject(with: data, options: []) as? [Any], let localRealm=localRealm{
+                try localRealm.write{
+                    let irregularNouns = localRealm.objects(IrregularNoun.self)
+                    localRealm.delete(irregularNouns)
+                    for i in 0..<jsons.count {
+                        localRealm.create(IrregularNoun.self, value: jsons[i], update: .modified)
+                    }
+                }
+            }
         } catch {
             print("\(error)")
             
         }
-        
     }
     
     init(){
@@ -122,6 +132,24 @@ public class RealmController{
             }
         }catch{
             Logger().error("load \(self.iVerbsJsonURL) error:\(error.localizedDescription)")
+        }
+        do{
+            let (data,_) = try await URLSession.shared.data(from: URL(string: iNounsJsonURL)!)
+            if let jsons = try! JSONSerialization.jsonObject(with: data, options: []) as? [Any], let localRealm=localRealm{
+                localRealm.writeAsync{
+                    let irregularNouns = localRealm.objects(IrregularNoun.self)
+                    localRealm.delete(irregularNouns)
+                    for i in 0..<jsons.count {
+                        localRealm.create(IrregularNoun.self, value: jsons[i], update: .modified)
+                    }
+                }onComplete: { error in
+                    if let error=error{
+                        Logger().error("create IrregularNoun erryr:\(error.localizedDescription)")
+                    }
+                }
+            }
+        }catch{
+            Logger().error("load \(self.iNounsJsonURL) error:\(error.localizedDescription)")
         }
     }
     

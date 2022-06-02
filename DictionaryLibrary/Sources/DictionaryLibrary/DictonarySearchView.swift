@@ -27,6 +27,7 @@ struct DictonarySearchView: View {
         VStack{
             List{
                 IrregularVerbItem(search: searchFilter.lowercased())
+                IrregularNounItem(search: searchFilter.lowercased())
                 ForEach(topics.where({
                     var filter = $0.name.like("*")
                     if !selectedTopic.isEmpty{
