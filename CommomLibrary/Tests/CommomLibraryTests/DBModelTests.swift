@@ -16,7 +16,9 @@ class PictureTests: XCTestCase {
     
     override func setUpWithError() throws {
         realmController = RealmController()
+        realmController.cleanRealm()
         realmController.localRealm = try Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test"))
+        
         
         for i in 1...5 {
             var newChapter = JChapter(name: "Chapter\(i)")
