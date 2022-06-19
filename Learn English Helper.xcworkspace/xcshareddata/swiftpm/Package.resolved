@@ -12,10 +12,10 @@
       },
       {
         "package": "IceCream",
-        "repositoryURL": "https://github.com/leoz/IceCream.git",
+        "repositoryURL": "https://github.com/hdcola/IceCream.git",
         "state": {
           "branch": "master",
-          "revision": "46697c87260db0f484fb1f1bcc0b269e4ba7a2b6",
+          "revision": "03086105b0aa8d186493ee4fdf19cb8e32708c81",
           "version": null
         }
       },
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
         "state": {
           "branch": null,
-          "revision": "59eb199fdb8dd47733624e8b0277822d0232579e",
-          "version": "7.2.2"
+          "revision": "2de32a15bdd640a30ee9972a40b031fc604fc880",
+          "version": "7.2.3"
         }
       },
       {
@@ -33,17 +33,26 @@
         "repositoryURL": "https://github.com/realm/realm-core",
         "state": {
           "branch": null,
-          "revision": "9e2f3cb730a546ff33e95c563a85e3cf61f17d17",
-          "version": "12.0.0"
+          "revision": "fd48276f88f3d55dbdcdc9e8cbf32541811d5865",
+          "version": "12.1.0"
         }
       },
       {
         "package": "Realm",
-        "repositoryURL": "https://github.com/realm/realm-swift.git",
+        "repositoryURL": "https://github.com/realm/realm-swift",
         "state": {
           "branch": null,
-          "revision": "0762a9eb77929fdfbefa476ae62afed2b3e41bae",
-          "version": "10.27.0"
+          "revision": "d3aaab84885e0de9a7a49955874cee160adee164",
+          "version": "10.28.1"
+        }
+      },
+      {
+        "package": "SwiftDocCPlugin",
+        "repositoryURL": "https://github.com/apple/swift-docc-plugin",
+        "state": {
+          "branch": null,
+          "revision": "3303b164430d9a7055ba484c8ead67a52f7b74f6",
+          "version": "1.0.0"
         }
       },
       {

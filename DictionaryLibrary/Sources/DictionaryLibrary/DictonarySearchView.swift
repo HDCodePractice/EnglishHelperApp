@@ -23,13 +23,18 @@ struct DictonarySearchView: View {
     
     var body: some View {
         let isNotNews: [String] = wordSelects.where{ $0.isNew==false && $0.isDeleted==false }.map{ $0.id }
+        let isSelectedNews: [String] = wordSelects.where{ $0.isNew==true && $0.isDeleted==false }.map{ $0.id }
+        let wordsList : [String] = words.map{ $0.id }
+        let isNews = Array(Set(wordsList).subtracting(Set(isNotNews)).union(Set(isSelectedNews)))
         let isFavoriteds: [String] = wordSelects.where{ $0.isFavorited==true && $0.isDeleted==false }.map{ $0.id }
         VStack{
             List{
-                IrregularVerbItem(search: searchFilter.lowercased())
-                IrregularNounItem(search: searchFilter.lowercased())
+                if !searchFilter.isEmpty{
+                    IrregularVerbItem(search: searchFilter.lowercased())
+                    IrregularNounItem(search: searchFilter.lowercased())
+                }
                 ForEach(topics.where({
-                    var filter = $0.name.like("*")
+                    var filter = $0.name != ""
                     if !selectedTopic.isEmpty{
                         filter = $0.name.in(selectedTopic)
                     }
@@ -38,7 +43,7 @@ struct DictonarySearchView: View {
                     }
                     if vm.isOnlyShowNewWord{
                         if isNotNews.count > 0 {
-                            filter = filter && !$0.pictures.words.id.in(isNotNews)
+                            filter = filter && $0.pictures.words.id.in(isNews)
                         }
                     }
                     if isShowFavorite{
