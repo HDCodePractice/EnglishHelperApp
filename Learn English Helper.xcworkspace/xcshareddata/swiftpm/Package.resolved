@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/hdcola/IceCream.git",
         "state": {
           "branch": "master",
-          "revision": "03086105b0aa8d186493ee4fdf19cb8e32708c81",
+          "revision": "b9804f8d13dd32d86c284ce470de94284a4d85b5",
           "version": null
         }
       },
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
         "state": {
           "branch": null,
-          "revision": "2de32a15bdd640a30ee9972a40b031fc604fc880",
-          "version": "7.2.3"
+          "revision": "be1a1acb283a702b99b630f586877ba02234b4cb",
+          "version": "7.3.2"
         }
       },
       {
@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/realm/realm-core",
         "state": {
           "branch": null,
-          "revision": "fd48276f88f3d55dbdcdc9e8cbf32541811d5865",
-          "version": "12.1.0"
+          "revision": "6f6a0f415bd33cf2ced4467e36a47f7c84f0a1d7",
+          "version": "12.5.1"
         }
       },
       {
@@ -42,17 +42,8 @@
         "repositoryURL": "https://github.com/realm/realm-swift",
         "state": {
           "branch": null,
-          "revision": "d3aaab84885e0de9a7a49955874cee160adee164",
-          "version": "10.28.1"
-        }
-      },
-      {
-        "package": "SwiftDocCPlugin",
-        "repositoryURL": "https://github.com/apple/swift-docc-plugin",
-        "state": {
-          "branch": null,
-          "revision": "3303b164430d9a7055ba484c8ead67a52f7b74f6",
-          "version": "1.0.0"
+          "revision": "ae0ceea258fd8f58392881cc4b2228bff62f74f5",
+          "version": "10.28.7"
         }
       },
       {
